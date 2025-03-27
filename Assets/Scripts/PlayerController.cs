@@ -1,51 +1,44 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private LayerMask _groundMask;
+    [Header("Movement")]
+    [SerializeField] private Transform _orientation; 
+    [SerializeField] private float _speed;
 
-    private float _groundCheckRadius = 0.52f;
-    private float _speed = 8;
-    private float _turnSpeed = 10f;
-    private float _jumpForce = 500f;
+    private float horizontalInput;
+    private float verticalInput;
 
-    private Transform _groundCheck;
-    private Rigidbody _rb;
     private Vector3 _direction;
+    private Rigidbody _rb;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _groundCheck = GetComponent<Transform>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        _direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
-        bool isGrounded = Physics.CheckSphere(_groundCheck.position, _groundCheckRadius, _groundMask);
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-        }
+        PlayerInput();
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        bool isMoving = _direction.magnitude > 0.1f;
+        MovePlayer();
+    }
 
-        if (isMoving)
-        {
-            Vector3 direction = transform.forward * _direction.z;
-            _rb.MovePosition(_rb.position + direction * (_speed * Time.fixedDeltaTime));
+    private void PlayerInput()
+    {
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+    }
 
-            Quaternion rightDirection = Quaternion.Euler(0f, _direction.x * (_turnSpeed * Time.fixedDeltaTime), 0f);
-            Quaternion newRotation = Quaternion.Slerp(_rb.rotation, _rb.rotation * rightDirection, Time.fixedDeltaTime * 3f);
-            _rb.MoveRotation(newRotation);
-        }
+    private void MovePlayer()
+    {
+        //calculate movement direction
+        _direction = _orientation.forward * verticalInput + _orientation.right * horizontalInput;
+        _rb.MovePosition(_rb.position + _direction.normalized * _speed * Time.fixedDeltaTime);
+        //_rb.velocity = _direction.normalized * _speed;
     }
 }

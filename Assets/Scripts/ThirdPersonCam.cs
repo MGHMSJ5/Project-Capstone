@@ -11,11 +11,12 @@ public class ThirdPersonCam : MonoBehaviour
     [SerializeField] private Transform _playerObj;
     [SerializeField] private Rigidbody _rb;
 
-    private float _rotationSpeed = 12;
+    private float _rotationSpeed = 15;
 
     void Start()
-    {
-        
+    {   //cursor invisible
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update()
