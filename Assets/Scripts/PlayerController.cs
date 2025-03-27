@@ -36,9 +36,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        bool isRunning = _direction.magnitude > 0.1f;
+        bool isMoving = _direction.magnitude > 0.1f;
 
-        if (isRunning)
+        if (isMoving)
         {
             Vector3 direction = transform.forward * _direction.z;
             _rb.MovePosition(_rb.position + direction * (_speed * Time.fixedDeltaTime));
