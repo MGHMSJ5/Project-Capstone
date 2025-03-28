@@ -8,6 +8,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _groundDrag;
 
+    [Header("Sprinting")]
+    [SerializeField] private float _normalSpeed;
+    [SerializeField] private float _sprintSpeed;
+    [SerializeField] private float _maxSprintAccelerationTime = 1f;
+    [SerializeField] private float _currentSprintTime = 0.0f;
+
     [Header("Jumping")]
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _jumpCooldown;
@@ -28,6 +34,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _speed = _normalSpeed;
     }
 
     void Update()
@@ -52,6 +59,15 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         MovePlayer();
+
+        if (horizontalInput == 0 && verticalInput == 0)
+        {
+            _speed = _normalSpeed;
+        }
+        else
+        {
+            Sprint();
+        }
     }
 
     private void PlayerInput()
@@ -94,6 +110,22 @@ public class PlayerController : MonoBehaviour
 
         //use impulse, because the force is only applied once
         _rb.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
+    }
+
+    private void Sprint()
+    {
+        if (Input.GetAxis("Sprint") == 1)
+        {   //increase the sprint time, but don't go over the max acceleration time
+            _currentSprintTime = Mathf.Min(_currentSprintTime + Time.deltaTime, _maxSprintAccelerationTime);
+        }
+        else
+        {   //decrease the sprint time, but don't go below 0
+            _currentSprintTime = Mathf.Max(_currentSprintTime - Time.deltaTime, 0f);
+        }
+        //normalize the time value between 0 and 1
+        float t = _currentSprintTime / _maxSprintAccelerationTime;
+        //smoothly transition the speed based on sprinting time
+        _speed = Mathf.Lerp(_normalSpeed, _sprintSpeed, t);
     }
 
     private void ResetJump()
