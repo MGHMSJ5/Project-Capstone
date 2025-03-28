@@ -65,6 +65,11 @@ public class PlayerController : MonoBehaviour
             Jump();
             Invoke("ResetJump", _jumpCooldown);
         }
+
+        if (Input.GetButton("Sprint"))
+        {
+            print("weee");
+        }
     }
 
     private void MovePlayer()
