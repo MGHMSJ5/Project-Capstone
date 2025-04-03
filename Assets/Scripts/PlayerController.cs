@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private Transform _orientation; 
+    [SerializeField] private Transform _orientation;
     [SerializeField] private float _speed;
     [SerializeField] private float _groundDrag;
 
@@ -27,9 +27,28 @@ public class PlayerController : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
-
     private Vector3 _direction;
     private Rigidbody _rb;
+
+    // Exposing the following variables safely, for use in other scripts
+    public Transform Orientation => _orientation;
+    public float Speed => _speed;
+    public float GroundDrag => _groundDrag;
+    public float NormalSpeed => _normalSpeed;
+    public float SprintSpeed => _sprintSpeed;
+    public float MaxSprintAccelerationTime => _maxSprintAccelerationTime;
+    public float CurrentSprintTime => _currentSprintTime;
+    public float JumpForce => _jumpForce;
+    public float JumpCooldown => _jumpCooldown;
+    public float AirMultiplier => _airMultiplier;
+    public bool ReadyToJump => _readyToJump;
+    public float PlayerHeight => _playerHeight;
+    public LayerMask GroundMask => _groundMask;
+    public bool Grounded => _grounded;
+    public float HorizontalInput => horizontalInput;
+    public float VerticalInput => verticalInput;
+    public Rigidbody RB => _rb;
+    public Vector3 Direction => _direction;
 
     void Start()
     {
@@ -137,7 +156,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 flatVel = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
 
-        //limit velocuty if needed
+        //limit velocity if needed
         if (flatVel.magnitude > _speed)
         {
             Vector3 limitedVel = flatVel.normalized * _speed;
