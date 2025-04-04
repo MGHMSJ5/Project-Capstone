@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 7931085466945877854}
   - component: {fileID: 1027633404332963079}
   - component: {fileID: 105197503307770643}
+  - component: {fileID: 934457520593668438}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -278,7 +279,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -321,6 +322,8 @@ MonoBehaviour:
   _groundDrag: 0
   _normalSpeed: 5
   _sprintSpeed: 12
+  _maxSprintAccelerationTime: 1
+  _currentSprintTime: 0
   _jumpForce: 320
   _jumpCooldown: 0.25
   _airMultiplier: 0.4
@@ -328,3 +331,15 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &934457520593668438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015057840018717787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8b10eafa11a434489b0541d59a6c027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
