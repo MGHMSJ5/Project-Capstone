@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerHover : MonoBehaviour
@@ -12,6 +11,7 @@ public class PlayerHover : MonoBehaviour
 
     [Header("Movement")]
     private PlayerController _playerController;
+    private GravityBody _gravityBody;
 
     [Header("Ground Check")]
     private bool _grounded;
@@ -19,15 +19,20 @@ public class PlayerHover : MonoBehaviour
     void Start()
     {
         _playerController = GetComponent<PlayerController>();
+        _gravityBody = GetComponent<GravityBody>();
     }
 
     void Update()
     {
-        if (!_hoverAbilityGranted) return; // Checks if the ability is enabled.
+        if (!_hoverAbilityGranted) return;
 
-        // Checks to see if player is in mid-air/jumping. Works the same like the one in PlayerController:
-
-        _grounded = Physics.Raycast(transform.position, Vector3.down, _playerController.PlayerHeight * 0.5f + 0.2f, _playerController.GroundMask);
+        // Use actual gravity direction (from GravityBody) for ground check
+        _grounded = Physics.Raycast(
+            transform.position,
+            _gravityBody.GravityDirection,
+            _playerController.PlayerHeight * 0.5f + 0.2f,
+            _playerController.GroundMask
+        );
 
         if (!_grounded && Input.GetButton("Jump") && _currentHoverTime < _maxHoverTime)
         {
@@ -38,7 +43,7 @@ public class PlayerHover : MonoBehaviour
             StopHover();
         }
 
-        // Resets the hover ability when the players lands:
+         // Resets the hover ability when the players lands:
 
         if (_grounded && !_isHovering)
         {
@@ -52,23 +57,25 @@ public class PlayerHover : MonoBehaviour
         _currentHoverTime += Time.deltaTime;
 
         Rigidbody rb = _playerController.RB;
-        if (rb.velocity.y < 0f) // Note: works only if the player is falling.
+        Vector3 localUp = -_gravityBody.GravityDirection;
+
+        if (Vector3.Dot(rb.velocity, -localUp) > 0f)
         {
-            rb.AddForce(Vector3.up * _hoverForce, ForceMode.Acceleration);
+            rb.AddForce(localUp * _hoverForce, ForceMode.Acceleration);
         }
 
-        // This allows for horizontal movement during hovering.
+        Vector3 moveInput = _playerController.Orientation.forward * _playerController.VerticalInput +
+                            _playerController.Orientation.right * _playerController.HorizontalInput;
+        Vector3 localMove = Vector3.ProjectOnPlane(moveInput, localUp).normalized;
 
-        Vector3 moveDirection = _playerController.Orientation.forward * _playerController.VerticalInput +
-                                _playerController.Orientation.right * _playerController.HorizontalInput;
-        rb.velocity = new Vector3(moveDirection.x * _playerController.Speed, rb.velocity.y, moveDirection.z * _playerController.Speed);
+        rb.velocity = new Vector3(localMove.x * _playerController.Speed, rb.velocity.y, localMove.z * _playerController.Speed);
     }
 
     private void StopHover()
     {
         _isHovering = false;
 
-        // If hover time exceeds max hover time, ability stops working until player lands.
+        // If hover time exceeds max hover time, ability stops working until player lands:
 
         if (_currentHoverTime >= _maxHoverTime)
         {
