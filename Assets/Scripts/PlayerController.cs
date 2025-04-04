@@ -121,11 +121,8 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        //reset y velocity (to make sure that player always jumps the same height
-        if (_rb.velocity.y < 0f)
-        {
-            _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
-        }
+        //reset velocity along the gravity direction
+        _rb.velocity -= Vector3.Project(_rb.velocity, -transform.up);
 
         //use impulse, because the force is only applied once
         _rb.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
@@ -154,7 +151,7 @@ public class PlayerController : MonoBehaviour
 
     private void SpeedControl()
     {
-        Vector3 flatVel = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
+        Vector3 flatVel = _rb.velocity - Vector3.Project(_rb.velocity, -transform.up);
 
         //limit velocity if needed
         if (flatVel.magnitude > _speed)
