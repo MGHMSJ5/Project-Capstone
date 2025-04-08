@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 // IMPORTANT! Do not change this script unless it's necessary for all interact versions!
 [RequireComponent(typeof(Collider))]
 public class BaseInteract : MonoBehaviour
@@ -48,13 +48,15 @@ public class BaseInteract : MonoBehaviour
         SetInteract(false);
     }
 
-    // Call from other script in case the player can interact again
+    // Call from other script in case the player can interact again (while still in the trigger)
     protected void SetInteract(bool canInteract)
     {   
         // Set's if the player can interact or not (+ making the button appear/disappear)
         _button.SetActive(canInteract);
         _canInteract = canInteract;
-        if(_interactOnce) { _hasInteracted = true; };
+
+        // Is used to make sure the player can only interact with it once ↓
+        if (_interactOnce) { _hasInteracted = true; }; 
         
     }
 

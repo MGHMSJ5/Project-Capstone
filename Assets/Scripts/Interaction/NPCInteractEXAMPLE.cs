@@ -17,6 +17,7 @@ public class NPCInteractEXAMPLE : BaseInteract
     protected override void Update()
     {
         base.Update();
+        // Check for if the dialogue disappeared after appearing
         if (!_dialogueObject.activeInHierarchy && _dialogueVisible)
         {
             _dialogueVisible = false;
@@ -30,6 +31,7 @@ public class NPCInteractEXAMPLE : BaseInteract
     {
         base.InteractFunction();
         print("NPC interaction (repeatable)");
+        // Enable dialogue object
         _dialogueObject.SetActive(true);
         _dialogueVisible = true;
         // Disable the player movement
