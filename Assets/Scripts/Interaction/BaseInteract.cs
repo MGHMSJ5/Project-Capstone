@@ -15,13 +15,13 @@ public class BaseInteract : MonoBehaviour
         Interact,
         Collect
     }
-
+    private bool _hasInteracted = false;
     private bool _canInteract = false;
     private string _interactButton;
     private UICanvas _UIInteract;
     private GameObject _button;
 
-    void Start()
+    protected virtual void Start()
     {
         // Make sure that the collider is a trigger (this is the area that the player needs to be in in order to interact
         transform.GetComponent<Collider>().isTrigger = true;
@@ -31,7 +31,7 @@ public class BaseInteract : MonoBehaviour
         _button = _interactButton == "Interact" ? _UIInteract.InteractButton : _UIInteract.CollectButton;
     }
 
-    void Update()
+    protected virtual void Update()
     {   // If the player can interact, 
         if (_canInteract)
         {   // and presses the right button
@@ -43,21 +43,24 @@ public class BaseInteract : MonoBehaviour
     }
 
     // Override this function in other script with what needs to happen
-    public virtual void InteractFunction()
+    protected virtual void InteractFunction()
     {   // What happens when the player can interact/collect and presses the button
         SetInteract(false);
     }
 
     // Call from other script in case the player can interact again
-    public void SetInteract(bool canInteract)
-    {   // Set's if the player can interact or not (+ making the button appear/disappear)
+    protected void SetInteract(bool canInteract)
+    {   
+        // Set's if the player can interact or not (+ making the button appear/disappear)
         _button.SetActive(canInteract);
         _canInteract = canInteract;
+        if(_interactOnce) { _hasInteracted = true; };
+        
     }
 
     private void OnTriggerEnter(Collider other)
-    {   // When the player enters the trigger
-        if (other.gameObject.tag == "Player" && !_interactOnce)
+    {   // When the player enters the trigger + make sure that the player can't interact again if ticked _interactionOnce
+        if (other.gameObject.tag == "Player" && !_hasInteracted)
         {
             SetInteract(true);
         }
