@@ -18,7 +18,7 @@ public class BaseInteract : MonoBehaviour
     private bool _hasInteracted = false;
     private bool _canInteract = false;
     private string _interactButton;
-    private UICanvas _UIInteract;
+    private UICanvas _UICanvas;
     private GameObject _button;
 
     protected virtual void Start()
@@ -26,9 +26,9 @@ public class BaseInteract : MonoBehaviour
         // Make sure that the collider is a trigger (this is the area that the player needs to be in in order to interact
         transform.GetComponent<Collider>().isTrigger = true;
         _interactButton = _interactType.ToString();
-        _UIInteract = GameObject.Find("Canvas").GetComponent<UICanvas>(); // Change 'Canvas' if the name of the canvas changes
+        _UICanvas = GameObject.Find("Canvas").GetComponent<UICanvas>(); // Change 'Canvas' if the name of the canvas changes
         // if the set interact type is 'Interact', then get the InteractButton from UIInteract script. Otherwise get the CollectButton
-        _button = _interactButton == "Interact" ? _UIInteract.InteractButton : _UIInteract.CollectButton;
+        _button = _interactButton == "Interact" ? _UICanvas.InteractButton : _UICanvas.CollectButton;
     }
 
     protected virtual void Update()
