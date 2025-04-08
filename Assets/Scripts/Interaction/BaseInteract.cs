@@ -1,5 +1,5 @@
 using UnityEngine;
-// IMPORTANT! Do not change this script unless it's necissary for all interact versions!
+// IMPORTANT! Do not change this script unless it's necessary for all interact versions!
 [RequireComponent(typeof(Collider))]
 public class BaseInteract : MonoBehaviour
 {
@@ -24,7 +24,7 @@ public class BaseInteract : MonoBehaviour
         _interactButton = _interactType.ToString();
         _UIInteract = GameObject.Find("Canvas").GetComponent<UICanvas>(); // Change 'Canvas' if the name of the canvas changes
         // if the set interact type is 'Interact', then get the InteractButton from UIInteract script. Otherwise get the CollectButton
-        _button = _interactButton == "Interact" ? _UIInteract.InteractButton : _UIInteract.ColectButton;
+        _button = _interactButton == "Interact" ? _UIInteract.InteractButton : _UIInteract.CollectButton;
     }
 
     void Update()

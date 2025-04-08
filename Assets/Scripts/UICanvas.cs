@@ -3,7 +3,7 @@ using UnityEngine;
 public class UICanvas : MonoBehaviour
 {
     public GameObject InteractButton => interactButton;
-    public GameObject ColectButton => collectButton;
+    public GameObject CollectButton => collectButton;
     [SerializeField]
     private GameObject interactButton;
     [SerializeField]
