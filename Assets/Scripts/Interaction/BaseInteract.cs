@@ -1,5 +1,6 @@
 using UnityEngine;
-
+// IMPORTANT! Do not change this script unless it's necissary for all interact versions!
+[RequireComponent(typeof(Collider))]
 public class BaseInteract : MonoBehaviour
 {
     [SerializeField]
@@ -16,16 +17,16 @@ public class BaseInteract : MonoBehaviour
     private UICanvas _UIInteract;
     private GameObject _button;
 
-    // Start is called before the first frame update
     void Start()
     {
+        // Make sure that the collider is a trigger (this is the area that the player needs to be in in order to interact
+        transform.GetComponent<Collider>().isTrigger = true;
         _interactButton = _interactType.ToString();
         _UIInteract = GameObject.Find("Canvas").GetComponent<UICanvas>(); // Change 'Canvas' if the name of the canvas changes
         // if the set interact type is 'Interact', then get the InteractButton from UIInteract script. Otherwise get the CollectButton
         _button = _interactButton == "Interact" ? _UIInteract.InteractButton : _UIInteract.ColectButton;
     }
 
-    // Update is called once per frame
     void Update()
     {   // If the player can interact, 
         if (_canInteract)
@@ -36,11 +37,18 @@ public class BaseInteract : MonoBehaviour
             }
         }
     }
+
     // Override this function in other script with what needs to happen
     public virtual void InteractFunction()
     {   // What happens when the player can interact/collect and presses the button
         SetInteract(false);
-        print("Interacting");
+    }
+
+    // Call from other script in case the player can interact again
+    public void SetInteract(bool canInteract)
+    {   // Set's if the player can interact or not (+ making the button appear/disappear)
+        _button.SetActive(canInteract);
+        _canInteract = canInteract;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,12 +65,5 @@ public class BaseInteract : MonoBehaviour
         {
             SetInteract(false);
         }
-    }
-
-    // Call from other script in case the player can interact again
-    public void SetInteract(bool canInteract)
-    {   // Set's if the player can interact or not (+ making the button appear/disappear)
-        _button.SetActive(canInteract);
-        _canInteract = canInteract;
     }
 }
