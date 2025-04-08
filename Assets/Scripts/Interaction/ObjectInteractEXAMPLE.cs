@@ -5,7 +5,7 @@ public class ObjectInteractEXAMPLE : BaseInteract
     {
         base.InteractFunction();
         print("Do action (when interacting with object)");
-        // To interact again:
+        // To interact again while still in the collider:
         //SetInteract(true);
     }
 }

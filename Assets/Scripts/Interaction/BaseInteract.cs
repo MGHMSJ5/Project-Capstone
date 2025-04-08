@@ -4,8 +4,12 @@ using UnityEngine;
 public class BaseInteract : MonoBehaviour
 {
     [SerializeField]
+    [Tooltip("Set to true when interacting only needs to happen once")]
+    private bool _interactOnce;
+    [SerializeField]
     [Tooltip("Select the right interaction. Interact = interacting with environment & NPC's (E & B). Collect = Collect collectibles & pick up objects (F & Y).")]
     private InteractType _interactType;
+    
     private enum InteractType
     {
         Interact,
@@ -53,7 +57,7 @@ public class BaseInteract : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {   // When the player enters the trigger
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && !_interactOnce)
         {
             SetInteract(true);
         }
