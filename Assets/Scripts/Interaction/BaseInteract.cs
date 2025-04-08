@@ -27,36 +27,42 @@ public class BaseInteract : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   // If the player can interact, 
         if (_canInteract)
-        {
+        {   // and presses the right button
             if (Input.GetButtonDown(_interactButton))
             {
                 InteractFunction();
             }
         }
     }
-
+    // Override this function in other script with what needs to happen
     public virtual void InteractFunction()
     {   // What happens when the player can interact/collect and presses the button
+        SetInteract(false);
         print("Interacting");
     }
 
     private void OnTriggerEnter(Collider other)
-    {
+    {   // When the player enters the trigger
         if (other.gameObject.tag == "Player")
         {
-            _button.SetActive(true);
-            _canInteract = true;
+            SetInteract(true);
         }
     }
 
     private void OnTriggerExit(Collider other)
-    {
+    {   // When the player exits the trigger
         if (other.gameObject.tag == "Player")
         {
-            _button.SetActive(false);
-            _canInteract = false;
+            SetInteract(false);
         }
+    }
+
+    // Call from other script in case the player can interact again
+    public void SetInteract(bool canInteract)
+    {   // Set's if the player can interact or not (+ making the button appear/disappear)
+        _button.SetActive(canInteract);
+        _canInteract = canInteract;
     }
 }
