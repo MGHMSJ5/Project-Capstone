@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UIInteract : MonoBehaviour
+public class UICanvas : MonoBehaviour
 {
     public GameObject InteractButton => interactButton;
     public GameObject ColectButton => collectButton;

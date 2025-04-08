@@ -13,14 +13,14 @@ public class BaseInteract : MonoBehaviour
 
     private bool _canInteract = false;
     private string _interactButton;
-    private UIInteract _UIInteract;
+    private UICanvas _UIInteract;
     private GameObject _button;
 
     // Start is called before the first frame update
     void Start()
     {
         _interactButton = _interactType.ToString();
-        _UIInteract = GameObject.Find("Canvas").GetComponent<UIInteract>(); // Change 'Canvas' if the name of the canvas changes
+        _UIInteract = GameObject.Find("Canvas").GetComponent<UICanvas>(); // Change 'Canvas' if the name of the canvas changes
         // if the set interact type is 'Interact', then get the InteractButton from UIInteract script. Otherwise get the CollectButton
         _button = _interactButton == "Interact" ? _UIInteract.InteractButton : _UIInteract.ColectButton;
     }
