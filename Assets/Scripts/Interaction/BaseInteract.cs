@@ -46,6 +46,8 @@ public class BaseInteract : MonoBehaviour
     protected virtual void InteractFunction()
     {   // What happens when the player can interact/collect and presses the button
         SetInteract(false);
+        // Is used to make sure the player can only interact with it once ↓
+        if (_interactOnce) { _hasInteracted = true; };
     }
 
     // Call from other script in case the player can interact again (while still in the trigger)
@@ -54,10 +56,6 @@ public class BaseInteract : MonoBehaviour
         // Set's if the player can interact or not (+ making the button appear/disappear)
         _button.SetActive(canInteract);
         _canInteract = canInteract;
-
-        // Is used to make sure the player can only interact with it once ↓
-        if (_interactOnce) { _hasInteracted = true; }; 
-        
     }
 
     private void OnTriggerEnter(Collider other)
