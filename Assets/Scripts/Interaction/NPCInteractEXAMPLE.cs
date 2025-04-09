@@ -34,6 +34,7 @@ public class NPCInteractEXAMPLE : BaseInteract
     protected override void Update()
     {
         base.Update();
+<<<<<<< Updated upstream
         // Based on the dialogueType set, the type of dialogue disappearing will change
         // Option 1: Player movement is disabled, remove the dialogue box after pressing space. Player can interact with dialogue again without having to exit and enter the trigger
         // Option 2: Player movement is not disabled. The dialogue box will be removed when the player is past a certain distance from the NPC
@@ -76,6 +77,10 @@ public class NPCInteractEXAMPLE : BaseInteract
         // Elise: To do that, in the InteractFunction, it sets the _dialogueVisible bool to true, so that it knows that the dialogue has appeared/is active.
         // Elise: Then in this if statement below, it checks for if the dialogue has disappeared 'after' it was active. 
         if (!_dialogueObject.activeInHierarchy && _dialogueVisible)
+=======
+        // Check if the dialogue disappeared after appearing
+        if (!_dialogueObject.activeInHierarchy && _dialogueVisible) //Nick: How does this even happen at the same time? Isn't the first statement false and the second true? How does that not lead to an error? Maybe just me not understanding the code.
+>>>>>>> Stashed changes
         {
             _dialogueVisible = false;
             // To interact again while still in the collider
@@ -85,6 +90,7 @@ public class NPCInteractEXAMPLE : BaseInteract
         }
     }
 
+<<<<<<< Updated upstream
     private void DialogieOption2()
     {
         // Dialogue will disappear when the player is outside of a specific range (_disableDistance)
@@ -93,5 +99,16 @@ public class NPCInteractEXAMPLE : BaseInteract
         {
             _dialogueObject.SetActive(false);
         }
+=======
+    protected override void InteractFunction()
+    {
+        base.InteractFunction();
+        print("NPC interaction (repeatable)");
+        // Enable dialogue object
+        _dialogueObject.SetActive(true);
+        _dialogueVisible = true;
+        // Disable the player movement
+        _playerController.enabled = false; //Nick: I don't think this is necessarily needed. I think it would be nice to let the player just move away if they wanted to and the dialogue then closes if they move outside a specific range. Especially if we do the dialogue with text bubbles. If we do dialogue with textboxes like in animal crossing then this is handy. Something I will need to design and then we discuss with the team.
+>>>>>>> Stashed changes
     }
 }
