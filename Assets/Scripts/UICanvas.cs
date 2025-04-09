@@ -30,12 +30,12 @@ public class UICanvas : MonoBehaviour
     }
 
     public void ToolBoxPopUp()
-    {
-        _animator.SetTrigger("AddScrews");
+    {   // Play the animation (resource text pop up & screw amount pop up
+        _animator.SetTrigger("AddScrews"); // Will maybe be used for a later mechanic that will be added (screw amount will appear when player stands still)
         _animator.Play("ToolBoxPopup");
     }
 
-    // Called from animation that'll add to the repair source
+    // Called from animation (ANIM_CanvasScrewAdd) that'll add to the repair source
     public void AddToRepairResource()
     {
         string s = _screwAddedText.text.Replace(" ", "");
@@ -43,7 +43,7 @@ public class UICanvas : MonoBehaviour
         RepairResources.AddScrews(i);
         SetUIScrewAmount();
     }
-
+    // Update the resource amount for the UI
     private void SetUIScrewAmount()
     {
         _screwAmount.text = "X " + RepairResources.GetScrewAmount();
