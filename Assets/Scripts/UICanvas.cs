@@ -2,16 +2,25 @@ using UnityEngine;
 
 public class UICanvas : MonoBehaviour
 {
-    public GameObject InteractButton => interactButton;
-    public GameObject CollectButton => collectButton;
+    public GameObject InteractButton => _interactButton;
+    public GameObject CollectButton => _collectButton;
+
     [SerializeField]
-    private GameObject interactButton;
+    private GameObject _interactButton;
     [SerializeField]
-    private GameObject collectButton;
+    private GameObject _collectButton;
+
+    private Animator _animator;
 
     void Start()
     {
-        interactButton.SetActive(false);
-        collectButton.SetActive(false);
+        _animator = GetComponent<Animator>();
+        _interactButton.SetActive(false);
+        _collectButton.SetActive(false);
+    }
+
+    public void ToolBoxPopUp()
+    {
+        _animator.Play("Anim_ToolBoxPopup");
     }
 }
