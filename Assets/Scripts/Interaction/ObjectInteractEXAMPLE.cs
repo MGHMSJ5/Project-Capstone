@@ -1,11 +1,11 @@
 
 public class ObjectInteractEXAMPLE : BaseInteract
 {   // Add variables here if necessary
-    public override void InteractFunction()
+    protected override void InteractFunction()
     {
         base.InteractFunction();
-        print("Do action (when interacting with object)");
-        // To interact again:
+        print("Object interact (once)");
+        // To interact again while still in the collider:
         //SetInteract(true);
     }
 }

@@ -1,33 +1,37 @@
-using UnityEngine;
+﻿using UnityEngine;
 // IMPORTANT! Do not change this script unless it's necessary for all interact versions!
 [RequireComponent(typeof(Collider))]
 public class BaseInteract : MonoBehaviour
 {
     [SerializeField]
+    [Tooltip("Set to true when interacting only needs to happen once")]
+    private bool _interactOnce;
+    [SerializeField]
     [Tooltip("Select the right interaction. Interact = interacting with environment & NPC's (E & B). Collect = Collect collectibles & pick up objects (F & Y).")]
     private InteractType _interactType;
+    
     private enum InteractType
     {
         Interact,
         Collect
     }
-
+    private bool _hasInteracted = false;
     private bool _canInteract = false;
     private string _interactButton;
-    private UICanvas _UIInteract;
+    private UICanvas _UICanvas;
     private GameObject _button;
 
-    void Start()
+    protected virtual void Start()
     {
         // Make sure that the collider is a trigger (this is the area that the player needs to be in in order to interact
         transform.GetComponent<Collider>().isTrigger = true;
         _interactButton = _interactType.ToString();
-        _UIInteract = GameObject.Find("Canvas").GetComponent<UICanvas>(); // Change 'Canvas' if the name of the canvas changes
+        _UICanvas = GameObject.Find("Canvas").GetComponent<UICanvas>(); // Change 'Canvas' if the name of the canvas changes
         // if the set interact type is 'Interact', then get the InteractButton from UIInteract script. Otherwise get the CollectButton
-        _button = _interactButton == "Interact" ? _UIInteract.InteractButton : _UIInteract.CollectButton;
+        _button = _interactButton == "Interact" ? _UICanvas.InteractButton : _UICanvas.CollectButton;
     }
 
-    void Update()
+    protected virtual void Update()
     {   // If the player can interact, 
         if (_canInteract)
         {   // and presses the right button
@@ -39,21 +43,24 @@ public class BaseInteract : MonoBehaviour
     }
 
     // Override this function in other script with what needs to happen
-    public virtual void InteractFunction()
+    protected virtual void InteractFunction()
     {   // What happens when the player can interact/collect and presses the button
         SetInteract(false);
+        // Is used to make sure the player can only interact with it once ↓
+        if (_interactOnce) { _hasInteracted = true; };
     }
 
-    // Call from other script in case the player can interact again
-    public void SetInteract(bool canInteract)
-    {   // Set's if the player can interact or not (+ making the button appear/disappear)
+    // Call from other script in case the player can interact again (while still in the trigger)
+    protected void SetInteract(bool canInteract)
+    {   
+        // Set's if the player can interact or not (+ making the button appear/disappear)
         _button.SetActive(canInteract);
         _canInteract = canInteract;
     }
 
     private void OnTriggerEnter(Collider other)
-    {   // When the player enters the trigger
-        if (other.gameObject.tag == "Player")
+    {   // When the player enters the trigger + make sure that the player can't interact again if ticked _interactionOnce
+        if (other.gameObject.tag == "Player" && !_hasInteracted)
         {
             SetInteract(true);
         }
