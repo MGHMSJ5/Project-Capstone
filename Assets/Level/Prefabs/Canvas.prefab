@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Nice!
 
-    You found a <color=yellow>Screw Pair</color>. That''s {test}
-    two Screws to your total!'
+    You found a <color=yellow>Screw Pair</color>. That''s <color=yellow>two</color>
+    Screws to your total!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -679,6 +679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactButton: {fileID: 5788753475098311089}
   _collectButton: {fileID: 4485417615305065145}
+  _popUpText: {fileID: 5846088446854417037}
 --- !u!95 &7144059462614163021
 Animator:
   serializedVersion: 5

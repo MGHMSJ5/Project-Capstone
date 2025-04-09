@@ -1,14 +1,18 @@
+using TMPro;
 using UnityEngine;
 
 public class UICanvas : MonoBehaviour
 {
     public GameObject InteractButton => _interactButton;
     public GameObject CollectButton => _collectButton;
+    public TextMeshProUGUI PopUpText => _popUpText;
 
     [SerializeField]
     private GameObject _interactButton;
     [SerializeField]
     private GameObject _collectButton;
+    [SerializeField]
+    private TextMeshProUGUI _popUpText;
 
     private Animator _animator;
 

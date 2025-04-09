@@ -8,22 +8,25 @@ public class CollectableInteractEXAMPLE : BaseInteract
 
     private enum CollectAmount
     {
-        Two = 2,
-        Four = 4,
-        Six = 6
+        two,
+        four,
+        six
     }
 
+    private string _popupText;
     private Animator _animator;
 
     protected override void Start()
     {
         base.Start();
         _animator = GetComponent<Animator>();
+        _popupText = "Nice!\r\nYou found a <color=yellow>Screw Pair</color>. That's <color=yellow>" + _resourceAmount + "</color> Screws to your total!";
     }
     protected override void InteractFunction()
     {
         base.InteractFunction();
         _animator.SetTrigger("Open");
         _UICanvas.ToolBoxPopUp();
+        _UICanvas.PopUpText.text = _popupText;
     }
 }
