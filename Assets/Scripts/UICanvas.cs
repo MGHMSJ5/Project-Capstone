@@ -39,6 +39,7 @@ public class UICanvas : MonoBehaviour
     public void AddToRepairResource()
     {
         string s = _screwAddedText.text.Replace(" ", "");
+        //Lea: Please clarify what you mean with the term Parse
         int i = int.Parse(s);
         RepairResources.AddScrews(i);
         SetUIScrewAmount();
