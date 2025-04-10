@@ -5,14 +5,19 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private Transform _orientation;
+    [SerializeField] private float _normalSpeed;
+    [SerializeField] private float _sprintSpeed;
+    [SerializeField]
+    [Tooltip("This is the amount that will be REMOVED from normal and sprint speed when carrying a heavy object")]
+    private float _carryHeavtSpeedDifference;
+    private bool _isCarrying = false;
     [SerializeField] private float _speed;
     [SerializeField] private float _groundDrag;
 
     [Header("Sprinting")]
-    [SerializeField] private float _normalSpeed;
-    [SerializeField] private float _sprintSpeed;
+    
     [SerializeField] private float _maxSprintAccelerationTime = 1f;
-    [SerializeField] private float _currentSprintTime = 0.0f;
+    private float _currentSprintTime = 0.0f;
 
     [Header("Jumping")]
     [SerializeField] private float _jumpForce;
@@ -77,11 +82,13 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        print(_isCarrying);
         MovePlayer();
 
         if (horizontalInput == 0 && verticalInput == 0)
         {
-            _speed = _normalSpeed;
+            _speed = _isCarrying ? _normalSpeed - _carryHeavtSpeedDifference : _normalSpeed;
+            _currentSprintTime = 0;
         }
         else
         {
@@ -141,7 +148,17 @@ public class PlayerController : MonoBehaviour
         //normalize the time value between 0 and 1
         float t = _currentSprintTime / _maxSprintAccelerationTime;
         //smoothly transition the speed based on sprinting time
-        _speed = Mathf.Lerp(_normalSpeed, _sprintSpeed, t);
+        _speed = Mathf.Lerp
+            (
+            _isCarrying ? _normalSpeed - _carryHeavtSpeedDifference : _normalSpeed, 
+            _isCarrying ? _sprintSpeed - _carryHeavtSpeedDifference : _sprintSpeed, 
+            t
+            );
+    }
+
+    public void CarryHeavyObject(bool carrying)
+    {
+        _isCarrying = carrying;
     }
 
     private void ResetJump()

@@ -10,11 +10,14 @@ public class CarryObjectEXAMPLE : BaseInteract
     private Collider _parentCollider;
     private GravityBody _gravityBody;
 
+    private PlayerController _playerController;
+
     protected override void Start()
     {
         base.Start();
         _parent = transform.parent;
         _playerCarryPoint = GameObject.Find("CarryPoint").GetComponent<Transform>();
+        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         _parentCollider = _parent.GetComponent<Collider>();
         _gravityBody = _parent.GetComponent<GravityBody>();
@@ -61,6 +64,12 @@ public class CarryObjectEXAMPLE : BaseInteract
         _parentCollider.isTrigger = true;
         // Also disable the gravity script so that it wont fall to the floow
         _gravityBody.enabled = false;
+
+        // Slow down movement of the player if the object has a "HeavyObject" tag
+        if (_parent.tag == "HeavyObject")
+        {
+            _playerController.CarryHeavyObject(true);
+        }
     }
 
     private void LetGo()
@@ -71,5 +80,11 @@ public class CarryObjectEXAMPLE : BaseInteract
         _parentCollider.isTrigger = false;
         // Enable the gravity so that it falls to the planet
         _gravityBody.enabled = true;
+
+        // Reset the player movement if the object has a "HeavyObject" tag
+        if (_parent.tag == "HeavyObject")
+        {
+            _playerController.CarryHeavyObject(false);
+        }
     }
 }

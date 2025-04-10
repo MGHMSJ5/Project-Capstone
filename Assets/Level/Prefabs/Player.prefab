@@ -350,12 +350,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _orientation: {fileID: 6340766230750579385}
-  _speed: 10
-  _groundDrag: 0
   _normalSpeed: 5
   _sprintSpeed: 12
+  _carryHeavtSpeedDifference: 3
+  _speed: 0
+  _groundDrag: 0
   _maxSprintAccelerationTime: 1
-  _currentSprintTime: 0
   _jumpForce: 320
   _jumpCooldown: 0.25
   _airMultiplier: 0.4
