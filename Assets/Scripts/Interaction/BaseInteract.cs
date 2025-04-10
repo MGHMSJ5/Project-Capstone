@@ -18,7 +18,7 @@ public class BaseInteract : MonoBehaviour
     private bool _hasInteracted = false;
     private bool _canInteract = false;
     private string _interactButton;
-    private UICanvas _UICanvas;
+    protected UICanvas _UICanvas;
     private GameObject _button;
 
     protected virtual void Start()
