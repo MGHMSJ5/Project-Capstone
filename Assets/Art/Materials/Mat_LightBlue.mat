@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3700308403289639781
+--- !u!114 &-5645001090946997552
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,9 +20,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mat_Green
+  m_Name: Mat_LightBlue
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_Parent: {fileID: 2100000, guid: 1c0a59eb9343dd24f966aa9eca86613e, type: 2}
+  m_Parent: {fileID: 2100000, guid: 79f10c80cb481dc4785235bd039a1986, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -39,8 +39,8 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Smoothness: 0.5
+    - _Smoothness: 0
     m_Colors:
-    - _BaseColor: {r: 0.41158995, g: 0.79622644, b: 0.26891416, a: 1}
-    - _Color: {r: 0.41158992, g: 0.79622644, b: 0.26891413, a: 1}
+    - _BaseColor: {r: 0.2637735, g: 0.82258326, b: 0.8792453, a: 1}
+    - _Color: {r: 0.26377347, g: 0.82258326, b: 0.8792453, a: 1}
   m_BuildTextureStacks: []
