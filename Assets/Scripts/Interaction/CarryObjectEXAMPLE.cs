@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class CarryObjectEXAMPLE : BaseInteract
 {
+    [Header("Own variables")]
     private Transform _parent;
     private Transform _playerCarryPoint;
     private bool _isCarrying = false;
