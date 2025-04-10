@@ -54,6 +54,11 @@ public class CarryObjectEXAMPLE : BaseInteract
         // Change bool 
         _isCarrying = !_isCarrying;
     }
+    // Function that will be called from objects that have the interrupt carrying set to True
+    public void Interrupt()
+    {
+        InteractFunction();
+    }
 
     private void Carry()
     {

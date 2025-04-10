@@ -82,7 +82,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        print(_isCarrying);
         MovePlayer();
 
         if (horizontalInput == 0 && verticalInput == 0)
