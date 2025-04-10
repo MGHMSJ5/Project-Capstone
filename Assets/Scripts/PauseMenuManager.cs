@@ -25,9 +25,9 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
 
-        // Hide cursor when resuming the game
+        // Hides the cursor when exiting pause menu
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;  // Optionally lock the cursor when not in the pause menu
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Pause()
@@ -36,9 +36,9 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
 
-        // Show cursor when the pause menu is active
+        // Shows cursor when the pause menu is active:
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None; // Make sure cursor is unlocked while in the menu
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void SaveAndQuit()
@@ -52,7 +52,7 @@ public class PauseMenuManager : MonoBehaviour
             Debug.LogWarning("Player Transform not set in PauseMenuManager!");
         }
 
-        Time.timeScale = 1f; // Reset time scale before quitting
+        Time.timeScale = 1f; // Unpauses game before quitting.
         SceneManager.LoadScene("TitleScreen");
     }
 
@@ -62,7 +62,6 @@ public class PauseMenuManager : MonoBehaviour
         SceneManager.LoadScene("TitleScreen");
     }
 
-    // New method to handle the "Save" button functionality
     public void SaveGame()
     {
         if (playerTransform != null)
