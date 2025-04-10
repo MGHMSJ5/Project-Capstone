@@ -38,8 +38,11 @@ public class UICanvas : MonoBehaviour
     // Called from animation (ANIM_CanvasScrewAdd) that'll add to the repair source
     public void AddToRepairResource()
     {
+        // Elise: here it first removed the space from '+ 2'. Otherwise the Parse() doesn't work
         string s = _screwAddedText.text.Replace(" ", "");
         //Lea: Please clarify what you mean with the term Parse
+        // Elise: Parse() here makes it so that the string s's numbers will be converted to int. 
+        // Elise: So '+2' for example will be '2'
         int i = int.Parse(s);
         RepairResources.AddScrews(i);
         SetUIScrewAmount();
