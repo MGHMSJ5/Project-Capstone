@@ -69,7 +69,7 @@ public class BaseInteract : MonoBehaviour
         // Is used to make sure the player can only interact with it once ↓
         if (_interactOnce) { _hasInteracted = true; };
 
-        if (_carryPoint != null)
+        if (_carryPoint != null && _carryPoint.childCount > 0)
         {
             // Get the carryscript from the child of the child and run the Interrupt() function so that the player drops the carried object
             CarryObjectEXAMPLE carryObjectEXAMPLE = _carryPoint.GetChild(0).GetChild(0).GetComponent<CarryObjectEXAMPLE>();
