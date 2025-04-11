@@ -47,7 +47,7 @@ public class CarryObjectEXAMPLE : BaseInteract
         base.InteractFunction();
         if (!_isCarrying)
         {
-            // Onlt carry object if nothing else is being carried
+            // Only carry object if nothing else is being carried
             if (_currentlyCarrying == null)
             {
                 Carry();
