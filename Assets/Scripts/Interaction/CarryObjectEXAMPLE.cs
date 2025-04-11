@@ -74,10 +74,10 @@ public class CarryObjectEXAMPLE : BaseInteract
     }
     private void Carry()
     {
+        // Thomas add a little comment on what is happening below (I know what is happening but just for consistency)
         _currentlyCarrying = this;
         // Set parent to the carry point so that the parent will follow the player's carry point
         _parent.SetParent(_playerCarryPoint);
-
         // Set collider's Trigger on so that it won't collide with anything // Thomas 2nd "collider" to "collide"
         _parentCollider.isTrigger = true;
         // Also disable the gravity script so that it wont fall through the floor // Thomas "floow" to "floor"
