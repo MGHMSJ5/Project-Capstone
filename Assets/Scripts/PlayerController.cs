@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
         {
             _rb.MovePosition(_rb.position + _direction.normalized * _speed * _airMultiplier * Time.fixedDeltaTime);
         }
-
+        // Elise: Could you write a comment that would explain how this works?
         _animator.SetFloat("Speed", _rb.velocity.magnitude);
     }
 
