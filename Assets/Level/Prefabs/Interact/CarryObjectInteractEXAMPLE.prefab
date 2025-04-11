@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5674353844356572787}
   - component: {fileID: 9099640444444214903}
   - component: {fileID: 6160601637676388853}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.84
+  m_Radius: 0.81
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6160601637676388853
 MonoBehaviour:
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 5522126193043595802}
   - component: {fileID: 1639784083332265964}
   - component: {fileID: 5432910791057933904}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CarryObjectInteractEXAMPLE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
