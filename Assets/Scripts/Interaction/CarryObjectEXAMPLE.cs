@@ -1,4 +1,6 @@
 
+using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CarryObjectEXAMPLE : BaseInteract
@@ -7,6 +9,8 @@ public class CarryObjectEXAMPLE : BaseInteract
     private Transform _parent;
     private Transform _playerCarryPoint;
     private bool _isCarrying = false;
+    // Instance is used to keep track of which item is being carried
+    private static CarryObjectEXAMPLE _currentlyCarrying;
 
     private Collider _parentCollider;
     private GravityBody _gravityBody;
@@ -43,7 +47,11 @@ public class CarryObjectEXAMPLE : BaseInteract
         base.InteractFunction();
         if (!_isCarrying)
         {
-            Carry();
+            // Onlt carry object if nothing else is being carried
+            if (_currentlyCarrying == null)
+            {
+                Carry();
+            }
         }
         else
         {
@@ -51,9 +59,7 @@ public class CarryObjectEXAMPLE : BaseInteract
         }
         
         // To interact again while still in the collider:
-        SetInteract(true);
-        // Change bool 
-        _isCarrying = !_isCarrying;
+        SetInteract(true);        
     }
     // Function that will be called from objects that have the interrupt carrying set to True
     public void Interrupt()
@@ -61,8 +67,14 @@ public class CarryObjectEXAMPLE : BaseInteract
         InteractFunction();
     }
 
+    // Function created to clear the current carried object with a delay to fix issue of carrying
+    public void ClearCurrentCarry()
+    {
+        _currentlyCarrying = null;
+    }
     private void Carry()
     {
+        _currentlyCarrying = this;
         // Set parent to the carry point so that the parent will follow the player's carry point
         _parent.SetParent(_playerCarryPoint);
 
@@ -76,10 +88,13 @@ public class CarryObjectEXAMPLE : BaseInteract
         {
             _playerController.CarryHeavyObject(true);
         }
+        _isCarrying = true;
+        
     }
 
     private void Drop() // Thomas "LetGo" to "Drop" for additional clarity
     {
+        _currentlyCarrying.Invoke("ClearCurrentCarry", 0.2f);
         // Reset the parent's parent
         _parent.parent = null;
         // Disable trigger function so that it can collide again
@@ -92,5 +107,7 @@ public class CarryObjectEXAMPLE : BaseInteract
         {
             _playerController.CarryHeavyObject(false);
         }
+        _isCarrying = false;
+       
     }
 }

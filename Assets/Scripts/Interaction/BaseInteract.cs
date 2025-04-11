@@ -73,8 +73,7 @@ public class BaseInteract : MonoBehaviour
         {
             // Get the carryscript from the child of the child and run the Interrupt() function so that the player drops the carried object
             CarryObjectEXAMPLE carryObjectEXAMPLE = _carryPoint.GetChild(0).GetChild(0).GetComponent<CarryObjectEXAMPLE>();
-            // Added 'carryObjectEXAMPLE != this' to make sure it's not the same as ↑. Fixes the bug of carrying two items at once
-            if (carryObjectEXAMPLE != null && carryObjectEXAMPLE != this) { carryObjectEXAMPLE.Interrupt(); }
+            if (carryObjectEXAMPLE != null) { carryObjectEXAMPLE.Interrupt(); }
             
         }
     }
