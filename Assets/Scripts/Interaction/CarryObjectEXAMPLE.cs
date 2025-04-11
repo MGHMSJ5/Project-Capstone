@@ -37,7 +37,7 @@ public class CarryObjectEXAMPLE : BaseInteract
             }
         }
     }
-    // Interacting will happen when the player is either carring the object or not //Thomas "carring" to "carrying"
+    // Interacting will happen when the player is either carrying the object or not //Thomas "carring" to "carrying" 
     protected override void InteractFunction()
     {
         base.InteractFunction();
@@ -47,7 +47,7 @@ public class CarryObjectEXAMPLE : BaseInteract
         }
         else
         {
-            LetGo();
+            Drop();
         }
         
         // To interact again while still in the collider:
@@ -66,9 +66,9 @@ public class CarryObjectEXAMPLE : BaseInteract
         // Set parent to the carry point so that the parent will follow the player's carry point
         _parent.SetParent(_playerCarryPoint);
 
-        // Set collider's Trigger on so that it won't collider with anything // Thomas 2nd "collider" to "collide"
+        // Set collider's Trigger on so that it won't collide with anything // Thomas 2nd "collider" to "collide"
         _parentCollider.isTrigger = true;
-        // Also disable the gravity script so that it wont fall to the floow // Thomas "floow" to "floor"
+        // Also disable the gravity script so that it wont fall through the floor // Thomas "floow" to "floor"
         _gravityBody.enabled = false;
 
         // Slow down movement of the player if the object has a "HeavyObject" tag
@@ -78,7 +78,7 @@ public class CarryObjectEXAMPLE : BaseInteract
         }
     }
 
-    private void LetGo() // Thomas "LetGo" to "Drop" for additional clarity
+    private void Drop() // Thomas "LetGo" to "Drop" for additional clarity
     {
         // Reset the parent's parent
         _parent.parent = null;
