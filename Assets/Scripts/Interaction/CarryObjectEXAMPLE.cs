@@ -57,7 +57,6 @@ public class CarryObjectEXAMPLE : BaseInteract
         {
             Drop();
         }
-        
         // To interact again while still in the collider:
         SetInteract(true);        
     }
@@ -75,6 +74,7 @@ public class CarryObjectEXAMPLE : BaseInteract
     private void Carry()
     {
         // Thomas add a little comment on what is happening below (I know what is happening but just for consistency)
+        // Set this instance as the item that is being carried
         _currentlyCarrying = this;
         // Set parent to the carry point so that the parent will follow the player's carry point
         _parent.SetParent(_playerCarryPoint);
