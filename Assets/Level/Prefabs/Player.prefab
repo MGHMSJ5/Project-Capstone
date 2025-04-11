@@ -32,6 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8790453194424531581}
+  - {fileID: 4417437607621354458}
   m_Father: {fileID: 1851037987322260459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5803058465086269211
@@ -220,6 +221,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1851037987322260459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6020293552437893391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4417437607621354458}
+  m_Layer: 0
+  m_Name: CarryPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4417437607621354458
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6020293552437893391}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.235, z: 0.988}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6357900264022370395}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7015057840018717787
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,12 +350,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _orientation: {fileID: 6340766230750579385}
-  _speed: 10
-  _groundDrag: 0
   _normalSpeed: 5
   _sprintSpeed: 12
+  _carryHeavtSpeedDifference: 3
+  _speed: 0
+  _groundDrag: 0
   _maxSprintAccelerationTime: 1
-  _currentSprintTime: 0
   _jumpForce: 320
   _jumpCooldown: 0.25
   _airMultiplier: 0.4

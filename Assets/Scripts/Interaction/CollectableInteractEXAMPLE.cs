@@ -2,6 +2,7 @@ using UnityEngine;
 // Toolbox EXAMPLE
 public class CollectableInteractEXAMPLE : BaseInteract
 {
+    [Header("Own variables")]
     [SerializeField]
     [Tooltip("Set the amount of resources the player gets")]
     private CollectAmount _resourceAmount;

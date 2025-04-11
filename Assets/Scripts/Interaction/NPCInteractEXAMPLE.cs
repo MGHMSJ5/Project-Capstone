@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class NPCInteractEXAMPLE : BaseInteract
 {   // Add variables here if necessary
+    [Header("Own variables")]
     [SerializeField]
     private GameObject _dialogueObject;
     [SerializeField]
