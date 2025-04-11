@@ -1136,12 +1136,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!4 &987213918 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6357900264022370395, guid: d1ee0220058d80043982be2ccf0f9bd4,
-    type: 3}
-  m_PrefabInstance: {fileID: 2923704975088754715}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1010491167
 GameObject:
   m_ObjectHideFlags: 0
@@ -2084,6 +2078,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1667050421}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2114610417 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6849880186281037783, guid: d1ee0220058d80043982be2ccf0f9bd4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2923704975088754715}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2121195308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2648,7 +2648,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _playerObj
       value: 
-      objectReference: {fileID: 987213918}
+      objectReference: {fileID: 2114610417}
     - target: {fileID: 7269568805203053179, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: _orientation
