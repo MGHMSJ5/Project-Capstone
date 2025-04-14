@@ -50,7 +50,7 @@ public class MainMenuManager : MonoBehaviour
         if (manualExists)
         {
             var data = SaveSystem.LoadGame(false);
-            manualSaveInfoText.text = $"Scene: {data.sceneName}\nTime: {data.saveTime}";
+            manualSaveInfoText.text = $"{data.sceneName}\nTime: {data.saveTime}";
         }
         else
         {
@@ -60,7 +60,7 @@ public class MainMenuManager : MonoBehaviour
         if (autoExists)
         {
             var data = SaveSystem.LoadGame(true);
-            autoSaveInfoText.text = $"Scene: {data.sceneName}\nTime: {data.saveTime}";
+            autoSaveInfoText.text = $"{data.sceneName}\nTime: {data.saveTime}";
         }
         else
         {
