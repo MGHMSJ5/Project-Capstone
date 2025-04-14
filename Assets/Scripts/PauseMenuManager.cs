@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PauseMenuManager : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class PauseMenuManager : MonoBehaviour
     [Header("Load Save UI")]
     public GameObject loadSavePanel;
     public GameObject confirmLoadPanel;
+    public TMP_Text manualSaveInfoText;
+    public TMP_Text autoSaveInfoText;
+
+    public static bool IsPaused { get; private set; } = false;
 
     private bool isPaused = false;
     private bool isAutoSaveSelected;
@@ -30,6 +35,8 @@ public class PauseMenuManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        IsPaused = false;
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -39,6 +46,8 @@ public class PauseMenuManager : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+        IsPaused = true;
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -46,21 +55,17 @@ public class PauseMenuManager : MonoBehaviour
     public void SaveAndQuit()
     {
         if (playerTransform != null)
-        {
             SaveSystem.SaveGame(playerTransform.position);
-        }
-        else
-        {
-            Debug.LogWarning("Player Transform not set in PauseMenuManager!");
-        }
 
         Time.timeScale = 1f;
+        IsPaused = false;
         SceneManager.LoadScene("TitleScreen");
     }
 
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
+        IsPaused = false;
         SceneManager.LoadScene("TitleScreen");
     }
 
@@ -77,11 +82,29 @@ public class PauseMenuManager : MonoBehaviour
         }
     }
 
-    // ---------- New Load Save Logic Below ----------
-
     public void OnLoadSavePressed()
     {
         loadSavePanel.SetActive(true);
+
+        if (SaveSystem.SaveFileExists(false))
+        {
+            var data = SaveSystem.LoadGame(false);
+            manualSaveInfoText.text = $"Scene: {data.sceneName}\nTime: {data.saveTime}";
+        }
+        else
+        {
+            manualSaveInfoText.text = "No manual save found.";
+        }
+
+        if (SaveSystem.SaveFileExists(true))
+        {
+            var data = SaveSystem.LoadGame(true);
+            autoSaveInfoText.text = $"Scene: {data.sceneName}\nTime: {data.saveTime}";
+        }
+        else
+        {
+            autoSaveInfoText.text = "No autosave found.";
+        }
     }
 
     public void OnBackFromLoadSave()
@@ -96,10 +119,6 @@ public class PauseMenuManager : MonoBehaviour
             isAutoSaveSelected = false;
             confirmLoadPanel.SetActive(true);
         }
-        else
-        {
-            Debug.Log("No manual save found.");
-        }
     }
 
     public void OnAutoSaveSelected()
@@ -109,25 +128,17 @@ public class PauseMenuManager : MonoBehaviour
             isAutoSaveSelected = true;
             confirmLoadPanel.SetActive(true);
         }
-        else
-        {
-            Debug.Log("No autosave found.");
-        }
     }
 
     public void OnConfirmLoadPressed()
     {
-        Time.timeScale = 1f; // Unpause
+        Time.timeScale = 1f;
+        IsPaused = false;
         confirmLoadPanel.SetActive(false);
+
         SaveData data = SaveSystem.LoadGame(isAutoSaveSelected);
         if (data != null)
-        {
             SceneManager.LoadScene(data.sceneName);
-        }
-        else
-        {
-            Debug.LogWarning("Save data was null.");
-        }
     }
 
     public void OnCancelLoadPressed()

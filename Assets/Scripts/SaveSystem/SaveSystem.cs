@@ -7,21 +7,37 @@ public static class SaveSystem
     private static string manualSaveFilePath => Path.Combine(Application.persistentDataPath, "manual_save.json");
     private static string autoSaveFilePath => Path.Combine(Application.persistentDataPath, "autosave.json");
 
-    public static void SaveGame(Vector3 playerPosition)
+ public static void SaveGame(Vector3 playerPosition)
+{
+    SaveData data = new SaveData
     {
-        SaveData data = CreateSaveData(playerPosition);
-        string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(manualSaveFilePath, json);
-        Debug.Log("Manual Game Saved!");
-    }
+        playerX = playerPosition.x,
+        playerY = playerPosition.y,
+        playerZ = playerPosition.z,
+        sceneName = SceneManager.GetActiveScene().name,
+        saveTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm") // date format for when save is made.
+    };
 
-    public static void AutoSaveGame(Vector3 playerPosition)
+    string json = JsonUtility.ToJson(data, true);
+    File.WriteAllText(manualSaveFilePath, json);
+    Debug.Log("Manual Save Complete at " + data.saveTime);
+}
+
+public static void AutoSaveGame(Vector3 playerPosition)
+{
+    SaveData data = new SaveData
     {
-        SaveData data = CreateSaveData(playerPosition);
-        string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(autoSaveFilePath, json);
-        Debug.Log("AutoSaved!");
-    }
+        playerX = playerPosition.x,
+        playerY = playerPosition.y,
+        playerZ = playerPosition.z,
+        sceneName = SceneManager.GetActiveScene().name,
+        saveTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm")
+    };
+
+    string json = JsonUtility.ToJson(data, true);
+    File.WriteAllText(autoSaveFilePath, json);
+    Debug.Log("AutoSave Complete at " + data.saveTime);
+}
 
     private static SaveData CreateSaveData(Vector3 playerPosition)
     {

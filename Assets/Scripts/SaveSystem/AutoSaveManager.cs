@@ -3,7 +3,7 @@ using UnityEngine;
 public class AutoSaveManager : MonoBehaviour
 {
     public Transform playerTransform;
-    public float AutosaveInterval = 5f;
+    public float AutosaveInterval = 5f; //Value can be changed. How often autosave kicks in.
 
     private float timer;
 
@@ -14,16 +14,18 @@ public class AutoSaveManager : MonoBehaviour
     }
 
     private void Update()
-    {
-        if (playerTransform == null) return;
+{
+    if (playerTransform == null || PauseMenuManager.IsPaused) return;
 
-        timer -= Time.unscaledDeltaTime; // Works even when timeScale = 0 (e.g. during pause)
-        if (timer <= 0f)
-        {
-            TryAutoSave();
-            timer = AutosaveInterval * 60f;
-        }
+    timer -= Time.deltaTime;
+
+    if (timer <= 0f)
+    {
+        TryAutoSave();
+        timer = AutosaveInterval * 60f;
     }
+}
+
 
     private void TryAutoSave()
     {

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -9,32 +10,30 @@ public class MainMenuManager : MonoBehaviour
     public GameObject loadSavePanel;
     public GameObject confirmLoadPanel;
 
+    public TMP_Text manualSaveInfoText;
+    public TMP_Text autoSaveInfoText;
+
     private bool isAutoSaveSelected;
 
     public void OnNewGamePressed()
     {
         if (SaveSystem.SaveFileExists(false))
-        {
             confirmNewGamePanel.SetActive(true);
-        }
         else
-        {
             StartNewGame();
-        }
     }
 
     public void ConfirmStartNewGame()
     {
-        SaveSystem.DeleteSave(false); // Manual save
+        SaveSystem.DeleteSave(false);
         StartNewGame();
     }
 
     private void StartNewGame()
     {
-        SceneManager.LoadScene("Gravity");
+        SceneManager.LoadScene("SaveGamePlayground");
     }
 
-    // Load Game Flow
     public void OnLoadGamePressed()
     {
         bool manualExists = SaveSystem.SaveFileExists(false);
@@ -47,6 +46,26 @@ public class MainMenuManager : MonoBehaviour
         }
 
         loadSavePanel.SetActive(true);
+
+        if (manualExists)
+        {
+            var data = SaveSystem.LoadGame(false);
+            manualSaveInfoText.text = $"Scene: {data.sceneName}\nTime: {data.saveTime}";
+        }
+        else
+        {
+            manualSaveInfoText.text = "No manual save found.";
+        }
+
+        if (autoExists)
+        {
+            var data = SaveSystem.LoadGame(true);
+            autoSaveInfoText.text = $"Scene: {data.sceneName}\nTime: {data.saveTime}";
+        }
+        else
+        {
+            autoSaveInfoText.text = "No autosave found.";
+        }
     }
 
     public void OnManualSaveSelected()
@@ -71,9 +90,7 @@ public class MainMenuManager : MonoBehaviour
     {
         SaveData data = SaveSystem.LoadGame(isAutoSaveSelected);
         if (data != null)
-        {
             SceneManager.LoadScene(data.sceneName);
-        }
     }
 
     public void OnCancelLoadPressed()
