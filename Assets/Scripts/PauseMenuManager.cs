@@ -117,6 +117,7 @@ public class PauseMenuManager : MonoBehaviour
         if (SaveSystem.SaveFileExists(false))
         {
             isAutoSaveSelected = false;
+            SaveLoadContext.LoadAutoSave = false;
             confirmLoadPanel.SetActive(true);
         }
     }
@@ -126,6 +127,7 @@ public class PauseMenuManager : MonoBehaviour
         if (SaveSystem.SaveFileExists(true))
         {
             isAutoSaveSelected = true;
+            SaveLoadContext.LoadAutoSave = true;
             confirmLoadPanel.SetActive(true);
         }
     }
