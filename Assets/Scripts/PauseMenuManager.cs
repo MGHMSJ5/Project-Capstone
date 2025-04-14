@@ -3,10 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuManager : MonoBehaviour
 {
+    [Header("Main UI")]
     public GameObject pauseMenuUI;
     public Transform playerTransform;
 
+    [Header("Load Save UI")]
+    public GameObject loadSavePanel;
+    public GameObject confirmLoadPanel;
+
     private bool isPaused = false;
+    private bool isAutoSaveSelected;
 
     private void Update()
     {
@@ -24,8 +30,6 @@ public class PauseMenuManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
-
-        // Hides the cursor when exiting pause menu
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -35,8 +39,6 @@ public class PauseMenuManager : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
-
-        // Shows cursor when the pause menu is active:
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -52,7 +54,7 @@ public class PauseMenuManager : MonoBehaviour
             Debug.LogWarning("Player Transform not set in PauseMenuManager!");
         }
 
-        Time.timeScale = 1f; // Unpauses game before quitting.
+        Time.timeScale = 1f;
         SceneManager.LoadScene("TitleScreen");
     }
 
@@ -73,5 +75,63 @@ public class PauseMenuManager : MonoBehaviour
         {
             Debug.LogWarning("Player Transform not set in PauseMenuManager!");
         }
+    }
+
+    // ---------- New Load Save Logic Below ----------
+
+    public void OnLoadSavePressed()
+    {
+        loadSavePanel.SetActive(true);
+    }
+
+    public void OnBackFromLoadSave()
+    {
+        loadSavePanel.SetActive(false);
+    }
+
+    public void OnManualSaveSelected()
+    {
+        if (SaveSystem.SaveFileExists(false))
+        {
+            isAutoSaveSelected = false;
+            confirmLoadPanel.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("No manual save found.");
+        }
+    }
+
+    public void OnAutoSaveSelected()
+    {
+        if (SaveSystem.SaveFileExists(true))
+        {
+            isAutoSaveSelected = true;
+            confirmLoadPanel.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("No autosave found.");
+        }
+    }
+
+    public void OnConfirmLoadPressed()
+    {
+        Time.timeScale = 1f; // Unpause
+        confirmLoadPanel.SetActive(false);
+        SaveData data = SaveSystem.LoadGame(isAutoSaveSelected);
+        if (data != null)
+        {
+            SceneManager.LoadScene(data.sceneName);
+        }
+        else
+        {
+            Debug.LogWarning("Save data was null.");
+        }
+    }
+
+    public void OnCancelLoadPressed()
+    {
+        confirmLoadPanel.SetActive(false);
     }
 }
