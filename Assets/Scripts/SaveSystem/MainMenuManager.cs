@@ -30,9 +30,17 @@ public class MainMenuManager : MonoBehaviour
     }
 
     private void StartNewGame()
+{
+    int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+    if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
     {
-        SceneManager.LoadScene("SaveGamePlayground");
+        SceneManager.LoadScene(nextSceneIndex);
     }
+    else
+    {
+        Debug.LogWarning("No scene found in build settings!");
+    }
+}
 
     public void OnLoadGamePressed()
     {
