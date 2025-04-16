@@ -7,5 +7,7 @@ public class SaveData
 
     public string sceneName; //stores saved scene
 
+    public string saveTime; // saves real life time when save made.
+
     // We'll need to put all other data here too (like abilities received etc.)
 }

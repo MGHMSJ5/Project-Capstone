@@ -4,40 +4,69 @@ using UnityEngine.SceneManagement;
 
 public static class SaveSystem
 {
-    private static string saveFilePath => Path.Combine(Application.persistentDataPath, "savefile.json");
+    private static string manualSaveFilePath => Path.Combine(Application.persistentDataPath, "manual_save.json");
+    private static string autoSaveFilePath => Path.Combine(Application.persistentDataPath, "autosave.json");
 
-   public static void SaveGame(Vector3 playerPosition)
+ public static void SaveGame(Vector3 playerPosition)
 {
     SaveData data = new SaveData
     {
         playerX = playerPosition.x,
         playerY = playerPosition.y,
         playerZ = playerPosition.z,
-        sceneName = SceneManager.GetActiveScene().name // Saves current scene the player is in.
+        sceneName = SceneManager.GetActiveScene().name,
+        saveTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm") // date format for when save is made.
     };
 
     string json = JsonUtility.ToJson(data, true);
-    File.WriteAllText(saveFilePath, json);
-    Debug.Log("Game Saved!");
+    File.WriteAllText(manualSaveFilePath, json);
+    Debug.Log("Manual Save Complete at " + data.saveTime);
 }
 
-    public static SaveData LoadGame()
+public static void AutoSaveGame(Vector3 playerPosition)
+{
+    SaveData data = new SaveData
     {
-        if (!File.Exists(saveFilePath)) return null;
+        playerX = playerPosition.x,
+        playerY = playerPosition.y,
+        playerZ = playerPosition.z,
+        sceneName = SceneManager.GetActiveScene().name,
+        saveTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm")
+    };
 
-        string json = File.ReadAllText(saveFilePath);
-        SaveData data = JsonUtility.FromJson<SaveData>(json);
-        return data;
+    string json = JsonUtility.ToJson(data, true);
+    File.WriteAllText(autoSaveFilePath, json);
+    Debug.Log("AutoSave Complete at " + data.saveTime);
+}
+
+    private static SaveData CreateSaveData(Vector3 playerPosition)
+    {
+        return new SaveData
+        {
+            playerX = playerPosition.x,
+            playerY = playerPosition.y,
+            playerZ = playerPosition.z,
+            sceneName = SceneManager.GetActiveScene().name
+        };
     }
 
-    public static bool SaveFileExists()
+    public static SaveData LoadGame(bool isAutoSave = false)
     {
-        return File.Exists(saveFilePath);
+        string path = isAutoSave ? autoSaveFilePath : manualSaveFilePath;
+        if (!File.Exists(path)) return null;
+
+        string json = File.ReadAllText(path);
+        return JsonUtility.FromJson<SaveData>(json);
     }
 
-    public static void DeleteSave()
+    public static bool SaveFileExists(bool isAutoSave = false)
     {
-        if (SaveFileExists())
-            File.Delete(saveFilePath);
+        return File.Exists(isAutoSave ? autoSaveFilePath : manualSaveFilePath);
+    }
+
+    public static void DeleteSave(bool isAutoSave = false)
+    {
+        string path = isAutoSave ? autoSaveFilePath : manualSaveFilePath;
+        if (File.Exists(path)) File.Delete(path);
     }
 }
