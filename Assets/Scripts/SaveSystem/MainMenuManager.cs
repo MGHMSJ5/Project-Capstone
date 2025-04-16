@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class MainMenuManager : MonoBehaviour
@@ -10,10 +11,19 @@ public class MainMenuManager : MonoBehaviour
     public GameObject loadSavePanel;
     public GameObject confirmLoadPanel;
 
+    [Header("First Selected")]
+    public GameObject firstMainMenuButton; //helps with controller support
+
     public TMP_Text manualSaveInfoText;
     public TMP_Text autoSaveInfoText;
 
     private bool isAutoSaveSelected;
+
+    private void Start()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstMainMenuButton);
+    }
 
     public void OnNewGamePressed()
     {
@@ -30,17 +40,17 @@ public class MainMenuManager : MonoBehaviour
     }
 
     private void StartNewGame()
-{
-    int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-    if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
     {
-        SceneManager.LoadScene(nextSceneIndex);
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+        else
+        {
+            Debug.LogWarning("No scene found in build settings!");
+        }
     }
-    else
-    {
-        Debug.LogWarning("No scene found in build settings!");
-    }
-}
 
     public void OnLoadGamePressed()
     {

@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class PauseMenuManager : MonoBehaviour
 {
     [Header("Main UI")]
     public GameObject pauseMenuUI;
+    public GameObject firstPauseMenuButton;
     public Transform playerTransform;
 
     [Header("Load Save UI")]
@@ -39,6 +41,8 @@ public class PauseMenuManager : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        EventSystem.current.SetSelectedGameObject(null); // Clear selection
     }
 
     private void Pause()
@@ -50,6 +54,9 @@ public class PauseMenuManager : MonoBehaviour
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstPauseMenuButton);
     }
 
     public void SaveAndQuit()
