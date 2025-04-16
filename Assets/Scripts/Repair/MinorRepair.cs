@@ -28,7 +28,7 @@ public class MinorRepair : BaseInteract
     private List<GameObject> _childTextUI = new List<GameObject>();
     
     [Header("Repair UI")]
-    private GameObject _canvas;
+    protected GameObject _canvas;
     // max repair types set. If this goes past 3, then the if statement in start needs to be changed
     private int _maxRepairTypes = 2;
 
@@ -91,7 +91,7 @@ public class MinorRepair : BaseInteract
     {
         // Invoke the action. Functions subscribed to this event will then also be invoked.
         RepairAction?.Invoke();
-
+        
         // Desctivate the canvas and remove the amount of resources needed for the repairing from the repair sources (in RepairResource script)
         _canvas.SetActive(false);
         for (int i = 0; i < _repairTypeAmount.Count; ++i)

@@ -93,7 +93,7 @@ public class BaseInteract : MonoBehaviour
             SetInteract(true);
         }
     }
-
+    
     protected virtual void OnTriggerExit(Collider other)
     {   // When the player exits the trigger
         if (other.gameObject.tag == "Player")
