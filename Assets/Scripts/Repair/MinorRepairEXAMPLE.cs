@@ -22,12 +22,32 @@ public class MinorRepairEXAMPLE : BaseInteract
     //[SerializeField] private List<RepairTypes> _repairTypes = new List<RepairTypes>();
     [SerializeField] private List<RepairTypeAmount> _repairTypeAmount = new List<RepairTypeAmount>();
 
-    // Add variables here if necessary
+    [Header("Repair UI")]
+    private GameObject _canvas;
+
+    protected override void Start()
+    {
+        base.Start();
+        _canvas = transform.GetChild(0).gameObject;
+        _canvas.SetActive(false);
+    }
+
     protected override void InteractFunction()
     {
         base.InteractFunction();
         print("Repair");
         // To interact again while still in the collider:
         //SetInteract(true);
+    }
+    protected override void OnPlayerEnter()
+    {
+        base.OnPlayerEnter();
+        _canvas.SetActive(true);
+    }
+
+    protected override void OnPlayerExit()
+    {
+        base.OnPlayerExit();
+        _canvas.SetActive(false);
     }
 }

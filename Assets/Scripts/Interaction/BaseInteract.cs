@@ -90,7 +90,7 @@ public class BaseInteract : MonoBehaviour
     {   // When the player enters the trigger + make sure that the player can't interact again if ticked _interactionOnce
         if (other.gameObject.tag == "Player" && !_hasInteracted)
         {
-            SetInteract(true);
+            OnPlayerEnter();
         }
     }
 
@@ -98,7 +98,17 @@ public class BaseInteract : MonoBehaviour
     {   // When the player exits the trigger
         if (other.gameObject.tag == "Player")
         {
-            SetInteract(false);
+            OnPlayerExit();
         }
+    }
+
+    protected virtual void OnPlayerEnter()
+    {
+        SetInteract(true);
+    }
+
+    protected virtual void OnPlayerExit()
+    {
+        SetInteract(false);
     }
 }
