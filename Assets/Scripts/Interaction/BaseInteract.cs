@@ -27,7 +27,7 @@ public class BaseInteract : MonoBehaviour
     private Transform _carryPoint;
     private bool _dropObjectBool;
 
-    private bool _hasInteracted = false;
+    protected bool _hasInteracted = false;
     private bool _canInteract = false;
     private string _interactButton;
     protected UICanvas _UICanvas;
@@ -86,29 +86,19 @@ public class BaseInteract : MonoBehaviour
         _canInteract = canInteract;
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {   // When the player enters the trigger + make sure that the player can't interact again if ticked _interactionOnce
         if (other.gameObject.tag == "Player" && !_hasInteracted)
         {
-            OnPlayerEnter();
+            SetInteract(true);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {   // When the player exits the trigger
         if (other.gameObject.tag == "Player")
         {
-            OnPlayerExit();
+            SetInteract(false);
         }
-    }
-
-    protected virtual void OnPlayerEnter()
-    {
-        SetInteract(true);
-    }
-
-    protected virtual void OnPlayerExit()
-    {
-        SetInteract(false);
     }
 }
