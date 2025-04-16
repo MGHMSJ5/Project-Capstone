@@ -1,20 +1,35 @@
 // Script that can be accessed at all times.
+using System.Collections.Generic;
+public enum RepairTypesOptions
+{
+    Screws,
+    // Might be a placeholder
+    Tape
+}
 public static class RepairResources
-{   // Variable that will be kept though scenes
-    public static int Screws;
+{   // Dictionary that keeps track of the resource types and resource amount
+    private static Dictionary<RepairTypesOptions, int> _resourceAmounts = new Dictionary<RepairTypesOptions, int>();
 
-    public static int GetScrewAmount()
-    {
-        return Screws;
+    // Runs only once when this script is accessed for the first time 
+    static RepairResources()
+    {   // Add to the dictionary depenig on what is in RepairTypesOption
+        foreach (RepairTypesOptions type in System.Enum.GetValues(typeof(RepairTypesOptions)))
+        {
+            _resourceAmounts[type] = 0;
+        }
     }
 
-    public static void AddScrews(int amount)
+    public static int GetResourceAmount(RepairTypesOptions type)
     {
-        Screws += amount;
+        return _resourceAmounts[type];
     }
 
-    public static void RemoveScrews(int amount)
+    public static void AddResourceAmount(RepairTypesOptions type, int amount)
     {
-        Screws -= amount;
+        _resourceAmounts[type] += amount;
+    }
+    public static void RemoveResourceAmount(RepairTypesOptions type, int amount)
+    {
+        _resourceAmounts[type] -= amount;
     }
 }
