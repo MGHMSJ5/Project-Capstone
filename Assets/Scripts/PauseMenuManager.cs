@@ -12,7 +12,9 @@ public class PauseMenuManager : MonoBehaviour
 
     [Header("Load Save UI")]
     public GameObject loadSavePanel;
+    public GameObject firstLoadSaveButton;
     public GameObject confirmLoadPanel;
+    public GameObject firstConfirmLoadButton;
     public TMP_Text manualSaveInfoText;
     public TMP_Text autoSaveInfoText;
 
@@ -42,7 +44,7 @@ public class PauseMenuManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        EventSystem.current.SetSelectedGameObject(null); // Clear selection
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     private void Pause()
@@ -93,6 +95,9 @@ public class PauseMenuManager : MonoBehaviour
     {
         loadSavePanel.SetActive(true);
 
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstLoadSaveButton);
+
         if (SaveSystem.SaveFileExists(false))
         {
             var data = SaveSystem.LoadGame(false);
@@ -117,6 +122,8 @@ public class PauseMenuManager : MonoBehaviour
     public void OnBackFromLoadSave()
     {
         loadSavePanel.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstPauseMenuButton);
     }
 
     public void OnManualSaveSelected()
@@ -126,6 +133,9 @@ public class PauseMenuManager : MonoBehaviour
             isAutoSaveSelected = false;
             SaveLoadContext.LoadAutoSave = false;
             confirmLoadPanel.SetActive(true);
+
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstConfirmLoadButton);
         }
     }
 
@@ -136,6 +146,9 @@ public class PauseMenuManager : MonoBehaviour
             isAutoSaveSelected = true;
             SaveLoadContext.LoadAutoSave = true;
             confirmLoadPanel.SetActive(true);
+
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstConfirmLoadButton);
         }
     }
 
@@ -153,5 +166,8 @@ public class PauseMenuManager : MonoBehaviour
     public void OnCancelLoadPressed()
     {
         confirmLoadPanel.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstLoadSaveButton);
     }
 }

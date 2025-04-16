@@ -11,8 +11,11 @@ public class MainMenuManager : MonoBehaviour
     public GameObject loadSavePanel;
     public GameObject confirmLoadPanel;
 
-    [Header("First Selected")]
-    public GameObject firstMainMenuButton; //helps with controller support
+    [Header("First Selected Buttons")]
+    public GameObject firstMainMenuButton;
+    public GameObject firstLoadSaveMenuButton;
+    public GameObject firstConfirmLoadButton;
+    public GameObject firstConfirmNewGameButton;
 
     public TMP_Text manualSaveInfoText;
     public TMP_Text autoSaveInfoText;
@@ -28,15 +31,28 @@ public class MainMenuManager : MonoBehaviour
     public void OnNewGamePressed()
     {
         if (SaveSystem.SaveFileExists(false))
+        {
             confirmNewGamePanel.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstConfirmNewGameButton);
+        }
         else
+        {
             StartNewGame();
+        }
     }
 
     public void ConfirmStartNewGame()
     {
         SaveSystem.DeleteSave(false);
         StartNewGame();
+    }
+
+    public void OnCancelNewGamePressed()
+    {
+        confirmNewGamePanel.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstMainMenuButton);
     }
 
     private void StartNewGame()
@@ -64,6 +80,8 @@ public class MainMenuManager : MonoBehaviour
         }
 
         loadSavePanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstLoadSaveMenuButton);
 
         if (manualExists)
         {
@@ -93,6 +111,9 @@ public class MainMenuManager : MonoBehaviour
             isAutoSaveSelected = false;
             SaveLoadContext.LoadAutoSave = false;
             confirmLoadPanel.SetActive(true);
+
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstConfirmLoadButton);
         }
     }
 
@@ -103,6 +124,9 @@ public class MainMenuManager : MonoBehaviour
             isAutoSaveSelected = true;
             SaveLoadContext.LoadAutoSave = true;
             confirmLoadPanel.SetActive(true);
+
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstConfirmLoadButton);
         }
     }
 
@@ -116,10 +140,14 @@ public class MainMenuManager : MonoBehaviour
     public void OnCancelLoadPressed()
     {
         confirmLoadPanel.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstLoadSaveMenuButton);
     }
 
     public void OnBackFromLoadSave()
     {
         loadSavePanel.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstMainMenuButton);
     }
 }
