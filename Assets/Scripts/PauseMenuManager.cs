@@ -8,20 +8,21 @@ public class PauseMenuManager : MonoBehaviour
     [Header("Main UI")]
     public GameObject pauseMenuUI;
     public GameObject firstPauseMenuButton;
-    public Transform playerTransform;
 
     [Header("Load Save UI")]
     public GameObject loadSavePanel;
-    public GameObject firstLoadSaveButton;
     public GameObject confirmLoadPanel;
+    public GameObject firstLoadSaveButton;
     public GameObject firstConfirmLoadButton;
     public TMP_Text manualSaveInfoText;
     public TMP_Text autoSaveInfoText;
 
+    public Transform playerTransform;
     public static bool IsPaused { get; private set; } = false;
 
     private bool isPaused = false;
     private bool isAutoSaveSelected;
+    private string lastInputMethod = "Controller";
 
     private void Update()
     {
@@ -32,11 +33,64 @@ public class PauseMenuManager : MonoBehaviour
             else
                 Pause();
         }
+
+        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+        {
+            lastInputMethod = "Mouse";
+        }
+
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            if (lastInputMethod != "Controller")
+            {
+                RestoreControllerFocus();
+                lastInputMethod = "Controller";
+            }
+        }
+    }
+
+    private void RestoreControllerFocus()
+    {
+        if (confirmLoadPanel.activeSelf)
+            SetSelected(firstConfirmLoadButton);
+        else if (loadSavePanel.activeSelf)
+            SetSelected(firstLoadSaveButton);
+        else
+            SetSelected(firstPauseMenuButton);
+    }
+
+    private void SetSelected(GameObject obj)
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(obj);
+    }
+
+    private void ResetAllPanels()
+    {
+        pauseMenuUI.SetActive(false);
+        loadSavePanel.SetActive(false);
+        confirmLoadPanel.SetActive(false);
+    }
+
+    public void Pause()
+    {
+        ResetAllPanels();
+        pauseMenuUI.SetActive(true);
+
+        Time.timeScale = 0f;
+        isPaused = true;
+        IsPaused = true;
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        SetSelected(firstPauseMenuButton);
     }
 
     public void Resume()
     {
-        pauseMenuUI.SetActive(false);
+        ResetAllPanels();
+
         Time.timeScale = 1f;
         isPaused = false;
         IsPaused = false;
@@ -45,20 +99,6 @@ public class PauseMenuManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         EventSystem.current.SetSelectedGameObject(null);
-    }
-
-    private void Pause()
-    {
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        isPaused = true;
-        IsPaused = true;
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(firstPauseMenuButton);
     }
 
     public void SaveAndQuit()
@@ -93,10 +133,9 @@ public class PauseMenuManager : MonoBehaviour
 
     public void OnLoadSavePressed()
     {
+        ResetAllPanels();
         loadSavePanel.SetActive(true);
-
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(firstLoadSaveButton);
+        SetSelected(firstLoadSaveButton);
 
         if (SaveSystem.SaveFileExists(false))
         {
@@ -121,9 +160,9 @@ public class PauseMenuManager : MonoBehaviour
 
     public void OnBackFromLoadSave()
     {
-        loadSavePanel.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(firstPauseMenuButton);
+        ResetAllPanels();
+        pauseMenuUI.SetActive(true);
+        SetSelected(firstPauseMenuButton);
     }
 
     public void OnManualSaveSelected()
@@ -132,10 +171,9 @@ public class PauseMenuManager : MonoBehaviour
         {
             isAutoSaveSelected = false;
             SaveLoadContext.LoadAutoSave = false;
+            ResetAllPanels();
             confirmLoadPanel.SetActive(true);
-
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(firstConfirmLoadButton);
+            SetSelected(firstConfirmLoadButton);
         }
     }
 
@@ -145,10 +183,9 @@ public class PauseMenuManager : MonoBehaviour
         {
             isAutoSaveSelected = true;
             SaveLoadContext.LoadAutoSave = true;
+            ResetAllPanels();
             confirmLoadPanel.SetActive(true);
-
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(firstConfirmLoadButton);
+            SetSelected(firstConfirmLoadButton);
         }
     }
 
@@ -156,7 +193,7 @@ public class PauseMenuManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         IsPaused = false;
-        confirmLoadPanel.SetActive(false);
+        ResetAllPanels();
 
         SaveData data = SaveSystem.LoadGame(isAutoSaveSelected);
         if (data != null)
@@ -165,9 +202,8 @@ public class PauseMenuManager : MonoBehaviour
 
     public void OnCancelLoadPressed()
     {
-        confirmLoadPanel.SetActive(false);
-
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(firstLoadSaveButton);
+        ResetAllPanels();
+        loadSavePanel.SetActive(true);
+        SetSelected(firstLoadSaveButton);
     }
 }

@@ -2,10 +2,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
     [Header("Panels")]
+    public GameObject mainMenuPanel;
     public GameObject confirmNewGamePanel;
     public GameObject noSaveFoundPanel;
     public GameObject loadSavePanel;
@@ -21,20 +23,67 @@ public class MainMenuManager : MonoBehaviour
     public TMP_Text autoSaveInfoText;
 
     private bool isAutoSaveSelected;
+    private string lastInputMethod = "Controller";
 
     private void Start()
     {
+        ResetAllPanels();
+        mainMenuPanel.SetActive(true);
+        SetSelected(firstMainMenuButton);
+    }
+
+    private void Update()
+    {
+        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+        {
+            lastInputMethod = "Mouse";
+        }
+
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            if (lastInputMethod != "Controller")
+            {
+                RestoreControllerFocus();
+                lastInputMethod = "Controller";
+            }
+        }
+    }
+
+    private void RestoreControllerFocus()
+    {
+        if (confirmNewGamePanel.activeSelf)
+            SetSelected(firstConfirmNewGameButton);
+        else if (confirmLoadPanel.activeSelf)
+            SetSelected(firstConfirmLoadButton);
+        else if (loadSavePanel.activeSelf)
+            SetSelected(firstLoadSaveMenuButton);
+        else
+            SetSelected(firstMainMenuButton);
+    }
+
+    private void SetSelected(GameObject obj)
+    {
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(firstMainMenuButton);
+        EventSystem.current.SetSelectedGameObject(obj);
+    }
+
+    private void ResetAllPanels()
+    {
+        mainMenuPanel.SetActive(false);
+        confirmNewGamePanel.SetActive(false);
+        noSaveFoundPanel.SetActive(false);
+        loadSavePanel.SetActive(false);
+        confirmLoadPanel.SetActive(false);
     }
 
     public void OnNewGamePressed()
     {
+        ResetAllPanels();
+
         if (SaveSystem.SaveFileExists(false))
         {
             confirmNewGamePanel.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(firstConfirmNewGameButton);
+            SetSelected(firstConfirmNewGameButton);
         }
         else
         {
@@ -50,9 +99,9 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnCancelNewGamePressed()
     {
-        confirmNewGamePanel.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(firstMainMenuButton);
+        ResetAllPanels();
+        mainMenuPanel.SetActive(true);
+        SetSelected(firstMainMenuButton);
     }
 
     private void StartNewGame()
@@ -70,6 +119,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnLoadGamePressed()
     {
+        ResetAllPanels();
+
         bool manualExists = SaveSystem.SaveFileExists(false);
         bool autoExists = SaveSystem.SaveFileExists(true);
 
@@ -80,8 +131,7 @@ public class MainMenuManager : MonoBehaviour
         }
 
         loadSavePanel.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(firstLoadSaveMenuButton);
+        SetSelected(firstLoadSaveMenuButton);
 
         if (manualExists)
         {
@@ -105,30 +155,30 @@ public class MainMenuManager : MonoBehaviour
     }
 
     public void OnManualSaveSelected()
+{
+    if (SaveSystem.SaveFileExists(false))
     {
-        if (SaveSystem.SaveFileExists(false))
-        {
-            isAutoSaveSelected = false;
-            SaveLoadContext.LoadAutoSave = false;
-            confirmLoadPanel.SetActive(true);
+        isAutoSaveSelected = false;
+        SaveLoadContext.LoadAutoSave = false;
 
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(firstConfirmLoadButton);
-        }
+        loadSavePanel.SetActive(false);
+        confirmLoadPanel.SetActive(true);
+        SetSelected(firstConfirmLoadButton);
     }
+}
 
-    public void OnAutoSaveSelected()
+public void OnAutoSaveSelected()
+{
+    if (SaveSystem.SaveFileExists(true))
     {
-        if (SaveSystem.SaveFileExists(true))
-        {
-            isAutoSaveSelected = true;
-            SaveLoadContext.LoadAutoSave = true;
-            confirmLoadPanel.SetActive(true);
+        isAutoSaveSelected = true;
+        SaveLoadContext.LoadAutoSave = true;
 
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(firstConfirmLoadButton);
-        }
+        loadSavePanel.SetActive(false);
+        confirmLoadPanel.SetActive(true);
+        SetSelected(firstConfirmLoadButton);
     }
+}
 
     public void OnConfirmLoadPressed()
     {
@@ -140,14 +190,14 @@ public class MainMenuManager : MonoBehaviour
     public void OnCancelLoadPressed()
     {
         confirmLoadPanel.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(firstLoadSaveMenuButton);
+        loadSavePanel.SetActive(true);
+        SetSelected(firstLoadSaveMenuButton);
     }
 
     public void OnBackFromLoadSave()
     {
-        loadSavePanel.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(firstMainMenuButton);
+        ResetAllPanels();
+        mainMenuPanel.SetActive(true);
+        SetSelected(firstMainMenuButton);
     }
 }
