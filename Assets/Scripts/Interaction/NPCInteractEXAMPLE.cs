@@ -67,7 +67,7 @@ public class NPCInteractEXAMPLE : BaseInteract
     private void DialogueOption1()
     {
         // Dialogue disappears when pressing the Space bar
-        if (_dialogueObject.activeInHierarchy && Input.GetKeyDown(KeyCode.Space))
+        if (_dialogueObject.activeInHierarchy && Input.GetButtonDown("Collect"))
         {
             _dialogueObject.SetActive(false);
         }

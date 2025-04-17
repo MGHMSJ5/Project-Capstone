@@ -75,6 +75,8 @@ GameObject:
   - component: {fileID: 1027633404332963079}
   - component: {fileID: 105197503307770643}
   - component: {fileID: 934457520593668438}
+  - component: {fileID: 8712511659334459585}
+  - component: {fileID: 2214561622765522461}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -188,6 +190,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b10eafa11a434489b0541d59a6c027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8712511659334459585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015057840018717787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17618357c0eb3b34c82dc541b2472658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hoverAbilityGranted: 1
+  _hoverForce: 2
+  _maxHoverTime: 3
+--- !u!114 &2214561622765522461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015057840018717787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd3a253a5176f9d41994ed1dc99d98bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulseRange: 5
+  pulseDuration: 0.5
+  panelLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  hasPulseAbility: 1
 --- !u!1001 &6378522871709952060
 PrefabInstance:
   m_ObjectHideFlags: 0
