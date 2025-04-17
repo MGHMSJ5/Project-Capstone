@@ -28,8 +28,8 @@ public class BaseInteract : MonoBehaviour
     private bool _dropObjectBool;
 
     private bool _hasInteracted = false;
-    private bool _canInteract = false;
-    private string _interactButton;
+    protected bool _canInteract = false;
+    protected string _interactButton;
     protected UICanvas _UICanvas;
     private GameObject _button;
 
