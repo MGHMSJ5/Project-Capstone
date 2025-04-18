@@ -1,5 +1,6 @@
 // Script that can be accessed at all times.
 using System.Collections.Generic;
+// All types of resources:
 public enum RepairTypesOptions
 {
     Screws,
@@ -18,7 +19,7 @@ public static class RepairResources
             _resourceAmounts[type] = 0;
         }
     }
-
+    // Functions to get, add, and remove from a specific resource type
     public static int GetResourceAmount(RepairTypesOptions type)
     {
         return _resourceAmounts[type];

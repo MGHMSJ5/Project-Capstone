@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 // The MinorRepair script is required
 [RequireComponent(typeof(MinorRepair))]
+
+// This script is an example for a repair item. This script causes the 'result' of what happens when repairing
 public class MinorRepairEXAMPLE : MonoBehaviour
-{   // This is an example of a repair item. This script causes the 'result' of what happens when repairing
+{   // Always get a reference to the MinorRepair script
     private MinorRepair _minorRepair;
 
     [SerializeField]
@@ -16,11 +18,11 @@ public class MinorRepairEXAMPLE : MonoBehaviour
     }
 
     private void ChangeColor()
-    {
+    {   // Change the color of the object to green
         _objectChangeColor.GetComponent<Renderer>().material.color = Color.green;
     }
 
-    //subscribe to event so that the subscribes function will be invoked when repairing
+    //subscribe to event so that the subscribed function will be invoked when repairing
     private void OnEnable()
     {
         _minorRepair.RepairAction += ChangeColor;

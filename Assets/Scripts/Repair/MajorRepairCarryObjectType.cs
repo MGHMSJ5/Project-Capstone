@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+// Put in here all the object types that can be carried
+// They will be used for the Major repairs
 public enum CarryTypes
 {
     Plank,
@@ -9,8 +9,6 @@ public enum CarryTypes
 
 public class MajorRepairCarryObjectType : MonoBehaviour
 {
-    // Put in here all the object types that can be carried
-    // They will be used for the Major repairs
-
+    // Set whic type this carriable repair resource is
     public CarryTypes carryType;
 }

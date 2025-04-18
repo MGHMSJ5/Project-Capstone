@@ -4,31 +4,34 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// This class is used to make a 'nested' list. So that in the inspector, multiple things can be 'connected'
+// It is used to set the repar resource that is needed to repair the object.
 [System.Serializable]
 public class RepairTypeAmount
 {
-    public RepairTypesOptions repairType;
-    public int amount;
-    public Sprite icon;
+    public RepairTypesOptions repairType; // Type of resource
+    public int amount; // Amount that is needed to repair the object
+    public Sprite icon; // Sprite that will appear on the UI that appears when the player is near the repair item
 
     [HideInInspector]
-    public TextMeshProUGUI amountText;
+    public TextMeshProUGUI amountText; // Text that is references by getting the child
     [HideInInspector]
-    public int currentAmount;
+    public int currentAmount; // The current amount of the type of resources the player currently has
 }
 
 public class MinorRepair : BaseInteract
 {
-    [Tooltip("IMPORTANT! This action will run when the player has the right amount of resources and repairs. A different script with the unique 'result of repairing' code needs to subscribe to this event. The purpose of this is that scripts will be ordened")]
+    [Tooltip("IMPORTANT! This action will run when the player has the right amount of resources and repairs. A different script with the unique 'result of repairing' code needs to subscribe to this event. The purpose of this is that scripts will be ordened. An example of this script is MinorRepairEXAMPLE.cs")]
     public event Action RepairAction;
     [Header("Repair Variables")]
     [Tooltip("Use the list to set what type of repair source the repair needs, and how many. Put in the icon what the image next to the text needs to be in the canvas. Make sure to not have duplicate sources in the list! The MAX is 2 repair types")]
     [SerializeField] protected List<RepairTypeAmount> _repairTypeAmount = new List<RepairTypeAmount>();
+    // Used to store the UI text in that is then used to change the text when the player enters the trigger (updates the text based on the player's current resource amount
     private List<GameObject> _childTextUI = new List<GameObject>();
     
     [Header("Repair UI")]
     protected GameObject _canvas;
-    // max repair types set. If this goes past 3, then the if statement in SetResourceUI needs to be changed!
+    // max repair types set. If this goes past 3, then the if statement in SetResourceUI needs to be changed! And also check if the UI (on the canvas) is still correct
     private int _maxRepairTypes = 2;
 
     protected override void Start()
@@ -40,9 +43,10 @@ public class MinorRepair : BaseInteract
         // Return if the amount of possible repair sources is lower than the needed resources for repair in the inspector
         if (_repairTypeAmount.Count > _maxRepairTypes)
         {
+            Debug.LogError("To many repair resources set on " + this.name);
             return;
         }
-
+        // Set the UI based on the repair resource needed and update the UI
         SetResourceUI();
         UpdateRepairUIText();
     }
