@@ -73,7 +73,7 @@ public class DialogueManager : MonoBehaviour
 
         if (choicesPanel.activeInHierarchy)
         {
-            if (Input.GetButton("DialogueChoice0"))
+            if (Input.GetButtonDown("DialogueChoice0"))
             {
                 MakeChoice(0);
             }
@@ -127,7 +127,7 @@ public class DialogueManager : MonoBehaviour
             //set text for the current dialogue line
             dialogueText.text = currentStory.Continue(); //Starts the first line of dialogue
             //dislay choices, if those are part of the current dialogue line
-            DisplayChoices();
+            StartCoroutine(DisplayChoices());
         }
         else //if no inkJSON file, or no more dialogue in the inkJSON file
         {
@@ -135,8 +135,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void DisplayChoices()
+    private IEnumerator DisplayChoices()
     {
+        yield return new WaitForSeconds(.5f);
         List<Ink.Runtime.Choice> currentChoices = currentStory.currentChoices;
 
         //check to make sure the UI can handle the amount of choices
