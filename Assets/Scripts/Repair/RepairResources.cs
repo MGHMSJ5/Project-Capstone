@@ -13,7 +13,7 @@ public static class RepairResources
 
     // Runs only once when this script is accessed for the first time 
     static RepairResources()
-    {   // Add to the dictionary depenig on what is in RepairTypesOption
+    {   // Add to the dictionary depenig on what is in RepairTypesOption // Thomas - "depenig" to depending
         foreach (RepairTypesOptions type in System.Enum.GetValues(typeof(RepairTypesOptions)))
         {
             _resourceAmounts[type] = 0;
