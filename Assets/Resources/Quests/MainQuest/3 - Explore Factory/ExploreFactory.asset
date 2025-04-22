@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fcbf93d06ed82845bd67abcca5c7e8e, type: 3}
+  m_Name: ExploreFactory
+  m_EditorClassIdentifier: 
+  <id>k__BackingField: ExploreFactory
+  displayName: Explore the factory
+  levelRequirement: 0
+  questPrerequisits: []
+  questStepPrefabs:
+  - {fileID: 8228811999757818168, guid: 0f62df823b2b7954b8aacc761649a115, type: 3}
+  - {fileID: 8228811999757818168, guid: e88c1f6adb380514eaf4e75f1e78a7c1, type: 3}
+  - {fileID: 3413421858151535967, guid: f123358cf90f46641a188c41002663b4, type: 3}
+  - {fileID: 1428897710093189552, guid: 2b3dc77d09e2f304592d2a4fcc60fa62, type: 3}
+  questReward: []

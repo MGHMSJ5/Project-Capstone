@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    public static QuestManager Instance;
-    public Quest activeQuest;
-
-    void Awake() => Instance = this;
-
-    public void StartQuest(Quest quest)
+    // Start is called before the first frame update
+    void Start()
     {
-        activeQuest = quest;
-        Debug.Log($"Quest Started: {quest.questName}");
-        QuestUI.Instance.UpdateUI(quest);
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }

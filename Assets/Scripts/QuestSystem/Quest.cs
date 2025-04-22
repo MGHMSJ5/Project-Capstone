@@ -1,38 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
-using static QuestSteps;
 
-[CreateAssetMenu(fileName = "NewQuest", menuName = "Quest System/Quest")]
-
-public class Quest : ScriptableObject
+public class Quest
 {
-    public string questName;
-    public List<QuestStep> steps;
+    //static info
+    public QuestInfoSO info;
 
-    public void CompleteStep(string stepID)
+    //state info
+    public QuestState state;
+    private int currentQuestStepIndex;
+
+    public Quest(QuestInfoSO questInfo)
     {
-        var step = steps.Find(s => s.stepID == stepID);
-        if (step != null && !step.isCompleted)
+        this.info = questInfo;
+        this.state = QuestState.REQUIREMENTS_NOT_MET;
+        this.currentQuestStepIndex = 0;
+    }
+
+    public void MoveToNextStep()
+    {
+        currentQuestStepIndex++;
+    }
+
+    public bool CurrentStepExists()
+    {
+        return (currentQuestStepIndex < info.questStepPrefabs.Length);
+    }
+
+    public void InstanciateCurrentQuestStep(Transform parentTransform)
+    {
+        GameObject questStepPrefab = GetCurrentQuestStepPrefab();
+        if(questStepPrefab != null)
         {
-            step.isCompleted = true;
-            Debug.Log($"Step completed: {step.description}");
-
-            // Deactivate related steps
-            foreach (var id in step.deactivateStepsOnComplete)
-            {
-                var toDisable = steps.Find(s => s.stepID == id);
-                if (toDisable != null) toDisable.isCompleted = true;
-            }
-
-            QuestUI.Instance.UpdateUI(this);
+            Object.Instantiate<GameObject>(questStepPrefab, parentTransform);
         }
     }
 
-    public bool IsStepActive(string stepID)
+    private GameObject GetCurrentQuestStepPrefab()
     {
-        var step = steps.Find(s => s.stepID == stepID);
-        return step != null && !step.isCompleted;
+        GameObject questStepPrefab = null;
+        if (CurrentStepExists())
+        {
+            questStepPrefab = info.questStepPrefabs[currentQuestStepIndex];
+        }
+        else
+        {
+            Debug.LogWarning("Tried to get quest step prefab, but stepIndex was out of range indicating that " + "there is no current step: QuestId" + info.id + ", stepIndex=" + currentQuestStepIndex);
+        }
+        return questStepPrefab;
     }
 }
