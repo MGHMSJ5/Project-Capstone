@@ -33,10 +33,11 @@ public class UICanvas : MonoBehaviour
     {   // Play the animation (resource text pop up & screw amount pop up
         _animator.SetTrigger("AddScrews"); // Will maybe be used for a later mechanic that will be added (screw amount will appear when player stands still)
         _animator.Play("ToolBoxPopup");
+        AddToRepairResource();
     }
 
-    // Called from animation (ANIM_CanvasScrewAdd) that'll add to the repair source
-    public void AddToRepairResource()
+    
+    private void AddToRepairResource()
     {
         // Elise: here it first removed the space from '+ 2'. Otherwise the Parse() doesn't work
         string s = _screwAddedText.text.Replace(" ", "");
@@ -44,12 +45,12 @@ public class UICanvas : MonoBehaviour
         // Elise: Parse() here makes it so that the string s's numbers will be converted to int. 
         // Elise: So '+2' for example will be '2'
         int i = int.Parse(s);
-        RepairResources.AddScrews(i);
-        SetUIScrewAmount();
+        RepairResources.AddResourceAmount(RepairTypesOptions.Screws, i);
     }
+    // Called from animation (ANIM_CanvasScrewAdd) that'll add to the repair source
     // Update the resource amount for the UI
     private void SetUIScrewAmount()
     {
-        _screwAmount.text = "X " + RepairResources.GetScrewAmount();
+        _screwAmount.text = "X " + RepairResources.GetResourceAmount(RepairTypesOptions.Screws);
     }
 }
