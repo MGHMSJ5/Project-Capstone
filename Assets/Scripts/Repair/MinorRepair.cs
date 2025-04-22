@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // This class is used to make a 'nested' list. So that in the inspector, multiple things can be 'connected'
-// It is used to set the repar resource that is needed to repair the object. // Thomas - "repar" to repair
+// It is used to set the repair resource that is needed to repair the object. // Thomas - "repar" to repair
 [System.Serializable]
 public class RepairTypeAmount
 {
