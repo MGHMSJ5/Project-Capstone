@@ -3,6 +3,7 @@ using UnityEngine.UI;
 // Script inherits from MinorRepair, since the repair is similar, but builds a bit more on it
 public class MajorRepair : MinorRepair
 {
+    [Header("Major Repair Resource")]
     // CarryTypes is created in MajorRepairCarryObjectType
     [Tooltip("Set this to the type of object that is needed to repair this object.")]
     [SerializeField]
