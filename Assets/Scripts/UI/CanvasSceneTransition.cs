@@ -34,6 +34,9 @@ public class CanvasSceneTransition : MonoBehaviour
     // Public function that can be used to change from scenes
     public void ChangeScene(string sceneName)
     {
+        // Stop other coroutine to not mess up fading
+        // This WILL stop CanvasFadeInAndOut from happening. So make sure that it is not possible to do these two at the same time
+        StopAllCoroutines();
         StartCoroutine(TransitionToNextScene(sceneName));
     }
     // Public function that can be used to fade in and out
