@@ -6,7 +6,8 @@ public class PanelPulse : MonoBehaviour
     public enum PlatformDirection
     {
         UpDown,
-        LeftRight
+        LeftRight,
+        ForwardBackward
     }
 
     public PlatformDirection platformDirection;
@@ -70,6 +71,10 @@ public class PanelPulse : MonoBehaviour
         {
             movementCoroutine = StartCoroutine(MoveLeftRight());
         }
+        else if (platformDirection == PlatformDirection.ForwardBackward)
+    {
+        movementCoroutine = StartCoroutine(MoveForwardBackward());
+    }
     }
 
     // Pauses the platform movement:
@@ -139,6 +144,31 @@ public class PanelPulse : MonoBehaviour
             }
         }
     }
+
+    IEnumerator MoveForwardBackward() // Makes the platform go forwards and backwards
+{
+    while (isMoving)
+    {
+        float targetZ = initialPosition.z + moveDistance;
+        while (Mathf.Abs(platformToMove.transform.position.z - targetZ) > 0.1f && isMoving)
+        {
+            platformToMove.transform.position = Vector3.MoveTowards(
+                platformToMove.transform.position,
+                new Vector3(platformToMove.transform.position.x, platformToMove.transform.position.y, targetZ),
+                moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        while (Mathf.Abs(platformToMove.transform.position.z - initialPosition.z) > 0.1f && isMoving)
+        {
+            platformToMove.transform.position = Vector3.MoveTowards(
+                platformToMove.transform.position,
+                initialPosition,
+                moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }
+}
 
     // Changes the cable color when the panel is activated:
     private void ActivateCable()
