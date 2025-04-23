@@ -38,7 +38,7 @@ public class CanvasSceneTransition : MonoBehaviour
     }
     // Public function that can be used to fade in and out
     // Also plays the action FadeAction, in case anything needs to happen during the fading
-    // Make sure to subscribe and unsubscribe to that action!
+    // Make sure to subscribe to that action!
     public void CanvasFadeInAndOut(float pauseTime)
     {   // Pause time is the wais time between the in and out fading (how long the screen will be black)
         StartCoroutine(FadeInAndOut(pauseTime));
@@ -52,20 +52,21 @@ public class CanvasSceneTransition : MonoBehaviour
         yield return new WaitForSeconds(0.4f); // Add a bit of delay before scene switching
 
         Scene currentScene = SceneManager.GetActiveScene();
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive);
         asyncOperation.allowSceneActivation = false;
 
         // Wait until the scene is fully loaded
         while (!asyncOperation.isDone)
         {
-            if (asyncOperation.progress > -0.9f)
+            if (asyncOperation.progress >= 0.9f)
             {
                 // Allow scene activation when loading is done
                 asyncOperation.allowSceneActivation = true;
             }
             yield return null;
         }
-
+        LoadingSceneController loadingSceneController = GameObject.Find("LoadingCanvas").GetComponent<LoadingSceneController>();
+        loadingSceneController.NextSceneName = sceneName;
         // Unload the current scene
         SceneManager.UnloadSceneAsync(currentScene);
     }
@@ -79,6 +80,8 @@ public class CanvasSceneTransition : MonoBehaviour
 
         // Play functions subscribed to this action, if there is an action
         FadeAction?.Invoke();
+        // Clear all subscriptions
+        FadeAction = null;
 
         yield return StartCoroutine(FadeOut(_duration));
     }
