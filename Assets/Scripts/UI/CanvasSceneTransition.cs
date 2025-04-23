@@ -9,7 +9,7 @@ public class CanvasSceneTransition : MonoBehaviour
     [Header("Fade variables")]
     [SerializeField]
     private float _duration = 1f;
-    [Tooltip("Set this bool to false if tha canvas must not start the black fading on start")]
+    [Tooltip("Set this bool to false if tha canvas must not start the black fading on start")] //Thomas - "tha" to that
     [SerializeField]
     private bool _fadeOnStart = true;
 
@@ -43,7 +43,7 @@ public class CanvasSceneTransition : MonoBehaviour
     // Also plays the action FadeAction, in case anything needs to happen during the fading
     // Make sure to subscribe to that action!
     public void CanvasFadeInAndOut(float pauseTime)
-    {   // Pause time is the wais time between the in and out fading (how long the screen will be black)
+    {   // Pause time is the wais time between the in and out fading (how long the screen will be black) //Thomas - "wais" to wait
         StartCoroutine(FadeInAndOut(pauseTime));
     }
 
@@ -69,7 +69,7 @@ public class CanvasSceneTransition : MonoBehaviour
             }
             yield return null;
         }
-        // Set the name of the next scene in the LoadingSceneControlle script
+        // Set the name of the next scene in the LoadingSceneControlle script // Thomas - "LoadingSceneControlle" to LoadingSceneController
         // This is able to happen because both scenes are loaded now
         LoadingSceneController loadingSceneController = GameObject.Find("LoadingCanvas").GetComponent<LoadingSceneController>();
         loadingSceneController.NextSceneName = sceneName;
