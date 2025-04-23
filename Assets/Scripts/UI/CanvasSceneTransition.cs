@@ -46,6 +46,7 @@ public class CanvasSceneTransition : MonoBehaviour
 
     // Scene transition. Load the next scene and transition, plus unload the current scene
     // !!For Mihai, this part would also need something related to Save/Load (to save/load certain things when transitioning from scenes)!!
+    // Also keep in mind that there is a LoadingSceneController script with a 'load' scene
     private IEnumerator TransitionToNextScene(string sceneName)
     {
         yield return StartCoroutine(FadeIn(_duration));
@@ -65,6 +66,8 @@ public class CanvasSceneTransition : MonoBehaviour
             }
             yield return null;
         }
+        // Set the name of the next scene in the LoadingSceneControlle script
+        // This is able to happen because both scenes are loaded now
         LoadingSceneController loadingSceneController = GameObject.Find("LoadingCanvas").GetComponent<LoadingSceneController>();
         loadingSceneController.NextSceneName = sceneName;
         // Unload the current scene

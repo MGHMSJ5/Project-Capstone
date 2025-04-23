@@ -23,7 +23,7 @@ public class LoadingSceneController : MonoBehaviour
     }
 
     private IEnumerator LoadNextScene()
-    {
+    {   // Like in CanvasSceneTransition, load the next scene, and unload this scene
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_nextSceneName, LoadSceneMode.Additive);
         asyncOperation.allowSceneActivation = false;
 
