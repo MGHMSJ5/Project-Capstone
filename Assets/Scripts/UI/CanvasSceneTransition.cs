@@ -62,7 +62,7 @@ public class CanvasSceneTransition : MonoBehaviour
             }
             yield return null;
         }
-        // Set the name of the next scene in the LoadingSceneControlle script // Thomas - "LoadingSceneControlle" to LoadingSceneController
+        // Set the name of the next scene in the LoadingSceneController script // Thomas - "LoadingSceneControlle" to LoadingSceneController
         // This is able to happen because both scenes are loaded now
         LoadingSceneController loadingSceneController = GameObject.Find("LoadingCanvas").GetComponent<LoadingSceneController>();
         loadingSceneController.NextSceneName = sceneName;
