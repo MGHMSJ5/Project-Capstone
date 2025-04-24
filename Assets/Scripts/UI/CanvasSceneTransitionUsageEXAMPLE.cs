@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class CanvasSceneTransitionUsageEXAMPLE : MonoBehaviour
 {
+    [Header("Scene Transition")]
     [Tooltip("Set the name of the scene to go to. Make sure that the name is the same, and that the scene is in the Build settings.")]
     [SerializeField]
     private string _nextSceneName;
     private CanvasSceneTransition _canvasSceneTransition;
 
+    [Header("In-Scene Fading")]
     // Just used for an example with the in-scene fading and action from CanvasSceneTransition
     [SerializeField]
     private GameObject _cube;
