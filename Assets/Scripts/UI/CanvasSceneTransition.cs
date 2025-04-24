@@ -9,9 +9,6 @@ public class CanvasSceneTransition : MonoBehaviour
     [Header("Fade variables")]
     [SerializeField]
     private float _duration = 1f;
-    [Tooltip("Set this bool to false if the canvas must not start the black fading on start")] //Thomas - "tha" to that | Elise: 'the'
-    [SerializeField]
-    private bool _fadeOnStart = true;
 
     private GameObject _background;
 
@@ -25,11 +22,7 @@ public class CanvasSceneTransition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (_fadeOnStart)
-        {
-            StartCoroutine(FadeOut(_duration));
-        }
-        
+        StartCoroutine(FadeOut(_duration));
     }
     // Public function that can be used to change from scenes
     public void ChangeScene(string sceneName)
