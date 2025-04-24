@@ -8,7 +8,8 @@ public class LoadingSceneController : MonoBehaviour
     {
         set { _nextSceneName = value; }
     }
-    private string _nextSceneName = null;
+    // Set to "0" to avoid error from happening
+    private string _nextSceneName = "0";
 
     private bool _isLoading = false;
 
