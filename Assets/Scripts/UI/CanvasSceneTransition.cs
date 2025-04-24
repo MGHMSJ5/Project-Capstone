@@ -9,7 +9,7 @@ public class CanvasSceneTransition : MonoBehaviour
     [Header("Fade variables")]
     [SerializeField]
     private float _duration = 1f;
-    [Tooltip("Set this bool to false if tha canvas must not start the black fading on start")] //Thomas - "tha" to that
+    [Tooltip("Set this bool to false if the canvas must not start the black fading on start")] //Thomas - "tha" to that | Elise: 'the'
     [SerializeField]
     private bool _fadeOnStart = true;
 

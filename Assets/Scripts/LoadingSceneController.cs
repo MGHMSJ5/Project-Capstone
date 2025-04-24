@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-// Loading scene is used to avoid clash betwene two scenes leading //Thomas - "betwene" to between
+// Loading scene is used to avoid clash between two scenes leading //Thomas - "betwene" to between
 public class LoadingSceneController : MonoBehaviour
 {   // String is set from CanvasSceneTransition while loading
     public string NextSceneName
