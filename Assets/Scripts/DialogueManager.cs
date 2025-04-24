@@ -31,10 +31,11 @@ public class DialogueManager : MonoBehaviour
     {
         if (instance != null)
         {
+            //if more than one dialogue manager is in the scene, a warning will be shown. Multiple dialogue managers will crash the game.
             Debug.LogWarning("Found more than one DialogueManager in the scene!");
         }
         instance = this;
-        // Get the PlayerController script by looking for an object that has the "Player" tag, and then get the script component
+        //get the PlayerController script by looking for an object that has the "Player" tag, and then get the script component
         _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
@@ -48,7 +49,7 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
 
-        //get all of the choices text
+        //find all of the text where the choices will show up in
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
         foreach (GameObject choice in choices)
@@ -65,41 +66,27 @@ public class DialogueManager : MonoBehaviour
         {
             return;
         }
-
+        //if the interact button is pressed and there is no choice panel active, the game will go to the next line of dialogue (otherwise known as story)
         if (Input.GetButtonDown("Interact") && !choicesPanel.activeInHierarchy)
         {
             ContinueStory();
         }
 
-        if (choicesPanel.activeInHierarchy)
-        {
-            if (Input.GetButtonDown("DialogueChoice0"))
-            {
-                MakeChoice(0);
-            }
-
-            if (Input.GetButtonDown("DialogueChoice1"))
-            {
-                MakeChoice(1);
-            }
-
-            if (Input.GetButtonDown("DialogueChoice2"))
-            {
-                MakeChoice(2);
-            }
-        }
     }
 
+    //player will enter the dialogue mode through the NPCInteract Script.
     public void EnterDialogueMode(TextAsset inkJSON)
     {
+        //start the dialogue by playing the first line of dialogue from the inkJSON file
         currentStory = new Ink.Runtime.Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
         ContinueStory();
 
-        // Disable the player movement (script)
+        //disable the player movement (script)
         _playerController.enabled = false;
 
+        //mouse cursor is visible and moveable
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
@@ -109,9 +96,10 @@ public class DialogueManager : MonoBehaviour
     public void ExitDialogueMode()
     {
         dialoguePanel.SetActive(false);
+        //reset the text for reusability
         dialogueText.text = "";
 
-        // Enable the player movement (script)
+        //enable the player movement (script)
         _playerController.enabled = true;
         dialogueIsPlaying = false;
 
@@ -125,9 +113,9 @@ public class DialogueManager : MonoBehaviour
         if (currentStory.canContinue) //checks if an inkJSON file with dialogue exists in the interacted NPC
         {
             //set text for the current dialogue line
-            dialogueText.text = currentStory.Continue(); //Starts the first line of dialogue
+            dialogueText.text = currentStory.Continue(); //finds the next line of dialogue
             //dislay choices, if those are part of the current dialogue line
-            StartCoroutine(DisplayChoices());
+            DisplayChoices();
         }
         else //if no inkJSON file, or no more dialogue in the inkJSON file
         {
@@ -135,9 +123,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private IEnumerator DisplayChoices()
+    private void DisplayChoices()
     {
-        yield return new WaitForSeconds(.5f);
+        //list all the choices given in the inkJSON file from the NPC
         List<Ink.Runtime.Choice> currentChoices = currentStory.currentChoices;
 
         //check to make sure the UI can handle the amount of choices
@@ -147,7 +135,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         int index = 0;
-        //enable the choices to the amount of choices for this line of dialogue
+        //enable the amount of needed choice buttons to be the amount of choices given by the inkJSON file
         foreach (Ink.Runtime.Choice choice in currentChoices)
         {
             choices[index].gameObject.SetActive(true);
@@ -161,36 +149,29 @@ public class DialogueManager : MonoBehaviour
             choices[i].gameObject.SetActive(false);
         }
 
+        //select the first choice for controller users
+        StartCoroutine(SelectFirstChoice());
+
 
     }
 
     private IEnumerator SelectFirstChoice()
     {
-        // Event System requires that the gameobject is first cleared, before it is changed to a current selected object. There must also be a little bit of waiting time in between the changes
+        //event System requires that the gameobject is first cleared, before it is changed to a current selected object. There must also be a little bit of waiting time in between the changes
         EventSystem.current.SetSelectedGameObject(null);
         yield return new WaitForEndOfFrame();
+        //selects the first choice which is choice0
         EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
     }
 
-    private IEnumerator ControllerOptions(int buttoninput)
-    {
-        currentStory.ChooseChoiceIndex(buttoninput);
-        //Without the first continueStory, the screen stays the same, and therefore the dialogue system doesn't register the choice that the player makes, which creates errors
-        ContinueStory();
-        //This second continueStory is just for us. If we want to showcase the choice that the player made inside the dialogue panel, then we can delete this one.
-        //Going from the GDD, I made this decision, since this was the idea.
-        ContinueStory();
-        yield return new WaitForSeconds(0.5f);
-
-    }
-
+    //if the player presses the button, this function starts
     public void MakeChoice(int choiceIndex)
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
-        //Without the first continueStory, the screen stays the same, and therefore the dialogue system doesn't register the choice that the player makes, which creates errors
+        //without this first continueStory, the screen stays the same, and therefore the dialogue system doesn't register the choice that the player makes, which creates errors
         ContinueStory();
-        //This second continueStory is just for us. If we want to showcase the choice that the player made inside the dialogue panel, then we can delete this one.
-        //Going from the GDD, I made this decision, since this was the idea.
+        //this second continueStory is just for us. If we want to showcase the choice that the player made inside the dialogue panel, then we can delete this one.
+        //using the design in the GDD, I made this decision.
         ContinueStory();
     }
 }

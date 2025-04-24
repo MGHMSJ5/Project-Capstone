@@ -30,7 +30,7 @@ public class NPCInteract : BaseInteract
     protected override void InteractFunction()
     {
         base.InteractFunction();
-        print("Talking");
+        //if the player interacts with the NPC, it will start the EnterDialogueMode fuction in the DialogueManager Script, using the inkJSON file connected to the NPC
         DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
         
         //Player has interacted with the dialogue

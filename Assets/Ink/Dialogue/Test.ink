@@ -1,15 +1,15 @@
 -> main
 
 === main ===
-
+Unused Line Unused Line Unused Line
 1. Testing testing testing
 2. Testing Again
 3. Which dude is your favourite?
-    + Bob           B
+    + Bob
     -> chosen ("Bob")  
-    + Willem        X
+    + Willem
     -> chosen ("Willem")
-    + Another Dude  Y
+    + Another Dude
     -> chosen ("Another Dude") 
 
 === chosen(dude) ===
