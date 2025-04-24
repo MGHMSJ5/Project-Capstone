@@ -8,7 +8,6 @@ public class LoadingSceneController : MonoBehaviour
     {
         set { _nextSceneName = value; }
     }
-    [SerializeField]
     private string _nextSceneName = null;
 
     private bool _isLoading = false;
