@@ -33,7 +33,9 @@ public class Quest
         GameObject questStepPrefab = GetCurrentQuestStepPrefab();
         if(questStepPrefab != null)
         {
-            Object.Instantiate<GameObject>(questStepPrefab, parentTransform);
+            //Next line could be changed to object pooling IF performance is an issue
+            QuestStep questStep = Object.Instantiate<GameObject>(questStepPrefab, parentTransform).GetComponent<QuestStep>();
+            questStep.InitializeQuestStep(info.id);
         }
     }
 

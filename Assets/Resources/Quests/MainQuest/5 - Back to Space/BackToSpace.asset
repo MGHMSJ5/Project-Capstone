@@ -15,7 +15,12 @@ MonoBehaviour:
   <id>k__BackingField: BackToSpace
   displayName: Return to your spaceship
   levelRequirement: 0
-  questPrerequisits: []
+  questPrerequisits:
+  - {fileID: 11400000, guid: bcc00988275bedc4597b91146460f82f, type: 2}
+  - {fileID: 11400000, guid: 22a1db4e80be5724183d601bd744bca8, type: 2}
+  - {fileID: 11400000, guid: f81949ccaabedab4596f0924899ea73d, type: 2}
+  - {fileID: 11400000, guid: f5584ac00c045364880ca73f1dd6b31a, type: 2}
+  - {fileID: 11400000, guid: 24fd5e5a34154984c92d0ee044e4c429, type: 2}
   questStepPrefabs:
   - {fileID: 5604020836599168706, guid: 164a9c8b3fffc8e468584c65d15fd8db, type: 3}
   questReward: []

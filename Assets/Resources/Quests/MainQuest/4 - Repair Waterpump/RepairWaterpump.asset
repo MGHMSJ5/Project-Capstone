@@ -15,7 +15,9 @@ MonoBehaviour:
   <id>k__BackingField: RepairWaterpump
   displayName: Investigate the waterpump
   levelRequirement: 0
-  questPrerequisits: []
+  questPrerequisits:
+  - {fileID: 11400000, guid: bcc00988275bedc4597b91146460f82f, type: 2}
+  - {fileID: 11400000, guid: 22a1db4e80be5724183d601bd744bca8, type: 2}
   questStepPrefabs:
   - {fileID: 6412896031126552728, guid: 9375b729aa4656a4993e19f729508791, type: 3}
   - {fileID: 8140255996042570357, guid: 7236a8fac4c5ae74a800161beb21f830, type: 3}

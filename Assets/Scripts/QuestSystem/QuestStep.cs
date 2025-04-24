@@ -8,15 +8,19 @@ public abstract class QuestStep : MonoBehaviour
     [SerializeField] public string description;
 
     private bool isFinished = false;
+    private string questId;
 
-    protected void FinsihQuestStep()
+    public void InitializeQuestStep(string questId)
+    {
+        this.questId = questId;
+    }
+
+    protected void FinishQuestStep()
     {
         if (!isFinished)
         {
             isFinished = true;
-
-            //TODO - Advance to next quest step
-
+            GameEventsManager.instance.questEvents.AdvanceQuest(questId);
             Destroy(this.gameObject);
         }
     }

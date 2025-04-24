@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RepairGateStep : QuestStep
+public class CollectMaterialsStep : QuestStep
 {    
     private int screwsCollected = RepairResources.GetScrewAmount();
     private int screwsToComplete = 5;
@@ -16,7 +16,7 @@ public class RepairGateStep : QuestStep
 
         if(screwsCollected >= screwsToComplete)
         {
-            FinsihQuestStep();
+            FinishQuestStep();
         }
     }
 

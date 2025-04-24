@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 758986733448582587}
-  - component: {fileID: 3573830436283597642}
+  - component: {fileID: -4382870457143628373}
   m_Layer: 0
-  m_Name: CollectResources
+  m_Name: CollectResourcesWaterpump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3573830436283597642
+--- !u!114 &-4382870457143628373
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42ece48079774d42b125074b1a586ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Find resources to repair the waterpump.
+  description: Find enough resources to repair the water pump!

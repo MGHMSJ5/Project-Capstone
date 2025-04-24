@@ -10,14 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fcbf93d06ed82845bd67abcca5c7e8e, type: 3}
-  m_Name: SideQuest
+  m_Name: Tutorial
   m_EditorClassIdentifier: 
-  <id>k__BackingField: SideQuest
-  displayName: Visit the workshop
+  <id>k__BackingField: Tutorial
+  displayName: 
   levelRequirement: 0
-  questPrerequisits:
-  - {fileID: 11400000, guid: 90fbdfc1e8a17a041b1156c0ab96bc09, type: 2}
-  questStepPrefabs:
-  - {fileID: 3145637390778903446, guid: 299aacce7ba383f43af3b2f9ff814b68, type: 3}
-  - {fileID: 546980716932432879, guid: 244719d82e3e8dd47bc1b0f1f8046756, type: 3}
+  questPrerequisits: []
+  questStepPrefabs: []
   questReward: []

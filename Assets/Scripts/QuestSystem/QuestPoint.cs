@@ -13,7 +13,7 @@ public class QuestPoint : MonoBehaviour
     [Header("Config")]
     [SerializeField] private bool startPoint = true;
     [SerializeField] private bool finishPoint = true;
-    
+
     private bool playerIsNear = false;
     private string questId;
     private QuestState currentQuestState;

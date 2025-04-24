@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RepairWaterpumpStep : QuestStep
+public class CollectResourcesWaterStep : QuestStep
 {    
     private int screwsCollected = RepairResources.GetScrewAmount();
     private int screwsToComplete = 5;
@@ -16,7 +16,7 @@ public class RepairWaterpumpStep : QuestStep
 
         if(screwsCollected >= screwsToComplete)
         {
-            FinsihQuestStep();
+            FinishQuestStep();
         }
     }
 
