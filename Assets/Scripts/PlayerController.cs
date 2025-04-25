@@ -5,14 +5,19 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private Transform _orientation;
+    [SerializeField] private float _normalSpeed;
+    [SerializeField] private float _sprintSpeed;
+    [SerializeField]
+    [Tooltip("This is the amount that will be REMOVED from normal and sprint speed when carrying a heavy object")]
+    private float _carryHeavtSpeedDifference;
+    private bool _isCarrying = false;
     [SerializeField] private float _speed;
     [SerializeField] private float _groundDrag;
 
     [Header("Sprinting")]
-    [SerializeField] private float _normalSpeed;
-    [SerializeField] private float _sprintSpeed;
+    
     [SerializeField] private float _maxSprintAccelerationTime = 1f;
-    [SerializeField] private float _currentSprintTime = 0.0f;
+    private float _currentSprintTime = 0.0f;
 
     [Header("Jumping")]
     [SerializeField] private float _jumpForce;
@@ -24,6 +29,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _playerHeight;
     [SerializeField] private LayerMask _groundMask;
     private bool _grounded;
+
+    [Header("Animation")]
+    [SerializeField] private Animator _animator;
+    [SerializeField] private float _walkingAnimationSpeed = 1f;
+    [SerializeField] private float _sprintAnimationSpeed = 2.5f;
 
     private float horizontalInput;
     private float verticalInput;
@@ -81,7 +91,9 @@ public class PlayerController : MonoBehaviour
 
         if (horizontalInput == 0 && verticalInput == 0)
         {
-            _speed = _normalSpeed;
+            _speed = _isCarrying ? _normalSpeed - _carryHeavtSpeedDifference : _normalSpeed;
+            _currentSprintTime = 0;
+            _animator.speed = _walkingAnimationSpeed;
         }
         else
         {
@@ -116,7 +128,9 @@ public class PlayerController : MonoBehaviour
         {
             _rb.MovePosition(_rb.position + _direction.normalized * _speed * _airMultiplier * Time.fixedDeltaTime);
         }
-
+        // Elise: Could you write a comment that would explain how this works?
+        // Thomas: Check the velocity of the player to change the Speed variable of the animator to change the animation
+        _animator.SetFloat("Speed", _rb.velocity.magnitude);
     }
 
     private void Jump()
@@ -133,15 +147,27 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Sprint") == 1)
         {   //increase the sprint time, but don't go over the max acceleration time
             _currentSprintTime = Mathf.Min(_currentSprintTime + Time.deltaTime, _maxSprintAccelerationTime);
+            _animator.speed = _sprintAnimationSpeed;
         }
         else
         {   //decrease the sprint time, but don't go below 0
             _currentSprintTime = Mathf.Max(_currentSprintTime - Time.deltaTime, 0f);
+            _animator.speed = _walkingAnimationSpeed;
         }
         //normalize the time value between 0 and 1
         float t = _currentSprintTime / _maxSprintAccelerationTime;
         //smoothly transition the speed based on sprinting time
-        _speed = Mathf.Lerp(_normalSpeed, _sprintSpeed, t);
+        _speed = Mathf.Lerp
+            (
+            _isCarrying ? _normalSpeed - _carryHeavtSpeedDifference : _normalSpeed, 
+            _isCarrying ? _sprintSpeed - _carryHeavtSpeedDifference : _sprintSpeed, 
+            t
+            );
+    }
+
+    public void CarryHeavyObject(bool carrying)
+    {
+        _isCarrying = carrying;
     }
 
     private void ResetJump()

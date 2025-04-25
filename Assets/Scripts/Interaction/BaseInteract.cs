@@ -9,16 +9,28 @@ public class BaseInteract : MonoBehaviour
     [SerializeField]
     [Tooltip("Select the right interaction. Interact = interacting with environment & NPC's (E & B). Collect = Collect collectibles & pick up objects (F & Y).")]
     private InteractType _interactType;
+    [SerializeField]
+    [Tooltip("Select if you want the object to interrupt the carrying")]
+    private DropObject _interruptCarrying;
     
     private enum InteractType
     {
         Interact,
         Collect
     }
-    private bool _hasInteracted = false;
+
+    private enum DropObject
+    {
+        False,
+        True
+    }
+    private Transform _carryPoint;
+    private bool _dropObjectBool;
+
+    protected bool _hasInteracted = false;
     private bool _canInteract = false;
     private string _interactButton;
-    private UICanvas _UICanvas;
+    protected UICanvas _UICanvas;
     private GameObject _button;
 
     protected virtual void Start()
@@ -29,6 +41,14 @@ public class BaseInteract : MonoBehaviour
         _UICanvas = GameObject.Find("Canvas").GetComponent<UICanvas>(); // Change 'Canvas' if the name of the canvas changes
         // if the set interact type is 'Interact', then get the InteractButton from UIInteract script. Otherwise get the CollectButton
         _button = _interactButton == "Interact" ? _UICanvas.InteractButton : _UICanvas.CollectButton;
+
+        // If the interaction needs to interrupt the carrying, then find the object that is the carrypoint
+        // (In the carrypoint, the carried object will be set as a child
+        _dropObjectBool = _interruptCarrying.ToString() == "True" ? true : false;
+        if (_dropObjectBool)
+        {
+            _carryPoint = GameObject.Find("CarryPoint").GetComponent<Transform>();
+        }
     }
 
     protected virtual void Update()
@@ -48,6 +68,14 @@ public class BaseInteract : MonoBehaviour
         SetInteract(false);
         // Is used to make sure the player can only interact with it once ↓
         if (_interactOnce) { _hasInteracted = true; };
+
+        if (_carryPoint != null && _carryPoint.childCount > 0)
+        {
+            // Get the carryscript from the child of the child and run the Interrupt() function so that the player drops the carried object
+            CarryObjectEXAMPLE carryObjectEXAMPLE = _carryPoint.GetChild(0).GetChild(0).GetComponent<CarryObjectEXAMPLE>();
+            if (carryObjectEXAMPLE != null) { carryObjectEXAMPLE.Interrupt(); }
+            
+        }
     }
 
     // Call from other script in case the player can interact again (while still in the trigger)
@@ -58,15 +86,15 @@ public class BaseInteract : MonoBehaviour
         _canInteract = canInteract;
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {   // When the player enters the trigger + make sure that the player can't interact again if ticked _interactionOnce
         if (other.gameObject.tag == "Player" && !_hasInteracted)
         {
             SetInteract(true);
         }
     }
-
-    private void OnTriggerExit(Collider other)
+    
+    protected virtual void OnTriggerExit(Collider other)
     {   // When the player exits the trigger
         if (other.gameObject.tag == "Player")
         {
