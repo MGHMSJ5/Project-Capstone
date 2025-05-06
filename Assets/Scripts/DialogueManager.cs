@@ -115,7 +115,7 @@ public class DialogueManager : MonoBehaviour
             //set text for the current dialogue line
             dialogueText.text = currentStory.Continue(); //finds the next line of dialogue
             //dislay choices, if those are part of the current dialogue line
-            StartCoroutine(DisplayChoices());
+            DisplayChoices();
         }
         else //if no inkJSON file, or no more dialogue in the inkJSON file
         {
@@ -123,7 +123,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private IEnumerator DisplayChoices() //Nick: I get an error and Unity opens in safe mode because of this line!
+    private void DisplayChoices() //Nick: I get an error and Unity opens in safe mode because of this line!
     {
         //list all the choices given in the inkJSON file from the NPC
         List<Ink.Runtime.Choice> currentChoices = currentStory.currentChoices;
