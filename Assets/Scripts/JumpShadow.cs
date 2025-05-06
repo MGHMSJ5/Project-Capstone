@@ -6,9 +6,9 @@ public class JumpShadow : MonoBehaviour
     public GameObject shadowPrefab;  
     public float shadowOffset = 0.05f;
     public LayerMask groundMask;
-    public float maxShadowScale = 1f;  // Scale when close to ground
-    public float minShadowScale = 0.3f; // Scale at max jump height
-    public float maxDistance = 5f;     // Maximum considered distance from ground
+    public float maxShadowScale = 1f;  // Scales up when close to ground
+    public float minShadowScale = 0.3f; // Scales down at max jump height
+    public float maxDistance = 5f;     // distance used to calculate above values
 
     private GameObject shadowInstance;
 
@@ -21,7 +21,7 @@ public class JumpShadow : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Shadow Prefab not assigned!");
+            Debug.LogWarning("Shadow prefab not added!");
         }
     }
 
@@ -49,7 +49,6 @@ public class JumpShadow : MonoBehaviour
         }
     }
 
-    // Replace this with your own grounded logic if needed
     bool IsAirborne()
     {
         return !Physics.Raycast(transform.position, -transform.up, 1.1f, groundMask);
