@@ -124,6 +124,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     private void DisplayChoices() //Nick: I get an error and Unity opens in safe mode because of this line!
+                                  //Lea: I fixed the issue; for some reason I made this fuction a IEnumerator instead of a normal void fuction. It should work now!
     {
         //list all the choices given in the inkJSON file from the NPC
         List<Ink.Runtime.Choice> currentChoices = currentStory.currentChoices;
