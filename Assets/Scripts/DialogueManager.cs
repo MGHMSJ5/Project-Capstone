@@ -123,7 +123,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private IEnumerator DisplayChoices()
+    private IEnumerator DisplayChoices() //Nick: I get an error and Unity opens in safe mode because of this line!
     {
         //list all the choices given in the inkJSON file from the NPC
         List<Ink.Runtime.Choice> currentChoices = currentStory.currentChoices;
