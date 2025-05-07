@@ -29,6 +29,11 @@ public class PauseMenuManager : MonoBehaviour
     {
         _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
     }
+    void Start()
+    {   //Cursor invisible
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     private void Update()
     {

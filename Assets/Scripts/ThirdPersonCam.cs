@@ -10,12 +10,6 @@ public class ThirdPersonCam : MonoBehaviour
 
     private float _rotationSpeed = 15;
 
-    void Start()
-    {   //Cursor invisible
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
     private void LateUpdate()
     {
         if (_player == null || _orientation == null) return;
