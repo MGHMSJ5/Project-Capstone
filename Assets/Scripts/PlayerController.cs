@@ -40,7 +40,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 _direction;
     private Rigidbody _rb;
 
+    // (Later) use this bool in the dialogue manager to set it to true when in dialgue, change this script so that player won't be able to move when it is true
+    // Also make it so that the right animation will be played
+    private bool _dialogueIsPlaying = false;
+
     // Exposing the following variables safely, for use in other scripts
+    public bool DialogueIsPlaying => _dialogueIsPlaying;
     public Transform Orientation => _orientation;
     public float Speed => _speed;
     public float GroundDrag => _groundDrag;
