@@ -24,6 +24,12 @@ public class PauseMenuManager : MonoBehaviour
     private bool isAutoSaveSelected;
     private string lastInputMethod = "Controller";
 
+    private CanvasSceneTransition _canvasSceneTransition;
+    private void Awake()
+    {
+        _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
+    }
+
     private void Update()
     {
         if (Input.GetButtonDown("Pause"))
@@ -108,14 +114,16 @@ public class PauseMenuManager : MonoBehaviour
 
         Time.timeScale = 1f;
         IsPaused = false;
-        SceneManager.LoadScene("TitleScreen");
+        _canvasSceneTransition.ChangeScene("TitleScreen");
+        //SceneManager.LoadScene("TitleScreen");
     }
 
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
         IsPaused = false;
-        SceneManager.LoadScene("TitleScreen");
+        _canvasSceneTransition.ChangeScene("TitleScreen");
+        //SceneManager.LoadScene("TitleScreen");
     }
 
     public void SaveGame()
@@ -197,7 +205,8 @@ public class PauseMenuManager : MonoBehaviour
 
         SaveData data = SaveSystem.LoadGame(isAutoSaveSelected);
         if (data != null)
-            SceneManager.LoadScene(data.sceneName);
+            _canvasSceneTransition.ChangeScene(data.sceneName);
+            //SceneManager.LoadScene(data.sceneName);
     }
 
     public void OnCancelLoadPressed()

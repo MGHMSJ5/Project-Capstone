@@ -3,9 +3,9 @@ using UnityEngine;
 public class PlayerHover : MonoBehaviour
 {
     [Header("Hovering")]
-    [SerializeField] private bool _hoverAbilityGranted = true; // Controls if the player has this ability unlocked (or not!)
-    [SerializeField] private float _hoverForce = 2f; // Controls how fast the player falls.
-    [SerializeField] private float _maxHoverTime = 3f; // How long the player can hover for.
+    [SerializeField] private bool _hoverAbilityGranted = true;
+    [SerializeField] private float _hoverForce = 2f;
+    [SerializeField] private float _maxHoverTime = 3f;
     private float _currentHoverTime = 0f;
     private bool _isHovering = false;
 
@@ -16,20 +16,21 @@ public class PlayerHover : MonoBehaviour
     [Header("Ground Check")]
     private bool _grounded;
 
+    private Vector3 GravityDirection => _gravityBody != null ? _gravityBody.GravityDirection : Vector3.down;
+
     void Start()
     {
         _playerController = GetComponent<PlayerController>();
-        _gravityBody = GetComponent<GravityBody>();
+        _gravityBody = GetComponent<GravityBody>(); // This could be null, and that's okay now!
     }
 
     void Update()
     {
         if (!_hoverAbilityGranted) return;
 
-        // Use actual gravity direction (from GravityBody) for ground check
         _grounded = Physics.Raycast(
             transform.position,
-            _gravityBody.GravityDirection,
+            GravityDirection,
             _playerController.PlayerHeight * 0.5f + 0.2f,
             _playerController.GroundMask
         );
@@ -43,8 +44,6 @@ public class PlayerHover : MonoBehaviour
             StopHover();
         }
 
-         // Resets the hover ability when the players lands:
-
         if (_grounded && !_isHovering)
         {
             _currentHoverTime = 0f;
@@ -57,7 +56,7 @@ public class PlayerHover : MonoBehaviour
         _currentHoverTime += Time.deltaTime;
 
         Rigidbody rb = _playerController.RB;
-        Vector3 localUp = -_gravityBody.GravityDirection;
+        Vector3 localUp = -GravityDirection;
 
         if (Vector3.Dot(rb.velocity, -localUp) > 0f)
         {
@@ -74,8 +73,6 @@ public class PlayerHover : MonoBehaviour
     private void StopHover()
     {
         _isHovering = false;
-
-        // If hover time exceeds max hover time, ability stops working until player lands:
 
         if (_currentHoverTime >= _maxHoverTime)
         {
