@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameEventsManager : MonoBehaviour
 {
    public static GameEventsManager instance { get; private set; }
 
     public QuestEvents questEvents;
-    //public InputEvents inputEvents;
+    public BaseInteract baseInteract;
     //public RewardEvents rewardEvents;
 
    private void Awake()
@@ -20,7 +21,7 @@ public class GameEventsManager : MonoBehaviour
 
         //initialise all events
         questEvents = new QuestEvents();
-        //inputEvents = new InputEvents();
+        baseInteract = new BaseInteract();
         //rewardEvents = new RewardEvents();
    }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 // IMPORTANT! Do not change this script unless it's necessary for all interact versions!
 [RequireComponent(typeof(Collider))]
 public class BaseInteract : MonoBehaviour
@@ -33,6 +34,8 @@ public class BaseInteract : MonoBehaviour
     protected UICanvas _UICanvas;
     private GameObject _button;
 
+    public event Action<Quest> onSubmitPressed;
+
     protected virtual void Start()
     {
         // Make sure that the collider is a trigger (this is the area that the player needs to be in in order to interact
@@ -64,7 +67,9 @@ public class BaseInteract : MonoBehaviour
 
     // Override this function in other script with what needs to happen
     protected virtual void InteractFunction()
-    {   // What happens when the player can interact/collect and presses the button
+    {
+        onSubmitPressed?.Invoke();
+        // What happens when the player can interact/collect and presses the button
         SetInteract(false);
         // Is used to make sure the player can only interact with it once ↓
         if (_interactOnce) { _hasInteracted = true; };
@@ -101,4 +106,6 @@ public class BaseInteract : MonoBehaviour
             SetInteract(false);
         }
     }
+
+    
 }
