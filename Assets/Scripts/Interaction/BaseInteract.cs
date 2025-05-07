@@ -34,7 +34,7 @@ public class BaseInteract : MonoBehaviour
     protected UICanvas _UICanvas;
     private GameObject _button;
 
-    public event Action<Quest> onSubmitPressed;
+    public event Action onSubmitPressed;
 
     protected virtual void Start()
     {
@@ -79,7 +79,6 @@ public class BaseInteract : MonoBehaviour
             // Get the carryscript from the child of the child and run the Interrupt() function so that the player drops the carried object
             CarryObjectEXAMPLE carryObjectEXAMPLE = _carryPoint.GetChild(0).GetChild(0).GetComponent<CarryObjectEXAMPLE>();
             if (carryObjectEXAMPLE != null) { carryObjectEXAMPLE.Interrupt(); }
-            
         }
     }
 
@@ -106,6 +105,4 @@ public class BaseInteract : MonoBehaviour
             SetInteract(false);
         }
     }
-
-    
 }
