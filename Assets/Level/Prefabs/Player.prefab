@@ -161,14 +161,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _orientation: {fileID: 6340766230750579385}
   _normalSpeed: 5
-  _sprintSpeed: 12
-  _carryHeavtSpeedDifference: 3
-  _speed: 0
+  _sprintSpeed: 10
+  _carryHeavySpeedDifference: 3
   _groundDrag: 0
-  _maxSprintAccelerationTime: 1
+  _maxSprintAccelerationTime: 1.5
   _jumpForce: 320
   _jumpCooldown: 0.25
-  _airMultiplier: 0.4
+  _airMultiplier: 1
   _playerHeight: 0.2
   _groundMask:
     serializedVersion: 2
