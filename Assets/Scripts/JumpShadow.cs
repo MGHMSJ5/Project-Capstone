@@ -25,7 +25,7 @@ public class JumpShadow : MonoBehaviour
         }
     }
 
-    void Update()
+    void Update() // Thomas - This function of the script could use some comments on what is some of these more important lines functions are
     {
         if (shadowInstance == null) return;
 
