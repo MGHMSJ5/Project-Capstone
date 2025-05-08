@@ -36,13 +36,20 @@ public class PlayerPulse : MonoBehaviour
         Collider[] hitObjects = Physics.OverlapSphere(transform.position, pulseRange, panelLayer);
 
         foreach (var hit in hitObjects)
-        {
-            PanelPulse panel = hit.GetComponent<PanelPulse>(); // Checks the object has the PanelPulse script attached
-            if (panel != null)
-            {
-                panel.ActivatePlatform(); // Triggers the platform working.
-            }
-        }
+{
+    PanelPulse panel = hit.GetComponent<PanelPulse>();
+    if (panel != null)
+    {
+        panel.ActivatePlatform(); // For platforms
+        continue;
+    }
+
+    DoorPulse door = hit.GetComponent<DoorPulse>();
+    if (door != null)
+    {
+        door.ActivateDoor(); // For doors
+    }
+}
 
         // Deactivate pulse after a short duration (this is more for future additions, ignore now):
         Invoke("DeactivatePulse", pulseDuration);
