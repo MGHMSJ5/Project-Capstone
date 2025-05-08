@@ -15,7 +15,6 @@ public class PlayerStateMachine
     public JumpState jumpState;
     public HoverState hoverState;
     public PulseState pulseState;
-    public CarryState carryState;
 
     // Event to notify other objects of the state change
     public event Action<IState> stateChanged;
@@ -29,7 +28,6 @@ public class PlayerStateMachine
         this.jumpState = new JumpState(player);
         this.hoverState = new HoverState(player);
         this.pulseState = new PulseState(player);
-        this.carryState = new CarryState(player);
     }
 
     // Set the starting state
