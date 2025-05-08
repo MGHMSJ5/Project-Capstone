@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     [Tooltip("This is the amount that will be REMOVED from normal and sprint speed when carrying a heavy object")]
     private float _carryHeavySpeedDifference;
+    [Tooltip("This is the variable that needs to be used in the animator to see if the player is carrying or not.")]
     private bool _isCarrying = false;
+    private bool _isCarryingHeavy = false;
     private float _speed;
     [SerializeField] private float _groundDrag;
 
@@ -120,7 +122,7 @@ public class PlayerController : MonoBehaviour
 
         if (horizontalInput == 0 && verticalInput == 0)
         {
-            _speed = _isCarrying ? _normalSpeed - _carryHeavySpeedDifference : _normalSpeed;
+            _speed = _isCarryingHeavy ? _normalSpeed - _carryHeavySpeedDifference : _normalSpeed;
             _currentSprintTime = 0;
             _animator.speed = _walkingAnimationSpeed;
             _isSprinting = false;
@@ -190,15 +192,17 @@ public class PlayerController : MonoBehaviour
         //smoothly transition the speed based on sprinting time
         _speed = Mathf.Lerp
             (
-            _isCarrying ? _normalSpeed - _carryHeavySpeedDifference : _normalSpeed, 
-            _isCarrying ? _sprintSpeed - _carryHeavySpeedDifference : _sprintSpeed, 
+            _isCarryingHeavy ? _normalSpeed - _carryHeavySpeedDifference : _normalSpeed,
+            _isCarryingHeavy ? _sprintSpeed - _carryHeavySpeedDifference : _sprintSpeed, 
             t
             );
     }
 
-    public void CarryHeavyObject(bool carrying)
+    public void CarryObject(bool carrying, bool isHeavy)
     {
         _isCarrying = carrying;
+        _isCarryingHeavy = isHeavy;
+
     }
 
     private void ResetJump()

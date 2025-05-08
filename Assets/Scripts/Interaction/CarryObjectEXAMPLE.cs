@@ -96,7 +96,11 @@ public class CarryObjectEXAMPLE : BaseInteract
         // Slow down movement of the player if the object has a "HeavyObject" tag
         if (_parent.tag == "HeavyObject")
         {
-            _playerController.CarryHeavyObject(true);
+            _playerController.CarryObject(true, true);
+        }
+        else
+        {
+            _playerController.CarryObject(true, false);
         }
         _isCarrying = true;
         
@@ -120,10 +124,7 @@ public class CarryObjectEXAMPLE : BaseInteract
         }
 
         // Reset the player movement if the object has a "HeavyObject" tag
-        if (_parent.tag == "HeavyObject")
-        {
-            _playerController.CarryHeavyObject(false);
-        }
+        _playerController.CarryObject(false, false);
         _isCarrying = false;
        
     }
