@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetButton("Jump") && _readyToJump && _grounded)
+        if (Input.GetButton("Jump") && _readyToJump && _grounded && !_isCarryingHeavy)
         {
             _readyToJump = false;
             Jump();
