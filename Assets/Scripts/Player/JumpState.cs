@@ -42,7 +42,7 @@ public class JumpState : IState
         // else if (hovering stuff)
         if (player.PlayerHover.IsHovering)
         {
-
+            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.hoverState);
         }
 
         // If the player activates the pulse, then transition to the pulse state
