@@ -25,6 +25,12 @@ public class MainMenuManager : MonoBehaviour
     private bool isAutoSaveSelected;
     private string lastInputMethod = "Controller";
 
+    private CanvasSceneTransition _canvasSceneTransition;
+    private void Awake()
+    {
+        _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
+    }
+
     private void Start()
     {
         ResetAllPanels();
@@ -109,7 +115,12 @@ public class MainMenuManager : MonoBehaviour
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
-            SceneManager.LoadScene(nextSceneIndex);
+            // Get the name of the next scene
+            string scenePath = SceneUtility.GetScenePathByBuildIndex(nextSceneIndex);
+            string sceneName = System.IO.Path.GetFileNameWithoutExtension(scenePath);
+            // Go to next scene using the fading canvas
+            _canvasSceneTransition.ChangeScene(sceneName);
+            //SceneManager.LoadScene(nextSceneIndex);
         }
         else
         {
@@ -184,7 +195,10 @@ public void OnAutoSaveSelected()
     {
         SaveData data = SaveSystem.LoadGame(isAutoSaveSelected);
         if (data != null)
-            SceneManager.LoadScene(data.sceneName);
+        // Go to next scene using the fading canvas
+        _canvasSceneTransition.ChangeScene(data.sceneName);
+
+        //SceneManager.LoadScene(data.sceneName);
     }
 
     public void OnCancelLoadPressed()

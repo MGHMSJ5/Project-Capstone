@@ -9,9 +9,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _sprintSpeed;
     [SerializeField]
     [Tooltip("This is the amount that will be REMOVED from normal and sprint speed when carrying a heavy object")]
-    private float _carryHeavtSpeedDifference;
+    private float _carryHeavySpeedDifference;
     private bool _isCarrying = false;
-    [SerializeField] private float _speed;
+    private float _speed;
     [SerializeField] private float _groundDrag;
 
     [Header("Sprinting")]
@@ -40,7 +40,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 _direction;
     private Rigidbody _rb;
 
+    // (Later) use this bool in the dialogue manager to set it to true when in dialgue, change this script so that player won't be able to move when it is true
+    // Also make it so that the right animation will be played
+    private bool _dialogueIsPlaying = false;
+
     // Exposing the following variables safely, for use in other scripts
+    public bool DialogueIsPlaying => _dialogueIsPlaying;
     public Transform Orientation => _orientation;
     public float Speed => _speed;
     public float GroundDrag => _groundDrag;
@@ -91,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
         if (horizontalInput == 0 && verticalInput == 0)
         {
-            _speed = _isCarrying ? _normalSpeed - _carryHeavtSpeedDifference : _normalSpeed;
+            _speed = _isCarrying ? _normalSpeed - _carryHeavySpeedDifference : _normalSpeed;
             _currentSprintTime = 0;
             _animator.speed = _walkingAnimationSpeed;
         }
@@ -159,8 +164,8 @@ public class PlayerController : MonoBehaviour
         //smoothly transition the speed based on sprinting time
         _speed = Mathf.Lerp
             (
-            _isCarrying ? _normalSpeed - _carryHeavtSpeedDifference : _normalSpeed, 
-            _isCarrying ? _sprintSpeed - _carryHeavtSpeedDifference : _sprintSpeed, 
+            _isCarrying ? _normalSpeed - _carryHeavySpeedDifference : _normalSpeed, 
+            _isCarrying ? _sprintSpeed - _carryHeavySpeedDifference : _sprintSpeed, 
             t
             );
     }
