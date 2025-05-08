@@ -8,7 +8,7 @@ public class GameEventsManager : MonoBehaviour
    public static GameEventsManager instance { get; private set; }
 
     public QuestEvents questEvents;
-    public BaseInteract baseInteract;
+    //public BaseInteract baseInteract;
     //public RewardEvents rewardEvents;
 
    private void Awake()
@@ -21,7 +21,7 @@ public class GameEventsManager : MonoBehaviour
 
         //initialise all events
         questEvents = new QuestEvents();
-        baseInteract = new BaseInteract();
+        //baseInteract = new BaseInteract();
         //rewardEvents = new RewardEvents();
    }
 }
