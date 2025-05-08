@@ -10,6 +10,8 @@ public class PlayerPulse : MonoBehaviour
 
     private bool isPulseActive = false;
 
+    public bool IsPulseActive => isPulseActive;
+
     void Update()
     {
         // Only allows Pulse if the player has it unlocked:

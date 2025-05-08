@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerPulse))]
+[RequireComponent(typeof(PlayerHover))]
 public class PlayerController : MonoBehaviour
 {
     private PlayerStateMachine _playerStateMachine;
@@ -42,6 +44,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 _direction;
     private Rigidbody _rb;
 
+    private PlayerPulse _playerPulse;
+    private PlayerHover _playerHover;
+
     // (Later) use this bool in the dialogue manager to set it to true when in dialgue, change this script so that player won't be able to move when it is true
     // Also make it so that the right animation will be played
     private bool _dialogueIsPlaying = false;
@@ -68,10 +73,16 @@ public class PlayerController : MonoBehaviour
     public float VerticalInput => verticalInput;
     public Rigidbody RB => _rb;
     public Vector3 Direction => _direction;
+    public PlayerPulse PlayerPulse => _playerPulse;
+    public PlayerHover PlayerHover => _playerHover;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+
+        _playerPulse = GetComponent<PlayerPulse>();
+        _playerHover = GetComponent<PlayerHover>();
+
         // Initialize the State Macine
         _playerStateMachine = new PlayerStateMachine(this);
     }

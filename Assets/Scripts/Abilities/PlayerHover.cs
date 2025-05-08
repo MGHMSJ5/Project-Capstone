@@ -18,6 +18,8 @@ public class PlayerHover : MonoBehaviour
 
     private Vector3 GravityDirection => _gravityBody != null ? _gravityBody.GravityDirection : Vector3.down;
 
+    public bool IsHovering => _isHovering;
+
     void Start()
     {
         _playerController = GetComponent<PlayerController>();

@@ -30,7 +30,11 @@ public class SprintState : IState
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.jumpState);
         }
 
-        // If the player is hovering, then go to the hover state
+        // If the player activates the pulse, then transition to the pulse state
+        if (player.PlayerPulse.IsPulseActive)
+        {
+            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.pulseState);
+        }
     }
 
     public void Exit()

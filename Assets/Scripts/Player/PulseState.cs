@@ -18,7 +18,11 @@ public class PulseState : IState
 
     public void Execute()
     {
-
+        // When the pulse is deactivated, go back to the idle state
+        if (!player.PlayerPulse.IsPulseActive)
+        {
+            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.idleState);
+        }
     }
 
     public void Exit()

@@ -35,6 +35,12 @@ public class WalkState : IState
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.sprintState);
         }
+
+        // If the player activates the pulse, then transition to the pulse state
+        if (player.PlayerPulse.IsPulseActive)
+        {
+            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.pulseState);
+        }
     }
 
     public void Exit()
