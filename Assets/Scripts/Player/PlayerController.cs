@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private PlayerStateMachine _playerStateMachine;
     [Header("Movement")]
     [SerializeField] private Transform _orientation;
     [SerializeField] private float _normalSpeed;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] private float _maxSprintAccelerationTime = 1f;
     private float _currentSprintTime = 0.0f;
+    private bool _isSprinting = false;
 
     [Header("Jumping")]
     [SerializeField] private float _jumpForce;
@@ -45,12 +47,14 @@ public class PlayerController : MonoBehaviour
     private bool _dialogueIsPlaying = false;
 
     // Exposing the following variables safely, for use in other scripts
+    public PlayerStateMachine PlayerStateMachine => _playerStateMachine;
     public bool DialogueIsPlaying => _dialogueIsPlaying;
     public Transform Orientation => _orientation;
     public float Speed => _speed;
     public float GroundDrag => _groundDrag;
     public float NormalSpeed => _normalSpeed;
     public float SprintSpeed => _sprintSpeed;
+    public bool IsSprinting => _isSprinting;
     public float MaxSprintAccelerationTime => _maxSprintAccelerationTime;
     public float CurrentSprintTime => _currentSprintTime;
     public float JumpForce => _jumpForce;
@@ -65,14 +69,23 @@ public class PlayerController : MonoBehaviour
     public Rigidbody RB => _rb;
     public Vector3 Direction => _direction;
 
-    void Start()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        // Initialize the State Macine
+        _playerStateMachine = new PlayerStateMachine(this);
+    }
+    void Start()
+    {
+        _playerStateMachine.Initialize(_playerStateMachine.idleState);
         _speed = _normalSpeed;
     }
 
     void Update()
     {
+        // Update the current State
+        _playerStateMachine.Execute();
+
         //ground check
         _grounded = Physics.Raycast(transform.position, -transform.up, _playerHeight * 0.5f + 0.2f, _groundMask);
 
@@ -99,6 +112,7 @@ public class PlayerController : MonoBehaviour
             _speed = _isCarrying ? _normalSpeed - _carryHeavySpeedDifference : _normalSpeed;
             _currentSprintTime = 0;
             _animator.speed = _walkingAnimationSpeed;
+            _isSprinting = false;
         }
         else
         {
@@ -123,7 +137,6 @@ public class PlayerController : MonoBehaviour
     {
         //calculate movement direction
         _direction = _orientation.forward * verticalInput + _orientation.right * horizontalInput;
-
         if (_grounded)
         {
             _rb.MovePosition(_rb.position + _direction.normalized * _speed * Time.fixedDeltaTime);
@@ -153,11 +166,13 @@ public class PlayerController : MonoBehaviour
         {   //increase the sprint time, but don't go over the max acceleration time
             _currentSprintTime = Mathf.Min(_currentSprintTime + Time.deltaTime, _maxSprintAccelerationTime);
             _animator.speed = _sprintAnimationSpeed;
+            _isSprinting = true;
         }
         else
         {   //decrease the sprint time, but don't go below 0
             _currentSprintTime = Mathf.Max(_currentSprintTime - Time.deltaTime, 0f);
             _animator.speed = _walkingAnimationSpeed;
+            _isSprinting = false;
         }
         //normalize the time value between 0 and 1
         float t = _currentSprintTime / _maxSprintAccelerationTime;
