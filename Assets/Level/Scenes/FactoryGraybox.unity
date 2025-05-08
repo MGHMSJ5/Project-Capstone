@@ -4506,6 +4506,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1166436837}
+    - targetCorrespondingSourceObject: {fileID: 3809518035223007481, guid: 771ec7e30c0c63443abada96a338847b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1166436838}
   m_SourcePrefab: {fileID: 100100000, guid: 771ec7e30c0c63443abada96a338847b, type: 3}
 --- !u!1001 &1149795066
 PrefabInstance:
@@ -4787,8 +4791,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15437f33d4437249b260319e6316d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previousPosition: {x: 0, y: 0, z: 0}
-  platformVelocity: {x: 0, y: 0, z: 0}
+--- !u!54 &1166436838
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166436831}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1167464082
 PrefabInstance:
   m_ObjectHideFlags: 0
