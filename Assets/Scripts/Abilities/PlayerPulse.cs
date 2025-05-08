@@ -10,7 +10,14 @@ public class PlayerPulse : MonoBehaviour
 
     private bool isPulseActive = false;
 
+    private Transform _carryPoint;
+
     public bool IsPulseActive => isPulseActive;
+
+    private void Awake()
+    {
+        _carryPoint = GameObject.Find("CarryPoint").GetComponent<Transform>();
+    }
 
     void Update()
     {
@@ -34,6 +41,8 @@ public class PlayerPulse : MonoBehaviour
         isPulseActive = true;
         Debug.Log("Pulse activated!");
 
+        InterruptCarrying();
+
         // Interactions within a player's radius:
         Collider[] hitObjects = Physics.OverlapSphere(transform.position, pulseRange, panelLayer);
 
@@ -54,5 +63,15 @@ public class PlayerPulse : MonoBehaviour
     {
         isPulseActive = false;
         Debug.Log("Pulse deactivated.");
+    }
+
+    private void InterruptCarrying()
+    {
+        if (_carryPoint != null && _carryPoint.childCount > 0)
+        {
+            // Get the carryscript from the child of the child and run the Interrupt() function so that the player drops the carried object
+            CarryObjectEXAMPLE carryObjectEXAMPLE = _carryPoint.GetChild(0).GetChild(0).GetComponent<CarryObjectEXAMPLE>();
+            if (carryObjectEXAMPLE != null) { carryObjectEXAMPLE.Interrupt(); }
+        }
     }
 }
