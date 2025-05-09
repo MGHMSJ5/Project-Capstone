@@ -116,7 +116,6 @@ GameObject:
   - component: {fileID: 8381315819754042701}
   - component: {fileID: 7281003139828232030}
   - component: {fileID: 5697618534967479537}
-  - component: {fileID: 2323790182978598432}
   m_Layer: 0
   m_Name: NPCInteractEXAMPLE
   m_TagString: Untagged
@@ -180,21 +179,6 @@ MonoBehaviour:
   _dialogueObject: {fileID: 5733970035047739008}
   _disableDistance: 4
   _dialogueType: 0
---- !u!114 &2323790182978598432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5659382547500889662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81f410b8943884e42b56b1ac73217be1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questInfoForPoint: {fileID: 11400000, guid: 90fbdfc1e8a17a041b1156c0ab96bc09, type: 2}
-  startPoint: 1
-  finishPoint: 0
 --- !u!1 &5733970035047739008
 GameObject:
   m_ObjectHideFlags: 0
