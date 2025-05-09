@@ -25,21 +25,21 @@ public class JumpShadow : MonoBehaviour
         }
     }
 
-    void Update() // Thomas - This function of the script could use some comments on what is some of these more important lines functions are
+    void Update() // Shadow "physics"
     {
         if (shadowInstance == null) return;
 
         if (Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 100f, groundMask))
         {
-            bool isAirborne = !Physics.Raycast(transform.position, -transform.up, 1.1f, groundMask);
+            bool isAirborne = !Physics.Raycast(transform.position, -transform.up, 1.1f, groundMask); // Checks if the player is considered "airborne" by casting a ray to check for nearby ground
 
             float distance = hit.distance;
-            float scale = isAirborne 
+            float scale = isAirborne // Determines jump shadow size based on height from floor
                 ? Mathf.Lerp(maxShadowScale, minShadowScale, Mathf.Clamp01(distance / maxDistance)) 
                 : maxShadowScale;
 
             shadowInstance.transform.position = hit.point + hit.normal * shadowOffset;
-            shadowInstance.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+            shadowInstance.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal); // Rotates the shadow to work with straight and rounded ground.
             shadowInstance.transform.localScale = new Vector3(scale, scale, scale);
         }
     }
