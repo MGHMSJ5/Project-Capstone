@@ -30,14 +30,19 @@ public class QuestPoint : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEventsManager.instance.questEvents.onQuestStateChange += QuestStateChange;
-        _npcInteract.onSubmitPressed += SubmitPressed;
+        Invoke("OnEnableDelayed", 1f);   
     }
 
     private void OnDisable()
     {
         GameEventsManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
         _npcInteract.onSubmitPressed -= SubmitPressed;
+    }
+
+    private void OnEnableDelayed()
+    {
+        GameEventsManager.instance.questEvents.onQuestStateChange += QuestStateChange;
+        _npcInteract.onSubmitPressed += SubmitPressed;
     }
 
     private void SubmitPressed()
