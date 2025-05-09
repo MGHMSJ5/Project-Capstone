@@ -76,7 +76,9 @@ GameObject:
   - component: {fileID: 105197503307770643}
   - component: {fileID: 934457520593668438}
   - component: {fileID: 5179644468086557444}
-  - component: {fileID: 3350669930746966338}
+  - component: {fileID: 5174907197246541205}
+  - component: {fileID: 1080924187781067023}
+  - component: {fileID: 8093493373670151931}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -210,7 +212,41 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.6
   m_Center: {x: 0, y: 0.6, z: 0}
---- !u!114 &3350669930746966338
+--- !u!114 &5174907197246541205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015057840018717787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd3a253a5176f9d41994ed1dc99d98bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulseRange: 3
+  pulseDuration: 0.5
+  panelLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  hasPulseAbility: 0
+--- !u!114 &1080924187781067023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015057840018717787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17618357c0eb3b34c82dc541b2472658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hoverAbilityGranted: 0
+  _hoverForce: 1
+  _maxHoverTime: 1
+  _maxHoverSpeed: 2
+--- !u!114 &8093493373670151931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
