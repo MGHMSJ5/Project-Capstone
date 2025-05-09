@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1006346793875239629}
   - component: {fileID: 6000894875326041126}
   m_Layer: 0
-  m_Name: InvestigateBuilding
+  m_Name: FollowNPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3061554869927662242}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.21, y: 81.47, z: 13.9}
+  m_LocalPosition: {x: 10.01, y: 81.47, z: -0.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -52,7 +52,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6000894875326041126
 MonoBehaviour:
@@ -66,5 +66,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7b0ee72d46e9d4cb3d932c24aeb3b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questInfo: {fileID: 11400000, guid: 90fbdfc1e8a17a041b1156c0ab96bc09, type: 2}
-  description: Blub
+  description: Follow [NPC name] to the city.

@@ -20,6 +20,7 @@ public class QuestInfoSO : ScriptableObject
 
     [Header("Rewards")]
     public GameObject[] questReward;
+    public int screwReward;
 
     //ensure the id is always the same as the scriptable object
     private void OnValidate()

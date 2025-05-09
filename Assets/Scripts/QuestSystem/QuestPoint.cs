@@ -42,7 +42,6 @@ public class QuestPoint : MonoBehaviour
 
     private void SubmitPressed()
     {
-        print("efskhfsekhj");
         if (!playerIsNear)
         {
             return;

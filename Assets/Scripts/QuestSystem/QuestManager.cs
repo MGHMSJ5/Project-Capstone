@@ -125,8 +125,9 @@ public class QuestManager : MonoBehaviour
 
     private void ClaimRewards(Quest quest)
     {
-        //TODO: Make the rewards working
-        //GameEventsManager.instance.rewardEvents.ItemGained(quest.info.objectReward)
+        GameEventsManager.instance.rewardEvents.ItemGained(quest.info.questReward); //TODO: How will the upgrades be added to the player? Components? Items? Bool change? Connect it!
+        GameEventsManager.instance.rewardEvents.ScrewsGained(quest.info.screwReward); //TODO: Add to UI + actual player inventory
+        Debug.Log("Reward claimed");
     }
 
     private Dictionary<string, Quest> CreateQuestMap()

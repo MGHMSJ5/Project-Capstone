@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
-public class InvestigateBuilding : QuestStep
+public class FollowNPC : QuestStep
 {
     private void OnTriggerEnter(Collider other)
     {
