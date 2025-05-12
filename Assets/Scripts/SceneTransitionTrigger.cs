@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent (typeof(Collider))]
 public class SceneTransitionTrigger : MonoBehaviour
 {
     [Tooltip("Put in the name of the scene it needs to transition to. Make sure that the scene is in the build.")]
@@ -10,6 +11,7 @@ public class SceneTransitionTrigger : MonoBehaviour
     private void Awake()
     {
         _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
+        GetComponent<Collider>().isTrigger = true;
     }
 
     private void OnTriggerEnter(Collider other)
