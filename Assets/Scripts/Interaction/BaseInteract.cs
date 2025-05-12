@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 // IMPORTANT! Do not change this script unless it's necessary for all interact versions!
 [RequireComponent(typeof(Collider))]
 public class BaseInteract : MonoBehaviour
@@ -28,8 +28,8 @@ public class BaseInteract : MonoBehaviour
     private bool _dropObjectBool;
 
     protected bool _hasInteracted = false;
-    private bool _canInteract = false;
-    private string _interactButton;
+    protected bool _canInteract = false;
+    protected string _interactButton;
     protected UICanvas _UICanvas;
     private GameObject _button;
 

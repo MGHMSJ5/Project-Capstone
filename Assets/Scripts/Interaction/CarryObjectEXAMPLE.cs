@@ -13,6 +13,7 @@ public class CarryObjectEXAMPLE : BaseInteract
     private static CarryObjectEXAMPLE _currentlyCarrying;
 
     private Collider _parentCollider;
+    private Rigidbody _parentRb;
     private GravityBody _gravityBody;
 
     private PlayerController _playerController;
@@ -25,6 +26,7 @@ public class CarryObjectEXAMPLE : BaseInteract
         _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         _parentCollider = _parent.GetComponent<Collider>();
+        _parentRb = _parent.GetComponent<Rigidbody>();
         _gravityBody = _parent.GetComponent<GravityBody>();
     }
 
@@ -81,12 +83,24 @@ public class CarryObjectEXAMPLE : BaseInteract
         // Set collider's Trigger on so that it won't collide with anything // Thomas 2nd "collider" to "collide"
         _parentCollider.isTrigger = true;
         // Also disable the gravity script so that it wont fall through the floor // Thomas "floow" to "floor"
-        _gravityBody.enabled = false;
+        // Check if the parent does have a GravityBody script. Otherwise disable the gravity usage from the RigidBody of the parent
+        if (_gravityBody != null)
+        {
+            _gravityBody.enabled = false;
+        }
+        else
+        {
+            _parentRb.useGravity = false;
+        }
 
         // Slow down movement of the player if the object has a "HeavyObject" tag
         if (_parent.tag == "HeavyObject")
         {
-            _playerController.CarryHeavyObject(true);
+            _playerController.CarryObject(true, true);
+        }
+        else
+        {
+            _playerController.CarryObject(true, false);
         }
         _isCarrying = true;
         
@@ -100,13 +114,17 @@ public class CarryObjectEXAMPLE : BaseInteract
         // Disable trigger function so that it can collide again
         _parentCollider.isTrigger = false;
         // Enable the gravity so that it falls to the planet
-        _gravityBody.enabled = true;
+        if (_gravityBody != null)
+        {
+            _gravityBody.enabled = true;
+        }
+        else
+        {
+            _parentRb.useGravity = true;
+        }
 
         // Reset the player movement if the object has a "HeavyObject" tag
-        if (_parent.tag == "HeavyObject")
-        {
-            _playerController.CarryHeavyObject(false);
-        }
+        _playerController.CarryObject(false, false);
         _isCarrying = false;
        
     }
