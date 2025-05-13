@@ -97,15 +97,16 @@ public class QuestManager : MonoBehaviour
         if (quest.CurrentStepExists())
         {
             quest.InstanciateCurrentQuestStep(this.transform);
+            //Debug message
+            Debug.Log("Quest advanced: " + id);
         }
         //If there are no more quest steps, we have finished the quest
         else
         {
             ChangeQuestState(quest.info.id, QuestState.CAN_FINISH);
+            //Debug message
+            Debug.Log("Quest can be finished: " + id);
         }
-
-        //Debug message
-        Debug.Log("Quest advanced: " + id);
     }
 
     private void FinishQuest(string id)
