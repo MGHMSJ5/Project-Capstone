@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 
 [RequireComponent(typeof(SphereCollider))]
-[RequireComponent (typeof(NPCInteractEXAMPLE))]
+[RequireComponent (typeof(NPCInteract))]
 public class QuestPoint : MonoBehaviour
 {
     [Header("Quest")]
@@ -20,12 +20,12 @@ public class QuestPoint : MonoBehaviour
     private string questId;
     private QuestState currentQuestState;
 
-    private NPCInteractEXAMPLE _npcInteract;
+    private NPCInteract _npcInteract;
 
     private void Awake()
     {
         questId = questInfoForPoint.id;
-        _npcInteract = GetComponent<NPCInteractEXAMPLE>();
+        _npcInteract = GetComponent<NPCInteract>();
     }
 
     private void OnEnable()
