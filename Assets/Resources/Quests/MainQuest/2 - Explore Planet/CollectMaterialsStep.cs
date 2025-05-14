@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollectMaterialsStep : QuestStep
 {    
-    private int screwsCollected = RepairResources.GetScrewAmount();
+    private int screwsCollected = RepairResources.GetResourceAmount(RepairTypesOptions.Screws);
     private int screwsToComplete = 5;
     //TODO - Repeat the same for the oil and change the numbers accordingly.
     private void ScrewCollected()
