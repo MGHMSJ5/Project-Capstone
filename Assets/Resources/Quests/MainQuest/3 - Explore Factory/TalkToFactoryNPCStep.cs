@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
-public class TalkToKettleNPCStep : QuestStep
+public class TalkToFactoryNPCStep : QuestStep
 {
     private NPCInteract _npcInteract;
 

@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 9221852830674867945}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.1, y: -80.45, z: -4.07}
+  m_LocalPosition: {x: -26.7, y: -78.59, z: -4.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -52,7 +52,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 3
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5002847988095043436
 MonoBehaviour:
@@ -66,4 +66,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 567c35906f9214049aea8cee085c848e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
+  description: Explore the planet to find the issue of the kettle.
