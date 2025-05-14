@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,11 @@ public class UIChangeSubject : MonoBehaviour
     private void OnEnable()
     {
         InputSystem.onDeviceChange += OnDeviceChange;
+        // Check for if a controller is aleady connected
+        if (_connectCheckCoroutine != null) StopCoroutine(_connectCheckCoroutine);
+        {
+            _connectCheckCoroutine = StartCoroutine(ConfigmControllerConnection(true));
+        }
     }
 
     private void OnDisable()
@@ -35,11 +41,15 @@ public class UIChangeSubject : MonoBehaviour
             {
                 case InputDeviceChange.Added:
                     if (_connectCheckCoroutine != null) StopCoroutine(_connectCheckCoroutine);
-                    _connectCheckCoroutine = StartCoroutine(ConfigmControllerConnection(true));
+                    {
+                        _connectCheckCoroutine = StartCoroutine(ConfigmControllerConnection(true));
+                    }
                     break;
                 case InputDeviceChange.Removed:
                     if (_connectCheckCoroutine != null) StopCoroutine(_connectCheckCoroutine);
-                    _connectCheckCoroutine = StartCoroutine(ConfigmControllerConnection(false));
+                    {
+                        _connectCheckCoroutine = StartCoroutine(ConfigmControllerConnection(false));
+                    }
                     break;
             }
         }
@@ -49,13 +59,14 @@ public class UIChangeSubject : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
+        // Check for controller connecting, and if there is a Gamepad active
         if (connecting && Gamepad.current != null)
         {
+            // Change the input and break out of the Coroutine
             InputChanged(true);
+            yield break;
         }
-        else if (!connecting && Gamepad.current == null)
-        {
-            InputChanged(false);
-        }
+        // Otherwise the controller is not connected, so change the UI back to 'keyboard'
+        InputChanged(false);
     }
 }
