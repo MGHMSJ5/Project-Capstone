@@ -131,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5659382547500889662}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.035198305, y: 0.0016370306, z: 0.04642972, w: 0.99829996}
+  m_LocalRotation: {x: -0.035201564, y: 0.0016372809, z: 0.046432514, w: 0.9982997}
   m_LocalPosition: {x: -3.85, y: 40.94, z: -6.03}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
@@ -155,7 +155,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -175,7 +175,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactOnce: 0
   _interactType: 0
+  _interruptCarrying: 0
   _dialogueObject: {fileID: 5733970035047739008}
+  _disableDistance: 4
+  _dialogueType: 0
 --- !u!1 &5733970035047739008
 GameObject:
   m_ObjectHideFlags: 0
