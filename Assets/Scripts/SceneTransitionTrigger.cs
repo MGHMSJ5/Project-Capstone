@@ -9,7 +9,7 @@ public class SceneTransitionTrigger : MonoBehaviour
 
     [Tooltip("In the scene that is NOT the main scene (planet) set the type of location of the scene.")]
     [SerializeField]
-    private SpawnLocationsType _location;
+    private SpawnLocationsType _spawnLocation;
 
     private CanvasSceneTransition _canvasSceneTransition;
     private SceneSpawnManager _spawnManager;
@@ -30,9 +30,9 @@ public class SceneTransitionTrigger : MonoBehaviour
         }
         if (other.gameObject.tag == "Player")
         {
-            if (_location != SpawnLocationsType.Default)
+            if (_spawnLocation != SpawnLocationsType.Default)
             {
-                _spawnManager.Location = _location;
+                _spawnManager.Location = _spawnLocation;
             }
 
             _canvasSceneTransition.ChangeScene(_nextSceneName);
