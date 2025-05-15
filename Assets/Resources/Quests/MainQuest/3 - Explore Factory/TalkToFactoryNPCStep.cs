@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public class TalkToFactoryNPCStep : QuestStep
 {
-    private NPCInteract _npcInteract;
+    //private NPCInteract _npcInteract;
 
     private void OnTriggerEnter(Collider other)
     {

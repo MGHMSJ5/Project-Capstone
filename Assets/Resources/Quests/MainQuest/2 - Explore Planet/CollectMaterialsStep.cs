@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CollectMaterialsStep : QuestStep
 {    
     private int screwsCollected = RepairResources.GetResourceAmount(RepairTypesOptions.Screws);
     private int screwsToComplete = 5;
     //TODO - Repeat the same for the oil and change the numbers accordingly.
+
+    private void Update()
+    {
+        screwsCollected = RepairResources.GetResourceAmount(RepairTypesOptions.Screws);
+    }
     private void ScrewCollected()
     {
         if (screwsCollected <= screwsToComplete)
@@ -14,12 +20,9 @@ public class CollectMaterialsStep : QuestStep
             screwsCollected++;
         }
 
-        if(screwsCollected >= screwsToComplete)
+        if (screwsCollected >= screwsToComplete)
         {
             FinishQuestStep();
         }
     }
-
-
-
 }
