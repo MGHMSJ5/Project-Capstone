@@ -7,10 +7,16 @@ public class SceneTransitionTrigger : MonoBehaviour
     [SerializeField]
     private string _nextSceneName;
 
+    [Tooltip("In the scene that is NOT the main scene (planet) set the type of location of the scene.")]
+    [SerializeField]
+    private SpawnLocationsType _location;
+
     private CanvasSceneTransition _canvasSceneTransition;
+    private SceneSpawnManager _spawnManager;
     private void Awake()
     {
         _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
+        _spawnManager = GameObject.Find("SceneSpawnManager").GetComponent<SceneSpawnManager>();
         GetComponent<Collider>().isTrigger = true;
     }
 
@@ -24,6 +30,11 @@ public class SceneTransitionTrigger : MonoBehaviour
         }
         if (other.gameObject.tag == "Player")
         {
+            if (_location != SpawnLocationsType.Default)
+            {
+                _spawnManager.Location = _location;
+            }
+
             _canvasSceneTransition.ChangeScene(_nextSceneName);
         }
     }
