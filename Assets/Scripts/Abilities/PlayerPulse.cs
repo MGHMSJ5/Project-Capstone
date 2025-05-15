@@ -10,6 +10,8 @@ public class PlayerPulse : MonoBehaviour
 
     private bool isPulseActive = false;
 
+    public GameObject pulseVisualPrefab; // For visual indicator
+
     private Transform _carryPoint;
 
     public bool IsPulseActive => isPulseActive;
@@ -47,20 +49,28 @@ public class PlayerPulse : MonoBehaviour
         Collider[] hitObjects = Physics.OverlapSphere(transform.position, pulseRange, panelLayer);
 
         foreach (var hit in hitObjects)
-{
-    PanelPulse panel = hit.GetComponent<PanelPulse>();
-    if (panel != null)
-    {
-        panel.ActivatePlatform(); // For platforms
-        continue;
-    }
+        {
+            PanelPulse panel = hit.GetComponent<PanelPulse>();
+            if (panel != null)
+            {
+                panel.ActivatePlatform(); // For platforms
+                continue;
+            }
 
-    DoorPulse door = hit.GetComponent<DoorPulse>();
-    if (door != null)
-    {
-        door.ActivateDoor(); // For doors
-    }
-}
+            DoorPulse door = hit.GetComponent<DoorPulse>();
+            if (door != null)
+            {
+                door.ActivateDoor(); // For doors
+            }
+        }
+
+        // This spawns pulse visual
+        if (pulseVisualPrefab != null)
+        {
+            GameObject visual = Instantiate(pulseVisualPrefab, transform.position, Quaternion.identity);
+            visual.transform.localScale = Vector3.zero; // starts small
+            StartCoroutine(AnimatePulseVisual(visual));
+        }
 
         // Deactivate pulse after a short duration (this is more for future additions, ignore now):
         Invoke("DeactivatePulse", pulseDuration);
@@ -78,7 +88,36 @@ public class PlayerPulse : MonoBehaviour
         {
             // Get the carryscript from the child of the child and run the Interrupt() function so that the player drops the carried object
             CarryObjectEXAMPLE carryObjectEXAMPLE = _carryPoint.GetChild(0).GetChild(0).GetComponent<CarryObjectEXAMPLE>();
-            if (carryObjectEXAMPLE != null) { carryObjectEXAMPLE.Interrupt(); }
+            if (carryObjectEXAMPLE != null)
+            {
+                carryObjectEXAMPLE.Interrupt();
+            }
         }
+    }
+
+    private System.Collections.IEnumerator AnimatePulseVisual(GameObject visual)
+    {
+        float time = 0f;
+        float scale = pulseRange * 2f; // diameter, not radius
+
+        Material mat = visual.GetComponent<Renderer>()?.material;
+
+        while (time < pulseDuration)
+        {
+            float t = time / pulseDuration;
+            visual.transform.localScale = Vector3.Lerp(Vector3.zero, new Vector3(scale, scale, scale), t);
+
+            if (mat != null)
+            {
+                Color c = mat.color;
+                c.a = Mathf.Lerp(0.5f, 0f, t); // fades alpha
+                mat.color = c;
+            }
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(visual);
     }
 }

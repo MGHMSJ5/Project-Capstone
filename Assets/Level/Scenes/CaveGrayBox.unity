@@ -2614,7 +2614,7 @@ Transform:
   m_GameObject: {fileID: 378686128}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.30453268, w: 0.95250195}
-  m_LocalPosition: {x: -17.514591, y: -1.759969, z: 2.0202675}
+  m_LocalPosition: {x: -17.514591, y: -1.759969, z: 2.45}
   m_LocalScale: {x: 10, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4226,22 +4226,22 @@ PrefabInstance:
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.8996528
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.4366062
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.000000045430745
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.000000025507534
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
@@ -5444,7 +5444,7 @@ Transform:
   m_GameObject: {fileID: 667147038}
   serializedVersion: 2
   m_LocalRotation: {x: 0.002441409, y: -0, z: -0, w: 0.999997}
-  m_LocalPosition: {x: 19.85, y: 3, z: 23}
+  m_LocalPosition: {x: 19.85, y: 3, z: 25.82}
   m_LocalScale: {x: 2.4503, y: 10, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6674,9 +6674,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5174907197246541205, guid: d1ee0220058d80043982be2ccf0f9bd4,
         type: 3}
+      propertyPath: pulseRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5174907197246541205, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
       propertyPath: hasPulseAbility
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5174907197246541205, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      propertyPath: pulseVisualPrefab
+      value: 
+      objectReference: {fileID: 3449045905388003170, guid: 71616689577533e4998ef7d4cc02eab3,
+        type: 3}
     - target: {fileID: 7015057840018717787, guid: d1ee0220058d80043982be2ccf0f9bd4,
         type: 3}
       propertyPath: m_Name
