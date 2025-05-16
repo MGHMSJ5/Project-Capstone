@@ -32,7 +32,8 @@ public class PlayerController : MonoBehaviour
     [Header("Coyote Time")]
     [SerializeField] private float _coyoteTime = 0.2f; // This is for coyote time
     private float _lastGroundedTime;
-    private bool _readyToJump = true;
+    private bool _letJumpGo; // Bool used to check when player is holding the button
+    private bool _readyToJump = true; // Bool used for when the player can jump
 
     [Header("Ground Check")]
     [SerializeField] private float _playerHeight;
@@ -151,9 +152,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Jump") && _readyToJump && (Time.time - _lastGroundedTime <= _coyoteTime) && !_isCarryingHeavy)
         {
             _readyToJump = false;
+            _letJumpGo = false;
             Jump();
-            Invoke("ResetJump", _jumpCooldown);
         }
+
+        ResetJump();
     }
 
     private void MovePlayer()
@@ -217,7 +220,23 @@ public class PlayerController : MonoBehaviour
 
     private void ResetJump()
     {
-        _readyToJump = true;
+        // If the player has jumped and let go of the jump button
+        if (!_readyToJump && Input.GetButtonUp("Jump"))
+        {
+            _letJumpGo = true;
+        }
+        // If the player is in the air and let go of the button
+        if (!_grounded && Input.GetButtonDown("Jump"))
+        {
+            _letJumpGo = false;
+        }
+        // If the player is on the ground and has let go of the jump button
+        if (_grounded && _letJumpGo)
+        {
+            _readyToJump = true;
+        }
+
+        
     }
 
     private void SpeedControl()
