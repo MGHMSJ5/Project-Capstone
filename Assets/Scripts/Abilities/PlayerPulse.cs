@@ -10,23 +10,26 @@ public class PlayerPulse : MonoBehaviour
 
     private bool isPulseActive = false;
 
+    public GameObject pulseVisualPrefab; // For visual indicator
+
     private Transform _carryPoint;
+    private PlayerController _playerController;
 
     public bool IsPulseActive => isPulseActive;
 
     private void Awake()
     {
+        _playerController = GetComponent<PlayerController>();
         _carryPoint = GameObject.Find("CarryPoint").GetComponent<Transform>();
     }
 
     void Update()
     {
-        // Only allows Pulse if the player has it unlocked:
         if (!hasPulseAbility)
             return;
 
-        // Controller and keyboard support:
-        if (Input.GetButtonDown("Pulse"))
+        // Only allow pulse if player is grounded
+        if (Input.GetButtonDown("Pulse") && _playerController.Grounded)
         {
             ActivatePulse();
         }
@@ -37,32 +40,36 @@ public class PlayerPulse : MonoBehaviour
         if (isPulseActive)
             return;
 
-        // Debug to see if it activates:
         isPulseActive = true;
         Debug.Log("Pulse activated!");
 
         InterruptCarrying();
 
-        // Interactions within a player's radius:
         Collider[] hitObjects = Physics.OverlapSphere(transform.position, pulseRange, panelLayer);
 
         foreach (var hit in hitObjects)
-{
-    PanelPulse panel = hit.GetComponent<PanelPulse>();
-    if (panel != null)
-    {
-        panel.ActivatePlatform(); // For platforms
-        continue;
-    }
+        {
+            PanelPulse panel = hit.GetComponent<PanelPulse>();
+            if (panel != null)
+            {
+                panel.ActivatePlatform();
+                continue;
+            }
 
-    DoorPulse door = hit.GetComponent<DoorPulse>();
-    if (door != null)
-    {
-        door.ActivateDoor(); // For doors
-    }
-}
+            DoorPulse door = hit.GetComponent<DoorPulse>();
+            if (door != null)
+            {
+                door.ActivateDoor();
+            }
+        }
 
-        // Deactivate pulse after a short duration (this is more for future additions, ignore now):
+        if (pulseVisualPrefab != null)
+        {
+            GameObject visual = Instantiate(pulseVisualPrefab, transform.position, Quaternion.identity);
+            visual.transform.localScale = Vector3.zero;
+            StartCoroutine(AnimatePulseVisual(visual));
+        }
+
         Invoke("DeactivatePulse", pulseDuration);
     }
 
@@ -76,9 +83,37 @@ public class PlayerPulse : MonoBehaviour
     {
         if (_carryPoint != null && _carryPoint.childCount > 0)
         {
-            // Get the carryscript from the child of the child and run the Interrupt() function so that the player drops the carried object
             CarryObjectEXAMPLE carryObjectEXAMPLE = _carryPoint.GetChild(0).GetChild(0).GetComponent<CarryObjectEXAMPLE>();
-            if (carryObjectEXAMPLE != null) { carryObjectEXAMPLE.Interrupt(); }
+            if (carryObjectEXAMPLE != null)
+            {
+                carryObjectEXAMPLE.Interrupt();
+            }
         }
+    }
+
+    private System.Collections.IEnumerator AnimatePulseVisual(GameObject visual)
+    {
+        float time = 0f;
+        float scale = pulseRange * 2f; // diameter, not radius
+
+        Material mat = visual.GetComponent<Renderer>()?.material;
+
+        while (time < pulseDuration)
+        {
+            float t = time / pulseDuration;
+            visual.transform.localScale = Vector3.Lerp(Vector3.zero, new Vector3(scale, scale, scale), t);
+
+            if (mat != null)
+            {
+                Color c = mat.color;
+                c.a = Mathf.Lerp(0.5f, 0f, t);
+                mat.color = c;
+            }
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(visual);
     }
 }
