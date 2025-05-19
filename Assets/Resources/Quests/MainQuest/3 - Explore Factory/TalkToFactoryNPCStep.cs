@@ -11,10 +11,16 @@ public class TalkToFactoryNPCStep : QuestStep
     
     [SerializeField] private Vector3 pluggedPosition;
 
+    private void Awake()
+    {
+        baseInteract = GameObject.Find("Mihai").GetComponent<BaseInteract>();
+        _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
+        Debug.Log(_canvasSceneTransition);
+    }
+
     private void OnEnable()
     {
         baseInteract.onSubmitPressed += PlayScriptedEvent;
-        _canvasSceneTransition = GameObject.Find("Canvas_ScreneTransition").GetComponent<CanvasSceneTransition>();
     }
 
     private void OnDisable()
