@@ -10,13 +10,15 @@ public class QuestPoint : MonoBehaviour
 {
     [Header("Quest")]
     [SerializeField] private QuestInfoSO questInfoForPoint;
+    [Header("Optional Second Quest")]
+    [SerializeField] private QuestPoint secondQuest;
 
     [Header("Config")]
     [SerializeField] private bool startPoint = true;
     [SerializeField] private bool finishPoint = true;
 
     private bool playerIsNear = false;
-    private string questId;
+    public string questId;
     private QuestState currentQuestState;
 
     private BaseInteract _baseInteract;
@@ -54,6 +56,11 @@ public class QuestPoint : MonoBehaviour
         else if (currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint)
         {
             GameEventsManager.instance.questEvents.FinishQuest(questId);
+            if (secondQuest != null)
+            {
+                string id = secondQuest.questId;
+                GameEventsManager.instance.questEvents.StartQuest(id);
+            }
         }
     }
 

@@ -65,6 +65,11 @@ public class BaseInteract : MonoBehaviour
         }
     }
 
+    public void InvokeSubmitPressed()
+    {
+        onSubmitPressed?.Invoke();
+    }
+
     // Override this function in other script with what needs to happen
     protected virtual void InteractFunction()
     {
