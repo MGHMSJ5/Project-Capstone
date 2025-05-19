@@ -6,13 +6,13 @@ using Ink.Runtime;
 using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
-using JetBrains.Annotations;
 
 public class DialogueManager : MonoBehaviour
 {
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private GameObject _nextDialogue;
     private PlayerController _playerController;
 
     [Header("Choices UI")]
@@ -26,6 +26,7 @@ public class DialogueManager : MonoBehaviour
     public bool dialogueIsPlaying { get; private set;  } //outside scripts can read the value, but not modify it
 
     private static DialogueManager instance;
+    private UIChangeSubject _UIChangeSubject;
 
     private void Awake()
     {
@@ -37,6 +38,17 @@ public class DialogueManager : MonoBehaviour
         instance = this;
         //get the PlayerController script by looking for an object that has the "Player" tag, and then get the script component
         _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        _UIChangeSubject = GameObject.Find("UIChangeManager").GetComponent<UIChangeSubject>();
+    }
+
+    private void OnEnable()
+    {
+        _UIChangeSubject.UISwitch += UIChange;
+    }
+
+    private void OnDisable()
+    {
+        _UIChangeSubject.UISwitch -= UIChange;
     }
 
     public static DialogueManager GetInstance()
@@ -89,8 +101,6 @@ public class DialogueManager : MonoBehaviour
         //mouse cursor is visible and moveable
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-
-
     }
 
     public void ExitDialogueMode()
@@ -174,5 +184,16 @@ public class DialogueManager : MonoBehaviour
         //this second continueStory is just for us. If we want to showcase the choice that the player made inside the dialogue panel, then we can delete this one.
         //using the design in the GDD, I made this decision.
         ContinueStory();
+    }
+
+    private void UIChange(bool isController)
+    {
+        foreach (GameObject t in choices)
+        {
+            t.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(isController);
+        }
+
+        _nextDialogue.transform.GetChild(0).gameObject.SetActive(!isController);
+        _nextDialogue.transform.GetChild(1).gameObject.SetActive(isController);
     }
 }

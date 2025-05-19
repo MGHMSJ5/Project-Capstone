@@ -54,6 +54,11 @@ public class BaseInteract : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        SetInteract(false);
+    }
+
     protected virtual void Update()
     {   // If the player can interact, 
         if (_canInteract)
@@ -84,7 +89,7 @@ public class BaseInteract : MonoBehaviour
 
     // Call from other script in case the player can interact again (while still in the trigger)
     protected void SetInteract(bool canInteract)
-    {   
+    {
         // Set's if the player can interact or not (+ making the button appear/disappear)
         _button.SetActive(canInteract);
         _canInteract = canInteract;
