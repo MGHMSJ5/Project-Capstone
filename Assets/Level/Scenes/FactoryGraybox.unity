@@ -747,6 +747,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3000f2353e9e160478b2912106351d87, type: 3}
+--- !u!1 &135221142 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6036929062968390114, guid: 3000f2353e9e160478b2912106351d87,
+    type: 3}
+  m_PrefabInstance: {fileID: 135221141}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &179158048 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3809518035223007481, guid: 771ec7e30c0c63443abada96a338847b,
@@ -1116,6 +1122,11 @@ PrefabInstance:
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 181113884}
+    - target: {fileID: 4012777021073252228, guid: 8dcfedd625bb64e42a83d781055dad86,
+        type: 3}
+      propertyPath: _nextDialogue
+      value: 
+      objectReference: {fileID: 135221142}
     - target: {fileID: 4012777021073252228, guid: 8dcfedd625bb64e42a83d781055dad86,
         type: 3}
       propertyPath: dialoguePanel
