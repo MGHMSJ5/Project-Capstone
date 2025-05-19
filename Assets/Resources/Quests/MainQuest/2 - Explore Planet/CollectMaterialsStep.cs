@@ -11,7 +11,7 @@ public class CollectMaterialsStep : QuestStep
 
     private void OnEnable()
     {
-        GameObject.Find("RepairableGate").GetComponent<MinorRepair>().enabled = true;
+        GameObject.Find("RepairableGate").GetComponent<Collider>().enabled = true;
         GameEventsManager.instance.toolboxOpened += ScrewCollected;
     }
 

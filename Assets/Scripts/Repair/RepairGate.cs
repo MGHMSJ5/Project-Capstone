@@ -8,6 +8,7 @@ using UnityEngine;
 public class RepairGate : MonoBehaviour
 {   // Always get a reference to the MinorRepair script
     private MinorRepair _minorRepair;
+    private Collider _collider;
 
     [SerializeField]
     private GameObject _objectDestroyGate;
@@ -15,6 +16,12 @@ public class RepairGate : MonoBehaviour
     private void Awake()
     {
         _minorRepair = GetComponent<MinorRepair>();
+        _collider = GetComponent<Collider>();
+    }
+
+    private void Start()
+    {
+        _collider.enabled = false;
     }
 
     private void DestroyGate()
