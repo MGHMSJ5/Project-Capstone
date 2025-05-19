@@ -46,6 +46,7 @@ public class UICanvas : MonoBehaviour
         // Elise: So '+2' for example will be '2'
         int i = int.Parse(s);
         RepairResources.AddResourceAmount(RepairTypesOptions.Screws, i);
+        GameEventsManager.instance.InvokeToolboxEvent();
     }
     // Called from animation (ANIM_CanvasScrewAdd) that'll add to the repair source
     // Update the resource amount for the UI

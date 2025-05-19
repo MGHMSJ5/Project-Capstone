@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 
 
 [RequireComponent(typeof(SphereCollider))]
-[RequireComponent (typeof(NPCInteract))]
 public class QuestPoint : MonoBehaviour
 {
     [Header("Quest")]
@@ -20,24 +19,24 @@ public class QuestPoint : MonoBehaviour
     private string questId;
     private QuestState currentQuestState;
 
-    private NPCInteract _npcInteract;
+    private BaseInteract _baseInteract;
 
     private void Awake()
     {
         questId = questInfoForPoint.id;
-        _npcInteract = GetComponent<NPCInteract>();
+        _baseInteract = GetComponent<BaseInteract>();
     }
 
     private void OnEnable()
     {
         GameEventsManager.instance.questEvents.onQuestStateChange += QuestStateChange;
-        _npcInteract.onSubmitPressed += SubmitPressed;
+        _baseInteract.onSubmitPressed += SubmitPressed;
     }
 
     private void OnDisable()
     {
         GameEventsManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
-        _npcInteract.onSubmitPressed -= SubmitPressed;
+        _baseInteract.onSubmitPressed -= SubmitPressed;
     }
 
     private void SubmitPressed()
