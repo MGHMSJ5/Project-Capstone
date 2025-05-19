@@ -20,9 +20,27 @@ public class UICanvas : MonoBehaviour
 
     private Animator _animator;
 
-    void Start()
+    private UIChangeSubject _UIChangeSubject;
+
+    private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _UIChangeSubject = GameObject.Find("UIChangeManager").GetComponent<UIChangeSubject>();
+    }
+
+    private void OnEnable()
+    {
+        _UIChangeSubject.UISwitch += UIChange;
+    }
+
+    private void OnDisable()
+    {
+        _UIChangeSubject.UISwitch -= UIChange;
+    }
+
+    void Start()
+    {
+        
         _interactButton.SetActive(false);
         _collectButton.SetActive(false);
         SetUIScrewAmount();
@@ -64,5 +82,17 @@ public class UICanvas : MonoBehaviour
     private void SetUIScrewAmount()
     {
         _screwAmount.text = "X " + RepairResources.GetResourceAmount(RepairTypesOptions.Screws);
+    }
+
+    // Activate or deactivate the controller and keyboard button UI depending on if the controller has been plugged in
+    private void UIChange(bool isController)
+    {
+        // Keyboard UI (1st child)
+        _interactButton.transform.GetChild(0).gameObject.SetActive(!isController);
+        _collectButton.transform.GetChild(0).gameObject.SetActive(!isController);
+
+        // Button UI (2dn child)
+        _interactButton.transform.GetChild(1).gameObject.SetActive(isController);
+        _collectButton.transform.GetChild(1).gameObject.SetActive(isController);
     }
 }

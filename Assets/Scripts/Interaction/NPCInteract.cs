@@ -4,11 +4,31 @@ using UnityEngine;
 
 public class NPCInteract : BaseInteract
 {
-    [SerializeField]
     private TextAsset inkJSON;
 
-    private bool _dialogueHasInteracted = false;
+    [Header("Input versions")]
+    [Tooltip("The PC version of the dialogue is the default version. If there is also a controller version (when a button is mentioned) then the controller JSON file has to be applied.")]
+    [SerializeField]
+    private TextAsset inkJSON_PC;
+    [SerializeField]
+    private TextAsset inkJSON_Controller;
 
+    private bool _dialogueHasInteracted = false;
+    private UIChangeSubject _UIChangeSubject;
+
+    private void Awake()
+    {
+        _UIChangeSubject = GameObject.Find("UIChangeManager").GetComponent<UIChangeSubject>();
+    }
+    private void OnEnable()
+    {
+        _UIChangeSubject.UISwitch += UIChange;
+    }
+
+    private void OnDisable()
+    {
+        _UIChangeSubject.UISwitch -= UIChange;
+    }
     protected override void Update()
     {
         // If the player can interact, 
@@ -35,5 +55,20 @@ public class NPCInteract : BaseInteract
         
         //Player has interacted with the dialogue
         _dialogueHasInteracted = true;
+    }
+
+    private void UIChange(bool isController)
+    {
+        // If both the PC and Controller versions are applied:
+        if (inkJSON_Controller != null)
+        {   // Set the JSON file depending on if the controller is used
+            inkJSON = isController ? inkJSON_Controller : inkJSON_PC;
+            
+        }
+        else
+        {   // If the controller text is not set, then set the file to the PC version at default
+            inkJSON = inkJSON_PC;
+        }
+        
     }
 }
