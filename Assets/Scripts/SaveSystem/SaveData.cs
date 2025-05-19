@@ -9,5 +9,7 @@ public class SaveData
 
     public string saveTime; // saves real life time when save made.
 
+    public int screwCount; // saves screw amount
+
     // We'll need to put all other data here too (like abilities received etc.)
 }

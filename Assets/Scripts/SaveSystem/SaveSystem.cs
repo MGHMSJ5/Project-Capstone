@@ -15,7 +15,8 @@ public static class SaveSystem
         playerY = playerPosition.y,
         playerZ = playerPosition.z,
         sceneName = SceneManager.GetActiveScene().name,
-        saveTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm") // date format for when save is made.
+        saveTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"), // date format for when save is made.
+        screwCount = RepairResources.GetResourceAmount(RepairTypesOptions.Screws) //screws
     };
 
     string json = JsonUtility.ToJson(data, true);
@@ -31,7 +32,8 @@ public static void AutoSaveGame(Vector3 playerPosition)
         playerY = playerPosition.y,
         playerZ = playerPosition.z,
         sceneName = SceneManager.GetActiveScene().name,
-        saveTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm")
+        saveTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm"),
+        screwCount = RepairResources.GetResourceAmount(RepairTypesOptions.Screws)
     };
 
     string json = JsonUtility.ToJson(data, true);
