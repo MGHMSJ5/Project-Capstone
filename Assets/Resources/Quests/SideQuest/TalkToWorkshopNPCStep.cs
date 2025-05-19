@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class TalkToWorkshopNPCStep : QuestStep
 {
+    private BaseInteract baseInteract;
+
+    private void Awake()
+    {
+        baseInteract = GameObject.Find("Neval").GetComponent<BaseInteract>();
+    }
     private void OnEnable()
     {
-        GameObject.Find("Neval").GetComponent<BaseInteract>().onSubmitPressed += GrandAbility;
+        baseInteract.onSubmitPressed += GrandAbility;
     }
 
     private void OnDisable()
     {
-        GameObject.Find("Neval").GetComponent<BaseInteract>().onSubmitPressed -= GrandAbility;
+        baseInteract.onSubmitPressed -= GrandAbility;
     }
 
     //Add that the queststep is finished when talking to NPC
@@ -20,6 +26,9 @@ public class TalkToWorkshopNPCStep : QuestStep
     {
         FinishQuestStep();
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHover>()._hoverAbilityGranted = true;
+        baseInteract.onSubmitPressed -= GrandAbility;
+
+        baseInteract.InvokeSubmitPressed();
     }
 
 }
