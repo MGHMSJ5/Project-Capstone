@@ -57,9 +57,9 @@ public class CollectableInteractEXAMPLE : BaseInteract
         }
 
         // Set the text on the canvas
-        _UICanvas.PopUpText.text = _popupText;
-        _UICanvas.ScrewAddedText.text = _screwUpdateText;
+        _UICanvas.ChangeUI(_popupText, _screwUpdateText);
         // Run the function in the canvas script that causes the pop ups to appear
         _UICanvas.ToolBoxPopUp();
+        
     }
 }

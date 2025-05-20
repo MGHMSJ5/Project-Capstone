@@ -6,38 +6,39 @@ using UnityEngine.EventSystems;
 
 
 [RequireComponent(typeof(SphereCollider))]
-[RequireComponent (typeof(NPCInteract))]
 public class QuestPoint : MonoBehaviour
 {
     [Header("Quest")]
     [SerializeField] private QuestInfoSO questInfoForPoint;
+    [Header("Optional Second Quest")]
+    [SerializeField] private QuestPoint secondQuest;
 
     [Header("Config")]
     [SerializeField] private bool startPoint = true;
     [SerializeField] private bool finishPoint = true;
 
     private bool playerIsNear = false;
-    private string questId;
+    public string questId;
     private QuestState currentQuestState;
 
-    private NPCInteract _npcInteract;
+    private BaseInteract _baseInteract;
 
     private void Awake()
     {
         questId = questInfoForPoint.id;
-        _npcInteract = GetComponent<NPCInteract>();
+        _baseInteract = GetComponent<BaseInteract>();
     }
 
     private void OnEnable()
     {
         GameEventsManager.instance.questEvents.onQuestStateChange += QuestStateChange;
-        _npcInteract.onSubmitPressed += SubmitPressed;
+        _baseInteract.onSubmitPressed += SubmitPressed;
     }
 
     private void OnDisable()
     {
         GameEventsManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
-        _npcInteract.onSubmitPressed -= SubmitPressed;
+        _baseInteract.onSubmitPressed -= SubmitPressed;
     }
 
     private void SubmitPressed()
@@ -52,9 +53,14 @@ public class QuestPoint : MonoBehaviour
         {
             GameEventsManager.instance.questEvents.StartQuest(questId);
         }
-        else if(currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint)
+        else if (currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint)
         {
             GameEventsManager.instance.questEvents.FinishQuest(questId);
+            if (secondQuest != null)
+            {
+                string id = secondQuest.questId;
+                GameEventsManager.instance.questEvents.StartQuest(id);
+            }
         }
     }
 
