@@ -60,7 +60,8 @@ public class MinorRepair : BaseInteract
         }
         else
         { // Can not repair item
-
+          //Activate unrepairable sound
+            SoundManager.PlaySound(SoundType.UNREPAIRABLE);
         }
         
     }

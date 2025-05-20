@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum SoundType
 {
@@ -16,11 +17,11 @@ public enum SoundType
     UI
 }
 
-[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] 
-    private AudioClip[] soundlist;
+    private SoundList[] soundlist;
 
     private static SoundManager instance;
     private AudioSource audioSource;
@@ -39,6 +40,19 @@ public class SoundManager : MonoBehaviour
 
     public static void PlaySound(SoundType sound, float volume = 1)
     {
-        instance.audioSource.PlayOneShot(instance.soundlist[(int)sound], volume);
+        AudioClip[] clips = instance.soundlist[(int)sound].Sounds;
+        AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
+        instance.audioSource.PlayOneShot(randomClip, volume);
     }
+}
+
+[Serializable]
+public struct SoundList
+{
+    public AudioClip[] Sounds { get => sounds; }
+
+    [SerializeField]
+    private string name;
+    [SerializeField]
+    private AudioClip[] sounds;
 }
