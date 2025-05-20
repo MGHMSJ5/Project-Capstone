@@ -58,6 +58,9 @@ public class MinorRepair : BaseInteract
     }
     protected virtual void Repair()
     {
+        //Activate repair sound if repair is activated
+        SoundManager.PlaySound(SoundType.REPAIR);
+
         // Invoke the action. Functions subscribed to this event will then also be invoked.
         RepairAction?.Invoke();
         

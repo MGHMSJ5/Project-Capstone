@@ -14,6 +14,9 @@ public class HoverState : IState
     public void Enter()
     {
         Debug.Log("Hover");
+
+        //Activate hover sound if hover is activated
+        SoundManager.PlaySound(SoundType.HOVER);
     }
 
     public void Execute()

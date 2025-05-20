@@ -14,6 +14,9 @@ public class JumpState : IState
     public void Enter()
     {
         Debug.Log("Jump");
+
+        //Activate fall sound if jump is activated
+        SoundManager.PlaySound(SoundType.FALL);
     }
 
     public void Execute()
