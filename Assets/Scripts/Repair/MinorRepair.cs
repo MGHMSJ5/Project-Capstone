@@ -54,7 +54,15 @@ public class MinorRepair : BaseInteract
     protected override void InteractFunction()
     {
         base.InteractFunction();
-        Repair();
+        if (CanRepair())
+        {   // Repair item
+            Repair();
+        }
+        else
+        { // Can not repair item
+
+        }
+        
     }
     protected virtual void Repair()
     {
@@ -77,11 +85,7 @@ public class MinorRepair : BaseInteract
         if (other.gameObject.tag == "Player" && !_hasInteracted)
         {   // Get the current amount of repair resources and update the UI
             UpdateRepairUIText();
-            // Check if the player can repair, if so, enable the interaction
-            if (CanRepair())
-            {
-                SetInteract(true);
-            }
+            SetInteract(true);
             _canvas.SetActive(true);
         }
     }
