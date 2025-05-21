@@ -172,6 +172,7 @@ MonoBehaviour:
   _jumpForce: 320
   _jumpCooldown: 0.25
   _airMultiplier: 1
+  _coyoteTime: 0.2
   _playerHeight: 0.2
   _groundMask:
     serializedVersion: 2
@@ -245,7 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hoverAbilityGranted: 0
-  _hoverForce: 1
+  _hoverForce: 1.5
   _maxHoverTime: 1
   _maxHoverSpeed: 2
 --- !u!114 &8093493373670151931
