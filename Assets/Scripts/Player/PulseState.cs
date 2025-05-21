@@ -13,7 +13,7 @@ public class PulseState : IState
 
     public void Enter()
     {
-        Debug.Log("Pulse");
+        //Debug.Log("Pulse");
     }
 
     public void Execute()

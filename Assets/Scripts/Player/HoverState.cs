@@ -13,7 +13,7 @@ public class HoverState : IState
 
     public void Enter()
     {
-        Debug.Log("Hover");
+        //Debug.Log("Hover");
     }
 
     public void Execute()

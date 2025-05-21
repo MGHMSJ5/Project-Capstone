@@ -128,10 +128,10 @@ public class QuestManager : MonoBehaviour
 
     private void ClaimRewards(Quest quest)
     {
-        GameEventsManager.instance.rewardEvents.ItemGained(quest.info.questReward); //TODO: How will the upgrades be added to the player? Components? Items? Bool change? Connect it!
-        GameEventsManager.instance.rewardEvents.ScrewsGained(quest.info.screwReward); //TODO: Add to UI + actual player inventory
+        GameEventsManager.instance.rewardEvents.ItemGained(quest.info.questReward);
+        GameEventsManager.instance.rewardEvents.ScrewsGained(quest.info.screwReward); 
         int screwRewardAmount = quest.info.screwReward; // Get the screw reward amount
-        if (screwRewardAmount != 0) // Check if the reward is not 0
+        if (screwRewardAmount != 0) // Check that the reward is not 0
         {
             _UICanvas.ChangeUI("...", "+ " +  screwRewardAmount);
             // Run the funtion to change UI and add to current screw amount

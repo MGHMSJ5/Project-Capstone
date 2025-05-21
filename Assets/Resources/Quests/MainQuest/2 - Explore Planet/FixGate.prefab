@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8140255996042570357
+--- !u!1 &343164005525200374
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 758986733448582587}
-  - component: {fileID: -4382870457143628373}
+  - component: {fileID: 7537691640520643018}
+  - component: {fileID: 5636958132470526866}
   m_Layer: 0
-  m_Name: CollectResourcesWaterpump
+  m_Name: FixGate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &758986733448582587
+--- !u!4 &7537691640520643018
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8140255996042570357}
+  m_GameObject: {fileID: 343164005525200374}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 326, y: 42.3, z: 201.18211}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4382870457143628373
+--- !u!114 &5636958132470526866
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8140255996042570357}
+  m_GameObject: {fileID: 343164005525200374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e42ece48079774d42b125074b1a586ee, type: 3}
+  m_Script: {fileID: 11500000, guid: af441fea1e179a3488772209e1194fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Find enough resources to repair the water pump!
+  description: Fix the gate to enter the factory.

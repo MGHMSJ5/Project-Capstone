@@ -13,7 +13,7 @@ public class WalkState : IState
 
     public void Enter()
     {
-        Debug.Log("Walk");
+        //Debug.Log("Walk");
     }
 
     public void Execute()

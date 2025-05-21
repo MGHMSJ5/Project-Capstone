@@ -18,7 +18,7 @@ public class QuestPoint : MonoBehaviour
     [SerializeField] private bool finishPoint = true;
 
     private bool playerIsNear = false;
-    public string questId;
+    [HideInInspector] public string questId;
     private QuestState currentQuestState;
 
     private BaseInteract _baseInteract;
