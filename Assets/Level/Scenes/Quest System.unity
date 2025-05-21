@@ -9516,6 +9516,11 @@ PrefabInstance:
       propertyPath: _orientation
       value: 
       objectReference: {fileID: 846707895}
+    - target: {fileID: 1065967211667292372, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 24.8268
+      objectReference: {fileID: 0}
     - target: {fileID: 3041658337648051291, guid: c0f62d20604405145be515ab1c35229b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12295,7 +12300,7 @@ MonoBehaviour:
   _interactOnce: 1
   _interactType: 0
   _interruptCarrying: 0
-  inkJSON_PC: {fileID: 4900000, guid: d698a7d34b50ffb41a23de6f1f860fcb, type: 3}
+  inkJSON_PC: {fileID: 4900000, guid: 4789330086fee404cb7cb40bed50eed0, type: 3}
   inkJSON_Controller: {fileID: 0}
 --- !u!135 &1938207244
 SphereCollider:
