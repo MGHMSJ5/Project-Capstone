@@ -57,11 +57,14 @@ public class MinorRepair : BaseInteract
         if (CanRepair())
         {   // Repair item
             Repair();
+            // set to true so that the player can not interact with it again
+            _hasInteracted = true;
         }
         else
         { // Can not repair item
           //Activate unrepairable sound
             SoundManager.PlaySound(SoundType.UNREPAIRABLE);
+            SetInteract(true);
         }
         
     }
