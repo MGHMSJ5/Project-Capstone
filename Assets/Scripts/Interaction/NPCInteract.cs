@@ -16,6 +16,8 @@ public class NPCInteract : BaseInteract
     private bool _dialogueHasInteracted = false;
     private UIChangeSubject _UIChangeSubject;
 
+    public bool DialogueHasInteracted => _dialogueHasInteracted;
+
     private void Awake()
     {
         _UIChangeSubject = GameObject.Find("UIChangeManager").GetComponent<UIChangeSubject>();
@@ -49,12 +51,11 @@ public class NPCInteract : BaseInteract
     }
     protected override void InteractFunction()
     {
-        base.InteractFunction();
-        //if the player interacts with the NPC, it will start the EnterDialogueMode fuction in the DialogueManager Script, using the inkJSON file connected to the NPC
-        DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-        
         //Player has interacted with the dialogue
         _dialogueHasInteracted = true;
+        base.InteractFunction();
+        //if the player interacts with the NPC, it will start the EnterDialogueMode fuction in the DialogueManager Script, using the inkJSON file connected to the NPC
+        DialogueManager.GetInstance().EnterDialogueMode(inkJSON);       
     }
 
     private void UIChange(bool isController)
