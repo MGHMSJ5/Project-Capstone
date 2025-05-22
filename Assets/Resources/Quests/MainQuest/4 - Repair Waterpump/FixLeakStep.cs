@@ -5,16 +5,17 @@ using UnityEngine;
 public class FixLeakStep : QuestStep
 {
     private BaseInteract baseInteract;
-    //private GameObject pipeCanvas;
+    private MinorRepair minorRepair;
 
     private void Awake()
     {
         baseInteract = GameObject.Find("WaterPumpPipe").GetComponent<BaseInteract>();
-        //pipeCanvas = GameObject.Find("WaterPumpPipe").transform.GetChild(0).GetComponent<GameObject>();
+        minorRepair = GameObject.Find("WaterPumpPipe").GetComponent<MinorRepair>();
     }
     private void OnEnable()
     {
         baseInteract.onSubmitPressed += FixWaterpumpPipe;
+        Invoke("CheckIfDone", 1f);
     }
 
     private void OnDisable()
@@ -29,5 +30,14 @@ public class FixLeakStep : QuestStep
         baseInteract.onSubmitPressed -= FixWaterpumpPipe;
 
         baseInteract.InvokeSubmitPressed();
+    }
+
+    private void CheckIfDone()
+    {
+        print("This was called. Be happy if this works!");
+        if (minorRepair.HasBeenRepaired)
+        {
+            FinishQuestStep();
+        }
     }
 }
