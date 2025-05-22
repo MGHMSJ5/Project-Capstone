@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fcbf93d06ed82845bd67abcca5c7e8e, type: 3}
-  m_Name: VisitSpa
+  m_Name: RepairToaster
   m_EditorClassIdentifier: 
-  <id>k__BackingField: VisitSpa
-  displayName: Visit the Spa
+  <id>k__BackingField: RepairToaster
+  displayName: Repair the toaster
   levelRequirement: 0
   questPrerequisits:
-  - {fileID: 11400000, guid: 90fbdfc1e8a17a041b1156c0ab96bc09, type: 2}
-  questStepPrefabs:
-  - {fileID: 1759840684209041259, guid: 5d32b7d2a8d3a6647a62ef56e1d4ba08, type: 3}
+  - {fileID: 11400000, guid: f81949ccaabedab4596f0924899ea73d, type: 2}
+  - {fileID: 11400000, guid: bcc00988275bedc4597b91146460f82f, type: 2}
+  questStepPrefabs: []
   questReward: []
-  screwReward: 6
+  screwReward: 4

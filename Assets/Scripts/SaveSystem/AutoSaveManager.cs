@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AutoSaveManager : MonoBehaviour
 {
+    private QuestManager questManager;
     public Transform playerTransform;
     public float AutosaveInterval = 5f; // Value can be changed. How often autosave kicks in.
 
@@ -11,6 +12,7 @@ public class AutoSaveManager : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
         timer = AutosaveInterval * 60f;
+        questManager = FindObjectOfType<QuestManager>();
     }
 
     private void Update()
@@ -26,10 +28,12 @@ public class AutoSaveManager : MonoBehaviour
     }
 }
 
-
     private void TryAutoSave()
     {
-        SaveSystem.AutoSaveGame(playerTransform.position);
-        Debug.Log($"AutoSave triggered at {Time.time} seconds."); // Good to track in-Unity when an autosave is made.
+        if (questManager != null)
+    {
+        SaveSystem.AutoSaveGame(playerTransform.position, questManager);
+        Debug.Log($"AutoSave triggered at {Time.time} seconds.");
+    }
     }
 }

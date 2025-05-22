@@ -22,6 +22,7 @@ public class MainMenuManager : MonoBehaviour
     public TMP_Text manualSaveInfoText;
     public TMP_Text autoSaveInfoText;
 
+    private QuestManager questManager;
     private bool isAutoSaveSelected;
     private string lastInputMethod = "Controller";
 
@@ -33,6 +34,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
+        questManager = FindObjectOfType<QuestManager>();
         ResetAllPanels();
         mainMenuPanel.SetActive(true);
         SetSelected(firstMainMenuButton);
@@ -146,7 +148,7 @@ public class MainMenuManager : MonoBehaviour
 
         if (manualExists)
         {
-            var data = SaveSystem.LoadGame(false);
+            var data = SaveSystem.LoadGame(questManager, false);
             manualSaveInfoText.text = $"{data.sceneName}\nTime: {data.saveTime}";
         }
         else
@@ -156,7 +158,7 @@ public class MainMenuManager : MonoBehaviour
 
         if (autoExists)
         {
-            var data = SaveSystem.LoadGame(true);
+            var data = SaveSystem.LoadGame(questManager, true);
             autoSaveInfoText.text = $"{data.sceneName}\nTime: {data.saveTime}";
         }
         else
@@ -193,7 +195,7 @@ public void OnAutoSaveSelected()
 
     public void OnConfirmLoadPressed()
     {
-        SaveData data = SaveSystem.LoadGame(isAutoSaveSelected);
+        SaveData data = SaveSystem.LoadGame(questManager, isAutoSaveSelected);
         if (data != null)
         // Go to next scene using the fading canvas
         _canvasSceneTransition.ChangeScene(data.sceneName);

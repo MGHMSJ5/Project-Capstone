@@ -128,10 +128,10 @@ public class QuestManager : MonoBehaviour
 
     private void ClaimRewards(Quest quest)
     {
-        GameEventsManager.instance.rewardEvents.ItemGained(quest.info.questReward);
-        GameEventsManager.instance.rewardEvents.ScrewsGained(quest.info.screwReward); 
+        GameEventsManager.instance.rewardEvents.ItemGained(quest.info.questReward); //TODO: How will the upgrades be added to the player? Components? Items? Bool change? Connect it!
+        GameEventsManager.instance.rewardEvents.ScrewsGained(quest.info.screwReward); //TODO: Add to UI + actual player inventory
         int screwRewardAmount = quest.info.screwReward; // Get the screw reward amount
-        if (screwRewardAmount != 0) // Check that the reward is not 0
+        if (screwRewardAmount != 0) // Check if the reward is not 0
         {
             _UICanvas.ChangeUI("...", "+ " +  screwRewardAmount);
             // Run the funtion to change UI and add to current screw amount
@@ -166,4 +166,39 @@ public class QuestManager : MonoBehaviour
         }
         return quest;
     }
+
+    public List<QuestSaveData> GetQuestSaveData()
+{
+    List<QuestSaveData> data = new List<QuestSaveData>();
+    foreach (var quest in questMap.Values)
+    {
+        data.Add(new QuestSaveData
+        {
+            questId = quest.info.id,
+            state = quest.state,
+            currentStepIndex = quest.GetCurrentStepIndex()
+        });
+    }
+    return data;
+}
+
+public void LoadQuestSaveData(List<QuestSaveData> savedData)
+{
+    foreach (var savedQuest in savedData)
+    {
+        if (questMap.TryGetValue(savedQuest.questId, out Quest quest))
+        {
+            quest.state = savedQuest.state;
+            quest.SetCurrentStepIndex(savedQuest.currentStepIndex);
+
+            // Instantiate the quest step if in progress
+            if (quest.state == QuestState.IN_PROGRESS && quest.CurrentStepExists())
+            {
+                quest.InstanciateCurrentQuestStep(this.transform);
+            }
+
+            GameEventsManager.instance.questEvents.QuestStateChange(quest);
+        }
+    }
+}
 }

@@ -20,6 +20,7 @@ public class PauseMenuManager : MonoBehaviour
     public Transform playerTransform;
     public static bool IsPaused { get; private set; } = false;
 
+    private QuestManager questManager;
     private bool isPaused = false;
     private bool isAutoSaveSelected;
     private string lastInputMethod = "Controller";
@@ -30,7 +31,9 @@ public class PauseMenuManager : MonoBehaviour
         _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
     }
     void Start()
-    {   //Cursor invisible
+    {   
+        questManager = FindObjectOfType<QuestManager>();
+        //Cursor invisible
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -115,7 +118,7 @@ public class PauseMenuManager : MonoBehaviour
     public void SaveAndQuit()
     {
         if (playerTransform != null)
-            SaveSystem.SaveGame(playerTransform.position);
+            SaveSystem.SaveGame(playerTransform.position, questManager);
 
         Time.timeScale = 1f;
         IsPaused = false;
@@ -135,7 +138,7 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (playerTransform != null)
         {
-            SaveSystem.SaveGame(playerTransform.position);
+            SaveSystem.SaveGame(playerTransform.position, questManager);
             Debug.Log("Game Saved!");
         }
         else
@@ -145,31 +148,31 @@ public class PauseMenuManager : MonoBehaviour
     }
 
     public void OnLoadSavePressed()
+{
+    ResetAllPanels();
+    loadSavePanel.SetActive(true);
+    SetSelected(firstLoadSaveButton);
+
+    if (SaveSystem.SaveFileExists(false))
     {
-        ResetAllPanels();
-        loadSavePanel.SetActive(true);
-        SetSelected(firstLoadSaveButton);
-
-        if (SaveSystem.SaveFileExists(false))
-        {
-            var data = SaveSystem.LoadGame(false);
-            manualSaveInfoText.text = $"{data.sceneName}\nTime: {data.saveTime}";
-        }
-        else
-        {
-            manualSaveInfoText.text = "No manual save found.";
-        }
-
-        if (SaveSystem.SaveFileExists(true))
-        {
-            var data = SaveSystem.LoadGame(true);
-            autoSaveInfoText.text = $"{data.sceneName}\nTime: {data.saveTime}";
-        }
-        else
-        {
-            autoSaveInfoText.text = "No autosave found.";
-        }
+        var data = SaveSystem.LoadGame(questManager, false);
+        manualSaveInfoText.text = $"{data.sceneName}\nTime: {data.saveTime}";
     }
+    else
+    {
+        manualSaveInfoText.text = "No manual save found.";
+    }
+
+    if (SaveSystem.SaveFileExists(true))
+    {
+        var data = SaveSystem.LoadGame(questManager, true);
+        autoSaveInfoText.text = $"{data.sceneName}\nTime: {data.saveTime}";
+    }
+    else
+    {
+        autoSaveInfoText.text = "No autosave found.";
+    }
+}
 
     public void OnBackFromLoadSave()
     {
@@ -208,7 +211,7 @@ public class PauseMenuManager : MonoBehaviour
         IsPaused = false;
         ResetAllPanels();
 
-        SaveData data = SaveSystem.LoadGame(isAutoSaveSelected);
+        SaveData data = SaveSystem.LoadGame(questManager, false);
         if (data != null)
             _canvasSceneTransition.ChangeScene(data.sceneName);
             //SceneManager.LoadScene(data.sceneName);
