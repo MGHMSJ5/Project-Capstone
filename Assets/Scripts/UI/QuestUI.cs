@@ -10,6 +10,8 @@ public class QuestUI : MonoBehaviour
 
     [SerializeField]
     private GameObject _questStartedBox;
+    [SerializeField]
+    private GameObject _questFinishedBox;
 
     private void Awake()
     {
@@ -18,13 +20,23 @@ public class QuestUI : MonoBehaviour
     private void Start()
     {
         _questStartedBox.SetActive(false);
+        _questFinishedBox.SetActive(false);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            _questStartedBox.SetActive(true);
-        }
+
+    }
+
+    public void StartQuestUI()
+    {
+        _questStartedBox.SetActive(true);
+        _questFinishedBox.SetActive(false);
+    }
+
+    public void FinishQuestUI()
+    {
+        _questStartedBox.SetActive(false);
+        _questFinishedBox.SetActive(true);
     }
 }

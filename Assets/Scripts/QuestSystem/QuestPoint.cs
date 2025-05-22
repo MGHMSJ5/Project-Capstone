@@ -23,6 +23,8 @@ public class QuestPoint : MonoBehaviour
 
     private BaseInteract _baseInteract;
 
+    private QuestUI _questUI;
+
     private void Awake()
     {
         questId = questInfoForPoint.id;
@@ -33,6 +35,7 @@ public class QuestPoint : MonoBehaviour
     {
         GameEventsManager.instance.questEvents.onQuestStateChange += QuestStateChange;
         _baseInteract.onSubmitPressed += SubmitPressed;
+        _questUI = GameObject.Find("Canvas").GetComponent<QuestUI>();
     }
 
     private void OnDisable()
@@ -52,10 +55,12 @@ public class QuestPoint : MonoBehaviour
         if (currentQuestState.Equals(QuestState.CAN_START) && startPoint)
         {
             GameEventsManager.instance.questEvents.StartQuest(questId);
+            _questUI.StartQuestUI();
         }
         else if (currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint)
         {
             GameEventsManager.instance.questEvents.FinishQuest(questId);
+            _questUI.FinishQuestUI();
             if (secondQuest != null)
             {
                 string id = secondQuest.questId;
