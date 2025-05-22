@@ -19,9 +19,6 @@ public class JumpState : IState
         Debug.Log("Jump");
 
         ResetTimer();
-
-        //Activate fall sound if jump is activated (Elise: Change this to the jump sound. The falling sound can be applied to the FallingState
-        SoundManager.PlaySound(SoundType.FALL);
     }
 
     public void Execute()
