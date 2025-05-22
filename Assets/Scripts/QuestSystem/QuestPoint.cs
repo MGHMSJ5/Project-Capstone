@@ -67,6 +67,11 @@ public class QuestPoint : MonoBehaviour
         {
             GameEventsManager.instance.questEvents.StartQuest(questId);
 
+            if (!questInfoForPoint.isSideQuest)
+            {
+                _questUI.displayNameUI = questInfoForPoint.displayName;
+            }
+
             ShowQuestUI(true);
         }
         else if (currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint)
@@ -79,6 +84,11 @@ public class QuestPoint : MonoBehaviour
             {
                 string id = secondQuest.questId;
                 GameEventsManager.instance.questEvents.StartQuest(id);
+
+                if (!questInfoForPoint.isSideQuest)
+                {
+                    _questUI.displayNameUI = secondQuest.questInfoForPoint.displayName;
+                }
 
                 ShowQuestUI(true);
             }
@@ -120,7 +130,7 @@ public class QuestPoint : MonoBehaviour
             UIQuestStartHandling();
         }
         else
-        {
+        {         
             _questUI.FinishQuestUI();
         }
     }
