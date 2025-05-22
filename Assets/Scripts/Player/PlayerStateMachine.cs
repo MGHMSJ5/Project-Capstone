@@ -13,6 +13,7 @@ public class PlayerStateMachine
     public WalkState walkState;
     public SprintState sprintState;
     public JumpState jumpState;
+    public FallingState fallingState;
     public HoverState hoverState;
     public PulseState pulseState;
 
@@ -26,6 +27,7 @@ public class PlayerStateMachine
         this.walkState = new WalkState(player);
         this.sprintState = new SprintState(player);
         this.jumpState = new JumpState(player);
+        this.fallingState = new FallingState(player);
         this.hoverState = new HoverState(player);
         this.pulseState = new PulseState(player);
     }

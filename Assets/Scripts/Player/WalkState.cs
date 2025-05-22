@@ -18,10 +18,18 @@ public class WalkState : IState
 
     public void Execute()
     {
-        // If player is no longer grounded, transition to the jump state
+        // If player is no longer grounded, transition
         if (!player.Grounded)
         {
-            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.jumpState);
+            // Transition to the jump state if the player ha jumped
+            if (!player.ReadyToJump)
+            {
+                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.jumpState);
+            }
+            else //, the player is falling
+            {
+                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
+            }
         }
 
         // If the player is moving, then transition to the idle state

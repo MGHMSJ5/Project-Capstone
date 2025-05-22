@@ -24,10 +24,10 @@ public class HoverState : IState
         // If the player is not hovering ↓
         if (!player.PlayerHover.IsHovering)
         {
-            // If the player is not on the ground, then transition to the jump state
+            // If the player is not on the ground, then transition to the falling state
             if (!player.Grounded)
             {
-                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.jumpState);
+                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
             }
             else
             {   // If the player is on the ground, then transition to the walk state
