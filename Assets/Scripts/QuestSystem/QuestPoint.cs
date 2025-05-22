@@ -52,6 +52,7 @@ public class QuestPoint : MonoBehaviour
         if (_startedQuestDialogue && !_npcInteract.DialogueHasInteracted)
         {
             _questUI.StartQuestUI();
+            _startedQuestDialogue = false;
         }
     }
     private void SubmitPressed()
@@ -65,17 +66,21 @@ public class QuestPoint : MonoBehaviour
         if (currentQuestState.Equals(QuestState.CAN_START) && startPoint)
         {
             GameEventsManager.instance.questEvents.StartQuest(questId);
-            UIQuestStartHandling();
+
+            ShowQuestUI(true);
         }
         else if (currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint)
         {
             GameEventsManager.instance.questEvents.FinishQuest(questId);
-            _questUI.FinishQuestUI();
+
+            ShowQuestUI(false);
+
             if (secondQuest != null)
             {
                 string id = secondQuest.questId;
                 GameEventsManager.instance.questEvents.StartQuest(id);
-                UIQuestStartHandling();
+
+                ShowQuestUI(true);
             }
         }
     }
@@ -103,7 +108,22 @@ public class QuestPoint : MonoBehaviour
             playerIsNear = false;
         }
     }
+    private void ShowQuestUI(bool startedQuest)
+    {
+        if (questInfoForPoint.isSideQuest)
+        {
+            return;
+        }
 
+        if (startedQuest)
+        {
+            UIQuestStartHandling();
+        }
+        else
+        {
+            _questUI.FinishQuestUI();
+        }
+    }
     private void UIQuestStartHandling()
     {
         // Check if the npc interact script is not null
