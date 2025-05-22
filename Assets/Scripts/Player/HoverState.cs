@@ -14,6 +14,8 @@ public class HoverState : IState
     public void Enter()
     {
         //Debug.Log("Hover");
+        player.particleSystem.gameObject.SetActive(true);
+        player.particleSystem.Play();
     }
 
     public void Execute()
@@ -35,6 +37,7 @@ public class HoverState : IState
 
     public void Exit()
     {
-
+        player.particleSystem.Stop();
+        player.particleSystem.gameObject.SetActive(false);
     }
 }
