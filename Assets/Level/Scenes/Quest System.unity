@@ -5063,7 +5063,7 @@ MonoBehaviour:
   _interactOnce: 0
   _interactType: 0
   _interruptCarrying: 0
-  inkJSON_PC: {fileID: 0}
+  inkJSON_PC: {fileID: 4900000, guid: d698a7d34b50ffb41a23de6f1f860fcb, type: 3}
   inkJSON_Controller: {fileID: 0}
 --- !u!135 &738094728
 SphereCollider:
@@ -7071,6 +7071,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430282147374999228, guid: a289c2dd2b2218f41b245bed3db163ef,
+        type: 3}
+      propertyPath: _repairTypeAmount.Array.data[0].amount
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6499821886707629801, guid: a289c2dd2b2218f41b245bed3db163ef,
         type: 3}
@@ -13109,22 +13114,22 @@ PrefabInstance:
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.89965284
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.4366061
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000004291582
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000004571529
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
