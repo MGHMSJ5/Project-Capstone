@@ -19,7 +19,7 @@ public class FixGateStep : QuestStep
         baseInteract.onSubmitPressed -= FixGate;
     }
 
-    //Add that the queststep is finished when talking to NPC
+    //Add that the queststep is finished when interacting with the gate
     private void FixGate()
     {
         FinishQuestStep();

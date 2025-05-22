@@ -13,7 +13,7 @@ public class TalkToFactoryNPCStep : QuestStep
 
     private void Awake()
     {
-        baseInteract = GameObject.Find("Mihai").GetComponent<BaseInteract>();
+        baseInteract = GameObject.Find("Oolo").GetComponent<BaseInteract>();
         _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
         Debug.Log(_canvasSceneTransition);
     }

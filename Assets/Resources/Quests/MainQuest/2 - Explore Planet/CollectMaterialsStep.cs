@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 public class CollectMaterialsStep : QuestStep
 {    
     private int screwsCollected;
-    private int screwsToComplete = 5;
+    private int screwsToComplete = 6;
     //TODO - Repeat the same for the oil and change the numbers accordingly.
 
     private void OnEnable()
@@ -34,5 +34,10 @@ public class CollectMaterialsStep : QuestStep
         {
             FinishQuestStep();
         }
+    }
+
+    public void Update()
+    {
+        ScrewCollected();
     }
 }
