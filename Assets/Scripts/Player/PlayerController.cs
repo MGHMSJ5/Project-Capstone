@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _jumpCooldown;
     [SerializeField] private float _airMultiplier;
+    public ParticleSystem particleSystem;
     [Header("Coyote Time")]
     [SerializeField] private float _coyoteTime = 0.2f; // This is for coyote time
     private float _lastGroundedTime;
