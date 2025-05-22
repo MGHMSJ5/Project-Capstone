@@ -2,28 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FixGateStep : QuestStep
+public class FixToasterStep : QuestStep
 {
     private BaseInteract baseInteract;
     private void Awake()
     {
-        baseInteract = GameObject.Find("RepairableGate").GetComponent<BaseInteract>();
+        baseInteract = GameObject.Find("ToasterInteractExample").GetComponent<BaseInteract>();
     }
     private void OnEnable()
     {
-        baseInteract.onSubmitPressed += FixGate;
+        baseInteract.onSubmitPressed += FixToaster;
     }
 
     private void OnDisable()
     {
-        baseInteract.onSubmitPressed -= FixGate;
+        baseInteract.onSubmitPressed -= FixToaster;
     }
 
     //Add that the queststep is finished when interacting with the gate
-    private void FixGate()
+    private void FixToaster()
     {
         FinishQuestStep();
-        baseInteract.onSubmitPressed -= FixGate;
+        baseInteract.onSubmitPressed -= FixToaster;
 
         baseInteract.InvokeSubmitPressed();
     }
