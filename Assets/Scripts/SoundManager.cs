@@ -5,6 +5,7 @@ using System;
 
 public enum SoundType
 {
+    //All soundtypes can be found here. New soundtypes that are added in the future, should also be added here.
     WALK,
     FALL,
     PULSE,
@@ -38,6 +39,7 @@ public class SoundManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    //This function can be used in other scripts, which randomly plays on of the sounds found in that specific soundtype.
     public static void PlaySound(SoundType sound, float volume = 1)
     {
         AudioClip[] clips = instance.soundlist[(int)sound].Sounds;
@@ -46,6 +48,7 @@ public class SoundManager : MonoBehaviour
     }
 }
 
+//This makes organization possible. This makes it possible for us to name the assets in the list that can be found in the spectator. 
 [Serializable]
 public struct SoundList
 {
