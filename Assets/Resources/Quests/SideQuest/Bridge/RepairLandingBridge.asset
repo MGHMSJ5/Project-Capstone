@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fcbf93d06ed82845bd67abcca5c7e8e, type: 3}
+  m_Name: RepairLandingBridge
+  m_EditorClassIdentifier: 
+  <id>k__BackingField: RepairLandingBridge
+  displayName: Repair the bridge to the landing area.
+  isSideQuest: 1
+  levelRequirement: 0
+  questPrerequisits:
+  - {fileID: 11400000, guid: 90fbdfc1e8a17a041b1156c0ab96bc09, type: 2}
+  - {fileID: 11400000, guid: bcc00988275bedc4597b91146460f82f, type: 2}
+  - {fileID: 11400000, guid: f5584ac00c045364880ca73f1dd6b31a, type: 2}
+  - {fileID: 11400000, guid: 22a1db4e80be5724183d601bd744bca8, type: 2}
+  questStepPrefabs:
+  - {fileID: 3310845234496346058, guid: a896f47f8cf7c8e4cb81d89e2e6dd6f7, type: 3}
+  questReward: []
+  screwReward: 0
