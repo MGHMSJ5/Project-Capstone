@@ -51,7 +51,14 @@ public class QuestPoint : MonoBehaviour
     {   // If the player has started the quest UI, and the dialogue is finished
         if (_startedQuestDialogue && !_npcInteract.DialogueHasInteracted)
         {
-            _questUI.StartQuestUI();
+            if (!questInfoForPoint.isSideQuest)
+            {
+                _questUI.StartQuestUI();
+            }
+            else
+            {
+                _questUI.StartSidequestUI();
+            }
             _startedQuestDialogue = false;
         }
     }
@@ -71,6 +78,10 @@ public class QuestPoint : MonoBehaviour
             {
                 _questUI.displayNameUI = questInfoForPoint.displayName;
             }
+            else
+            {
+                _questUI.displaySidequestNameUI = secondQuest.questInfoForPoint.displayName;
+            }
 
             ShowQuestUI(true);
         }
@@ -88,6 +99,10 @@ public class QuestPoint : MonoBehaviour
                 if (!questInfoForPoint.isSideQuest)
                 {
                     _questUI.displayNameUI = secondQuest.questInfoForPoint.displayName;
+                }
+                else
+                {
+                    _questUI.displaySidequestNameUI = secondQuest.questInfoForPoint.displayName;
                 }
 
                 ShowQuestUI(true);
@@ -130,8 +145,15 @@ public class QuestPoint : MonoBehaviour
             UIQuestStartHandling();
         }
         else
-        {         
-            _questUI.FinishQuestUI();
+        {
+            if (!questInfoForPoint.isSideQuest)
+            {
+                _questUI.FinishQuestUI();
+            }
+            else
+            {
+                _questUI.FinishSidequestUI();
+            }
         }
     }
     private void UIQuestStartHandling()
@@ -146,7 +168,14 @@ public class QuestPoint : MonoBehaviour
         }
         else
         {   // If there is not npc interact script, then make the UI appear
-            _questUI.StartQuestUI();
+            if (!questInfoForPoint.isSideQuest)
+            {
+                _questUI.StartQuestUI();
+            }
+            else
+            {
+                _questUI.StartSidequestUI();
+            }
         }
     }
 }

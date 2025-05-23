@@ -11,6 +11,7 @@ public class QuestUI : MonoBehaviour
     private QuestManager _questManager;
     private Animator _animator;
 
+    [Header("Main Quests")]
     [SerializeField]
     private GameObject _questStartedBox;
     [SerializeField]
@@ -20,8 +21,20 @@ public class QuestUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _questFinishedText;
 
+    [Header("Sidequests")]
+    [SerializeField]
+    private GameObject _sideQuestStartedBox;
+    [SerializeField]
+    private TextMeshProUGUI _sideQuestStartedText;
+    [SerializeField]
+    private GameObject _sideQuestFinishedBox;
+    [SerializeField]
+    private TextMeshProUGUI _sideQuestFinishedText;
+
     [HideInInspector]
     public string displayNameUI;
+    [HideInInspector]
+    public string displaySidequestNameUI;
 
     private void Awake()
     {
@@ -32,6 +45,8 @@ public class QuestUI : MonoBehaviour
     {
         _questStartedBox.SetActive(false);
         _questFinishedBox.SetActive(false);
+        _sideQuestStartedBox.SetActive(false);
+        _sideQuestFinishedBox.SetActive(false);
     }
 
     private void Update()
@@ -53,5 +68,21 @@ public class QuestUI : MonoBehaviour
         _questFinishedBox.SetActive(true);
         _questFinishedText.text = "Finished Quest: " + displayNameUI;
         _animator.Play("QuestUIFinishedPopup");
+    }
+
+    public void StartSidequestUI()
+    {
+        _sideQuestStartedBox.SetActive(true);
+        _sideQuestFinishedBox.SetActive(false);
+        _sideQuestStartedText.text = "Started Sidequest: " + displaySidequestNameUI;
+        //_animator.Play("QuestUIStartedPopup");
+    }
+
+    public void FinishSidequestUI()
+    {
+        _sideQuestStartedBox.SetActive(false);
+        _sideQuestFinishedBox.SetActive(true);
+        _sideQuestStartedText.text = "Finished Sidequest: " + displaySidequestNameUI;
+        //_animator.Play("QuestUIFinishedPopup");
     }
 }
