@@ -9,6 +9,7 @@ public class QuestUI : MonoBehaviour
     private QuestInfoSO _questInfoSO;
     private UICanvas _UICanvas;
     private QuestManager _questManager;
+    private Animator _animator;
 
     [SerializeField]
     private GameObject _questStartedBox;
@@ -25,6 +26,7 @@ public class QuestUI : MonoBehaviour
     private void Awake()
     {
         _UICanvas = GameObject.Find("Canvas").GetComponent<UICanvas>();
+        _animator = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -42,6 +44,7 @@ public class QuestUI : MonoBehaviour
         _questStartedBox.SetActive(true);
         _questFinishedBox.SetActive(false);
         _questStartedText.text = "Started Quest: " + displayNameUI;
+        _animator.Play("QuestUIStartedPopup");
     }
 
     public void FinishQuestUI()
@@ -49,5 +52,6 @@ public class QuestUI : MonoBehaviour
         _questStartedBox.SetActive(false);
         _questFinishedBox.SetActive(true);
         _questFinishedText.text = "Finished Quest: " + displayNameUI;
+        _animator.Play("QuestUIFinishedPopup");
     }
 }
