@@ -12,8 +12,12 @@ public class MainMenuManager : MonoBehaviour
     public GameObject noSaveFoundPanel;
     public GameObject loadSavePanel;
     public GameObject confirmLoadPanel;
+    public GameObject creditsPanel;
+    public GameObject quitConfirmPanel;
 
     [Header("First Selected Buttons")]
+    public GameObject firstCreditsButton;
+    public GameObject firstQuitConfirmButton;
     public GameObject firstMainMenuButton;
     public GameObject firstLoadSaveMenuButton;
     public GameObject firstConfirmLoadButton;
@@ -82,6 +86,8 @@ public class MainMenuManager : MonoBehaviour
         noSaveFoundPanel.SetActive(false);
         loadSavePanel.SetActive(false);
         confirmLoadPanel.SetActive(false);
+        creditsPanel.SetActive(false);
+        quitConfirmPanel.SetActive(false);
     }
 
     public void OnNewGamePressed()
@@ -215,5 +221,41 @@ public void OnAutoSaveSelected()
         ResetAllPanels();
         mainMenuPanel.SetActive(true);
         SetSelected(firstMainMenuButton);
+    }
+
+    public void OnCreditsPressed()
+    {
+    ResetAllPanels();
+    creditsPanel.SetActive(true);
+    SetSelected(firstCreditsButton);
+    }
+
+    public void OnCloseCreditsPressed()
+    {
+    ResetAllPanels();
+    mainMenuPanel.SetActive(true);
+    SetSelected(firstMainMenuButton);
+    }
+
+    public void OnQuitPressed()
+    {
+    ResetAllPanels();
+    quitConfirmPanel.SetActive(true);
+    SetSelected(firstQuitConfirmButton);
+    }
+
+    public void OnConfirmQuitPressed()
+    {
+    Application.Quit();
+    #if UNITY_EDITOR
+    UnityEditor.EditorApplication.isPlaying = false; // For helping us test before making a build within unity
+    #endif
+    }
+
+    public void OnCancelQuitPressed()
+    {
+    ResetAllPanels();
+    mainMenuPanel.SetActive(true);
+    SetSelected(firstMainMenuButton);
     }
 }
