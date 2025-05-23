@@ -6,9 +6,7 @@ using UnityEngine;
 
 public class QuestUI : MonoBehaviour
 {
-    private QuestInfoSO _questInfoSO;
     private UICanvas _UICanvas;
-    private QuestManager _questManager;
     private Animator _animator;
 
     [Header("Main Quests")]
@@ -82,7 +80,7 @@ public class QuestUI : MonoBehaviour
     {
         _sideQuestStartedBox.SetActive(false);
         _sideQuestFinishedBox.SetActive(true);
-        _sideQuestStartedText.text = "Finished Sidequest: " + displaySidequestNameUI;
+        _sideQuestFinishedText.text = "Finished Sidequest: " + displaySidequestNameUI;
         _animator.Play("SidequestUIFinishedPopup");
     }
 }
