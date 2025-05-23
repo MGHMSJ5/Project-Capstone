@@ -5,10 +5,12 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     private Dictionary<string, Quest> questMap;
+    private UICanvas _UICanvas;
 
     private void Awake()
     {
         questMap = CreateQuestMap();
+        _UICanvas = GameObject.Find("Canvas").GetComponent<UICanvas>();
     }
 
     private void OnEnable()
@@ -128,6 +130,13 @@ public class QuestManager : MonoBehaviour
     {
         GameEventsManager.instance.rewardEvents.ItemGained(quest.info.questReward); //TODO: How will the upgrades be added to the player? Components? Items? Bool change? Connect it!
         GameEventsManager.instance.rewardEvents.ScrewsGained(quest.info.screwReward); //TODO: Add to UI + actual player inventory
+        int screwRewardAmount = quest.info.screwReward; // Get the screw reward amount
+        if (screwRewardAmount != 0) // Check if the reward is not 0
+        {
+            _UICanvas.ChangeUI("...", "+ " +  screwRewardAmount);
+            // Run the funtion to change UI and add to current screw amount
+            _UICanvas.NPCGivesResource(screwRewardAmount);
+        }
         Debug.Log("Reward claimed");
     }
 

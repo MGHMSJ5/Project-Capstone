@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 
 public class GameEventsManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameEventsManager : MonoBehaviour
 
     public QuestEvents questEvents;
     public RewardEvents rewardEvents;
+    public event Action toolboxOpened;
 
    private void Awake()
    {
@@ -22,4 +24,9 @@ public class GameEventsManager : MonoBehaviour
         questEvents = new QuestEvents();
         rewardEvents = new RewardEvents();
    }
+
+    public void InvokeToolboxEvent()
+    {
+        toolboxOpened?.Invoke();
+    }
 }

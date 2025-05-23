@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerHover : MonoBehaviour
 {
     [Header("Hovering")]
-    [SerializeField] private bool _hoverAbilityGranted = true;
+    [SerializeField] public bool _hoverAbilityGranted = true;
     [SerializeField] private float _hoverForce = 2f; // Upward force
     [SerializeField] private float _maxHoverTime = 3f; // How long it lasts
     [SerializeField] private float _maxHoverSpeed = 5f; // Max speed when using this.

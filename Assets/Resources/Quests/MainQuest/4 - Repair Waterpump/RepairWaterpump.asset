@@ -16,12 +16,13 @@ MonoBehaviour:
   displayName: Investigate the waterpump
   levelRequirement: 0
   questPrerequisits:
+  - {fileID: 11400000, guid: 90fbdfc1e8a17a041b1156c0ab96bc09, type: 2}
   - {fileID: 11400000, guid: bcc00988275bedc4597b91146460f82f, type: 2}
   - {fileID: 11400000, guid: 22a1db4e80be5724183d601bd744bca8, type: 2}
+  - {fileID: 11400000, guid: f5584ac00c045364880ca73f1dd6b31a, type: 2}
   questStepPrefabs:
-  - {fileID: 6412896031126552728, guid: 9375b729aa4656a4993e19f729508791, type: 3}
+  - {fileID: 9065572807713438961, guid: f71bf6d36b2a6a44d995ff7e2047bcf0, type: 3}
   - {fileID: 8140255996042570357, guid: 7236a8fac4c5ae74a800161beb21f830, type: 3}
   - {fileID: 8140255996042570357, guid: cb3dca049a264124c947276ceeb26a38, type: 3}
-  - {fileID: 4415734105993841186, guid: bddc4bcc3b237d543a0ca67fc3e5c858, type: 3}
   questReward: []
   screwReward: 0
