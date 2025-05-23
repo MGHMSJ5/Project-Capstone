@@ -80,7 +80,7 @@ public class QuestPoint : MonoBehaviour
             }
             else
             {
-                _questUI.displaySidequestNameUI = secondQuest.questInfoForPoint.displayName;
+                _questUI.displaySidequestNameUI = questInfoForPoint.displayName;
             }
 
             ShowQuestUI(true);
@@ -135,11 +135,6 @@ public class QuestPoint : MonoBehaviour
     }
     private void ShowQuestUI(bool startedQuest)
     {
-        if (questInfoForPoint.isSideQuest)
-        {
-            return;
-        }
-
         if (startedQuest)
         {
             UIQuestStartHandling();

@@ -75,7 +75,7 @@ public class QuestUI : MonoBehaviour
         _sideQuestStartedBox.SetActive(true);
         _sideQuestFinishedBox.SetActive(false);
         _sideQuestStartedText.text = "Started Sidequest: " + displaySidequestNameUI;
-        //_animator.Play("QuestUIStartedPopup");
+        _animator.Play("SidequestUIStartedPopup");
     }
 
     public void FinishSidequestUI()
@@ -83,6 +83,6 @@ public class QuestUI : MonoBehaviour
         _sideQuestStartedBox.SetActive(false);
         _sideQuestFinishedBox.SetActive(true);
         _sideQuestStartedText.text = "Finished Sidequest: " + displaySidequestNameUI;
-        //_animator.Play("QuestUIFinishedPopup");
+        _animator.Play("SidequestUIFinishedPopup");
     }
 }
