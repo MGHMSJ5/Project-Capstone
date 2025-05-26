@@ -19,7 +19,7 @@ public class FixToasterStep : QuestStep
         baseInteract.onSubmitPressed -= FixToaster;
     }
 
-    //Add that the queststep is finished when interacting with the gate
+    //Add that the queststep is finished when interacting with the toaster
     private void FixToaster()
     {
         FinishQuestStep();

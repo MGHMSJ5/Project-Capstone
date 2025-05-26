@@ -20,7 +20,7 @@ public class FixWaterPump : QuestStep
         baseInteract.onSubmitPressed -= FixWaterpump;
     }
 
-    //Add that the queststep is finished when talking to NPC
+    //Add that the queststep is finished when interacting with the waterpump
     private void FixWaterpump()
     {
         FinishQuestStep();
