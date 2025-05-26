@@ -34,10 +34,11 @@ public class FixLeakStep : QuestStep
 
     private void CheckIfDone()
     {
-        print("This was called. Be happy if this works!");
+        print("Function was called. Did it work?");
         if (minorRepair.HasBeenRepaired)
         {
             FinishQuestStep();
         }
+        print("Hell yeah, it worked!");
     }
 }

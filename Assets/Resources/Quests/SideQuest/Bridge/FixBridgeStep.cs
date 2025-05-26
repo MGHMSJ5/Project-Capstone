@@ -5,13 +5,17 @@ using UnityEngine;
 public class FixBridgeStep : QuestStep
 {
     private BaseInteract baseInteract;
+    private MinorRepair minorRepair;
     private void Awake()
     {
         baseInteract = GameObject.Find("LandingAreaBridge").GetComponent<BaseInteract>();
+        baseInteract = GameObject.Find("LandingAreaBridge").GetComponent<MinorRepair>();
+
     }
     private void OnEnable()
     {
         baseInteract.onSubmitPressed += FixBridge;
+        Invoke("CheckIfDone", 1f);
     }
 
     private void OnDisable()
@@ -26,5 +30,15 @@ public class FixBridgeStep : QuestStep
         baseInteract.onSubmitPressed -= FixBridge;
 
         baseInteract.InvokeSubmitPressed();
+    }
+
+    private void CheckIfDone()
+    {
+        print("Function was called. Did it work?");
+        if (minorRepair.HasBeenRepaired)
+        {
+            FinishQuestStep();
+        }
+        print("Hell yeah, it worked!");
     }
 }

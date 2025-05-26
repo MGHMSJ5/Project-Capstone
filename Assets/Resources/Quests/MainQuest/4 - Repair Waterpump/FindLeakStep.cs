@@ -15,7 +15,7 @@ public class FindLeakStep : QuestStep
 
     private void OnEnable()
     {
-        Invoke("CheckIfRepaired", 1f);
+        Invoke("CheckIfDone", 1f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,12 +26,13 @@ public class FindLeakStep : QuestStep
         }
     }
 
-    private void CheckIfRepaired()
+    private void CheckIfDone()
     {
-        print("On Enable of FindLeakStep has happened. We are not happy :(");
+        print("Function was called. Did it work?");
         if (minorRepair.HasBeenRepaired)
         {
             FinishQuestStep();
         }
+        print("Hell yeah, it worked!");
     }
 }
