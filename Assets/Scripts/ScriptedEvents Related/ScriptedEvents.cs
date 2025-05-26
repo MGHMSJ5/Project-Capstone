@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class ScriptedEvents : Singleton<ScriptedEvents>
@@ -10,16 +11,22 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
     private WaypointMovement _choboMovement;
     private BaseInteract _baseInteract;
     private Collider _collider;
+    private NavMeshAgent _agent;
+
+    [Header("Waterpump event")]
+    [SerializeField]
+    private Transform _kettleTeleportTransform;
+    private GameObject _chobo;
 
     void Start()
     {
-        GameObject chobo = GameObject.Find("Chobo");
-        _choboMovement = chobo.GetComponent<WaypointMovement>();
-        _baseInteract = chobo.GetComponent<BaseInteract>();
-        _collider = chobo.GetComponent<Collider>();
+        _chobo = GameObject.Find("Chobo");
+        _choboMovement = _chobo.GetComponent<WaypointMovement>();
+        _baseInteract = _chobo.GetComponent<BaseInteract>();
+        _collider = _chobo.GetComponent<Collider>();
+        _agent = _chobo.GetComponent<NavMeshAgent>();
     }
-
-
+    // Tutorial functions
     public void MoveChobo()
     {
         _choboMovement.stopWalking = false;
@@ -36,5 +43,13 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
     public void StopChobo()
     {
         _choboMovement.stopWalking = true;
+        _agent.enabled = false;
+        _choboMovement.enabled = false;
+    }
+    // Waterpump functions
+    public void TeleportChoboToKettle()
+    {
+        _chobo.transform.position = _kettleTeleportTransform.transform.position;
+        _chobo.transform.rotation = _kettleTeleportTransform.rotation;
     }
 }

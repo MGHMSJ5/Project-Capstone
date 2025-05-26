@@ -23,6 +23,7 @@ public class FixWaterPump : QuestStep
     //Add that the queststep is finished when talking to NPC
     private void FixWaterpump()
     {
+        ScriptedEvents.Instance.TeleportChoboToKettle();
         FinishQuestStep();
         baseInteract.onSubmitPressed -= FixWaterpump;
 
