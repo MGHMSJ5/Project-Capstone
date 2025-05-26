@@ -3,16 +3,18 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour
 {
     public Transform playerTransform;
+    private QuestManager questManager;
 
     private void Start()
     {
+        questManager = FindObjectOfType<QuestManager>();
         if (playerTransform != null)
         {
             bool loadAuto = SaveLoadContext.LoadAutoSave;
 
             if (SaveSystem.SaveFileExists(loadAuto))
             {
-                SaveData data = SaveSystem.LoadGame(loadAuto);
+                SaveData data = SaveSystem.LoadGame(questManager, loadAuto);
                 if (data != null)
                 {
                     playerTransform.position = new Vector3(data.playerX, data.playerY, data.playerZ);
@@ -32,7 +34,7 @@ public class SaveManager : MonoBehaviour
         {
             if (playerTransform != null)
             {
-                SaveSystem.SaveGame(playerTransform.position);
+                SaveSystem.SaveGame(playerTransform.position, questManager);
             }
             else
             {

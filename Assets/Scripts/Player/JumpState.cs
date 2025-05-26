@@ -16,7 +16,7 @@ public class JumpState : IState
 
     public void Enter()
     {
-        Debug.Log("Jump");
+        //Debug.Log("Jump");
 
         ResetTimer();
     }

@@ -13,7 +13,7 @@ public class SprintState : IState
 
     public void Enter()
     {
-        Debug.Log("Sprint");
+        //Debug.Log("Sprint");
     }
 
     public void Execute()

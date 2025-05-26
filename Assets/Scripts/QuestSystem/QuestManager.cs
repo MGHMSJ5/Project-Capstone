@@ -166,4 +166,39 @@ public class QuestManager : MonoBehaviour
         }
         return quest;
     }
+
+    public List<QuestSaveData> GetQuestSaveData()
+{
+    List<QuestSaveData> data = new List<QuestSaveData>();
+    foreach (var quest in questMap.Values)
+    {
+        data.Add(new QuestSaveData
+        {
+            questId = quest.info.id,
+            state = quest.state,
+            currentStepIndex = quest.GetCurrentStepIndex()
+        });
+    }
+    return data;
+}
+
+public void LoadQuestSaveData(List<QuestSaveData> savedData)
+{
+    foreach (var savedQuest in savedData)
+    {
+        if (questMap.TryGetValue(savedQuest.questId, out Quest quest))
+        {
+            quest.state = savedQuest.state;
+            quest.SetCurrentStepIndex(savedQuest.currentStepIndex);
+
+            // Instantiate the quest step if in progress
+            if (quest.state == QuestState.IN_PROGRESS && quest.CurrentStepExists())
+            {
+                quest.InstanciateCurrentQuestStep(this.transform);
+            }
+
+            GameEventsManager.instance.questEvents.QuestStateChange(quest);
+        }
+    }
+}
 }

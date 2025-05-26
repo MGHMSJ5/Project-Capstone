@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,9 @@ public class HoverState : IState
 
     public void Enter()
     {
-        Debug.Log("Hover");
+        //Debug.Log("Hover");
+        player.particleSystem.gameObject.SetActive(true);
+        player.particleSystem.Play();
 
         //Activate hover sound if hover is activated
         SoundManager.PlaySound(SoundType.HOVER, 1.5f);
@@ -38,6 +40,7 @@ public class HoverState : IState
 
     public void Exit()
     {
-
+        player.particleSystem.Stop();
+        player.particleSystem.gameObject.SetActive(false);
     }
 }

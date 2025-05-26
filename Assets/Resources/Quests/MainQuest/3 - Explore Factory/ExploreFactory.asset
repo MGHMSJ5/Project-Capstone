@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: ExploreFactory
   displayName: Explore the factory
+  isSideQuest: 0
   levelRequirement: 0
-  questPrerequisits: []
+  questPrerequisits:
+  - {fileID: 11400000, guid: 90fbdfc1e8a17a041b1156c0ab96bc09, type: 2}
+  - {fileID: 11400000, guid: bcc00988275bedc4597b91146460f82f, type: 2}
+  - {fileID: 11400000, guid: 22a1db4e80be5724183d601bd744bca8, type: 2}
   questStepPrefabs:
   - {fileID: 8228811999757818168, guid: 0f62df823b2b7954b8aacc761649a115, type: 3}
   - {fileID: 8228811999757818168, guid: e88c1f6adb380514eaf4e75f1e78a7c1, type: 3}

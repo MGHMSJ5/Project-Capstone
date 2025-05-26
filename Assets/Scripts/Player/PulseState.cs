@@ -13,7 +13,7 @@ public class PulseState : IState
 
     public void Enter()
     {
-        Debug.Log("Pulse");
+        //Debug.Log("Pulse");
 
         //Activate pulse sound if pulse is activated
         SoundManager.PlaySound(SoundType.PULSE);

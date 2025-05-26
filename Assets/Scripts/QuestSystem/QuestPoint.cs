@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 
@@ -9,7 +10,7 @@ using UnityEngine.EventSystems;
 public class QuestPoint : MonoBehaviour
 {
     [Header("Quest")]
-    [SerializeField] private QuestInfoSO questInfoForPoint;
+    public QuestInfoSO questInfoForPoint;
     [Header("Optional Second Quest")]
     [SerializeField] private QuestPoint secondQuest;
 
@@ -18,21 +19,36 @@ public class QuestPoint : MonoBehaviour
     [SerializeField] private bool finishPoint = true;
 
     private bool playerIsNear = false;
-    public string questId;
+    [HideInInspector] public string questId;
     private QuestState currentQuestState;
 
     private BaseInteract _baseInteract;
+    private NPCInteract _npcInteract;
+
+    private QuestUI _questUI;
+    [HideInInspector]
+    public bool startedQuestDialogue = false;
+    [HideInInspector]
+    public bool finishedQuestDialgue = false;
+
+    [Header("Event at start and end")]
+    public UnityEvent StartQuestEvent;
+    public UnityEvent StartQuestAfterDialogueEvent;
+    public UnityEvent FinishQuestEvent;
+    public UnityEvent FinishQuestAfterDialogueEvent;
 
     private void Awake()
     {
         questId = questInfoForPoint.id;
         _baseInteract = GetComponent<BaseInteract>();
+        _npcInteract = GetComponent<NPCInteract>();
     }
 
     private void OnEnable()
     {
         GameEventsManager.instance.questEvents.onQuestStateChange += QuestStateChange;
         _baseInteract.onSubmitPressed += SubmitPressed;
+        _questUI = GameObject.Find("Canvas").GetComponent<QuestUI>();
     }
 
     private void OnDisable()
@@ -41,6 +57,21 @@ public class QuestPoint : MonoBehaviour
         _baseInteract.onSubmitPressed -= SubmitPressed;
     }
 
+    private void Update()
+    {   // If the player has started the quest UI, and the dialogue is finished
+        if (startedQuestDialogue && !_npcInteract.DialogueHasInteracted)
+        {
+            StartQuestAfterDialogueEvent?.Invoke();
+            _questUI.StartQuestAfterDialogue(questInfoForPoint);
+            startedQuestDialogue = false;
+        }
+        // If the player has finished the quest UI, and the dialogue is finished
+        if (finishedQuestDialgue && !_npcInteract.DialogueHasInteracted)
+        {
+            FinishQuestAfterDialogueEvent?.Invoke();
+            finishedQuestDialgue = false;
+        }
+    }
     private void SubmitPressed()
     {
         if (!playerIsNear)
@@ -52,14 +83,28 @@ public class QuestPoint : MonoBehaviour
         if (currentQuestState.Equals(QuestState.CAN_START) && startPoint)
         {
             GameEventsManager.instance.questEvents.StartQuest(questId);
+            StartQuestEvent?.Invoke();
+
+            _questUI.ChangeQuestDisplayName(questInfoForPoint);
+            _questUI.ShowQuestUI(true, this, _npcInteract);
+            
         }
         else if (currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint)
         {
             GameEventsManager.instance.questEvents.FinishQuest(questId);
+            FinishQuestEvent?.Invoke();
+
+            _questUI.ChangeQuestDisplayName(questInfoForPoint);
+            _questUI.ShowQuestUI(false, this, _npcInteract);
+
             if (secondQuest != null)
             {
                 string id = secondQuest.questId;
                 GameEventsManager.instance.questEvents.StartQuest(id);
+                secondQuest.StartQuestEvent?.Invoke();
+
+                _questUI.ChangeQuestDisplayName(secondQuest.questInfoForPoint);
+                _questUI.ShowQuestUI(true, secondQuest, secondQuest.GetComponent<NPCInteract>());
             }
         }
     }

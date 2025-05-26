@@ -10,6 +10,7 @@ public class QuestInfoSO : ScriptableObject
 
     [Header("General")]
     public string displayName;
+    public bool isSideQuest;
 
     [Header("Requirements")]
     public int levelRequirement;

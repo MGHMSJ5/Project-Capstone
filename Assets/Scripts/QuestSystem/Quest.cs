@@ -11,6 +11,9 @@ public class Quest
     public QuestState state;
     private int currentQuestStepIndex;
 
+    public int GetCurrentStepIndex() => currentQuestStepIndex;
+    public void SetCurrentStepIndex(int index) => currentQuestStepIndex = index;
+
     public Quest(QuestInfoSO questInfo)
     {
         this.info = questInfo;

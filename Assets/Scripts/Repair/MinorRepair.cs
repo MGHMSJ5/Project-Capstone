@@ -34,6 +34,8 @@ public class MinorRepair : BaseInteract
     // max repair types set. If this goes past 3, then the if statement in SetResourceUI needs to be changed! And also check if the UI (on the canvas) is still correct
     private int _maxRepairTypes = 2;
 
+    [HideInInspector]
+    public bool HasBeenRepaired = false;
     protected override void Start()
     {
         base.Start();
@@ -73,6 +75,7 @@ public class MinorRepair : BaseInteract
         //Activate repair sound if repair is activated
         SoundManager.PlaySound(SoundType.REPAIR);
 
+        HasBeenRepaired = true;
         // Invoke the action. Functions subscribed to this event will then also be invoked.
         RepairAction?.Invoke();
         
