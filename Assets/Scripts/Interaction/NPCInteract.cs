@@ -30,6 +30,7 @@ public class NPCInteract : BaseInteract
     private void OnDisable()
     {
         _UIChangeSubject.UISwitch -= UIChange;
+        SetInteract(false);
     }
     protected override void Update()
     {
