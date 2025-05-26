@@ -9,10 +9,12 @@ using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
+
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private GameObject _nextDialogue;
+    [SerializeField] private GameObject dialogueIndicator;
     private PlayerController _playerController;
 
     [Header("Choices UI")]
@@ -84,7 +86,16 @@ public class DialogueManager : MonoBehaviour
             ContinueStory();
         }
 
+        if (choicesPanel.activeInHierarchy)
+        {
+            dialogueIndicator.SetActive(false);
+        }
+        else
+        {
+            dialogueIndicator.SetActive(true);
+        }
     }
+
 
     //player will enter the dialogue mode through the NPCInteract Script.
     public void EnterDialogueMode(TextAsset inkJSON)
