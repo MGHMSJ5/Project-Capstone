@@ -9,7 +9,7 @@ public class FixBridgeStep : QuestStep
     private void Awake()
     {
         baseInteract = GameObject.Find("LandingAreaBridge").GetComponent<BaseInteract>();
-        baseInteract = GameObject.Find("LandingAreaBridge").GetComponent<MinorRepair>();
+        minorRepair = GameObject.Find("LandingAreaBridge").GetComponent<MinorRepair>();
 
     }
     private void OnEnable()

@@ -10,8 +10,7 @@ public class FixDoorStep : QuestStep
     private void Awake()
     {
         baseInteract = GameObject.Find("WorkshopDoor").GetComponent<BaseInteract>();
-        baseInteract = GameObject.Find("WorkshopDoor").GetComponent<MinorRepair>();
-
+        minorRepair = GameObject.Find("WorkshopDoor").GetComponent<MinorRepair>();
     }
     private void OnEnable()
     {

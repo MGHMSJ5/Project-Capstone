@@ -9,7 +9,7 @@ public class RepairBenchStep : QuestStep
     private void Awake()
     {
         baseInteract = GameObject.Find("CliffBench").GetComponent<BaseInteract>();
-        baseInteract = GameObject.Find("CliffBench").GetComponent<MinorRepair>();
+        minorRepair = GameObject.Find("CliffBench").GetComponent<MinorRepair>();
 
     }
     private void OnEnable()
