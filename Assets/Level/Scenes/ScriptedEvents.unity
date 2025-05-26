@@ -2075,7 +2075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fd6db31f87ad594dbe80b7eed7bb932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _kettleTeleportTransform: {fileID: 0}
+  _kettleTeleportTransform: {fileID: 621350724}
 --- !u!4 &348545087
 Transform:
   m_ObjectHideFlags: 0
@@ -3989,6 +3989,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -65.148, y: 45.075, z: -76.593}
+--- !u!1 &621350723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 621350724}
+  m_Layer: 0
+  m_Name: Chobo_Kettle_Teleport
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &621350724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621350723}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.72628444, y: -0.31105995, z: 0.24605803, w: 0.5614341}
+  m_LocalPosition: {x: 8.88, y: -17.18, z: -79.05}
+  m_LocalScale: {x: 1, y: 1, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: -41.487, y: 250.627, z: -256.406}
 --- !u!4 &625040264 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6433451474970455058, guid: c0f62d20604405145be515ab1c35229b,
@@ -10383,7 +10414,19 @@ MonoBehaviour:
         m_CallState: 2
   FinishQuestEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 348545086}
+        m_TargetAssemblyTypeName: ScriptedEvents, Assembly-CSharp
+        m_MethodName: StopChobo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   FinishQuestAfterDialogueEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -12549,22 +12592,22 @@ PrefabInstance:
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.89965284
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.4366061
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.00000004291582
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.000000004571529
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
@@ -12786,6 +12829,7 @@ SceneRoots:
   - {fileID: 1391077634}
   - {fileID: 628941123}
   - {fileID: 1302888180}
+  - {fileID: 621350724}
   - {fileID: 1703156358}
   - {fileID: 1711939689}
   - {fileID: 1274472798}

@@ -83,7 +83,7 @@ public class QuestUI : MonoBehaviour
             // Check if the npc interact script is not null
             if (npcInteract != null)
             {   // Check if the dialogue has started
-                if (npcInteract.DialogueHasInteracted && startedQuest)
+                if (npcInteract.DialogueHasInteracted)
                 {   // Set that this dialogue has started
                     questPoint.startedQuestDialogue = true;
                 }
@@ -106,6 +106,14 @@ public class QuestUI : MonoBehaviour
         }
         else
         {
+            // Check if the npc interact script is not null
+            if (npcInteract != null)
+            {   // Check if the dialogue has started
+                if (npcInteract.DialogueHasInteracted)
+                {
+                    questPoint.finishedQuestDialgue = true;
+                }
+            }
             if (!questPoint.questInfoForPoint.isSideQuest)
             {
                 FinishQuestUI();
