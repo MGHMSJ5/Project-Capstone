@@ -52,7 +52,80 @@ public class QuestUI : MonoBehaviour
 
     }
 
-    public void StartQuestUI()
+    public void StartQuestAfterDialogue(QuestInfoSO questInfo)
+    {
+        if (!questInfo.isSideQuest)
+        {
+            StartQuestUI();
+        }
+        else
+        {
+            StartSidequestUI();
+        }
+    }
+
+    public void ChangeQuestDisplayName(QuestInfoSO questInfo)
+    {
+        if (!questInfo.isSideQuest)
+        {
+            displayNameUI = questInfo.displayName;
+        }
+        else
+        {
+            displaySidequestNameUI = questInfo.displayName;
+        }
+    }
+  
+    public void ShowQuestUI(bool startedQuest, QuestPoint questPoint, NPCInteract npcInteract)
+    {
+        if (startedQuest)
+        {
+            // Check if the npc interact script is not null
+            if (npcInteract != null)
+            {   // Check if the dialogue has started
+                if (npcInteract.DialogueHasInteracted)
+                {   // Set that this dialogue has started
+                    questPoint.startedQuestDialogue = true;
+                }
+                else if (npcInteract.DialogueHasInteracted && !startedQuest)
+                {
+                    questPoint.finishedQuestDialgue = true;
+                }
+            }
+            else
+            {
+                if (!questPoint.questInfoForPoint.isSideQuest)
+                {
+                    StartQuestUI();
+                }
+                else
+                {
+                    StartSidequestUI();
+                }
+            }
+        }
+        else
+        {
+            // Check if the npc interact script is not null
+            if (npcInteract != null)
+            {   // Check if the dialogue has started
+                if (npcInteract.DialogueHasInteracted)
+                {
+                    questPoint.finishedQuestDialgue = true;
+                }
+            }
+            if (!questPoint.questInfoForPoint.isSideQuest)
+            {
+                FinishQuestUI();
+            }
+            else
+            {
+                FinishSidequestUI();
+            }
+        }
+    }
+
+    private void StartQuestUI()
     {
         _questStartedBox.SetActive(true);
         _questFinishedBox.SetActive(false);
@@ -60,7 +133,7 @@ public class QuestUI : MonoBehaviour
         _animator.Play("QuestUIStartedPopup");
     }
 
-    public void FinishQuestUI()
+    private void FinishQuestUI()
     {
         _questStartedBox.SetActive(false);
         _questFinishedBox.SetActive(true);
@@ -68,7 +141,7 @@ public class QuestUI : MonoBehaviour
         _animator.Play("QuestUIFinishedPopup");
     }
 
-    public void StartSidequestUI()
+    private void StartSidequestUI()
     {
         _sideQuestStartedBox.SetActive(true);
         _sideQuestFinishedBox.SetActive(false);
@@ -76,7 +149,7 @@ public class QuestUI : MonoBehaviour
         _animator.Play("SidequestUIStartedPopup");
     }
 
-    public void FinishSidequestUI()
+    private void FinishSidequestUI()
     {
         _sideQuestStartedBox.SetActive(false);
         _sideQuestFinishedBox.SetActive(true);

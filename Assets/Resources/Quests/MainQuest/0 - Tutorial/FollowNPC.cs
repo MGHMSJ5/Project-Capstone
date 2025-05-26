@@ -9,6 +9,7 @@ public class FollowNPC : QuestStep
     {
         if(other.CompareTag("Player"))
         {
+            ScriptedEvents.Instance.EnableScriptChobo();
             FinishQuestStep();
             Debug.Log("Queststep completed");
         }

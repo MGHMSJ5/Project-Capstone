@@ -46,6 +46,9 @@ public class CollectableInteractEXAMPLE : BaseInteract
 
     protected override void InteractFunction()
     {
+        //Activate toolbox sound if interaction is activated
+        SoundManager.PlaySound(SoundType.TOOLBOX);
+
         base.InteractFunction();
         // Play the open animation
         _animator.SetTrigger("Open");
