@@ -54,7 +54,7 @@ public class QuestUI : MonoBehaviour
 
     public void StartQuestAfterDialogue(QuestInfoSO questInfo)
     {
-        if (questInfo.isSideQuest)
+        if (!questInfo.isSideQuest)
         {
             StartQuestUI();
         }

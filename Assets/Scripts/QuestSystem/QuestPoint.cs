@@ -20,7 +20,8 @@ public class QuestPoint : MonoBehaviour
 
     private bool playerIsNear = false;
     [HideInInspector] public string questId;
-    private QuestState currentQuestState;
+    [HideInInspector]
+    public QuestState currentQuestState;
 
     private BaseInteract _baseInteract;
     private NPCInteract _npcInteract;
