@@ -26,9 +26,9 @@ public class QuestPoint : MonoBehaviour
     private NPCInteract _npcInteract;
 
     private QuestUI _questUI;
-    //[HideInInspector]
+    [HideInInspector]
     public bool startedQuestDialogue = false;
-    //[HideInInspector]
+    [HideInInspector]
     public bool finishedQuestDialgue = false;
 
     [Header("Event at start and end")]
