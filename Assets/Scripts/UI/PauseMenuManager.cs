@@ -115,15 +115,12 @@ public class PauseMenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-    public void SaveAndQuit()
+    public void Quit()
     {
-        if (playerTransform != null)
-            SaveSystem.SaveGame(playerTransform.position, questManager);
-
-        Time.timeScale = 1f;
-        IsPaused = false;
-        _canvasSceneTransition.ChangeScene("TitleScreen");
-        //SceneManager.LoadScene("TitleScreen");
+    Time.timeScale = 1f;
+    IsPaused = false;
+    Debug.Log("Game closed");
+    Application.Quit();
     }
 
     public void GoToMainMenu()
