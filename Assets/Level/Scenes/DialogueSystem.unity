@@ -236,6 +236,18 @@ Rigidbody:
     type: 3}
   m_PrefabInstance: {fileID: 2923704975088754715}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &119226723 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3053997271458299353, guid: 3000f2353e9e160478b2912106351d87,
+    type: 3}
+  m_PrefabInstance: {fileID: 4238671407824948392}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &157524062 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5664879709281398430, guid: 57565b2c93538fd4bbb1f94b6846987c,
@@ -2181,7 +2193,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inkJSON_PC
       value: 
-      objectReference: {fileID: 4900000, guid: d698a7d34b50ffb41a23de6f1f860fcb, type: 3}
+      objectReference: {fileID: 4900000, guid: ff9dcb8762a3c754e9b158cf77233f38, type: 3}
     - target: {fileID: 492320754871632885, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: AfterQuest_inkJSON
@@ -3008,22 +3020,22 @@ PrefabInstance:
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8996527
+      value: 0.8996528
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.4366061
+      value: 0.43660614
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000004910309
+      value: 0.000000049103093
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000028677716
+      value: -0.000000028677718
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
@@ -3193,6 +3205,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4012777021073252228, guid: 8dcfedd625bb64e42a83d781055dad86,
+        type: 3}
+      propertyPath: nameText
+      value: 
+      objectReference: {fileID: 119226723}
     - target: {fileID: 4012777021073252228, guid: 8dcfedd625bb64e42a83d781055dad86,
         type: 3}
       propertyPath: choicesPanel
