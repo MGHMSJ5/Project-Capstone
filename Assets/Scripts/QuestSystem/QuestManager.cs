@@ -157,7 +157,7 @@ public class QuestManager : MonoBehaviour
     }
 
     //Catch errors if ever catching a quest id that doesn't exists
-    private Quest GetQuestById(string id)
+    public Quest GetQuestById(string id)
     {
         Quest quest = questMap[id];
         if (quest == null)
