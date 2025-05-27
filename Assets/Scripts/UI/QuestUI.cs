@@ -40,6 +40,7 @@ public class QuestUI : MonoBehaviour
     private GameObject _questStepBox;
     [SerializeField]
     private TextMeshProUGUI _questStepTitle;
+    [SerializeField]
     private TextMeshProUGUI _questStepDescription;
 
     [HideInInspector]
@@ -52,8 +53,6 @@ public class QuestUI : MonoBehaviour
     private float counter = 0.0f;
     private float maxWaitTime = 5.0f;
     private bool counterPassed = false;
-
-    public GameObject currentQuest = null;
 
     private void Awake()
     {
