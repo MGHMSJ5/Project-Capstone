@@ -18,6 +18,10 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
     private Transform _kettleTeleportTransform;
     private GameObject _chobo;
 
+    [Header("RepairBridge event")]
+    [SerializeField]
+    private Transform _landingAreaTeleportTransform;
+
     void Start()
     {
         _chobo = GameObject.Find("Chobo");
@@ -51,5 +55,12 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
     {
         _chobo.transform.position = _kettleTeleportTransform.transform.position;
         _chobo.transform.rotation = _kettleTeleportTransform.rotation;
+    }
+
+    // Fix the bridge function
+    public void TeleportChoboToLandingArea()
+    {
+        _chobo.transform.position = _landingAreaTeleportTransform.transform.position;
+        _chobo.transform.rotation = _landingAreaTeleportTransform.rotation;
     }
 }

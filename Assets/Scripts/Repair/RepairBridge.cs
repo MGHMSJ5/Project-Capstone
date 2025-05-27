@@ -40,6 +40,9 @@ public class RepairBridge : MonoBehaviour
 
     private void BridgeChange()
     {
+        // Move Chobo to landing area
+        ScriptedEvents.Instance.TeleportChoboToLandingArea();
+
         GameObject.Find("LandingAreaBridge").transform.position = finalPosition;
         GameObject.Find("LandingAreaBridge").transform.rotation = finalRotation;
     }
