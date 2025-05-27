@@ -16,7 +16,7 @@ public abstract class QuestStep : MonoBehaviour
     public void InitializeQuestStep(string questId)
     {
         this.questId = questId;
-        _questUI = GameObject.Find("Canvas").GetComponent<QuestUI>();
+        _questUI = GameObject.Find("QuestUI").GetComponent<QuestUI>();
         _questManager = GameObject.Find("QuestManager").GetComponent<QuestManager>();
         //get the quest by searching for the quest via the questId
         Quest quest = _questManager.GetQuestById(questId);

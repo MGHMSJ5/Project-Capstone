@@ -564,14 +564,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823327171894802668}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.202187, y: 1.9848465, z: 0.8515}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 846583846046847627}
   - {fileID: 1900555537769850794}
-  m_Father: {fileID: 8209667680583800737}
+  m_Father: {fileID: 4637639512417878022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -647,7 +647,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5031356125820559355}
-  m_Father: {fileID: 8209667680583800737}
+  m_Father: {fileID: 4637639512417878022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -998,6 +998,102 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3227435299230789518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4637639512417878022}
+  - component: {fileID: 1690897332726068212}
+  - component: {fileID: 5341657452413826298}
+  m_Layer: 5
+  m_Name: QuestUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4637639512417878022
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227435299230789518}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3497581572437558893}
+  - {fileID: 1524759088241948741}
+  - {fileID: 4230308786300620540}
+  - {fileID: 8887270300406631536}
+  - {fileID: 7164544845165666336}
+  - {fileID: 6928139265250100813}
+  - {fileID: 8069297909834796554}
+  m_Father: {fileID: 8209667680583800737}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1690897332726068212
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227435299230789518}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: db6c1c832c7b6e04293ac42f064975ca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5341657452413826298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227435299230789518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b872e75090bb644b7421e365354ae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questStartedBox: {fileID: 4413885787354059850}
+  _questStartedText: {fileID: 7702123447436608184}
+  _questFinishedBox: {fileID: 8297853277789773635}
+  _questFinishedText: {fileID: 592799503418048308}
+  _questIdleBox: {fileID: 4768100999535716053}
+  _questIdleTitle: {fileID: 5044283377009005205}
+  _questIdleDescription: {fileID: 261127385467147013}
+  _sideQuestStartedBox: {fileID: 1853635317234359473}
+  _sideQuestStartedText: {fileID: 3510880785732279378}
+  _sideQuestFinishedBox: {fileID: 6525202519563889991}
+  _sideQuestFinishedText: {fileID: 3484739473697986085}
+  _questStepBox: {fileID: 6299144346240170413}
+  _questStepTitle: {fileID: 8751483100539818797}
+  _questStepDescription: {fileID: 4755079664340088444}
+  _sideQuestStepBox: {fileID: 1823327171894802668}
+  _sideQuestStepTitle: {fileID: 8280992921946545004}
+  _sideQuestStepDescription: {fileID: 6459209221651629369}
+  displayNameUI: 
+  displaySidequestNameUI: 
 --- !u!1 &3629727369904187890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1417,13 +1513,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4413885787354059850}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.202187, y: 1.9848465, z: 0.8515}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9145053727858835595}
-  m_Father: {fileID: 8209667680583800737}
+  m_Father: {fileID: 4637639512417878022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1577,7 +1673,7 @@ RectTransform:
   m_Children:
   - {fileID: 6797588727964927883}
   - {fileID: 7673386969675856939}
-  m_Father: {fileID: 8209667680583800737}
+  m_Father: {fileID: 4637639512417878022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2327,7 +2423,6 @@ GameObject:
   - component: {fileID: 3459217434120864653}
   - component: {fileID: 4100321907557529621}
   - component: {fileID: 7144059462614163021}
-  - component: {fileID: 5314921407267798994}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2351,13 +2446,7 @@ RectTransform:
   - {fileID: 5736015978574063092}
   - {fileID: 3871205434954596150}
   - {fileID: 8057277124013231331}
-  - {fileID: 3497581572437558893}
-  - {fileID: 1524759088241948741}
-  - {fileID: 4230308786300620540}
-  - {fileID: 8887270300406631536}
-  - {fileID: 7164544845165666336}
-  - {fileID: 6928139265250100813}
-  - {fileID: 8069297909834796554}
+  - {fileID: 4637639512417878022}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2466,37 +2555,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5314921407267798994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5498370440222946867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43b872e75090bb644b7421e365354ae6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _questStartedBox: {fileID: 4413885787354059850}
-  _questStartedText: {fileID: 7702123447436608184}
-  _questFinishedBox: {fileID: 8297853277789773635}
-  _questFinishedText: {fileID: 592799503418048308}
-  _questIdleBox: {fileID: 4768100999535716053}
-  _questIdleTitle: {fileID: 5044283377009005205}
-  _questIdleDescription: {fileID: 261127385467147013}
-  _sideQuestStartedBox: {fileID: 1853635317234359473}
-  _sideQuestStartedText: {fileID: 3510880785732279378}
-  _sideQuestFinishedBox: {fileID: 6525202519563889991}
-  _sideQuestFinishedText: {fileID: 3484739473697986085}
-  _questStepBox: {fileID: 6299144346240170413}
-  _questStepTitle: {fileID: 8751483100539818797}
-  _questStepDescription: {fileID: 4755079664340088444}
-  _sideQuestStepBox: {fileID: 1823327171894802668}
-  _sideQuestStepTitle: {fileID: 8280992921946545004}
-  _sideQuestStepDescription: {fileID: 6459209221651629369}
-  displayNameUI: 
-  displaySidequestNameUI: 
 --- !u!1 &5751809108898451832
 GameObject:
   m_ObjectHideFlags: 0
@@ -2733,14 +2791,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6299144346240170413}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.202187, y: 1.9848465, z: 0.8515}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2291419851472031422}
   - {fileID: 3427694251746522639}
-  m_Father: {fileID: 8209667680583800737}
+  m_Father: {fileID: 4637639512417878022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2950,7 +3008,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8832533297201928416}
-  m_Father: {fileID: 8209667680583800737}
+  m_Father: {fileID: 4637639512417878022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3422,13 +3480,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8297853277789773635}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.202187, y: 1.9848465, z: 0.8515}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6322854081275638272}
-  m_Father: {fileID: 8209667680583800737}
+  m_Father: {fileID: 4637639512417878022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
