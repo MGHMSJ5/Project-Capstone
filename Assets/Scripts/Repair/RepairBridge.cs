@@ -7,6 +7,9 @@ public class RepairBridge : MonoBehaviour
     private BaseInteract baseInteract;
     private CanvasSceneTransition _canvasSceneTransition;
 
+    [SerializeField]
+    private Collider _bridgeCollider;
+
     [SerializeField] private Vector3 finalPosition;
     [SerializeField] private Quaternion finalRotation;
 
@@ -45,5 +48,7 @@ public class RepairBridge : MonoBehaviour
 
         GameObject.Find("LandingAreaBridge").transform.position = finalPosition;
         GameObject.Find("LandingAreaBridge").transform.rotation = finalRotation;
+
+        _bridgeCollider.enabled = false;
     }
 }
