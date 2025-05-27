@@ -10,7 +10,7 @@ public class NPCInteract : BaseInteract
 
     [Header("Input versions")]
     [Tooltip("The PC version of the dialogue is the default version. If there is also a controller version (when a button is mentioned) then the controller JSON file has to be applied.")]
-    [HideInInspector]
+    //[HideInInspector]
     public TextAsset inkJSON_PC_current;
     [HideInInspector]
     public TextAsset inkJSON_Controller_current;

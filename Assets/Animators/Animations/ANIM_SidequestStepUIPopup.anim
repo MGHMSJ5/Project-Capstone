@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ANIM_SidequestUIFinishedPopup
+  m_Name: ANIM_SidequestStepUIPopup
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -32,7 +32,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5833333
-        value: 347.62
+        value: 347.623
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -59,7 +59,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 3.0833333
-        value: 621.44
+        value: 621.4409
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -70,7 +70,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: SideQuestFinishedBox
+    path: SidequestStepBox
     classID: 224
     script: {fileID: 0}
     flags: 0
@@ -83,7 +83,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2338135430
+      path: 778937280
       attribute: 538195251
       script: {fileID: 0}
       typeID: 224
@@ -128,7 +128,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5833333
-        value: 347.62
+        value: 347.623
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -155,7 +155,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 3.0833333
-        value: 621.44
+        value: 621.4409
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -166,7 +166,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: SideQuestFinishedBox
+    path: SidequestStepBox
     classID: 224
     script: {fileID: 0}
     flags: 0
