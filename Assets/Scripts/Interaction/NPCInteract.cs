@@ -1,17 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class NPCInteract : BaseInteract
 {
+
+    [SerializeField]
     private TextAsset inkJSON;
 
     [Header("Input versions")]
     [Tooltip("The PC version of the dialogue is the default version. If there is also a controller version (when a button is mentioned) then the controller JSON file has to be applied.")]
-    [SerializeField]
-    private TextAsset inkJSON_PC;
-    [SerializeField]
-    private TextAsset inkJSON_Controller;
+    [HideInInspector]
+    public TextAsset inkJSON_PC_current;
+    [HideInInspector]
+    public TextAsset inkJSON_Controller_current;
 
     private bool _dialogueHasInteracted = false;
     private UIChangeSubject _UIChangeSubject;
@@ -30,6 +34,7 @@ public class NPCInteract : BaseInteract
     private void OnDisable()
     {
         _UIChangeSubject.UISwitch -= UIChange;
+        SetInteract(false);
     }
     protected override void Update()
     {
@@ -47,7 +52,6 @@ public class NPCInteract : BaseInteract
             _dialogueHasInteracted = false;
             SetInteract(true);
         }
-
     }
     protected override void InteractFunction()
     {
@@ -58,18 +62,29 @@ public class NPCInteract : BaseInteract
         DialogueManager.GetInstance().EnterDialogueMode(inkJSON);       
     }
 
+    public void SwitchDialogue()
+    {
+        if (_UIChangeSubject.UsingPCControls)
+        {
+            inkJSON = inkJSON_PC_current;
+        }
+        else
+        {
+            inkJSON = inkJSON_Controller_current;
+        }
+    }
+
     private void UIChange(bool isController)
     {
         // If both the PC and Controller versions are applied:
-        if (inkJSON_Controller != null)
+        if (inkJSON_Controller_current != null)
         {   // Set the JSON file depending on if the controller is used
-            inkJSON = isController ? inkJSON_Controller : inkJSON_PC;
+            inkJSON = isController ? inkJSON_Controller_current : inkJSON_PC_current;
             
         }
         else
         {   // If the controller text is not set, then set the file to the PC version at default
-            inkJSON = inkJSON_PC;
+            inkJSON = inkJSON_PC_current;
         }
-        
     }
 }

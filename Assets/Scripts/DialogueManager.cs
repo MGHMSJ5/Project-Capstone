@@ -9,16 +9,21 @@ using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
+
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private GameObject _nextDialogue;
+    [SerializeField] private GameObject dialogueIndicator;
     private PlayerController _playerController;
 
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
     [SerializeField] private TextMeshProUGUI[] choicesText;
     [SerializeField] private GameObject choicesPanel;
+
+    private const string NAME_TAG = "Name";
 
 
     private Ink.Runtime.Story currentStory;
@@ -84,7 +89,16 @@ public class DialogueManager : MonoBehaviour
             ContinueStory();
         }
 
+        if (choicesPanel.activeInHierarchy)
+        {
+            dialogueIndicator.SetActive(false);
+        }
+        else
+        {
+            dialogueIndicator.SetActive(true);
+        }
     }
+
 
     //player will enter the dialogue mode through the NPCInteract Script.
     public void EnterDialogueMode(TextAsset inkJSON)
@@ -126,10 +140,36 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text = currentStory.Continue(); //finds the next line of dialogue
             //dislay choices, if those are part of the current dialogue line
             DisplayChoices();
+            HandleTags(currentStory.currentTags);
         }
         else //if no inkJSON file, or no more dialogue in the inkJSON file
         {
             ExitDialogueMode();
+        }
+    }
+
+    private void HandleTags(List<string> currentTags)
+    {
+        foreach (string tag in currentTags)
+        {
+            //spliting the tag in two part
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2)
+            {
+                Debug.LogError("Tag could not be split into two: " + tag);
+            }
+            string tagKey = splitTag[0].Trim(); //the first part of the tag is the key
+            string tagValue = splitTag[1].Trim(); //the second part of the tag is the value
+
+            switch (tagKey)
+            {
+                case NAME_TAG:
+                    nameText.text = tagValue;
+                    break;
+                default:
+                    Debug.LogWarning("Tag was not recognized by system: " + tagKey);
+                    break;
+            }
         }
     }
 
