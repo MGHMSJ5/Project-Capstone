@@ -77,20 +77,19 @@ public class QuestUI : MonoBehaviour
             counter = 0.0f;
             counterPassed = false;
             ShowQuestUIIdle(false);
-            _animator.SetBool("IsIdle", false);
         }
         //check if the counter has passd the time and active the idle UI
         if (counter >  maxWaitTime && !counterPassed)
         {
             counterPassed = true;
             ShowQuestUIIdle(true);
-            _animator.SetBool("IsIdle", true);
+            
         }
     }
 
     public void ShowQuestUIIdle(bool appear)
     {
-        if (currentQuest == null)
+        if (_questIdleText.text == "")
         {
             return;
         }
@@ -98,13 +97,13 @@ public class QuestUI : MonoBehaviour
         if (appear)
         {
             _questIdleBox.SetActive(true);
-            _questIdleText.text = "Currently Active: " + displayNameUI;
+            
+            _animator.SetBool("IsIdle", true);
             _animator.Play("QuestUIShowIdlePopup");
-            print("WORKS!");
         }
         else
         {
-            print("IT DOESNT WORK!");
+            _animator.SetBool("IsIdle", false);
         }
     }
 
@@ -188,7 +187,7 @@ public class QuestUI : MonoBehaviour
         _questStartedText.text = "Started Quest: " + displayNameUI;
         _animator.Play("QuestUIStartedPopup");
 
-        currentQuest = _questStartedBox;
+        _questIdleText.text = "Currently Active: " + displayNameUI;
     }
 
     private void FinishQuestUI()
@@ -198,7 +197,7 @@ public class QuestUI : MonoBehaviour
         _questFinishedText.text = "Finished Quest: " + displayNameUI;
         _animator.Play("QuestUIFinishedPopup");
 
-        currentQuest = null;
+        _questIdleText.text = "";
     }
 
     private void StartSidequestUI()
