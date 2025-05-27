@@ -56,10 +56,25 @@ public class MinorRepair : BaseInteract
     protected override void InteractFunction()
     {
         base.InteractFunction();
-        Repair();
+        if (CanRepair())
+        {   // Repair item
+            Repair();
+            // set to true so that the player can not interact with it again
+            _hasInteracted = true;
+        }
+        else
+        { // Can not repair item
+          //Activate unrepairable sound
+            SoundManager.PlaySound(SoundType.UNREPAIRABLE);
+            SetInteract(true);
+        }
+        
     }
     protected virtual void Repair()
     {
+        //Activate repair sound if repair is activated
+        SoundManager.PlaySound(SoundType.REPAIR);
+
         HasBeenRepaired = true;
         // Invoke the action. Functions subscribed to this event will then also be invoked.
         RepairAction?.Invoke();
@@ -77,11 +92,7 @@ public class MinorRepair : BaseInteract
         if (other.gameObject.tag == "Player" && !_hasInteracted)
         {   // Get the current amount of repair resources and update the UI
             UpdateRepairUIText();
-            // Check if the player can repair, if so, enable the interaction
-            if (CanRepair())
-            {
-                SetInteract(true);
-            }
+            SetInteract(true);
             _canvas.SetActive(true);
         }
     }
