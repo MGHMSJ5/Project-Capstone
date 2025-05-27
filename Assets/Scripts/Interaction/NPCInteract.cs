@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class NPCInteract : BaseInteract
 {
-
-    [SerializeField]
     private TextAsset inkJSON;
 
     [Header("Input versions")]
