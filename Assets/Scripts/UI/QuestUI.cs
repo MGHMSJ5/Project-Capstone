@@ -42,6 +42,12 @@ public class QuestUI : MonoBehaviour
     private TextMeshProUGUI _questStepTitle;
     [SerializeField]
     private TextMeshProUGUI _questStepDescription;
+    [SerializeField]
+    private GameObject _sideQuestStepBox;
+    [SerializeField]
+    private TextMeshProUGUI _sideQuestStepTitle;
+    [SerializeField]
+    private TextMeshProUGUI _sideQuestStepDescription;
 
     [HideInInspector]
     public string displayNameUI;
@@ -74,7 +80,7 @@ public class QuestUI : MonoBehaviour
     private void Update()
     {
         //icheck if the player is idle and not in dialogue and the quest step Ui popup is not doing its animation
-        if (_playerController.PlayerStateMachine.CurrentState == _playerController.PlayerStateMachine.idleState && !DialogueManager.GetInstance().dialogueIsPlaying && !_animator.GetCurrentAnimatorStateInfo(0).IsName("QuestStepUIPopup"))
+        if (_playerController.PlayerStateMachine.CurrentState == _playerController.PlayerStateMachine.idleState && !DialogueManager.GetInstance().dialogueIsPlaying && !_animator.GetCurrentAnimatorStateInfo(0).IsName("QuestStepUIPopup") && !_animator.GetCurrentAnimatorStateInfo(0).IsName("SidequestStepUIPopup"))
         {
             if (counter < maxWaitTime)
             {
@@ -190,7 +196,7 @@ public class QuestUI : MonoBehaviour
         }
     }
 
-    public void StepQuestUi(string title, string description, bool isFirstStep)
+    public void StepQuestUI(string title, string description, bool isFirstStep)
     {
         _questStepBox.SetActive(true);
         _questStepTitle.text = title;
@@ -201,7 +207,7 @@ public class QuestUI : MonoBehaviour
 
         if(!isFirstStep)
         {
-            _animator.Play("QuestUiStartedPopup");
+            _animator.Play("QuestStepUIPopup");
         }
     }
 
@@ -223,6 +229,17 @@ public class QuestUI : MonoBehaviour
         _questIdleTitle.text = "";
     }
 
+    public void StepSidequestUI(string title, string description, bool isFirstStep)
+    {
+        _sideQuestStepBox.SetActive(true);
+        _sideQuestStepTitle.text = title;
+        _sideQuestStepDescription.text = description;
+
+        if (!isFirstStep)
+        {
+            _animator.Play("SidequestStepUIPopup");
+        }
+    }
     private void StartSidequestUI()
     {
         _sideQuestStartedBox.SetActive(true);

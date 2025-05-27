@@ -23,11 +23,25 @@ public abstract class QuestStep : MonoBehaviour
         //MAke the questUI appear with the correct name and description from the quest step
         if (quest.CurrentQuestStepIndex == 0)
         {
-            _questUI.StepQuestUi(quest.info.displayName, description, true);
+            if (quest.info.isSideQuest)
+            {
+                _questUI.StepSidequestUI(quest.info.displayName, description, true);
+            }
+            else
+            {
+                _questUI.StepQuestUI(quest.info.displayName, description, true);
+            }
         }
         else
         {
-            _questUI.StepQuestUi(quest.info.displayName, description, false);
+            if (quest.info.isSideQuest)
+            {
+                _questUI.StepSidequestUI(quest.info.displayName, description, false);
+            }
+            else
+            {
+                _questUI.StepQuestUI(quest.info.displayName, description, false);
+            }
         }
     }
 
