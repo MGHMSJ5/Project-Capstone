@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 54475618294156447}
   - component: {fileID: 6265247367887594891}
   - component: {fileID: 6693304655678241064}
+  - component: {fileID: 8664684785205875006}
   - component: {fileID: 7246411016201426185}
   m_Layer: 3
   m_Name: LandingAreaBridge
@@ -130,6 +131,20 @@ MonoBehaviour:
     amountText: {fileID: 0}
     currentAmount: 0
   HasBeenRepaired: 0
+--- !u!114 &8664684785205875006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2590941378072164287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3e1ab42e384074980ed544733a3092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finalPosition: {x: -13.66, y: 74.93, z: -40.11}
+  finalRotation: {x: -0.1412144, y: 0.21058519, z: 0.02822054, w: 0.9669106}
 --- !u!65 &7246411016201426185
 BoxCollider:
   m_ObjectHideFlags: 0
