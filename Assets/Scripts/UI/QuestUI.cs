@@ -18,6 +18,10 @@ public class QuestUI : MonoBehaviour
     private GameObject _questFinishedBox;
     [SerializeField]
     private TextMeshProUGUI _questFinishedText;
+    [SerializeField]
+    private GameObject _questIdleBox;
+    [SerializeField]
+    private TextMeshProUGUI _questIdleText;
 
     [Header("Sidequests")]
     [SerializeField]
@@ -34,10 +38,19 @@ public class QuestUI : MonoBehaviour
     [HideInInspector]
     public string displaySidequestNameUI;
 
+    PlayerController _playerController;
+
+    private float counter = 0.0f;
+    private float maxWaitTime = 5.0f;
+    private bool counterPassed = false;
+
+    public GameObject currentQuest = null;
+
     private void Awake()
     {
         _UICanvas = GameObject.Find("Canvas").GetComponent<UICanvas>();
         _animator = GetComponent<Animator>();
+        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
     private void Start()
     {
@@ -45,11 +58,54 @@ public class QuestUI : MonoBehaviour
         _questFinishedBox.SetActive(false);
         _sideQuestStartedBox.SetActive(false);
         _sideQuestFinishedBox.SetActive(false);
+        _questIdleBox.SetActive(false);
     }
 
     private void Update()
     {
+        //icheck if the player is idle and not in dialogue
+        if (_playerController.PlayerStateMachine.CurrentState == _playerController.PlayerStateMachine.idleState && !DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            if (counter < maxWaitTime)
+            {
+                counter += Time.deltaTime;
+            }
+        }
+        else
+        //reset the timer if idle is interrupted or player enters dialogue
+        {
+            counter = 0.0f;
+            counterPassed = false;
+            ShowQuestUIIdle(false);
+            _animator.SetBool("IsIdle", false);
+        }
+        //check if the counter has passd the time and active the idle UI
+        if (counter >  maxWaitTime && !counterPassed)
+        {
+            counterPassed = true;
+            ShowQuestUIIdle(true);
+            _animator.SetBool("IsIdle", true);
+        }
+    }
 
+    public void ShowQuestUIIdle(bool appear)
+    {
+        if (currentQuest == null)
+        {
+            return;
+        }
+        //Display the idle popup
+        if (appear)
+        {
+            _questIdleBox.SetActive(true);
+            _questIdleText.text = "Currently Active: " + displayNameUI;
+            _animator.Play("QuestUIShowIdlePopup");
+            print("WORKS!");
+        }
+        else
+        {
+            print("IT DOESNT WORK!");
+        }
     }
 
     public void StartQuestAfterDialogue(QuestInfoSO questInfo)
@@ -131,6 +187,8 @@ public class QuestUI : MonoBehaviour
         _questFinishedBox.SetActive(false);
         _questStartedText.text = "Started Quest: " + displayNameUI;
         _animator.Play("QuestUIStartedPopup");
+
+        currentQuest = _questStartedBox;
     }
 
     private void FinishQuestUI()
@@ -139,6 +197,8 @@ public class QuestUI : MonoBehaviour
         _questFinishedBox.SetActive(true);
         _questFinishedText.text = "Finished Quest: " + displayNameUI;
         _animator.Play("QuestUIFinishedPopup");
+
+        currentQuest = null;
     }
 
     private void StartSidequestUI()
