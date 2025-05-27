@@ -68,12 +68,13 @@ public class QuestUI : MonoBehaviour
         _sideQuestFinishedBox.SetActive(false);
         _questIdleBox.SetActive(false);
         _questStepBox.SetActive(false);
+        _questIdleTitle.text = "";
     }
 
     private void Update()
     {
-        //icheck if the player is idle and not in dialogue
-        if (_playerController.PlayerStateMachine.CurrentState == _playerController.PlayerStateMachine.idleState && !DialogueManager.GetInstance().dialogueIsPlaying)
+        //icheck if the player is idle and not in dialogue and the quest step Ui popup is not doing its animation
+        if (_playerController.PlayerStateMachine.CurrentState == _playerController.PlayerStateMachine.idleState && !DialogueManager.GetInstance().dialogueIsPlaying && !_animator.GetCurrentAnimatorStateInfo(0).IsName("QuestStepUIPopup"))
         {
             if (counter < maxWaitTime)
             {
@@ -198,13 +199,9 @@ public class QuestUI : MonoBehaviour
         _questIdleTitle.text = _questStepTitle.text;
         _questIdleDescription.text = _questStepDescription.text;
 
-        if(isFirstStep)
+        if(!isFirstStep)
         {
-            //set bool in animator to true, so that it will play the quest step animation after "_animatorpla
-        }
-        else
-        {
-            _animator.Play("QuestUIStartedPopup");
+            _animator.Play("QuestUiStartedPopup");
         }
     }
 
@@ -214,9 +211,6 @@ public class QuestUI : MonoBehaviour
         _questFinishedBox.SetActive(false);
         _questStartedText.text = "Started Quest: " + displayNameUI;
         _animator.Play("QuestUIStartedPopup");
-
-        _questIdleTitle.text = "Currently Active: " + displayNameUI;
-        _questIdleDescription.text = "";
     }
 
     private void FinishQuestUI()
@@ -227,7 +221,6 @@ public class QuestUI : MonoBehaviour
         _animator.Play("QuestUIFinishedPopup");
 
         _questIdleTitle.text = "";
-        _questIdleDescription.text = "";
     }
 
     private void StartSidequestUI()
