@@ -159,6 +159,37 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1252881775}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &27056158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 27056159}
+  m_Layer: 0
+  m_Name: Chobo_Kettle_Teleport
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &27056159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27056158}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.72628444, y: -0.31105995, z: 0.24605803, w: 0.5614341}
+  m_LocalPosition: {x: 8.88, y: -17.18, z: -79.05}
+  m_LocalScale: {x: 1, y: 1, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: -41.487, y: 250.627, z: -256.406}
 --- !u!1 &42511862
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +403,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b73ce5722804f84f9687e8672668af7, type: 3}
+--- !u!1001 &54411065
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5737757825114816853, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434744319994550063, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434744319994550063, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434744319994550063, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434744319994550063, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434744319994550063, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434744319994550063, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434744319994550063, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434744319994550063, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434744319994550063, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434744319994550063, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 905cbaba0f3cb7d45be025a7c38c0840, type: 3}
 --- !u!4 &62461201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1851037987322260459, guid: d1ee0220058d80043982be2ccf0f9bd4,
@@ -1473,6 +1572,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcd89250bab3c204f9ad4220eddda7fe, type: 3}
+--- !u!114 &235646008 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2685318366280350923, guid: bcd89250bab3c204f9ad4220eddda7fe,
+    type: 3}
+  m_PrefabInstance: {fileID: 235646007}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93fe277e38c50ba4288c7c1640b2d6d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &240853932
 GameObject:
   m_ObjectHideFlags: 0
@@ -2352,6 +2463,11 @@ PrefabInstance:
       propertyPath: inkJSON_PC
       value: 
       objectReference: {fileID: 4900000, guid: 9e9bc0db731b0ca4fb8bca909a8d8b80, type: 3}
+    - target: {fileID: 492320754871632885, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      propertyPath: inkJSON_PC_current
+      value: 
+      objectReference: {fileID: 4900000, guid: 9e9bc0db731b0ca4fb8bca909a8d8b80, type: 3}
     - target: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_Name
@@ -2444,6 +2560,21 @@ MonoBehaviour:
   startPoint: 1
   finishPoint: 1
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3245,6 +3376,91 @@ Transform:
   - {fileID: 1054112009}
   m_Father: {fileID: 691667264}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &549965123
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4151440263551788098, guid: 1a9a9c63e512b6d4ea9851fe07810d44,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151440263551788098, guid: 1a9a9c63e512b6d4ea9851fe07810d44,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151440263551788098, guid: 1a9a9c63e512b6d4ea9851fe07810d44,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151440263551788098, guid: 1a9a9c63e512b6d4ea9851fe07810d44,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151440263551788098, guid: 1a9a9c63e512b6d4ea9851fe07810d44,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151440263551788098, guid: 1a9a9c63e512b6d4ea9851fe07810d44,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151440263551788098, guid: 1a9a9c63e512b6d4ea9851fe07810d44,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151440263551788098, guid: 1a9a9c63e512b6d4ea9851fe07810d44,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151440263551788098, guid: 1a9a9c63e512b6d4ea9851fe07810d44,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151440263551788098, guid: 1a9a9c63e512b6d4ea9851fe07810d44,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497424542828253728, guid: 1a9a9c63e512b6d4ea9851fe07810d44,
+        type: 3}
+      propertyPath: m_Name
+      value: ScriptedEventsManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5276093643137896419, guid: 1a9a9c63e512b6d4ea9851fe07810d44,
+        type: 3}
+      propertyPath: _kettleTeleportTransform
+      value: 
+      objectReference: {fileID: 27056159}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1a9a9c63e512b6d4ea9851fe07810d44, type: 3}
+--- !u!114 &549965124 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5276093643137896419, guid: 1a9a9c63e512b6d4ea9851fe07810d44,
+    type: 3}
+  m_PrefabInstance: {fileID: 549965123}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd6db31f87ad594dbe80b7eed7bb932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &553402291
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3814,8 +4030,9 @@ MonoBehaviour:
   _interactOnce: 0
   _interactType: 0
   _interruptCarrying: 0
-  inkJSON_PC: {fileID: 4900000, guid: 6b557f7932664034b8f9c39d63b2df64, type: 3}
-  inkJSON_Controller: {fileID: 0}
+  inkJSON: {fileID: 0}
+  inkJSON_PC_current: {fileID: 4900000, guid: 6b557f7932664034b8f9c39d63b2df64, type: 3}
+  inkJSON_Controller_current: {fileID: 0}
 --- !u!135 &616139550
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4646,6 +4863,21 @@ MonoBehaviour:
   startPoint: 0
   finishPoint: 1
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &737707732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4713,6 +4945,33 @@ MonoBehaviour:
   startPoint: 0
   finishPoint: 1
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 235646008}
+        m_TargetAssemblyTypeName: CanvasSceneTransition, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Credits
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &738094727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4728,8 +4987,9 @@ MonoBehaviour:
   _interactOnce: 0
   _interactType: 0
   _interruptCarrying: 0
-  inkJSON_PC: {fileID: 4900000, guid: d698a7d34b50ffb41a23de6f1f860fcb, type: 3}
-  inkJSON_Controller: {fileID: 0}
+  inkJSON: {fileID: 0}
+  inkJSON_PC_current: {fileID: 4900000, guid: 2904fc2e95216a040b132448401215d0, type: 3}
+  inkJSON_Controller_current: {fileID: 0}
 --- !u!135 &738094728
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5654,6 +5914,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814280756}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &815790394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 815790395}
+  m_Layer: 0
+  m_Name: Chobo_Tutorial_Waypoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &815790395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815790394}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.33, y: 80.185, z: 10.36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &817766487
 GameObject:
   m_ObjectHideFlags: 0
@@ -7491,6 +7782,21 @@ MonoBehaviour:
   startPoint: 0
   finishPoint: 1
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &1158202476
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7953,6 +8259,11 @@ PrefabInstance:
       propertyPath: inkJSON_Controller
       value: 
       objectReference: {fileID: 4900000, guid: 590d48446bb3d4d4384cb3ac0b332732, type: 3}
+    - target: {fileID: 492320754871632885, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      propertyPath: inkJSON_PC_current
+      value: 
+      objectReference: {fileID: 4900000, guid: ef055201d1056fe428076316bb58713a, type: 3}
     - target: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_Name
@@ -8045,6 +8356,21 @@ MonoBehaviour:
   startPoint: 1
   finishPoint: 0
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1252881775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8246,6 +8572,11 @@ PrefabInstance:
       propertyPath: inkJSON_PC
       value: 
       objectReference: {fileID: 4900000, guid: 34d5537d478895143bc9e944a9fcfc46, type: 3}
+    - target: {fileID: 492320754871632885, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      propertyPath: inkJSON_PC_current
+      value: 
+      objectReference: {fileID: 4900000, guid: 34d5537d478895143bc9e944a9fcfc46, type: 3}
     - target: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_Name
@@ -8346,6 +8677,21 @@ MonoBehaviour:
   startPoint: 0
   finishPoint: 1
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1274472804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8363,6 +8709,21 @@ MonoBehaviour:
   startPoint: 1
   finishPoint: 0
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1274472805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8380,6 +8741,21 @@ MonoBehaviour:
   startPoint: 1
   finishPoint: 0
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1274979505
 GameObject:
   m_ObjectHideFlags: 0
@@ -8461,6 +8837,11 @@ PrefabInstance:
     - target: {fileID: 492320754871632885, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: inkJSON_PC
+      value: 
+      objectReference: {fileID: 4900000, guid: 711e2b78a72281c4487f55b63c10b7a3, type: 3}
+    - target: {fileID: 492320754871632885, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      propertyPath: inkJSON_PC_current
       value: 
       objectReference: {fileID: 4900000, guid: 711e2b78a72281c4487f55b63c10b7a3, type: 3}
     - target: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
@@ -8555,6 +8936,21 @@ MonoBehaviour:
   startPoint: 1
   finishPoint: 1
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1380753018
 GameObject:
   m_ObjectHideFlags: 0
@@ -8698,6 +9094,11 @@ PrefabInstance:
       propertyPath: _interactOnce
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 769864316533243224, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      propertyPath: inkJSON_PC_current
+      value: 
+      objectReference: {fileID: 4900000, guid: eb3ea850694f57e4d82dc8c4f024a44d, type: 3}
     - target: {fileID: 2419776515654793088, guid: c0f62d20604405145be515ab1c35229b,
         type: 3}
       propertyPath: _teleportLocation
@@ -8718,6 +9119,11 @@ PrefabInstance:
       propertyPath: inkJSON_PC
       value: 
       objectReference: {fileID: 4900000, guid: 3eec053fb7920f244878f5bfd239ed35, type: 3}
+    - target: {fileID: 4880743782325304001, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      propertyPath: inkJSON_PC_current
+      value: 
+      objectReference: {fileID: 4900000, guid: 3eec053fb7920f244878f5bfd239ed35, type: 3}
     - target: {fileID: 5660585430766858912, guid: c0f62d20604405145be515ab1c35229b,
         type: 3}
       propertyPath: m_Name
@@ -8731,6 +9137,11 @@ PrefabInstance:
     - target: {fileID: 6485038614768957799, guid: c0f62d20604405145be515ab1c35229b,
         type: 3}
       propertyPath: inkJSON_PC
+      value: 
+      objectReference: {fileID: 4900000, guid: 384e2ddba00cade45988e3f3ff09c793, type: 3}
+    - target: {fileID: 6485038614768957799, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      propertyPath: inkJSON_PC_current
       value: 
       objectReference: {fileID: 4900000, guid: 384e2ddba00cade45988e3f3ff09c793, type: 3}
     - target: {fileID: 8787410008692925636, guid: c0f62d20604405145be515ab1c35229b,
@@ -10152,6 +10563,11 @@ PrefabInstance:
       propertyPath: inkJSON_PC
       value: 
       objectReference: {fileID: 4900000, guid: 0ab5eb198aec0a84ab80867a9d81b91a, type: 3}
+    - target: {fileID: 492320754871632885, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      propertyPath: inkJSON_PC_current
+      value: 
+      objectReference: {fileID: 4900000, guid: 0ab5eb198aec0a84ab80867a9d81b91a, type: 3}
     - target: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_Name
@@ -10222,6 +10638,10 @@ PrefabInstance:
       addedObject: {fileID: 1711939698}
     - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1711939699}
+    - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
       insertIndex: -1
       addedObject: {fileID: 1711939691}
     - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
@@ -10260,6 +10680,45 @@ MonoBehaviour:
   startPoint: 1
   finishPoint: 1
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 549965124}
+        m_TargetAssemblyTypeName: ScriptedEvents, Assembly-CSharp
+        m_MethodName: MoveChobo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 549965124}
+        m_TargetAssemblyTypeName: ScriptedEvents, Assembly-CSharp
+        m_MethodName: StopChobo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1711939692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10277,6 +10736,21 @@ MonoBehaviour:
   startPoint: 1
   finishPoint: 0
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1711939693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10294,6 +10768,21 @@ MonoBehaviour:
   startPoint: 1
   finishPoint: 0
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1711939697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10311,6 +10800,21 @@ MonoBehaviour:
   startPoint: 1
   finishPoint: 1
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!195 &1711939698
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -10333,6 +10837,21 @@ NavMeshAgent:
   m_BaseOffset: 0.45
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1711939699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711939690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469b20511f3fcf646ae1a50118c5a997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints:
+  - {fileID: 815790395}
+  stopWalking: 1
 --- !u!1 &1735578681
 GameObject:
   m_ObjectHideFlags: 0
@@ -10922,6 +11441,11 @@ PrefabInstance:
       propertyPath: inkJSON_Controller
       value: 
       objectReference: {fileID: 4900000, guid: c67f6b514a64b5141bbbc651b7971a0e, type: 3}
+    - target: {fileID: 492320754871632885, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      propertyPath: inkJSON_PC_current
+      value: 
+      objectReference: {fileID: 4900000, guid: 2904fc2e95216a040b132448401215d0, type: 3}
     - target: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_Name
@@ -11009,6 +11533,21 @@ MonoBehaviour:
   startPoint: 1
   finishPoint: 0
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1905229296 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8726702762160518092, guid: a51e5d6f37dd3e1458f60c4115ca20b0,
@@ -11341,6 +11880,21 @@ MonoBehaviour:
   startPoint: 0
   finishPoint: 1
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1938207243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11356,8 +11910,9 @@ MonoBehaviour:
   _interactOnce: 0
   _interactType: 0
   _interruptCarrying: 0
-  inkJSON_PC: {fileID: 4900000, guid: 4789330086fee404cb7cb40bed50eed0, type: 3}
-  inkJSON_Controller: {fileID: 0}
+  inkJSON: {fileID: 0}
+  inkJSON_PC_current: {fileID: 4900000, guid: e8391ab78a2ce7c4a91624e95389f98a, type: 3}
+  inkJSON_Controller_current: {fileID: 0}
 --- !u!135 &1938207244
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11467,6 +12022,21 @@ MonoBehaviour:
   startPoint: 0
   finishPoint: 1
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1946751590
 GameObject:
   m_ObjectHideFlags: 0
@@ -12922,6 +13492,8 @@ SceneRoots:
   - {fileID: 1931077267}
   - {fileID: 332608099}
   - {fileID: 240853933}
+  - {fileID: 549965123}
+  - {fileID: 54411065}
   - {fileID: 1910261913}
   - {fileID: 838177410}
   - {fileID: 553402291}
@@ -12939,6 +13511,8 @@ SceneRoots:
   - {fileID: 1391077634}
   - {fileID: 628941123}
   - {fileID: 1302888180}
+  - {fileID: 815790395}
+  - {fileID: 27056159}
   - {fileID: 1711939689}
   - {fileID: 1274472798}
   - {fileID: 408551173}
