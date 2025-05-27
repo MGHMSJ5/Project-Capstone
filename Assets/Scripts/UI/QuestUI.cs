@@ -21,7 +21,9 @@ public class QuestUI : MonoBehaviour
     [SerializeField]
     private GameObject _questIdleBox;
     [SerializeField]
-    private TextMeshProUGUI _questIdleText;
+    private TextMeshProUGUI _questIdleTitle;
+    [SerializeField]
+    private TextMeshProUGUI _questIdleDescription;
 
     [Header("Sidequests")]
     [SerializeField]
@@ -32,6 +34,13 @@ public class QuestUI : MonoBehaviour
     private GameObject _sideQuestFinishedBox;
     [SerializeField]
     private TextMeshProUGUI _sideQuestFinishedText;
+
+    [Header("Quest Steps")]
+    [SerializeField]
+    private GameObject _questStepBox;
+    [SerializeField]
+    private TextMeshProUGUI _questStepTitle;
+    private TextMeshProUGUI _questStepDescription;
 
     [HideInInspector]
     public string displayNameUI;
@@ -59,6 +68,7 @@ public class QuestUI : MonoBehaviour
         _sideQuestStartedBox.SetActive(false);
         _sideQuestFinishedBox.SetActive(false);
         _questIdleBox.SetActive(false);
+        _questStepBox.SetActive(false);
     }
 
     private void Update()
@@ -89,7 +99,7 @@ public class QuestUI : MonoBehaviour
 
     public void ShowQuestUIIdle(bool appear)
     {
-        if (_questIdleText.text == "")
+        if (_questIdleTitle.text == "")
         {
             return;
         }
@@ -180,6 +190,25 @@ public class QuestUI : MonoBehaviour
         }
     }
 
+    public void StepQuestUi(string title, string description, bool isFirstStep)
+    {
+        _questStepBox.SetActive(true);
+        _questStepTitle.text = title;
+        _questStepDescription.text = description;
+
+        _questIdleTitle.text = _questStepTitle.text;
+        _questIdleDescription.text = _questStepDescription.text;
+
+        if(isFirstStep)
+        {
+            //set bool in animator to true, so that it will play the quest step animation after "_animatorpla
+        }
+        else
+        {
+            _animator.Play("QuestUIStartedPopup");
+        }
+    }
+
     private void StartQuestUI()
     {
         _questStartedBox.SetActive(true);
@@ -187,7 +216,8 @@ public class QuestUI : MonoBehaviour
         _questStartedText.text = "Started Quest: " + displayNameUI;
         _animator.Play("QuestUIStartedPopup");
 
-        _questIdleText.text = "Currently Active: " + displayNameUI;
+        _questIdleTitle.text = "Currently Active: " + displayNameUI;
+        _questIdleDescription.text = "";
     }
 
     private void FinishQuestUI()
@@ -197,7 +227,8 @@ public class QuestUI : MonoBehaviour
         _questFinishedText.text = "Finished Quest: " + displayNameUI;
         _animator.Play("QuestUIFinishedPopup");
 
-        _questIdleText.text = "";
+        _questIdleTitle.text = "";
+        _questIdleDescription.text = "";
     }
 
     private void StartSidequestUI()
