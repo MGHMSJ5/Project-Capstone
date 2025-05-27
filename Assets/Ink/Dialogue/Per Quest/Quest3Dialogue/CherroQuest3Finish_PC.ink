@@ -1,0 +1,1 @@
+//Lea: After the player repairs the fencegate, the player can talk to Cherro for the first time. Cherro explains something about pulse (player gets an update). PC Controls for Pulse also needs explaining.
