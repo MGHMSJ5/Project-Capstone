@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &811655222472720360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3546914562599052534}
+  - component: {fileID: 9199023393803376155}
+  m_Layer: 3
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3546914562599052534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811655222472720360}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -3.96, z: -0}
+  m_LocalScale: {x: 1, y: 6.6598253, z: 2.5693662}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3694707287817275080}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &9199023393803376155
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811655222472720360}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2590941378072164287
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,6 +66,7 @@ GameObject:
   - component: {fileID: 54475618294156447}
   - component: {fileID: 6265247367887594891}
   - component: {fileID: 6693304655678241064}
+  - component: {fileID: 8664684785205875006}
   - component: {fileID: 7246411016201426185}
   m_Layer: 3
   m_Name: LandingAreaBridge
@@ -29,14 +83,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2590941378072164287}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.2486366, y: 0.049687803, z: -0.66195154, w: 0.70535886}
+  m_LocalRotation: {x: -0.24863362, y: 0.04968843, z: -0.6619527, w: 0.70535886}
   m_LocalPosition: {x: -12.240997, y: 77.3468, z: -41.55684}
   m_LocalScale: {x: 5.1635385, y: 0.5018196, z: 3.6748319}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8766072625675749995}
+  - {fileID: 3546914562599052534}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: -16.557, y: 24.616, z: -90}
 --- !u!33 &7669396173486071314
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -130,6 +185,21 @@ MonoBehaviour:
     amountText: {fileID: 0}
     currentAmount: 0
   HasBeenRepaired: 0
+--- !u!114 &8664684785205875006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2590941378072164287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3e1ab42e384074980ed544733a3092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bridgeCollider: {fileID: 9199023393803376155}
+  finalPosition: {x: -13.66, y: 74.93, z: -40.11}
+  finalRotation: {x: -0.1412144, y: 0.21058519, z: 0.02822054, w: 0.9669106}
 --- !u!65 &7246411016201426185
 BoxCollider:
   m_ObjectHideFlags: 0

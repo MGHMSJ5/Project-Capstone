@@ -3444,6 +3444,11 @@ PrefabInstance:
       propertyPath: _kettleTeleportTransform
       value: 
       objectReference: {fileID: 27056159}
+    - target: {fileID: 5276093643137896419, guid: 1a9a9c63e512b6d4ea9851fe07810d44,
+        type: 3}
+      propertyPath: _landingAreaTeleportTransform
+      value: 
+      objectReference: {fileID: 8480173971707251216}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7005,6 +7010,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5430282147374999228, guid: a289c2dd2b2218f41b245bed3db163ef,
         type: 3}
+      propertyPath: _interactOnce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430282147374999228, guid: a289c2dd2b2218f41b245bed3db163ef,
+        type: 3}
       propertyPath: _repairTypeAmount.Array.data[0].amount
       value: 8
       objectReference: {fileID: 0}
@@ -7765,38 +7775,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3403498349574546430}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1158202475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1158202471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81f410b8943884e42b56b1ac73217be1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questInfoForPoint: {fileID: 11400000, guid: 10c2141711986f5428c7f5bc3f1cdf0a, type: 2}
-  secondQuest: {fileID: 0}
-  startPoint: 0
-  finishPoint: 1
-  questId: 
-  currentQuestState: 0
-  startedQuestDialogue: 0
-  finishedQuestDialgue: 0
-  StartQuestEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  StartQuestAfterDialogueEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  FinishQuestEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  FinishQuestAfterDialogueEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!135 &1158202476
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8857,17 +8835,17 @@ PrefabInstance:
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.13
+      value: 30.58
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 71.93
+      value: 72.2
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 26.53
+      value: 24.96
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
@@ -11513,7 +11491,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inkJSON_PC_current
       value: 
-      objectReference: {fileID: 4900000, guid: 2904fc2e95216a040b132448401215d0, type: 3}
+      objectReference: {fileID: 4900000, guid: d698a7d34b50ffb41a23de6f1f860fcb, type: 3}
     - target: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_Name
@@ -11599,7 +11577,7 @@ MonoBehaviour:
   questInfoForPoint: {fileID: 11400000, guid: 10c2141711986f5428c7f5bc3f1cdf0a, type: 2}
   secondQuest: {fileID: 0}
   startPoint: 1
-  finishPoint: 0
+  finishPoint: 1
   questId: 
   currentQuestState: 0
   startedQuestDialogue: 0
@@ -13255,10 +13233,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1158202476}
-    - targetCorrespondingSourceObject: {fileID: 2334659591283382334, guid: 346c45c9f185c784398920a0de6f1c9d,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1158202475}
   m_SourcePrefab: {fileID: 100100000, guid: 346c45c9f185c784398920a0de6f1c9d, type: 3}
 --- !u!1001 &5150563602329221462
 PrefabInstance:
@@ -13543,6 +13517,37 @@ MonoBehaviour:
   m_Damping: 0
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
+--- !u!1 &5725730346319153507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8480173971707251216}
+  m_Layer: 0
+  m_Name: Chobo_LandingArea_Teleport
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8480173971707251216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5725730346319153507}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.006790779, y: -0.9445493, z: 0.17950548, w: 0.2748787}
+  m_LocalPosition: {x: -9.25, y: 75.99, z: -30.15}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 20.05, y: -146.621, z: 5.244}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -13582,6 +13587,7 @@ SceneRoots:
   - {fileID: 1302888180}
   - {fileID: 815790395}
   - {fileID: 27056159}
+  - {fileID: 8480173971707251216}
   - {fileID: 1711939689}
   - {fileID: 1274472798}
   - {fileID: 408551173}

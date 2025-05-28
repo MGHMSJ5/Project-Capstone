@@ -49,7 +49,7 @@ public class QuestPoint : MonoBehaviour
     {
         GameEventsManager.instance.questEvents.onQuestStateChange += QuestStateChange;
         _baseInteract.onSubmitPressed += SubmitPressed;
-        _questUI = GameObject.Find("Canvas").GetComponent<QuestUI>();
+        _questUI = GameObject.Find("QuestUI").GetComponent<QuestUI>();
     }
 
     private void OnDisable()
