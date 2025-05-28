@@ -3720,6 +3720,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 279ea4a068ad534489e63143ca2403b0, type: 3}
+--- !u!1 &509356319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 347238955418335468, guid: 5b59655f97469cb49b0273d891e22d96,
+    type: 3}
+  m_PrefabInstance: {fileID: 713023170}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &529371619
 GameObject:
   m_ObjectHideFlags: 0
@@ -9415,6 +9421,12 @@ Transform:
   - {fileID: 1038052796}
   m_Father: {fileID: 1888835517}
   m_LocalEulerAnglesHint: {x: -16.019, y: 2.238, z: -11.659}
+--- !u!1 &1279989417 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7460508280903355578, guid: 86911f1d600a1ca468512874498ee58e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2070842599}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1302888179
 GameObject:
   m_ObjectHideFlags: 0
@@ -13213,8 +13225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f51f24d3d43fa4aaea431191b9abc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _questionMark: {fileID: 0}
-  _exclamationMark: {fileID: 0}
+  _questionMark: {fileID: 1279989417}
+  _exclamationMark: {fileID: 509356319}
   questPoints: []
   _state: 0
 --- !u!1 &1946751590

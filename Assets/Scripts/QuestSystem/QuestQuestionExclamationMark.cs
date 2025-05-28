@@ -11,11 +11,17 @@ public class QuestQuestionExclamationMark : MonoBehaviour
     [SerializeField]
     private QuestPoint[] questPoints;
 
+    private Renderer _exclamationMarkRenderer;
+
+    private Color _baseColor;
+
     public QuestState _state;
 
     void Awake()
     {
         questPoints = GetComponents<QuestPoint>();
+        _exclamationMarkRenderer = _exclamationMark.transform.GetChild(0).GetComponent<Renderer>();
+        _baseColor = _exclamationMarkRenderer.material.color;
     }
 
     private void OnEnable()
@@ -26,23 +32,9 @@ public class QuestQuestionExclamationMark : MonoBehaviour
             questPoints[i].CanFinishEvent.AddListener(ShowExclamationMark);
             questPoints[i].StartQuestAfterDialogueEvent.AddListener(HideQuestionMark);
             questPoints[i].FinishQuestAfterDialogueEvent.AddListener(HideExclamationMark);
+
+            questPoints[i].QuestInProgressionAction = ShowTransparentExclamationMark;
         }
-    }
-
-    private void OnDisable()
-    {
-        for (int i = 0; i < questPoints.Length; i++)
-        {
-            questPoints[i].CanStartEvent.RemoveListener(ShowQuestionMark);
-            questPoints[i].CanFinishEvent.RemoveListener(ShowExclamationMark);
-            questPoints[i].StartQuestAfterDialogueEvent.RemoveListener(HideQuestionMark);
-            questPoints[i].FinishQuestAfterDialogueEvent.RemoveListener(HideExclamationMark);
-        }
-    }
-
-    void Update()
-    {
-
     }
 
     public void ShowQuestionMark()
@@ -53,6 +45,7 @@ public class QuestQuestionExclamationMark : MonoBehaviour
     public void ShowExclamationMark()
     {
         _exclamationMark.SetActive(true);
+        _exclamationMarkRenderer.material.color = _baseColor;
     }
 
     public void HideQuestionMark()
@@ -63,6 +56,12 @@ public class QuestQuestionExclamationMark : MonoBehaviour
     public void HideExclamationMark()
     {
         _exclamationMark.SetActive(false);
+    }
+
+    public void ShowTransparentExclamationMark()
+    {
+        _exclamationMark.SetActive(true);
+        _exclamationMarkRenderer.material.color = Color.white;
     }
 }
 

@@ -42,6 +42,7 @@ public class QuestPoint : MonoBehaviour
     public UnityEvent StartQuestAfterDialogueEvent;
     public UnityEvent FinishQuestEvent;
     public UnityEvent FinishQuestAfterDialogueEvent;
+    public UnityAction QuestInProgressionAction;
 
     private void Awake()
     {
@@ -61,7 +62,14 @@ public class QuestPoint : MonoBehaviour
     {
         GameEventsManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
         _baseInteract.onSubmitPressed -= SubmitPressed;
-    }
+
+        CanStartEvent = null;
+        CanFinishEvent = null;
+        StartQuestEvent = null;
+        StartQuestAfterDialogueEvent = null;
+        FinishQuestEvent = null;
+        FinishQuestAfterDialogueEvent = null;
+}
 
     private void Update()
     {   // If the player has started the quest UI, and the dialogue is finished
@@ -87,6 +95,11 @@ public class QuestPoint : MonoBehaviour
         {
             _hasInvoked = true;
             CanFinishEvent?.Invoke();
+        }
+        if (currentQuestState.Equals(QuestState.IN_PROGRESS) && finishPoint && !_hasInvoked)
+        {
+            _hasInvoked = true;
+            StartQuestAfterDialogueEvent.AddListener(QuestInProgressionAction);
         }
     }
     private void SubmitPressed()

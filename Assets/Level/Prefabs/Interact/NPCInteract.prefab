@@ -194,6 +194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _questionMark: {fileID: 4827819302722742224}
   _exclamationMark: {fileID: 7686565891579935556}
+  questPoints: []
+  _state: 0
 --- !u!1001 &2699574630062680938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220,17 +222,17 @@ PrefabInstance:
     - target: {fileID: 6124731550845388375, guid: 86911f1d600a1ca468512874498ee58e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.078008704
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6124731550845388375, guid: 86911f1d600a1ca468512874498ee58e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8367799
+      value: 0.837
       objectReference: {fileID: 0}
     - target: {fileID: 6124731550845388375, guid: 86911f1d600a1ca468512874498ee58e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.059341926
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6124731550845388375, guid: 86911f1d600a1ca468512874498ee58e,
         type: 3}
@@ -340,17 +342,17 @@ PrefabInstance:
     - target: {fileID: 2734443627685805750, guid: 5b59655f97469cb49b0273d891e22d96,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.078008704
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2734443627685805750, guid: 5b59655f97469cb49b0273d891e22d96,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8367799
+      value: 0.837
       objectReference: {fileID: 0}
     - target: {fileID: 2734443627685805750, guid: 5b59655f97469cb49b0273d891e22d96,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.059341926
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2734443627685805750, guid: 5b59655f97469cb49b0273d891e22d96,
         type: 3}
