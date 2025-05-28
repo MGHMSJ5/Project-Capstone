@@ -18,6 +18,7 @@ public class PositionTeleportTrigger : MonoBehaviour
     private GameObject _factoryCamera;
     private Transform _playerTransform;
     private PlayerController _playerController;
+    private Transform _carryPoint;
 
     void Awake()
     {
@@ -26,6 +27,7 @@ public class PositionTeleportTrigger : MonoBehaviour
         _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
         _playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _playerController = _playerTransform.GetComponent<PlayerController>();
+        _carryPoint = GameObject.Find("CarryPoint").GetComponent<Transform>();
     }
     private void Start()
     {
@@ -41,6 +43,7 @@ public class PositionTeleportTrigger : MonoBehaviour
             _hasEntered = true; // Set to true so that this code won't be called again (to prevent issue)
             Invoke("EnablePlayerMovement", 0.5f); // Invoke this 0.5 seconds later to stop the player movement
             _canvasSceneTransition.FadeAction += ChangeCamera; // Subscribe to FadeAction event
+            InterruptCarrying();
             _canvasSceneTransition.CanvasFadeInAndOut(2f); // Call the fading
         }
     }
@@ -60,5 +63,17 @@ public class PositionTeleportTrigger : MonoBehaviour
     {
         _playerController.enabled = false;
         _hasEntered = false;
+    }
+
+    private void InterruptCarrying()
+    {
+        if (_carryPoint != null && _carryPoint.childCount > 0)
+        {
+            CarryObjectEXAMPLE carryObjectEXAMPLE = _carryPoint.GetChild(0).GetChild(0).GetComponent<CarryObjectEXAMPLE>();
+            if (carryObjectEXAMPLE != null)
+            {
+                carryObjectEXAMPLE.Interrupt();
+            }
+        }
     }
 }
