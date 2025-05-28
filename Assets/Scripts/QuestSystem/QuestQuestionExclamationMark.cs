@@ -8,37 +8,61 @@ public class QuestQuestionExclamationMark : MonoBehaviour
     private GameObject _questionMark;
     [SerializeField]
     private GameObject _exclamationMark;
+    [SerializeField]
+    private QuestPoint[] questPoints;
 
     public QuestState _state;
 
-    void Start()
+    void Awake()
     {
+        questPoints = GetComponents<QuestPoint>();
+    }
 
+    private void OnEnable()
+    {
+        for (int i = 0; i < questPoints.Length; i++)
+        {
+            questPoints[i].CanStartEvent.AddListener(ShowQuestionMark);
+            questPoints[i].CanFinishEvent.AddListener(ShowExclamationMark);
+            questPoints[i].StartQuestAfterDialogueEvent.AddListener(HideQuestionMark);
+            questPoints[i].FinishQuestAfterDialogueEvent.AddListener(HideExclamationMark);
+        }
+    }
+
+    private void OnDisable()
+    {
+        for (int i = 0; i < questPoints.Length; i++)
+        {
+            questPoints[i].CanStartEvent.RemoveListener(ShowQuestionMark);
+            questPoints[i].CanFinishEvent.RemoveListener(ShowExclamationMark);
+            questPoints[i].StartQuestAfterDialogueEvent.RemoveListener(HideQuestionMark);
+            questPoints[i].FinishQuestAfterDialogueEvent.RemoveListener(HideExclamationMark);
+        }
     }
 
     void Update()
     {
-        if (_state == QuestState.CAN_START)
-        {
-            ShowQuestionMark();
-        }
 
-        if (_state == QuestState.CAN_FINISH)
-        {
-            ShowExclamationMark();
-        }
     }
 
-    private void ShowQuestionMark()
+    public void ShowQuestionMark()
     {
-            print(_state);
-            _questionMark.SetActive(true);
+        _questionMark.SetActive(true);
     }
 
-    private void ShowExclamationMark()
+    public void ShowExclamationMark()
     {
-            print(_state);
-            _exclamationMark.SetActive(true);
+        _exclamationMark.SetActive(true);
+    }
+
+    public void HideQuestionMark()
+    {
+        _questionMark.SetActive(false);
+    }
+
+    public void HideExclamationMark()
+    {
+        _exclamationMark.SetActive(false);
     }
 }
 
