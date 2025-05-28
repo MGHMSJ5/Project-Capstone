@@ -62,13 +62,13 @@ public class NPCInteract : BaseInteract
 
     public void SwitchDialogue()
     {
-        if (_UIChangeSubject.UsingPCControls)
+        if (inkJSON_Controller_current != null)
         {
-            inkJSON = inkJSON_PC_current;
+            inkJSON = _UIChangeSubject.UsingPCControls ? inkJSON_PC_current : inkJSON_Controller_current;
         }
         else
         {
-            inkJSON = inkJSON_Controller_current;
+            inkJSON = inkJSON_PC_current;
         }
     }
 

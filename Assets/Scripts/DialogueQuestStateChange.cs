@@ -81,7 +81,7 @@ public class DialogueQuestStateChange : MonoBehaviour
             _questIndex += 1;
         }
         // If not null, then set the PC and Controller version of the dialogue text and change it
-        if (pcJSON != null && controllerJSON != null)
+        if (pcJSON != null)
         {
             _NPCInteract.inkJSON_PC_current = pcJSON;
             _NPCInteract.inkJSON_Controller_current = controllerJSON;
