@@ -1,7 +1,6 @@
 ->Main
 
 === Main ===
-Unused Line
 Welcome to the village!
 Normally the planet is much more lively around this time of year, with locals and tourists alike enjoying the warmth of the Kettle's water.
 But ever since the Kettle has stopped supplying the place with hot water, the number of tourists has dwindled greatly and the villagers have become shut-ins.

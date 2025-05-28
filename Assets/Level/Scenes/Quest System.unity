@@ -4035,7 +4035,6 @@ MonoBehaviour:
   _interactOnce: 0
   _interactType: 0
   _interruptCarrying: 0
-  inkJSON: {fileID: 0}
   inkJSON_PC_current: {fileID: 4900000, guid: 6b557f7932664034b8f9c39d63b2df64, type: 3}
   inkJSON_Controller_current: {fileID: 0}
 --- !u!135 &616139550
@@ -4992,7 +4991,6 @@ MonoBehaviour:
   _interactOnce: 0
   _interactType: 0
   _interruptCarrying: 0
-  inkJSON: {fileID: 0}
   inkJSON_PC_current: {fileID: 4900000, guid: 2904fc2e95216a040b132448401215d0, type: 3}
   inkJSON_Controller_current: {fileID: 0}
 --- !u!135 &738094728
@@ -10617,6 +10615,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       insertIndex: 3
+      addedObject: {fileID: 1711939704}
+    - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      insertIndex: 4
       addedObject: {fileID: 1711939699}
     - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
@@ -10830,6 +10832,37 @@ MonoBehaviour:
   waypoints:
   - {fileID: 815790395}
   stopWalking: 1
+--- !u!114 &1711939704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711939690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2245840f46ab55d4fa000529a3420ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONs_PC:
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 4900000, guid: ab943125a48fb97448872f385536da4a,
+      type: 3}
+    inkJSON_DuringQuest: {fileID: 0}
+    inkJSON_FinishQuest: {fileID: 4900000, guid: 6d75ecf7557e6b8488d27bc366b44c4a,
+      type: 3}
+    inkJSON_AfterQuest: {fileID: 4900000, guid: 453bcaed5ef58f440b9168fe4fa0bab4,
+      type: 3}
+  inkJSONs_Controller:
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 0}
+    inkJSON_FinishQuest: {fileID: 0}
+    inkJSON_AfterQuest: {fileID: 4900000, guid: 293ecab63073af94f9c76f5bd18087e6,
+      type: 3}
+  _questIndex: 0
+  _currentQuestState: 0
+  _questPoints: []
 --- !u!1 &1735578681
 GameObject:
   m_ObjectHideFlags: 0
@@ -11816,6 +11849,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4012777021073252228, guid: 8dcfedd625bb64e42a83d781055dad86,
         type: 3}
+      propertyPath: nameText
+      value: 
+      objectReference: {fileID: 1252881776}
+    - target: {fileID: 4012777021073252228, guid: 8dcfedd625bb64e42a83d781055dad86,
+        type: 3}
       propertyPath: choicesPanel
       value: 
       objectReference: {fileID: 1252881778}
@@ -11956,7 +11994,6 @@ MonoBehaviour:
   _interactOnce: 0
   _interactType: 0
   _interruptCarrying: 0
-  inkJSON: {fileID: 0}
   inkJSON_PC_current: {fileID: 4900000, guid: e8391ab78a2ce7c4a91624e95389f98a, type: 3}
   inkJSON_Controller_current: {fileID: 0}
 --- !u!135 &1938207244

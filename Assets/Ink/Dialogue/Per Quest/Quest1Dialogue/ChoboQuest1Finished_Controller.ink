@@ -1,7 +1,6 @@
 -> Main
 
 === Main ===
-Unused Line
 So, I see you need some more information on how to control your little metal joints and hinges. Worry not, I am here to help!
 To move around, you use the left thumbstick.
 If you want to go a little faster hold down the right trigger to sprint.
