@@ -32,7 +32,12 @@ public class QuestPoint : MonoBehaviour
     [HideInInspector]
     public bool finishedQuestDialgue = false;
 
-    [Header("Event at start and end")]
+    [Header("Events for if the Quest can be started or finished")]
+    public UnityEvent CanStartEvent;
+    public UnityEvent CanFinishEvent;
+    private bool _hasInvoked = false; // Bool that will keep track if one of the Can...Events have been invoked so that it only happens once
+
+    [Header("Events at start and end")]
     public UnityEvent StartQuestEvent;
     public UnityEvent StartQuestAfterDialogueEvent;
     public UnityEvent FinishQuestEvent;
@@ -71,6 +76,17 @@ public class QuestPoint : MonoBehaviour
         {
             FinishQuestAfterDialogueEvent?.Invoke();
             finishedQuestDialgue = false;
+        }
+
+        if (currentQuestState.Equals(QuestState.CAN_START) && startPoint && !_hasInvoked)
+        {
+            _hasInvoked = true;
+            CanStartEvent?.Invoke();
+        }
+        if (currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint && !_hasInvoked)
+        {
+            _hasInvoked = true;
+            CanFinishEvent?.Invoke();
         }
     }
     private void SubmitPressed()
@@ -115,6 +131,7 @@ public class QuestPoint : MonoBehaviour
         if (quest.info.id.Equals(questId))
         {
             currentQuestState = quest.state;
+            _hasInvoked = false;
         }
     }
 
