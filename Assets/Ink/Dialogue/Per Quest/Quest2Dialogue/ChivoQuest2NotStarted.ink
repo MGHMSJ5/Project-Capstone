@@ -1,2 +1,7 @@
-//Lea: If the player skips following Chobo and talks to Chivo, this is what the NPC tells the player to do. 
-//Lea: Tell the player to go back to Chobo or something
+-> main
+
+=== main ===
+unused line
+Oh, a strangers? Hello metal man!
+Have you met Chobo yet? I think the head of communication would love to meet you!
+-> END
