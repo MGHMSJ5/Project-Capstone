@@ -15,7 +15,6 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private GameObject _nextDialogue;
-    [SerializeField] private GameObject dialogueIndicator;
     private PlayerController _playerController;
 
     [Header("Choices UI")]
@@ -91,11 +90,11 @@ public class DialogueManager : MonoBehaviour
 
         if (choicesPanel.activeInHierarchy)
         {
-            dialogueIndicator.SetActive(false);
+            _nextDialogue.SetActive(false);
         }
         else
         {
-            dialogueIndicator.SetActive(true);
+            _nextDialogue.SetActive(true);
         }
     }
 

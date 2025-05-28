@@ -6,13 +6,11 @@ using UnityEngine;
 
 public class NPCInteract : BaseInteract
 {
-
-    [SerializeField]
     private TextAsset inkJSON;
 
     [Header("Input versions")]
     [Tooltip("The PC version of the dialogue is the default version. If there is also a controller version (when a button is mentioned) then the controller JSON file has to be applied.")]
-    [HideInInspector]
+    //[HideInInspector]
     public TextAsset inkJSON_PC_current;
     [HideInInspector]
     public TextAsset inkJSON_Controller_current;
@@ -64,13 +62,13 @@ public class NPCInteract : BaseInteract
 
     public void SwitchDialogue()
     {
-        if (_UIChangeSubject.UsingPCControls)
+        if (inkJSON_Controller_current != null)
         {
-            inkJSON = inkJSON_PC_current;
+            inkJSON = _UIChangeSubject.UsingPCControls ? inkJSON_PC_current : inkJSON_Controller_current;
         }
         else
         {
-            inkJSON = inkJSON_Controller_current;
+            inkJSON = inkJSON_PC_current;
         }
     }
 

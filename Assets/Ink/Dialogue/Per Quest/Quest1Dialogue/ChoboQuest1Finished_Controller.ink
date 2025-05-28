@@ -1,0 +1,1 @@
+//Lea: Thomas, you can also be creative with what Chobo will say right here. It needs an explanation for how the controls work on Controller
