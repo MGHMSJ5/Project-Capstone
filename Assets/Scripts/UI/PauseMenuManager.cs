@@ -8,6 +8,7 @@ public class PauseMenuManager : MonoBehaviour
     [Header("Main UI")]
     public GameObject pauseMenuUI;
     public GameObject firstPauseMenuButton;
+    public GameObject dialoguePanel;
 
     [Header("Load Save UI")]
     public GameObject loadSavePanel;
@@ -40,26 +41,29 @@ public class PauseMenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Pause"))
-        {
-            if (isPaused)
-                Resume();
-            else
-                Pause();
-        }
+    if (Input.GetButtonDown("Pause"))
+    {
+        if (dialoguePanel != null && dialoguePanel.activeSelf)
+            return; // Can't pause if dialogue is active!
 
-        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
-        {
-            lastInputMethod = "Mouse";
-        }
+        if (isPaused)
+            Resume();
+        else
+            Pause();
+    }
 
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+    if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+    {
+        lastInputMethod = "Mouse";
+    }
+
+    if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+    {
+        if (lastInputMethod != "Controller")
         {
-            if (lastInputMethod != "Controller")
-            {
-                RestoreControllerFocus();
-                lastInputMethod = "Controller";
-            }
+            RestoreControllerFocus();
+            lastInputMethod = "Controller";
+        }
         }
     }
 
@@ -115,15 +119,12 @@ public class PauseMenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-    public void SaveAndQuit()
+    public void Quit()
     {
-        if (playerTransform != null)
-            SaveSystem.SaveGame(playerTransform.position, questManager);
-
-        Time.timeScale = 1f;
-        IsPaused = false;
-        _canvasSceneTransition.ChangeScene("TitleScreen");
-        //SceneManager.LoadScene("TitleScreen");
+    Time.timeScale = 1f;
+    IsPaused = false;
+    Debug.Log("Game closed");
+    Application.Quit();
     }
 
     public void GoToMainMenu()
