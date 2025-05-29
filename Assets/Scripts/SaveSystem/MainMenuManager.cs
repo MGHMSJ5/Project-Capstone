@@ -258,4 +258,11 @@ public void OnAutoSaveSelected()
     mainMenuPanel.SetActive(true);
     SetSelected(firstMainMenuButton);
     }
+
+    public void OnBackFromNoSaveFound()
+    {
+    ResetAllPanels();
+    mainMenuPanel.SetActive(true);
+    SetSelected(firstMainMenuButton);
+    }
 }
