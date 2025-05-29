@@ -6264,6 +6264,27 @@ MonoBehaviour:
   startPoint: 0
   finishPoint: 1
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  CanStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  CanFinishEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1031519900
 GameObject:
   m_ObjectHideFlags: 0
@@ -9135,6 +9156,27 @@ MonoBehaviour:
   startPoint: 0
   finishPoint: 1
   questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  CanStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  CanFinishEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1440158916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9150,8 +9192,8 @@ MonoBehaviour:
   _interactOnce: 0
   _interactType: 0
   _interruptCarrying: 0
-  inkJSON_PC: {fileID: 4900000, guid: d698a7d34b50ffb41a23de6f1f860fcb, type: 3}
-  inkJSON_Controller: {fileID: 0}
+  inkJSON_PC_current: {fileID: 0}
+  inkJSON_Controller_current: {fileID: 0}
 --- !u!135 &1440158917
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12881,7 +12923,7 @@ PrefabInstance:
     - target: {fileID: 2719781117133013473, guid: bcd89250bab3c204f9ad4220eddda7fe,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4734694736337110180, guid: bcd89250bab3c204f9ad4220eddda7fe,
         type: 3}
