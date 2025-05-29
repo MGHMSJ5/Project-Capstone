@@ -6,6 +6,9 @@ public class JumpState : IState
 {
     private PlayerController player;
 
+    private float timer = 0f;
+    private float waitTime = 0.5f;
+    private bool hasTriggered = false;
     public JumpState(PlayerController player)
     {
         this.player = player;
@@ -14,46 +17,37 @@ public class JumpState : IState
     public void Enter()
     {
         //Debug.Log("Jump");
+
+        ResetTimer();
     }
 
     public void Execute()
     {
-        // If the player is on the ground, then ...
-        if (player.Grounded)
-        {
-            // Check if the player is moving
-            if (player.Direction.magnitude > 0.1f)
-            {   // Transition to the sprint state when sprinting
-                if (player.IsSprinting)
-                {
-                    player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.sprintState);
-                }
-                else
-                {   // Transition to the walk state if the player is not sprinting
-                    player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.walkState);
-                }
-            }
-            // Transition to the idle state if the player is not moving
-            else
-            {
-                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.idleState);
-            }
-        }
         // else if (hovering stuff)
         if (player.PlayerHover.IsHovering)
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.hoverState);
         }
 
-        // If the player activates the pulse, then transition to the pulse state
-        if (player.PlayerPulse.IsPulseActive)
+        if (hasTriggered) return;
+
+        timer += Time.deltaTime;
+
+        if (timer >= waitTime)
         {
-            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.pulseState);
+            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
+            hasTriggered = true; // Prevent it from running again
         }
     }
 
     public void Exit()
     {
+             
+    }
 
+    public void ResetTimer()
+    {
+        timer = 0f;
+        hasTriggered = false;
     }
 }

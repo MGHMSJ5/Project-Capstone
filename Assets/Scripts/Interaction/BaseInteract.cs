@@ -95,9 +95,13 @@ public class BaseInteract : MonoBehaviour
     // Call from other script in case the player can interact again (while still in the trigger)
     protected void SetInteract(bool canInteract)
     {
-        // Set's if the player can interact or not (+ making the button appear/disappear)
-        _button.SetActive(canInteract);
-        _canInteract = canInteract;
+        if (_button != null)
+        {
+            // Set's if the player can interact or not (+ making the button appear/disappear)
+            _button.SetActive(canInteract);
+            _canInteract = canInteract;
+        }
+        
     }
 
     protected virtual void OnTriggerEnter(Collider other)

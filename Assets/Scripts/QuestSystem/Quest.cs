@@ -7,6 +7,8 @@ public class Quest
     //static info
     public QuestInfoSO info;
 
+    public int CurrentQuestStepIndex => currentQuestStepIndex;
+
     //state info
     public QuestState state;
     private int currentQuestStepIndex;

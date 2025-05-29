@@ -11,6 +11,8 @@ public class UIChangeSubject : MonoBehaviour
 
     private Coroutine _connectCheckCoroutine;
 
+    public bool UsingPCControls = true;
+
     private void OnEnable()
     {
         InputSystem.onDeviceChange += OnDeviceChange;
@@ -28,6 +30,7 @@ public class UIChangeSubject : MonoBehaviour
 
     private void InputChanged(bool inputController)
     {
+        UsingPCControls = !inputController;
         UISwitch?.Invoke(inputController);
     }
 
