@@ -1094,17 +1094,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4939965051234796783, guid: 2555d808b268fc241b7ebb13b8bf35f4, type: 3}
+    - {fileID: 8257695488990204811, guid: 2555d808b268fc241b7ebb13b8bf35f4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1897818223704859026, guid: 2555d808b268fc241b7ebb13b8bf35f4,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1029729709}
-    - targetCorrespondingSourceObject: {fileID: 1897818223704859026, guid: 2555d808b268fc241b7ebb13b8bf35f4,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1029729708}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2555d808b268fc241b7ebb13b8bf35f4, type: 3}
 --- !u!1 &105916245
 GameObject:
@@ -5485,7 +5478,6 @@ GameObject:
   - component: {fileID: 548286773}
   - component: {fileID: 548286772}
   - component: {fileID: 548286771}
-  - component: {fileID: 548286770}
   m_Layer: 3
   m_Name: LandingAreaBridge
   m_TagString: Untagged
@@ -5508,28 +5500,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 441460895}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &548286770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 548286768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59ab5fd9b694a5d4ca35fd84d3b38631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactOnce: 0
-  _interactType: 0
-  _interruptCarrying: 0
-  _repairTypeAmount:
-  - repairType: 0
-    amount: 8
-    icon: {fileID: 21300000, guid: fd90eb45f55859946881907e68c689ac, type: 3}
-    amountText: {fileID: 0}
-    currentAmount: 0
-  HasBeenRepaired: 0
 --- !u!65 &548286771
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9175,7 +9145,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2009167403}
   - {fileID: 780983999}
   - {fileID: 2050082687}
   m_Father: {fileID: 1806281364}
@@ -10101,69 +10070,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1003640795}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1029729706 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1897818223704859026, guid: 2555d808b268fc241b7ebb13b8bf35f4,
-    type: 3}
-  m_PrefabInstance: {fileID: 97368410}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1029729707 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 579217311880616776, guid: 2555d808b268fc241b7ebb13b8bf35f4,
     type: 3}
   m_PrefabInstance: {fileID: 97368410}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1029729708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029729706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bfb50b2b784a5f41b4fedb710df4c5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _objectDestroyGate: {fileID: 1049643773}
---- !u!114 &1029729709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029729706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81f410b8943884e42b56b1ac73217be1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questInfoForPoint: {fileID: 11400000, guid: 22a1db4e80be5724183d601bd744bca8, type: 2}
-  secondQuest: {fileID: 0}
-  startPoint: 0
-  finishPoint: 1
-  questId: 
-  currentQuestState: 0
-  startedQuestDialogue: 0
-  finishedQuestDialgue: 0
-  CanStartEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanFinishEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  StartQuestEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  StartQuestAfterDialogueEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  FinishQuestEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  FinishQuestAfterDialogueEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1031519900
 GameObject:
   m_ObjectHideFlags: 0
@@ -10572,12 +10484,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c2198d4137447194b8941f3f6f156e1d,
     type: 3}
   m_PrefabInstance: {fileID: 1045741745}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1049643773 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 695508045058520213, guid: 2555d808b268fc241b7ebb13b8bf35f4,
-    type: 3}
-  m_PrefabInstance: {fileID: 97368410}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1072591452
 PrefabInstance:
@@ -11346,7 +11252,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CollectItemEXAMPLE
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5236080462232651838, guid: 265f6a2497de6144391fd741ba694ddf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -14166,8 +14073,6 @@ GameObject:
   - component: {fileID: 1440158919}
   - component: {fileID: 1440158918}
   - component: {fileID: 1440158917}
-  - component: {fileID: 1440158916}
-  - component: {fileID: 1440158915}
   m_Layer: 3
   m_Name: PatchSpaceship
   m_TagString: Untagged
@@ -14190,61 +14095,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 441460895}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1440158915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1440158913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81f410b8943884e42b56b1ac73217be1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questInfoForPoint: {fileID: 11400000, guid: 6fe003f4f68c5b04980dcf753098ed2e, type: 2}
-  secondQuest: {fileID: 0}
-  startPoint: 0
-  finishPoint: 1
-  questId: 
-  currentQuestState: 0
-  startedQuestDialogue: 0
-  finishedQuestDialgue: 0
-  CanStartEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CanFinishEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  StartQuestEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  StartQuestAfterDialogueEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  FinishQuestEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  FinishQuestAfterDialogueEvent:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1440158916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1440158913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78d26630b8952b4438339d4ef4c2b097, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactOnce: 0
-  _interactType: 0
-  _interruptCarrying: 0
-  inkJSON_PC_current: {fileID: 0}
-  inkJSON_Controller_current: {fileID: 0}
 --- !u!135 &1440158917
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14337,84 +14187,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440158913}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1448665549
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 889315927}
-    m_Modifications:
-    - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -109.412
-      objectReference: {fileID: 0}
-    - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -77.349
-      objectReference: {fileID: 0}
-    - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -163.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9845732
-      objectReference: {fileID: 0}
-    - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.16008435
-      objectReference: {fileID: 0}
-    - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.06715247
-      objectReference: {fileID: 0}
-    - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.02188893
-      objectReference: {fileID: 0}
-    - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 161.448
-      objectReference: {fileID: 0}
-    - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -172.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -181.306
-      objectReference: {fileID: 0}
-    - target: {fileID: 5236080462232651838, guid: 265f6a2497de6144391fd741ba694ddf,
-        type: 3}
-      propertyPath: toolboxID
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5236080462232651838, guid: 265f6a2497de6144391fd741ba694ddf,
-        type: 3}
-      propertyPath: _resourceAmount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8845796119738345841, guid: 265f6a2497de6144391fd741ba694ddf,
-        type: 3}
-      propertyPath: m_Name
-      value: CollectItemEXAMPLE
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 265f6a2497de6144391fd741ba694ddf, type: 3}
 --- !u!1001 &1463959203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18459,7 +18231,6 @@ GameObject:
   - component: {fileID: 1861618947}
   - component: {fileID: 1861618946}
   - component: {fileID: 1861618945}
-  - component: {fileID: 1861618944}
   m_Layer: 0
   m_Name: WorkshopDoor
   m_TagString: Untagged
@@ -18482,28 +18253,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1727852149}
   m_LocalEulerAnglesHint: {x: -22.317, y: -14.193, z: -125.951}
---- !u!114 &1861618944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861618942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59ab5fd9b694a5d4ca35fd84d3b38631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactOnce: 0
-  _interactType: 0
-  _interruptCarrying: 0
-  _repairTypeAmount:
-  - repairType: 0
-    amount: 6
-    icon: {fileID: 21300000, guid: fd90eb45f55859946881907e68c689ac, type: 3}
-    amountText: {fileID: 0}
-    currentAmount: 0
-  HasBeenRepaired: 0
 --- !u!65 &1861618945
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19628,12 +19377,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1988258974}
   m_CullTransparentMesh: 1
---- !u!4 &2009167403 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
-    type: 3}
-  m_PrefabInstance: {fileID: 1448665549}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2029743846
 PrefabInstance:
   m_ObjectHideFlags: 0
