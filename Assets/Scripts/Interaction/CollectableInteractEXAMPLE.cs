@@ -39,7 +39,7 @@ public class CollectableInteractEXAMPLE : BaseInteract
         }
 
         // Set the resource pop up text (_resourceAmount is in text)
-        _popupText = "Nice!\r\nYou found a <color=yellow>Screw Pair</color>. That's <color=yellow>" + _resourceAmount + "</color> Screws to your total!";
+        _popupText = "Nice!\r\nYou found a <color=red>Bunch of Screws</color>. That's <color=red>" + _resourceAmount + "</color> Screws to your total!";
         // Set the updatetext (in int. E.g. "+2")
         _screwUpdateText = "+ " + (int)_resourceAmount;
     }
