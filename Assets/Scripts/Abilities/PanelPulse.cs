@@ -41,10 +41,6 @@ public class PanelPulse : MonoBehaviour
         {
             cable.GetComponent<Renderer>().material = defaultCableMaterial;
         }
-        if (panel != null && defaultPanelMaterial != null)
-        {
-        panel.GetComponent<Renderer>().material = defaultPanelMaterial;
-        }
     }
 
     public void ActivatePlatform()
@@ -205,15 +201,29 @@ public class PanelPulse : MonoBehaviour
     {
     if (panel != null && activatedPanelMaterial != null)
     {
-        panel.GetComponent<Renderer>().material = activatedPanelMaterial;
+            Renderer renderer = panel.GetComponent<Renderer>();
+            Material[] materials = renderer.materials.Clone() as Material[];
+
+            if (materials.Length > 1)
+            {
+                materials[1] = activatedPanelMaterial;
+                renderer.materials = materials;
+            }
     }
     }
 
     private void DeactivatePanel()
     {
     if (panel != null && defaultPanelMaterial != null)
-    {
-        panel.GetComponent<Renderer>().material = defaultPanelMaterial;
-    }
+        {
+            Renderer renderer = panel.GetComponent<Renderer>();
+            Material[] materials = renderer.materials.Clone() as Material[];
+
+            if (materials.Length > 1)
+            {
+                materials[1] = defaultPanelMaterial;
+                renderer.materials = materials;
+            }
+        }
     }
 }
