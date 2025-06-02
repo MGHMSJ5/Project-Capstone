@@ -6259,6 +6259,7 @@ GameObject:
   - component: {fileID: 5746254426348830299}
   - component: {fileID: 8894011995204578069}
   - component: {fileID: 8135713407766816243}
+  - component: {fileID: 5962379104460804328}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -6352,6 +6353,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3, y: 2, z: 1.0000001}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940696}
+--- !u!135 &5962379104460804328
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4325347661290677091}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.3
+  m_Center: {x: 0.000000059604645, y: -0.52, z: -0.00000008940696}
 --- !u!1 &4326140215839958390
 GameObject:
   m_ObjectHideFlags: 0
