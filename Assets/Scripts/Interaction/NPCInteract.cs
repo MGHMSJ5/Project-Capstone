@@ -115,7 +115,6 @@ public class NPCInteract : BaseInteract
         // Check if the player is still in the trigger
         if (_isInTrigger)
         {
-            print("aa");
             SetInteract(true);
         }
     }
