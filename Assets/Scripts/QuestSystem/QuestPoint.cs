@@ -32,11 +32,17 @@ public class QuestPoint : MonoBehaviour
     [HideInInspector]
     public bool finishedQuestDialgue = false;
 
-    [Header("Event at start and end")]
+    [Header("Events for if the Quest can be started or finished")]
+    public UnityEvent CanStartEvent;
+    public UnityEvent CanFinishEvent;
+    private bool _hasInvoked = false; // Bool that will keep track if one of the Can...Events have been invoked so that it only happens once
+
+    [Header("Events at start and end")]
     public UnityEvent StartQuestEvent;
     public UnityEvent StartQuestAfterDialogueEvent;
     public UnityEvent FinishQuestEvent;
     public UnityEvent FinishQuestAfterDialogueEvent;
+    public UnityAction QuestInProgressionAction;
 
     private void Awake()
     {
@@ -56,7 +62,14 @@ public class QuestPoint : MonoBehaviour
     {
         GameEventsManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
         _baseInteract.onSubmitPressed -= SubmitPressed;
-    }
+
+        CanStartEvent = null;
+        CanFinishEvent = null;
+        StartQuestEvent = null;
+        StartQuestAfterDialogueEvent = null;
+        FinishQuestEvent = null;
+        FinishQuestAfterDialogueEvent = null;
+}
 
     private void Update()
     {   // If the player has started the quest UI, and the dialogue is finished
@@ -71,6 +84,22 @@ public class QuestPoint : MonoBehaviour
         {
             FinishQuestAfterDialogueEvent?.Invoke();
             finishedQuestDialgue = false;
+        }
+
+        if (currentQuestState.Equals(QuestState.CAN_START) && startPoint && !_hasInvoked)
+        {
+            _hasInvoked = true;
+            CanStartEvent?.Invoke();
+        }
+        if (currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint && !_hasInvoked)
+        {
+            _hasInvoked = true;
+            CanFinishEvent?.Invoke();
+        }
+        if (currentQuestState.Equals(QuestState.IN_PROGRESS) && finishPoint && !_hasInvoked)
+        {
+            _hasInvoked = true;
+            StartQuestAfterDialogueEvent.AddListener(QuestInProgressionAction);
         }
     }
     private void SubmitPressed()
@@ -115,6 +144,7 @@ public class QuestPoint : MonoBehaviour
         if (quest.info.id.Equals(questId))
         {
             currentQuestState = quest.state;
+            _hasInvoked = false;
         }
     }
 

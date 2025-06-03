@@ -12,6 +12,9 @@ public class MinorRepairEXAMPLE : MonoBehaviour
     [SerializeField]
     private GameObject _objectChangeColor;
 
+    [SerializeField]
+    private Material _changedColorMaterial;
+
     private void Awake()
     {
         _minorRepair = GetComponent<MinorRepair>();
@@ -19,7 +22,7 @@ public class MinorRepairEXAMPLE : MonoBehaviour
 
     private void ChangeColor()
     {   // Change the color of the object to green
-        _objectChangeColor.GetComponent<Renderer>().material.color = Color.green;
+        _objectChangeColor.GetComponent<Renderer>().material = _changedColorMaterial;
     }
 
     //subscribe to event so that the subscribed function will be invoked when repairing

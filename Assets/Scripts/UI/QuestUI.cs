@@ -57,7 +57,7 @@ public class QuestUI : MonoBehaviour
     PlayerController _playerController;
 
     private float counter = 0.0f;
-    private float maxWaitTime = 5.0f;
+    private float maxWaitTime = 3.0f;
     private bool counterPassed = false;
 
     private void Awake()

@@ -17,6 +17,9 @@ public class PanelPulse : MonoBehaviour
     public GameObject cable; // Plug in the cable that Pulse will interact with.
     public Material activatedCableMaterial; // Color of cable (activated).
     public Material defaultCableMaterial; // Color of cable (deactivated).
+    public GameObject panel; // Main panel goes here.
+    public Material activatedPanelMaterial; // Color of the panel when activated.
+    public Material defaultPanelMaterial; // Color of panel when deactivated.
 
     private bool isMoving = false;
     private bool movingTowardsTarget = true; // Keeps track of current direction
@@ -46,11 +49,13 @@ public class PanelPulse : MonoBehaviour
         {
             StopMovement();
             DeactivateCable();
+            DeactivatePanel();
         }
         else
         {
             StartMovement();
             ActivateCable();
+            ActivatePanel();
         }
     }
 
@@ -189,6 +194,36 @@ public class PanelPulse : MonoBehaviour
         if (cable != null && defaultCableMaterial != null)
         {
             cable.GetComponent<Renderer>().material = defaultCableMaterial;
+        }
+    }
+    
+    private void ActivatePanel()
+    {
+    if (panel != null && activatedPanelMaterial != null)
+    {
+            Renderer renderer = panel.GetComponent<Renderer>();
+            Material[] materials = renderer.materials.Clone() as Material[];
+
+            if (materials.Length > 1)
+            {
+                materials[1] = activatedPanelMaterial;
+                renderer.materials = materials;
+            }
+    }
+    }
+
+    private void DeactivatePanel()
+    {
+    if (panel != null && defaultPanelMaterial != null)
+        {
+            Renderer renderer = panel.GetComponent<Renderer>();
+            Material[] materials = renderer.materials.Clone() as Material[];
+
+            if (materials.Length > 1)
+            {
+                materials[1] = defaultPanelMaterial;
+                renderer.materials = materials;
+            }
         }
     }
 }
