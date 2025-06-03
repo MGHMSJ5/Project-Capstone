@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fcbf93d06ed82845bd67abcca5c7e8e, type: 3}
-  m_Name: ExploreFactory
+  m_Name: BackToKettle
   m_EditorClassIdentifier: 
-  <id>k__BackingField: ExploreFactory
-  displayName: Explore the factory
+  <id>k__BackingField: BackToKettle
+  displayName: Back to the Kettle
   isSideQuest: 0
   levelRequirement: 0
   questPrerequisits:
   - {fileID: 11400000, guid: 90fbdfc1e8a17a041b1156c0ab96bc09, type: 2}
   - {fileID: 11400000, guid: bcc00988275bedc4597b91146460f82f, type: 2}
   - {fileID: 11400000, guid: 22a1db4e80be5724183d601bd744bca8, type: 2}
+  - {fileID: 11400000, guid: f5584ac00c045364880ca73f1dd6b31a, type: 2}
   questStepPrefabs:
-  - {fileID: 8228811999757818168, guid: 0f62df823b2b7954b8aacc761649a115, type: 3}
+  - {fileID: 3413421858151535967, guid: f123358cf90f46641a188c41002663b4, type: 3}
   questReward: []
   screwReward: 0
