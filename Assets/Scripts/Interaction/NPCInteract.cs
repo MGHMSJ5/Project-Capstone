@@ -18,6 +18,8 @@ public class NPCInteract : BaseInteract
     private bool _dialogueHasInteracted = false;
     private UIChangeSubject _UIChangeSubject;
 
+    private bool _isInTrigger = false;
+
     public bool DialogueHasInteracted => _dialogueHasInteracted;
 
     private void Awake()
@@ -33,6 +35,7 @@ public class NPCInteract : BaseInteract
     {
         _UIChangeSubject.UISwitch -= UIChange;
         SetInteract(false);
+        _isInTrigger = false;
     }
     protected override void Update()
     {
@@ -48,7 +51,8 @@ public class NPCInteract : BaseInteract
         if (!DialogueManager.GetInstance().dialogueIsPlaying && _dialogueHasInteracted)
         {
             _dialogueHasInteracted = false;
-            SetInteract(true);
+            // Enable the dialoue after a delay
+            StartCoroutine(DialogueInteractEnableDelay());
         }
     }
     protected override void InteractFunction()
@@ -83,6 +87,36 @@ public class NPCInteract : BaseInteract
         else
         {   // If the controller text is not set, then set the file to the PC version at default
             inkJSON = inkJSON_PC_current;
+        }
+    }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        // When the player enters the trigger + make sure that the player can't interact again if ticked _interactionOnce
+        if (other.gameObject.tag == "Player" && !_hasInteracted)
+        {
+            SetInteract(true);
+            _isInTrigger = true;
+        }
+    }
+    protected override void OnTriggerExit(Collider other)
+    {
+        // When the player exits the trigger
+        if (other.gameObject.tag == "Player")
+        {
+            SetInteract(false);
+            _isInTrigger = false;
+        }
+    }
+
+    private IEnumerator DialogueInteractEnableDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        // Check if the player is still in the trigger
+        if (_isInTrigger)
+        {
+            print("aa");
+            SetInteract(true);
         }
     }
 }
