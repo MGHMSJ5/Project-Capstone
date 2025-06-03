@@ -2,7 +2,7 @@
 
 === main ===
 unused line
-Hello metal stranger, have you lost your way?
+Hello stranger, have you lost your way?
 Oh, Chobo sent you here? Well, my name is Chivo.
 So you'll be the one fixing our Kettle then?
     + Yes, I am here to help!
@@ -28,10 +28,10 @@ There could be multiple factors playing a role here, but we don't know how to ru
 === Start ===
 I was hoping you knew, but... Oh well, you are a stranger to the planet after all. 
 I think you could start with going around the area. Maybe you'll find some lose screws laying around or a kink in the cable.
-Either way, a look around the object will be useful way to get more information.
+Either way, a look around the object will be a useful way to get more information.
     + I'll get to work, then!
     -> Work
 
 === Work ===
-Thank you, little tin man! If you need anything, I'll be here!
+Thank you, buddy! If you need anything, I'll be here!
 -> END

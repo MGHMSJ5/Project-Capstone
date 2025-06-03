@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class FixDoorStep : QuestStep
 {
+    private Collider _repairCollider;
     private BaseInteract baseInteract;
     private MinorRepair minorRepair;
 
     private void Awake()
     {
-        baseInteract = GameObject.Find("WorkshopDoor").GetComponent<BaseInteract>();
-        minorRepair = GameObject.Find("WorkshopDoor").GetComponent<MinorRepair>();
+        GameObject workshopDoor = GameObject.Find("WorkshopDoor");
+        _repairCollider = workshopDoor.GetComponent<Collider>();
+        baseInteract = workshopDoor.GetComponent<BaseInteract>();
+        minorRepair = workshopDoor.GetComponent<MinorRepair>();
+        
     }
     private void OnEnable()
     {
+        _repairCollider.enabled = true;
         baseInteract.onSubmitPressed += FixDoor;
         Invoke("CheckIfDone", 1f);
     }

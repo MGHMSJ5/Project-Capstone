@@ -8,6 +8,7 @@ public class CarryObjectEXAMPLE : BaseInteract
     [Header("Own variables")]
     private Transform _parent;
     private Transform _playerCarryPoint;
+    [SerializeField]
     private bool _isCarrying = false;
     // Instance is used to keep track of which item is being carried
     private static CarryObjectEXAMPLE _currentlyCarrying;
@@ -22,6 +23,7 @@ public class CarryObjectEXAMPLE : BaseInteract
     private float _objectHeight;
     [SerializeField]
     private LayerMask _groundMask;
+    [SerializeField]
     private bool _grounded;
 
     protected override void Start()
@@ -34,14 +36,15 @@ public class CarryObjectEXAMPLE : BaseInteract
         _parentCollider = _parent.GetComponent<Collider>();
         _parentRb = _parent.GetComponent<Rigidbody>();
         _gravityBody = _parent.GetComponent<GravityBody>();
+        _objectHeight = _parent.transform.localScale.y;
     }
 
     protected override void Update()
     {
         base.Update();
         // Ground Check
-        _grounded = Physics.Raycast(transform.position, -transform.up, _objectHeight * 0.5f + 0.2f, _groundMask);
-        print(_grounded);
+        _grounded = Physics.CheckBox(transform.position + Vector3.down * _objectHeight * 0.5f, new Vector3(0.5f, 0.05f, 0.5f), Quaternion.identity, _groundMask);
+        //_grounded = Physics.Raycast(transform.position, -transform.up, _objectHeight * 0.5f + 0.1f, _groundMask);
         if (_grounded)
         {
             _parentRb.isKinematic = true;
@@ -60,6 +63,11 @@ public class CarryObjectEXAMPLE : BaseInteract
                 _parent.localPosition = Vector3.zero;
             }
         }
+    }
+        void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position + Vector3.down * _objectHeight * 0.5f, new Vector3(1f, 0.05f, 1f));
     }
     // Interacting will happen when the player is either carrying the object or not //Thomas "carring" to "carrying" 
     protected override void InteractFunction()
@@ -93,6 +101,8 @@ public class CarryObjectEXAMPLE : BaseInteract
     }
     private void Carry()
     {
+        // Reset the parent
+        _parent.parent = null;
         // Thomas add a little comment on what is happening below (I know what is happening but just for consistency)
         // Set this instance as the item that is being carried
         _currentlyCarrying = this;
@@ -144,6 +154,5 @@ public class CarryObjectEXAMPLE : BaseInteract
         // Reset the player movement if the object has a "HeavyObject" tag
         _playerController.CarryObject(false, false);
         _isCarrying = false;
-       
     }
 }

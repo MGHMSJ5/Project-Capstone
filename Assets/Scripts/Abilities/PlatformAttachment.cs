@@ -17,4 +17,15 @@ public class PlatformAttachment : MonoBehaviour
             collision.transform.SetParent(null);
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Carry"))
+        {
+            if (other.transform.parent == null)
+            {
+                other.transform.SetParent(transform);
+            }            
+        }
+    }
 }

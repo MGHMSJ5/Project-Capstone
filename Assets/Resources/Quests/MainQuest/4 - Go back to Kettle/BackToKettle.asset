@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fcbf93d06ed82845bd67abcca5c7e8e, type: 3}
-  m_Name: RepairWaterpump
+  m_Name: BackToKettle
   m_EditorClassIdentifier: 
-  <id>k__BackingField: RepairWaterpump
-  displayName: Investigate the waterpump
+  <id>k__BackingField: BackToKettle
+  displayName: Back to the Kettle
   isSideQuest: 0
   levelRequirement: 0
   questPrerequisits:
@@ -22,11 +22,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 22a1db4e80be5724183d601bd744bca8, type: 2}
   - {fileID: 11400000, guid: f5584ac00c045364880ca73f1dd6b31a, type: 2}
   questStepPrefabs:
-  - {fileID: 9065572807713438961, guid: f71bf6d36b2a6a44d995ff7e2047bcf0, type: 3}
-  - {fileID: 4272570085672994361, guid: b0f0f4c1351e05643b2f0288292bdf5d, type: 3}
-  - {fileID: 1282642485004250954, guid: cb3dca049a264124c947276ceeb26a38, type: 3}
-  - {fileID: 3221617836735076106, guid: 6cbc08961bda38143aa61b28d0557721, type: 3}
-  - {fileID: 819064771165179642, guid: 13fedb63ce5211c49b2e8a16ba53f3fa, type: 3}
-  - {fileID: 3413421858151535967, guid: bfd711cace8f8d94a8b12051e54364a9, type: 3}
+  - {fileID: 3413421858151535967, guid: f123358cf90f46641a188c41002663b4, type: 3}
   questReward: []
   screwReward: 0
