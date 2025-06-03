@@ -280,6 +280,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: fd90eb45f55859946881907e68c689ac, type: 3}
     amountText: {fileID: 0}
     currentAmount: 0
+  HasBeenRepaired: 0
   _acceptedObject: 0
   _acceptedObjectImage: {fileID: 21300000, guid: e0d661c4f1e1d6c459c7b083917b8b97,
     type: 3}
@@ -318,6 +319,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 3449537020107415715, guid: af40e7e259f7ff146a3b6f5f01059732,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3823449558696599812, guid: af40e7e259f7ff146a3b6f5f01059732,
         type: 3}

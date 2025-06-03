@@ -6,17 +6,13 @@ public class RepairBridge : MonoBehaviour
 {
     private BaseInteract baseInteract;
     private CanvasSceneTransition _canvasSceneTransition;
-
-    [SerializeField]
-    private Collider _bridgeCollider;
-
-    [SerializeField] private Vector3 finalPosition;
-    [SerializeField] private Quaternion finalRotation;
+    private Animator _animator;
 
     private void Awake()
     {
-        baseInteract = GameObject.Find("LandingAreaBridge").GetComponent<BaseInteract>();
+        baseInteract = GetComponent<BaseInteract>();
         _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
+        _animator = GetComponent<Animator>();
     }
     private void OnEnable()
     {
@@ -45,10 +41,6 @@ public class RepairBridge : MonoBehaviour
     {
         // Move Chobo to landing area
         ScriptedEvents.Instance.TeleportChoboToLandingArea();
-
-        GameObject.Find("LandingAreaBridge").transform.position = finalPosition;
-        GameObject.Find("LandingAreaBridge").transform.rotation = finalRotation;
-
-        _bridgeCollider.enabled = false;
+        _animator.Play("CloseBridge");
     }
 }
