@@ -29,7 +29,10 @@ public class DialogueQuestStateChange : MonoBehaviour
 
     void Start()
     {
-        _questPoints = GetComponents<QuestPoint>();
+        if (_questPoints.Length == 0)
+        {
+            _questPoints = GetComponents<QuestPoint>();
+        }
         _NPCInteract = GetComponent<NPCInteract>();
     }
 

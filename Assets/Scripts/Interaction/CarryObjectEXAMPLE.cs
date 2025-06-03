@@ -41,7 +41,6 @@ public class CarryObjectEXAMPLE : BaseInteract
         base.Update();
         // Ground Check
         _grounded = Physics.Raycast(transform.position, -transform.up, _objectHeight * 0.5f + 0.2f, _groundMask);
-        print(_grounded);
         if (_grounded)
         {
             _parentRb.isKinematic = true;

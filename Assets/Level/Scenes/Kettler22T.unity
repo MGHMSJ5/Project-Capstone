@@ -13299,7 +13299,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4823393595007338643, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1597840812}
+    - targetCorrespondingSourceObject: {fileID: 4823393595007338643, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1597840811}
   m_SourcePrefab: {fileID: 100100000, guid: c0f62d20604405145be515ab1c35229b, type: 3}
 --- !u!4 &1400023734 stripped
 Transform:
@@ -14711,6 +14719,100 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99ccdc2e77da562459be6d4121c9b669, type: 3}
+--- !u!1 &1597840806 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4823393595007338643, guid: c0f62d20604405145be515ab1c35229b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1391077634}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1597840811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597840806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f410b8943884e42b56b1ac73217be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questInfoForPoint: {fileID: 11400000, guid: 11c0a3baafc7f984cb3363a7f3f23088, type: 2}
+  secondQuest: {fileID: 0}
+  startPoint: 1
+  finishPoint: 0
+  questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  CanStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  CanFinishEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1597840812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597840806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f410b8943884e42b56b1ac73217be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questInfoForPoint: {fileID: 11400000, guid: f5584ac00c045364880ca73f1dd6b31a, type: 2}
+  secondQuest: {fileID: 0}
+  startPoint: 0
+  finishPoint: 1
+  questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  CanStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  CanFinishEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 549965124}
+        m_TargetAssemblyTypeName: ScriptedEvents, Assembly-CSharp
+        m_MethodName: PlugInThePlug
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1602674314
 GameObject:
   m_ObjectHideFlags: 0
@@ -16345,9 +16447,11 @@ MonoBehaviour:
       type: 3}
   inkJSONs_Controller:
   - inkJSON_BeforeQuest: {fileID: 0}
-    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 4900000, guid: ab943125a48fb97448872f385536da4a,
+      type: 3}
     inkJSON_DuringQuest: {fileID: 0}
-    inkJSON_FinishQuest: {fileID: 0}
+    inkJSON_FinishQuest: {fileID: 4900000, guid: 6d75ecf7557e6b8488d27bc366b44c4a,
+      type: 3}
     inkJSON_AfterQuest: {fileID: 4900000, guid: 293ecab63073af94f9c76f5bd18087e6,
       type: 3}
   _questIndex: 0
@@ -17720,7 +17824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f410b8943884e42b56b1ac73217be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questInfoForPoint: {fileID: 11400000, guid: f5584ac00c045364880ca73f1dd6b31a, type: 2}
+  questInfoForPoint: {fileID: 11400000, guid: 11c0a3baafc7f984cb3363a7f3f23088, type: 2}
   secondQuest: {fileID: 0}
   startPoint: 0
   finishPoint: 1

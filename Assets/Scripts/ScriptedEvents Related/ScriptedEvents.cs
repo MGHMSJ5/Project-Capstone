@@ -22,6 +22,12 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
     [SerializeField]
     private Transform _landingAreaTeleportTransform;
 
+    [Header("Plug in the plug event")]
+    [SerializeField]
+    private Vector3 pluggedPosition;
+    private CanvasSceneTransition _canvasSceneTransition;
+
+
     void Start()
     {
         _chobo = GameObject.Find("Chobo");
@@ -29,6 +35,7 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
         _baseInteract = _chobo.GetComponent<BaseInteract>();
         _collider = _chobo.GetComponent<Collider>();
         _agent = _chobo.GetComponent<NavMeshAgent>();
+        _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
     }
     // Tutorial functions
     public void MoveChobo()
@@ -62,5 +69,18 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
     {
         _chobo.transform.position = _landingAreaTeleportTransform.transform.position;
         _chobo.transform.rotation = _landingAreaTeleportTransform.rotation;
+    }
+
+    // Plug in the plug function
+    public void PlugInThePlug()
+    {
+        //play scripted event - in scene fade in and out
+        _canvasSceneTransition.FadeAction += PlugChangePosition;
+        _canvasSceneTransition.CanvasFadeInAndOut(2f);
+    }
+
+    private void PlugChangePosition()
+    {
+        GameObject.Find("PlugParent").transform.position = pluggedPosition;
     }
 }
