@@ -18,6 +18,12 @@ public class CarryObjectEXAMPLE : BaseInteract
 
     private PlayerController _playerController;
 
+    [SerializeField]
+    private float _objectHeight;
+    [SerializeField]
+    private LayerMask _groundMask;
+    private bool _grounded;
+
     protected override void Start()
     {
         base.Start();
@@ -33,6 +39,18 @@ public class CarryObjectEXAMPLE : BaseInteract
     protected override void Update()
     {
         base.Update();
+        // Ground Check
+        _grounded = Physics.Raycast(transform.position, -transform.up, _objectHeight * 0.5f + 0.2f, _groundMask);
+        print(_grounded);
+        if (_grounded)
+        {
+            _parentRb.isKinematic = true;
+        }
+        else
+        {
+            _parentRb.isKinematic = false;
+        }
+
         if (_isCarrying)
         {
             // Reset the position of the parent when it is not (0,0,0)
