@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class FixGateStep : QuestStep
 {
-    private BaseInteract baseInteract;
+    private MinorRepair minorRepair;
     private void Awake()
     {
-        baseInteract = GameObject.Find("RepairableGate").GetComponent<BaseInteract>();
+        minorRepair = GameObject.Find("RepairableGate").GetComponent<MinorRepair>();
     }
     private void OnEnable()
     {
-        baseInteract.onSubmitPressed += FixGate;
+        minorRepair.RepairAction += FixGate;
     }
 
     private void OnDisable()
     {
-        baseInteract.onSubmitPressed -= FixGate;
+        minorRepair.RepairAction -= FixGate;
     }
 
     //Add that the queststep is finished when interacting with the gate
     private void FixGate()
     {
         FinishQuestStep();
-        baseInteract.onSubmitPressed -= FixGate;
+        minorRepair.RepairAction -= FixGate;
 
-        baseInteract.InvokeSubmitPressed();
     }
 }
