@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class FixBridgeStep : QuestStep
 {
-    private BaseInteract baseInteract;
     private MinorRepair minorRepair;
 
 
     private void Awake()
     {
-        baseInteract = GameObject.Find("LandingAreaBridge").GetComponent<BaseInteract>();
-        minorRepair = GameObject.Find("LandingAreaBridge").GetComponent<MinorRepair>();
+        minorRepair = GameObject.Find("LandingBridge").GetComponent<MinorRepair>();
     }
     private void OnEnable()
     {
