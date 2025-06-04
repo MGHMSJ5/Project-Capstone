@@ -13252,11 +13252,51 @@ PrefabInstance:
       propertyPath: _teleportLocation
       value: 
       objectReference: {fileID: 1431640367}
+    - target: {fileID: 769864316533243224, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      propertyPath: _interactOnce
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2419776515654793088, guid: c0f62d20604405145be515ab1c35229b,
         type: 3}
       propertyPath: _teleportLocation
       value: 
       objectReference: {fileID: 1431640367}
+    - target: {fileID: 3270956733341936247, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      propertyPath: FinishQuestAfterDialogueEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270956733341936247, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      propertyPath: FinishQuestAfterDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270956733341936247, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      propertyPath: FinishQuestAfterDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 549965124}
+    - target: {fileID: 3270956733341936247, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      propertyPath: FinishQuestAfterDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270956733341936247, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      propertyPath: FinishQuestAfterDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlugInThePlug
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270956733341936247, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      propertyPath: FinishQuestAfterDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ScriptedEvents, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270956733341936247, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      propertyPath: FinishQuestAfterDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3662444430373794733, guid: c0f62d20604405145be515ab1c35229b,
         type: 3}
       propertyPath: player
