@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class RepairBridge : MonoBehaviour
 {
-    private BaseInteract baseInteract;
+    private MinorRepair minorRepair;
     private CanvasSceneTransition _canvasSceneTransition;
     private Animator _animator;
 
     private void Awake()
     {
-        baseInteract = GetComponent<BaseInteract>();
+        minorRepair = GetComponent<MinorRepair>();
         _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
         _animator = GetComponent<Animator>();
     }
     private void OnEnable()
     {
-        baseInteract.onSubmitPressed += FixBridge;
+        minorRepair.RepairAction += FixBridge;
     }
 
     private void OnDisable()
     {
-        baseInteract.onSubmitPressed -= FixBridge;
+        minorRepair.RepairAction -= FixBridge;
     }
 
     //Add that the queststep is finished when interacting with the bridge
@@ -31,10 +31,7 @@ public class RepairBridge : MonoBehaviour
         _canvasSceneTransition.FadeAction += BridgeChange;
         _canvasSceneTransition.CanvasFadeInAndOut(2f);
 
-        //FinishQuestStep();
-        baseInteract.onSubmitPressed -= FixBridge;
-
-        baseInteract.InvokeSubmitPressed();
+        minorRepair.RepairAction -= FixBridge;
     }
 
     private void BridgeChange()
