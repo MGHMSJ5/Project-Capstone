@@ -4,32 +4,28 @@ using UnityEngine;
 
 public class RepairBenchStep : QuestStep
 {
-    private BaseInteract baseInteract;
     private MinorRepair minorRepair;
     private void Awake()
     {
-        baseInteract = GameObject.Find("CliffBench").GetComponent<BaseInteract>();
         minorRepair = GameObject.Find("CliffBench").GetComponent<MinorRepair>();
 
     }
     private void OnEnable()
     {
-        baseInteract.onSubmitPressed += FixBench;
+        minorRepair.RepairAction += FixBench;
         Invoke("CheckIfDone", 1f);
     }
 
     private void OnDisable()
     {
-        baseInteract.onSubmitPressed -= FixBench;
+        minorRepair.RepairAction -= FixBench;
     }
 
     //Add that the queststep is finished when interacting with the bench
     private void FixBench()
     {
         FinishQuestStep();
-        baseInteract.onSubmitPressed -= FixBench;
-
-        baseInteract.InvokeSubmitPressed();
+        minorRepair.RepairAction -= FixBench;
     }
 
     private void CheckIfDone()
