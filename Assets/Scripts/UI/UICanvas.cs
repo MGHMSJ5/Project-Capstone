@@ -66,6 +66,12 @@ public class UICanvas : MonoBehaviour
         AddToRepairResource(givenAmount);
     }
 
+    public void ChangeResourcesUI()
+    {
+        _animator.SetTrigger("AddScrews"); // Will maybe be used for a later mechanic that will be added (screw amount will appear when player stands still)
+        _animator.Play("ResourceUpdatePopup");
+    }
+
     public void ChangeUI(string popUpText, string screwUpdateText)
     {
         _popUpText.text = popUpText;

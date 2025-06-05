@@ -3,9 +3,7 @@ using System.Collections.Generic;
 // All types of resources:
 public enum RepairTypesOptions
 {
-    Screws,
-    // Might be a placeholder
-    Tape
+    Screws
 }
 public static class RepairResources
 {   // Dictionary that keeps track of the resource types and resource amount

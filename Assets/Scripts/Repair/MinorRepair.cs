@@ -36,9 +36,14 @@ public class MinorRepair : BaseInteract
 
     [HideInInspector]
     public bool HasBeenRepaired = false;
+
+    private UICanvas _UICanvas;
     protected override void Start()
     {
         base.Start();
+        // Get the script of the main Canvas
+        _UICanvas = GameObject.Find("Canvas").GetComponent<UICanvas>();
+
         // Get the Canvas and deactivte it
         _canvas = transform.GetChild(0).gameObject;
         _canvas.SetActive(false);
@@ -81,10 +86,17 @@ public class MinorRepair : BaseInteract
         
         // Desctivate the canvas and remove the amount of resources needed for the repairing from the repair sources (in RepairResource script)
         _canvas.SetActive(false);
-        for (int i = 0; i < _repairTypeAmount.Count; ++i)
+        int totalRemovedResources = 0;
+        // Update the resources
+        for (int i = 0; i < _repairTypeAmount.Count; i++)
         {
+            totalRemovedResources += _repairTypeAmount[i].amount;
             RepairResources.RemoveResourceAmount(_repairTypeAmount[i].repairType, _repairTypeAmount[i].amount);
         }
+        // Update the UI and play the animation of the UI source
+        _UICanvas.ChangeUI("...", "- " + totalRemovedResources);
+        // Run the funtion to change UI and add to current screw amount
+        _UICanvas.ChangeResourcesUI();
     }
     protected override void OnTriggerEnter(Collider other)
     {
