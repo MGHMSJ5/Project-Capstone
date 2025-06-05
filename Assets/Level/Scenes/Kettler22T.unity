@@ -17960,6 +17960,7 @@ GameObject:
   - component: {fileID: 1938207244}
   - component: {fileID: 1938207249}
   - component: {fileID: 1938207243}
+  - component: {fileID: 1938207250}
   - component: {fileID: 1938207242}
   - component: {fileID: 1938207248}
   m_Layer: 0
@@ -18040,7 +18041,7 @@ MonoBehaviour:
   _interactOnce: 0
   _interactType: 0
   _interruptCarrying: 0
-  inkJSON_PC_current: {fileID: 4900000, guid: e8391ab78a2ce7c4a91624e95389f98a, type: 3}
+  inkJSON_PC_current: {fileID: 4900000, guid: 1d8f74b1a4723a94aa212e6b748b11fd, type: 3}
   inkJSON_Controller_current: {fileID: 0}
 --- !u!135 &1938207244
 SphereCollider:
@@ -18117,6 +18118,35 @@ MonoBehaviour:
   _exclamationMark: {fileID: 509356319}
   questPoints: []
   _state: 0
+--- !u!114 &1938207250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938207240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2245840f46ab55d4fa000529a3420ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONs_PC:
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 0}
+    inkJSON_FinishQuest: {fileID: 4900000, guid: 1d8f74b1a4723a94aa212e6b748b11fd,
+      type: 3}
+    inkJSON_AfterQuest: {fileID: 0}
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 0}
+    inkJSON_FinishQuest: {fileID: 4900000, guid: e933f7eb29b79a74a9abc78fe7cfd0a2,
+      type: 3}
+    inkJSON_AfterQuest: {fileID: 0}
+  inkJSONs_Controller: []
+  _questIndex: 0
+  _currentQuestState: 0
+  _questPoints: []
 --- !u!1 &1946751590
 GameObject:
   m_ObjectHideFlags: 0
