@@ -6833,8 +6833,143 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 566238838529272032}
+    - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3270956733341936247}
+    - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 965889980556286066}
   m_SourcePrefab: {fileID: 100100000, guid: 440a0bc5b41de5e488ab3de6143752d0, type: 3}
+--- !u!1 &4823393595007338643 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 899040534836510381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &566238838529272032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823393595007338643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2245840f46ab55d4fa000529a3420ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONs_PC:
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 0}
+    inkJSON_FinishQuest: {fileID: 4900000, guid: f48a5eaec7a3b044b91fc61df8344e96,
+      type: 3}
+    inkJSON_AfterQuest: {fileID: 0}
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 4900000, guid: d818aed4b163a284798ad500e58b6b57,
+      type: 3}
+    inkJSON_DuringQuest: {fileID: 0}
+    inkJSON_FinishQuest: {fileID: 0}
+    inkJSON_AfterQuest: {fileID: 0}
+  inkJSONs_Controller:
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 0}
+    inkJSON_FinishQuest: {fileID: 4900000, guid: f48a5eaec7a3b044b91fc61df8344e96,
+      type: 3}
+    inkJSON_AfterQuest: {fileID: 0}
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 4900000, guid: d818aed4b163a284798ad500e58b6b57,
+      type: 3}
+    inkJSON_DuringQuest: {fileID: 0}
+    inkJSON_FinishQuest: {fileID: 0}
+    inkJSON_AfterQuest: {fileID: 0}
+  _questIndex: 0
+  _currentQuestState: 0
+  _questPoints: []
+--- !u!114 &3270956733341936247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823393595007338643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f410b8943884e42b56b1ac73217be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questInfoForPoint: {fileID: 11400000, guid: f5584ac00c045364880ca73f1dd6b31a, type: 2}
+  secondQuest: {fileID: 0}
+  startPoint: 0
+  finishPoint: 1
+  questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  CanStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  CanFinishEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &965889980556286066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823393595007338643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f410b8943884e42b56b1ac73217be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questInfoForPoint: {fileID: 11400000, guid: 11c0a3baafc7f984cb3363a7f3f23088, type: 2}
+  secondQuest: {fileID: 0}
+  startPoint: 1
+  finishPoint: 0
+  questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  CanStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  CanFinishEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &8658841873149217760 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
@@ -8737,8 +8872,91 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 598780495388100986}
+    - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7586609085301876926}
   m_SourcePrefab: {fileID: 100100000, guid: 440a0bc5b41de5e488ab3de6143752d0, type: 3}
+--- !u!1 &857051667228184330 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 5003201778391398708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &598780495388100986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857051667228184330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2245840f46ab55d4fa000529a3420ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONs_PC:
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 4900000, guid: 77df19df02e20434ab5653eb27225f4b,
+      type: 3}
+    inkJSON_FinishQuest: {fileID: 0}
+    inkJSON_AfterQuest: {fileID: 4900000, guid: db18179833864ee4683e7a21b7a0a157,
+      type: 3}
+  inkJSONs_Controller:
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 4900000, guid: 77df19df02e20434ab5653eb27225f4b,
+      type: 3}
+    inkJSON_FinishQuest: {fileID: 0}
+    inkJSON_AfterQuest: {fileID: 4900000, guid: db18179833864ee4683e7a21b7a0a157,
+      type: 3}
+  _questIndex: 0
+  _currentQuestState: 0
+  _questPoints: []
+--- !u!114 &7586609085301876926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857051667228184330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f410b8943884e42b56b1ac73217be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questInfoForPoint: {fileID: 11400000, guid: f5584ac00c045364880ca73f1dd6b31a, type: 2}
+  secondQuest: {fileID: 0}
+  startPoint: 0
+  finishPoint: 0
+  questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  CanStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  CanFinishEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &3548444902496013433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
@@ -9298,8 +9516,91 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1758405922408723767}
+    - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9075835095935259658}
   m_SourcePrefab: {fileID: 100100000, guid: 440a0bc5b41de5e488ab3de6143752d0, type: 3}
+--- !u!1 &1270091157741128876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 6857415827685358226}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1758405922408723767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270091157741128876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2245840f46ab55d4fa000529a3420ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONs_PC:
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 4900000, guid: 22a873e7a5bf7134d8894644178c9c80,
+      type: 3}
+    inkJSON_FinishQuest: {fileID: 0}
+    inkJSON_AfterQuest: {fileID: 4900000, guid: ab18d6c9758dc8e4cb32314aaedb051e,
+      type: 3}
+  inkJSONs_Controller:
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 4900000, guid: 22a873e7a5bf7134d8894644178c9c80,
+      type: 3}
+    inkJSON_FinishQuest: {fileID: 0}
+    inkJSON_AfterQuest: {fileID: 4900000, guid: ab18d6c9758dc8e4cb32314aaedb051e,
+      type: 3}
+  _questIndex: 0
+  _currentQuestState: 0
+  _questPoints: []
+--- !u!114 &9075835095935259658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270091157741128876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f410b8943884e42b56b1ac73217be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questInfoForPoint: {fileID: 11400000, guid: f5584ac00c045364880ca73f1dd6b31a, type: 2}
+  secondQuest: {fileID: 0}
+  startPoint: 0
+  finishPoint: 0
+  questId: 
+  currentQuestState: 0
+  startedQuestDialogue: 0
+  finishedQuestDialgue: 0
+  CanStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  CanFinishEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  FinishQuestAfterDialogueEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &3132822022919196639 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,

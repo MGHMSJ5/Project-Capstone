@@ -4,33 +4,16 @@ using UnityEngine;
 
 public class FixBridgeStep : QuestStep
 {
-    private BaseInteract baseInteract;
     private MinorRepair minorRepair;
 
 
     private void Awake()
     {
-        baseInteract = GameObject.Find("LandingAreaBridge").GetComponent<BaseInteract>();
-        minorRepair = GameObject.Find("LandingAreaBridge").GetComponent<MinorRepair>();
+        minorRepair = GameObject.Find("LandingBridge").GetComponent<MinorRepair>();
     }
     private void OnEnable()
     {
-        baseInteract.onSubmitPressed += FixBridge;
         Invoke("CheckIfDone", 1f);
-    }
-
-    private void OnDisable()
-    {
-        baseInteract.onSubmitPressed -= FixBridge;
-    }
-
-    //Add that the queststep is finished when interacting with the bridge
-    private void FixBridge()
-    {
-        FinishQuestStep();
-        baseInteract.onSubmitPressed -= FixBridge;
-
-        baseInteract.InvokeSubmitPressed();
     }
 
     private void CheckIfDone()
@@ -39,6 +22,10 @@ public class FixBridgeStep : QuestStep
         if (minorRepair.HasBeenRepaired)
         {
             FinishQuestStep();
+        }
+        else
+        {
+            minorRepair.RepairAction += FinishQuestStep;
         }
         print("Hell yeah, it worked!");
     }

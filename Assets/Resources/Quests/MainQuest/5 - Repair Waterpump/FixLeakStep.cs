@@ -14,22 +14,20 @@ public class FixLeakStep : QuestStep
     }
     private void OnEnable()
     {
-        baseInteract.onSubmitPressed += FixWaterpumpPipe;
+        minorRepair.RepairAction += FixWaterpumpPipe;
         Invoke("CheckIfDone", 1f);
     }
 
     private void OnDisable()
     {
-        baseInteract.onSubmitPressed -= FixWaterpumpPipe;
+        minorRepair.RepairAction -= FixWaterpumpPipe;
     }
 
     //Add that the queststep is finished when interacting with the leak
     private void FixWaterpumpPipe()
     {
         FinishQuestStep();
-        baseInteract.onSubmitPressed -= FixWaterpumpPipe;
-
-        baseInteract.InvokeSubmitPressed();
+        minorRepair.RepairAction -= FixWaterpumpPipe;
     }
 
     private void CheckIfDone()

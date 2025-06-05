@@ -83,4 +83,9 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
     {
         GameObject.Find("PlugParent").transform.position = pluggedPosition;
     }
+    // Workshop event
+    public void GetHover()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHover>()._hoverAbilityGranted = true;
+    }
 }
