@@ -22,10 +22,18 @@ public class UICanvas : MonoBehaviour
 
     private UIChangeSubject _UIChangeSubject;
 
+    [Header("Idle Resource Appear")]
+    private PlayerController _playerController;
+    private float counter = 0.0f;
+    private float maxWaitTime = 3.0f;
+    [SerializeField]
+    private bool counterPassed = false;
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         _UIChangeSubject = GameObject.Find("UIChangeManager").GetComponent<UIChangeSubject>();
+        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     private void OnEnable()
@@ -40,10 +48,38 @@ public class UICanvas : MonoBehaviour
 
     void Start()
     {
-        
         _interactButton.SetActive(false);
         _collectButton.SetActive(false);
         SetUIScrewAmount();
+    }
+
+    private void Update()
+    {
+        // Make the current repair resources appear if the player is standing still for X seconds
+        //icheck if the player is idle and not in dialogue and the quest step Ui popup is not doing its animation
+        if (_playerController.PlayerStateMachine.CurrentState == _playerController.PlayerStateMachine.idleState && !DialogueManager.GetInstance().dialogueIsPlaying && !_animator.GetCurrentAnimatorStateInfo(0).IsName("ToolBoxPopup") && !_animator.GetCurrentAnimatorStateInfo(0).IsName("ANIM_CanvasScrewAdd"))
+        {
+            if (counter < maxWaitTime)
+            {
+                counter += Time.deltaTime;
+            }
+        }
+        else
+        //reset the timer if idle is interrupted or player enters dialogue
+        {
+            if (counterPassed)
+            {
+                _animator.SetTrigger("ContinuePopUp");
+            }
+            counter = 0.0f;
+            counterPassed = false;            
+        }
+        //check if the counter has passd the time and active the idle UI
+        if (counter > maxWaitTime && !counterPassed)
+        {
+            counterPassed = true;
+            _animator.Play("ResourceUpdatePopup");
+        }
     }
 
     public void ToolBoxPopUp()
