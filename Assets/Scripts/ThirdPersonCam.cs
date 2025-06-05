@@ -9,6 +9,33 @@ public class ThirdPersonCam : MonoBehaviour
     [SerializeField] private Rigidbody _rb;
 
     private float _rotationSpeed = 15;
+    private GameObject _thirdPersonCamera;
+
+    private void Awake()
+    {
+        if (transform.childCount > 0)
+        {
+            _thirdPersonCamera = transform.GetChild(0).gameObject;
+        }
+    }
+
+    private void Update()
+    {
+        if (_thirdPersonCamera != null)
+        {
+            if (DialogueManager.GetInstance().dialogueIsPlaying)
+            {
+                if (_thirdPersonCamera.gameObject.activeSelf)
+                {
+                    _thirdPersonCamera.SetActive(false);
+                }
+            }
+            else if (!_thirdPersonCamera.activeInHierarchy)
+            {
+                _thirdPersonCamera.SetActive(true);
+            }
+        }
+    }
 
     private void LateUpdate()
     {
