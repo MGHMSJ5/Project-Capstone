@@ -36,13 +36,9 @@ public class MinorRepair : BaseInteract
 
     [HideInInspector]
     public bool HasBeenRepaired = false;
-
-    private UICanvas _UICanvas;
     protected override void Start()
     {
         base.Start();
-        // Get the script of the main Canvas
-        _UICanvas = GameObject.Find("Canvas").GetComponent<UICanvas>();
 
         // Get the Canvas and deactivte it
         _canvas = transform.GetChild(0).gameObject;
