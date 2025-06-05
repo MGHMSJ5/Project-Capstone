@@ -36,6 +36,9 @@ public class MinorRepair : BaseInteract
 
     [HideInInspector]
     public bool HasBeenRepaired = false;
+
+    [SerializeField]
+    private ParticleSystem _repairParticle;
     protected override void Start()
     {
         base.Start();
@@ -75,6 +78,9 @@ public class MinorRepair : BaseInteract
     {
         //Activate repair sound if repair is activated
         SoundManager.PlaySound(SoundType.REPAIR);
+
+        // Play the perticle system
+        _repairParticle?.Play();
 
         HasBeenRepaired = true;
         // Invoke the action. Functions subscribed to this event will then also be invoked.
