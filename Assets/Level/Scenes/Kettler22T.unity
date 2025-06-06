@@ -7874,6 +7874,7 @@ GameObject:
   - component: {fileID: 738094725}
   - component: {fileID: 738094728}
   - component: {fileID: 738094729}
+  - component: {fileID: 738094730}
   - component: {fileID: 738094727}
   - component: {fileID: 738094726}
   m_Layer: 3
@@ -8005,6 +8006,35 @@ MonoBehaviour:
   _exclamationMark: {fileID: 1353203945}
   questPoints: []
   _state: 0
+--- !u!114 &738094730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738094724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2245840f46ab55d4fa000529a3420ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONs_PC:
+  - inkJSON_BeforeQuest: {fileID: 4900000, guid: 1fbc5cf31ddbbf84688447e96ea4dda1,
+      type: 3}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 0}
+    inkJSON_FinishQuest: {fileID: 4900000, guid: d36b5c63a3000aa4a904fd106a395435,
+      type: 3}
+    inkJSON_AfterQuest: {fileID: 0}
+  inkJSONs_Controller:
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 0}
+    inkJSON_FinishQuest: {fileID: 0}
+    inkJSON_AfterQuest: {fileID: 0}
+  _questIndex: 0
+  _currentQuestState: 0
+  _questPoints: []
 --- !u!1001 &749625993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13160,6 +13190,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1378754171}
+    - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1378754170}
   m_SourcePrefab: {fileID: 100100000, guid: 440a0bc5b41de5e488ab3de6143752d0, type: 3}
 --- !u!1 &1378754169 stripped
@@ -13206,6 +13240,37 @@ MonoBehaviour:
   FinishQuestAfterDialogueEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1378754171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378754169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2245840f46ab55d4fa000529a3420ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONs_PC:
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 4900000, guid: 24beb776931f3c5469d43ccd613e8883,
+      type: 3}
+    inkJSON_DuringQuest: {fileID: 4900000, guid: e1ae841480819ef4b8ace53a15b74a87,
+      type: 3}
+    inkJSON_FinishQuest: {fileID: 4900000, guid: 0afa228f77f04e545b51f073af785a13,
+      type: 3}
+    inkJSON_AfterQuest: {fileID: 4900000, guid: ed73193d0579aeb4ca7ce0d22f4b5094,
+      type: 3}
+  inkJSONs_Controller:
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 0}
+    inkJSON_FinishQuest: {fileID: 0}
+    inkJSON_AfterQuest: {fileID: 0}
+  _questIndex: 0
+  _currentQuestState: 0
+  _questPoints: []
 --- !u!1 &1380753018
 GameObject:
   m_ObjectHideFlags: 0
@@ -16593,16 +16658,21 @@ MonoBehaviour:
     inkJSON_AfterQuest: {fileID: 4900000, guid: b2b6867dc6aae3a44bfb87fc2fb9e976,
       type: 3}
   - inkJSON_BeforeQuest: {fileID: 0}
-    inkJSON_StartQuest: {fileID: 4900000, guid: e7f55d0f4b4cadc478f3f118f72be457,
-      type: 3}
-    inkJSON_DuringQuest: {fileID: 4900000, guid: 0a135d8d0a8dcb942897374a01327b6f,
-      type: 3}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 0}
     inkJSON_FinishQuest: {fileID: 0}
     inkJSON_AfterQuest: {fileID: 0}
   - inkJSON_BeforeQuest: {fileID: 0}
     inkJSON_StartQuest: {fileID: 4900000, guid: 8c6fa91b24de76c409bed444f3c7f585,
       type: 3}
     inkJSON_DuringQuest: {fileID: 4900000, guid: c30fd8872a8e88f409f1eecbb55e794d,
+      type: 3}
+    inkJSON_FinishQuest: {fileID: 0}
+    inkJSON_AfterQuest: {fileID: 0}
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 4900000, guid: e7f55d0f4b4cadc478f3f118f72be457,
+      type: 3}
+    inkJSON_DuringQuest: {fileID: 4900000, guid: 0a135d8d0a8dcb942897374a01327b6f,
       type: 3}
     inkJSON_FinishQuest: {fileID: 0}
     inkJSON_AfterQuest: {fileID: 0}
@@ -16616,16 +16686,21 @@ MonoBehaviour:
     inkJSON_AfterQuest: {fileID: 4900000, guid: d596a00f458c3904a9bb677fa24af546,
       type: 3}
   - inkJSON_BeforeQuest: {fileID: 0}
-    inkJSON_StartQuest: {fileID: 4900000, guid: e7f55d0f4b4cadc478f3f118f72be457,
-      type: 3}
-    inkJSON_DuringQuest: {fileID: 4900000, guid: 0a135d8d0a8dcb942897374a01327b6f,
-      type: 3}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 0}
     inkJSON_FinishQuest: {fileID: 0}
     inkJSON_AfterQuest: {fileID: 0}
   - inkJSON_BeforeQuest: {fileID: 0}
     inkJSON_StartQuest: {fileID: 4900000, guid: 8c6fa91b24de76c409bed444f3c7f585,
       type: 3}
     inkJSON_DuringQuest: {fileID: 4900000, guid: c30fd8872a8e88f409f1eecbb55e794d,
+      type: 3}
+    inkJSON_FinishQuest: {fileID: 0}
+    inkJSON_AfterQuest: {fileID: 0}
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 4900000, guid: e7f55d0f4b4cadc478f3f118f72be457,
+      type: 3}
+    inkJSON_DuringQuest: {fileID: 4900000, guid: 0a135d8d0a8dcb942897374a01327b6f,
       type: 3}
     inkJSON_FinishQuest: {fileID: 0}
     inkJSON_AfterQuest: {fileID: 0}
@@ -17620,6 +17695,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1891493110}
+    - targetCorrespondingSourceObject: {fileID: 5659382547500889662, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1891493109}
   m_SourcePrefab: {fileID: 100100000, guid: 440a0bc5b41de5e488ab3de6143752d0, type: 3}
 --- !u!1 &1891493108 stripped
@@ -17666,6 +17745,37 @@ MonoBehaviour:
   FinishQuestAfterDialogueEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1891493110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891493108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2245840f46ab55d4fa000529a3420ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkJSONs_PC:
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 4900000, guid: 4508e9be01cf66940902489dcf73a6d8,
+      type: 3}
+    inkJSON_DuringQuest: {fileID: 4900000, guid: 5474ad3ffe490f94e9cbc5ba2926de5d,
+      type: 3}
+    inkJSON_FinishQuest: {fileID: 4900000, guid: a0f1b19981252f8419bc3566a2b2126c,
+      type: 3}
+    inkJSON_AfterQuest: {fileID: 4900000, guid: 10b14a14e4940e74d89574f97fe23248,
+      type: 3}
+  inkJSONs_Controller:
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 0}
+    inkJSON_FinishQuest: {fileID: 0}
+    inkJSON_AfterQuest: {fileID: 0}
+  _questIndex: 0
+  _currentQuestState: 0
+  _questPoints: []
 --- !u!114 &1905229296 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8881157730848240529, guid: 08ba42942aa7bfa4580137f6aa65dc4d,
@@ -18131,7 +18241,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inkJSONs_PC:
-  - inkJSON_BeforeQuest: {fileID: 0}
+  - inkJSON_BeforeQuest: {fileID: 4900000, guid: 1d8f74b1a4723a94aa212e6b748b11fd,
+      type: 3}
     inkJSON_StartQuest: {fileID: 0}
     inkJSON_DuringQuest: {fileID: 0}
     inkJSON_FinishQuest: {fileID: 4900000, guid: 1d8f74b1a4723a94aa212e6b748b11fd,
@@ -18143,7 +18254,17 @@ MonoBehaviour:
     inkJSON_FinishQuest: {fileID: 4900000, guid: e933f7eb29b79a74a9abc78fe7cfd0a2,
       type: 3}
     inkJSON_AfterQuest: {fileID: 0}
-  inkJSONs_Controller: []
+  inkJSONs_Controller:
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 0}
+    inkJSON_FinishQuest: {fileID: 0}
+    inkJSON_AfterQuest: {fileID: 0}
+  - inkJSON_BeforeQuest: {fileID: 0}
+    inkJSON_StartQuest: {fileID: 0}
+    inkJSON_DuringQuest: {fileID: 0}
+    inkJSON_FinishQuest: {fileID: 0}
+    inkJSON_AfterQuest: {fileID: 0}
   _questIndex: 0
   _currentQuestState: 0
   _questPoints: []
