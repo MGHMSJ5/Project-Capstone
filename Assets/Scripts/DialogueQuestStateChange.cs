@@ -20,7 +20,9 @@ public class DialogueQuestStateChange : MonoBehaviour
     private DialoguePerQuest[] inkJSONs_Controller;
 
     public int _questIndex = 0;
-    public QuestState _currentQuestState;
+    [Tooltip("Do NOT change this variable in the inspector to something else. This variable is in the inspector to check for what state a quest is in and if the dialogue is correct.")]
+    [SerializeField]
+    private QuestState _currentStateOfQuest = QuestState.FINISHED;
 
     [SerializeField]
     private QuestPoint[] _questPoints;
@@ -40,7 +42,7 @@ public class DialogueQuestStateChange : MonoBehaviour
     {
         if (_questIndex < _questPoints.Length)
         {
-            if (_currentQuestState != _questPoints[_questIndex].currentQuestState)
+            if (_currentStateOfQuest != _questPoints[_questIndex].currentQuestState)
             {
                 UpdateDialogue();
             }
@@ -49,7 +51,7 @@ public class DialogueQuestStateChange : MonoBehaviour
 
     private void UpdateDialogue()
     {
-        _currentQuestState = _questPoints[_questIndex].currentQuestState;
+        _currentStateOfQuest = _questPoints[_questIndex].currentQuestState;
 
         TextAsset pcJSON = null;
         TextAsset controllerJSON = null;
@@ -57,27 +59,27 @@ public class DialogueQuestStateChange : MonoBehaviour
         var pc = inkJSONs_PC[_questIndex];
         var controller = inkJSONs_Controller[_questIndex];
 
-        if (_currentQuestState.Equals(QuestState.REQUIREMENTS_NOT_MET))
+        if (_currentStateOfQuest.Equals(QuestState.REQUIREMENTS_NOT_MET))
         {
             pcJSON = pc.inkJSON_BeforeQuest;
             controllerJSON = controller.inkJSON_BeforeQuest;
         }
-        if (_currentQuestState.Equals(QuestState.CAN_START))
+        if (_currentStateOfQuest.Equals(QuestState.CAN_START))
         {
             pcJSON = pc.inkJSON_StartQuest;
             controllerJSON = controller.inkJSON_StartQuest;
         }
-        if (_currentQuestState.Equals(QuestState.IN_PROGRESS))
+        if (_currentStateOfQuest.Equals(QuestState.IN_PROGRESS))
         {
             pcJSON = pc.inkJSON_DuringQuest;
             controllerJSON = controller.inkJSON_DuringQuest;
         }
-        if (_currentQuestState.Equals(QuestState.CAN_FINISH))
+        if (_currentStateOfQuest.Equals(QuestState.CAN_FINISH))
         {
             pcJSON = pc.inkJSON_FinishQuest;
             controllerJSON = controller.inkJSON_FinishQuest;
         }
-        if (_currentQuestState.Equals(QuestState.FINISHED))
+        if (_currentStateOfQuest.Equals(QuestState.FINISHED))
         {
             pcJSON = pc.inkJSON_AfterQuest;
             controllerJSON = controller.inkJSON_AfterQuest;
