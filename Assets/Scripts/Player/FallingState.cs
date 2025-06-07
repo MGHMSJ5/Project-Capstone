@@ -5,15 +5,18 @@ using UnityEngine;
 public class FallingState : IState
 {
     private PlayerController player;
+    private Animator animator;
 
     public FallingState(PlayerController player)
     {
         this.player = player;
+        animator = player.GetComponentInChildren<Animator>(); 
     }
 
     public void Enter()
     {
         //Debug.Log("Falling");
+        animator.SetTrigger("FallingTrigger");
     }
 
     public void Execute()
@@ -30,16 +33,19 @@ public class FallingState : IState
                 if (player.IsSprinting)
                 {
                     player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.sprintState);
+                    animator.Play("PATCH|LandingAnim");
                 }
                 else
                 {   // Transition to the walk state if the player is not sprinting
                     player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.walkState);
+                    animator.Play("PATCH|LandingAnim");
                 }
             }
             // Transition to the idle state if the player is not moving
             else
             {
                 player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.idleState);
+                animator.Play("PATCH|LandingAnim");
             }
         }
         // else if (hovering stuff)
@@ -51,6 +57,6 @@ public class FallingState : IState
 
     public void Exit()
     {
-
+        animator.ResetTrigger("FallingTrigger");
     }
 }

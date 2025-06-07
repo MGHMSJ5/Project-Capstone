@@ -5,6 +5,7 @@ using UnityEngine;
 public class JumpState : IState
 {
     private PlayerController player;
+    private Animator animator;
 
     private float timer = 0f;
     private float waitTime = 0.5f;
@@ -12,11 +13,13 @@ public class JumpState : IState
     public JumpState(PlayerController player)
     {
         this.player = player;
+        animator = player.GetComponentInChildren<Animator>();
     }
 
     public void Enter()
     {
         //Debug.Log("Jump");
+        animator.SetTrigger("JumpTrigger");
 
         ResetTimer();
     }
@@ -42,7 +45,8 @@ public class JumpState : IState
 
     public void Exit()
     {
-             
+        animator.ResetTrigger("JumpTrigger");
+        animator.ResetTrigger("LandTrigger");
     }
 
     public void ResetTimer()

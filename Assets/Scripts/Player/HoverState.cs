@@ -5,15 +5,18 @@ using UnityEngine;
 public class HoverState : IState
 {
     private PlayerController player;
+    private Animator animator;
 
     public HoverState(PlayerController player)
     {
         this.player = player;
+        animator = player.GetComponentInChildren<Animator>();
     }
 
     public void Enter()
     {
         //Debug.Log("Hover");
+        animator.SetTrigger("HoverTrigger");
         player.particleSystem.gameObject.SetActive(true);
         player.particleSystem.Play();
 
@@ -40,6 +43,7 @@ public class HoverState : IState
 
     public void Exit()
     {
+        animator.ResetTrigger("HoverTrigger");
         player.particleSystem.Stop();
         player.particleSystem.gameObject.SetActive(false);
     }
