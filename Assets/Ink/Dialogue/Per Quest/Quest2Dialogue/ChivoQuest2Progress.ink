@@ -1,4 +1,5 @@
 //Lea: After directing the player to the factory, the player can still talk to Chivo. What he says will be showcased here.
+#Name:Chivo
 
 -> main
 
