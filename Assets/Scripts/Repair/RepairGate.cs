@@ -11,7 +11,11 @@ public class RepairGate : MonoBehaviour
     private Collider _collider;
 
     [SerializeField]
-    private GameObject _objectDestroyGate;
+    private GameObject _brokenGate;
+    [SerializeField]
+    private GameObject _fixedGate;
+    [SerializeField]
+    private Animator _animator;
 
     private void Awake()
     {
@@ -22,21 +26,24 @@ public class RepairGate : MonoBehaviour
     private void Start()
     {
         _collider.enabled = false;
+        _fixedGate.SetActive(false);
     }
 
-    private void DestroyGate()
-    {   // Change the color of the object to green
-        Destroy(_objectDestroyGate);
+    private void OpenGate()
+    {   // Destroy the broken gate and set the fixed gate to true and then play its animation
+        Destroy(_brokenGate);
+        _fixedGate.SetActive(true);
+        _animator.Play("FenceGateDoorOpening");
     }
 
     //subscribe to event so that the subscribed function will be invoked when repairing
     private void OnEnable()
     {
-        _minorRepair.RepairAction += DestroyGate;
+        _minorRepair.RepairAction += OpenGate;
     }
     // Ubsubscribe to the event if this object gets destroyed to prevent errors
     private void OnDestroy()
     {
-        _minorRepair.RepairAction -= DestroyGate;
+        _minorRepair.RepairAction -= OpenGate;
     }
 }
