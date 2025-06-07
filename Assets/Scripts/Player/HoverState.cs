@@ -35,8 +35,8 @@ public class HoverState : IState
                 player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
             }
             else
-            {   // If the player is on the ground, then transition to the walk state
-                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.walkState);
+            {   // If the player is on the ground, then transition to the land state
+                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.landState);
             }
         }
     }
