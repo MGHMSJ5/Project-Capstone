@@ -49,10 +49,6 @@ public class LandState : IState
             {
                 player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.jumpState);
             }
-            else //, the player is falling
-            {
-                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
-            }
         }
     }
 
