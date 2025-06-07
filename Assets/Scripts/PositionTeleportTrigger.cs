@@ -10,6 +10,14 @@ public class PositionTeleportTrigger : MonoBehaviour
     [Tooltip("Set to true if the NEXT and PREVIOUS teleport location is the Factory.")]
     [SerializeField]
     private bool _changeCameraWhenTeleport = false;
+    [Header("Cave Light Changes")]
+    [SerializeField]
+    private GameObject _originalDirectionalLight;
+    [SerializeField]
+    private GameObject _caveDirectionalLight;
+    [SerializeField]
+    private bool _turnOriginalLightOff = false;
+
     // Made bool to check if the player has entered, because it was causing some issues withouts
     private bool _hasEntered = false;
     private CanvasSceneTransition _canvasSceneTransition;
@@ -43,6 +51,7 @@ public class PositionTeleportTrigger : MonoBehaviour
             _hasEntered = true; // Set to true so that this code won't be called again (to prevent issue)
             Invoke("EnablePlayerMovement", 0.5f); // Invoke this 0.5 seconds later to stop the player movement
             _canvasSceneTransition.FadeAction += ChangeCamera; // Subscribe to FadeAction event
+            _canvasSceneTransition.FadeAction += ChangeLight;
             InterruptCarrying();
             _canvasSceneTransition.CanvasFadeInAndOut(2f); // Call the fading
         }
@@ -58,6 +67,15 @@ public class PositionTeleportTrigger : MonoBehaviour
         }
         _playerTransform.localPosition = _teleportLocation.position;
         _playerController.enabled = true;
+    }
+
+    private void ChangeLight()
+    {
+        if (_originalDirectionalLight != null)
+        {
+            _originalDirectionalLight.SetActive(_turnOriginalLightOff);
+            _caveDirectionalLight.SetActive(!_turnOriginalLightOff);
+        }
     }
     private void EnablePlayerMovement()
     {
