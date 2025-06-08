@@ -6,6 +6,7 @@ using Ink.Runtime;
 using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -77,6 +78,7 @@ public class DialogueManager : MonoBehaviour
             choicesText[index] = choice.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             index++;
         }
+
     }
 
     private void Update()
@@ -209,8 +211,12 @@ public class DialogueManager : MonoBehaviour
             choices[i].gameObject.SetActive(false);
         }
 
-        //select the first choice for controller users
-        StartCoroutine(SelectFirstChoice());
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name != "IntroScene")
+        {
+            //select the first choice for controller users
+            StartCoroutine(SelectFirstChoice());
+        }
 
 
     }
