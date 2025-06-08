@@ -29,10 +29,7 @@ public class IdleState : IState
             {
                 player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.jumpState);
             }
-            else //, the player is falling
-            {
-                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
-            }
+            
         }
 
         // If the player is moving, then transition to the walking state
@@ -51,6 +48,5 @@ public class IdleState : IState
     public void Exit()
     {
         animator.ResetTrigger("IdleTrigger");
-        animator.ResetTrigger("LandTrigger");
     }
 }

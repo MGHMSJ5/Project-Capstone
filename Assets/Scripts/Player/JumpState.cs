@@ -21,26 +21,11 @@ public class JumpState : IState
 
     public void Execute()
     {
-        // else if (hovering stuff)
-        if (player.PlayerHover.IsHovering)
-        {
-            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.hoverState);
-        }
-
-        // if grounded land
-        if(player.Grounded)
-        {
-            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.landState);
-        }
-        else
-        {
-            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
-        }
+        player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
     }
 
     public void Exit()
     {
         animator.ResetTrigger("JumpTrigger");
-        animator.ResetTrigger("LandTrigger");
     }
 }

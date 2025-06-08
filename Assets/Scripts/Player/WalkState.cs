@@ -57,6 +57,5 @@ public class WalkState : IState
     public void Exit()
     {
         animator.ResetTrigger("WalkingTrigger");
-        animator.ResetTrigger("LandTrigger");
     }
 }

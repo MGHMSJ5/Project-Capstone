@@ -57,6 +57,5 @@ public class SprintState : IState
     public void Exit()
     {
         animator.ResetTrigger("SprintingTrigger");
-        animator.ResetTrigger("LandTrigger");
     }
 }
