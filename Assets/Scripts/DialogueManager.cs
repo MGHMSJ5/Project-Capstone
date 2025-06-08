@@ -46,11 +46,7 @@ public class DialogueManager : MonoBehaviour
             _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         }
 
-        if (GameObject.Find("UIChangeManager") != null)
-        {
-            _UIChangeSubject = GameObject.Find("UIChangeManager").GetComponent<UIChangeSubject>();
-        }
-        
+        _UIChangeSubject = GameObject.Find("UIChangeManager").GetComponent<UIChangeSubject>();
     }
 
     private void OnEnable()
@@ -117,7 +113,10 @@ public class DialogueManager : MonoBehaviour
         ContinueStory();
 
         //disable the player movement (script)
-        _playerController.enabled = false;
+        if (_playerController != null)
+        {
+            _playerController.enabled = false;
+        }
 
         //mouse cursor is visible and moveable
         Cursor.visible = true;
@@ -131,7 +130,10 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
 
         //enable the player movement (script)
-        _playerController.enabled = true;
+        if (_playerController != null)
+        {
+            _playerController.enabled = true;
+        }
         dialogueIsPlaying = false;
 
         Cursor.visible = false;
