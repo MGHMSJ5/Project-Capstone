@@ -204,8 +204,6 @@ public class PlayerController : MonoBehaviour
         {
             _rb.MovePosition(_rb.position + _direction.normalized * _sprintSpeed * _airMultiplier * Time.fixedDeltaTime);
         }
-        // Elise: Could you write a comment that would explain how this works?
-        // Thomas: Check the velocity of the player to change the Speed variable of the animator to change the animation
     }
 
     private void Jump()
