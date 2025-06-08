@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("This is the amount that will be REMOVED from normal and sprint speed when carrying a heavy object")]
     private float _carryHeavySpeedDifference;
     [Tooltip("This is the variable that needs to be used in the animator to see if the player is carrying or not.")]
-    private bool _isCarrying = false;
+    public bool _isCarrying = false;
     private bool _isCarryingHeavy = false;
     private float _speed;
     [SerializeField] private float _groundDrag;
@@ -43,8 +43,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] private Animator _animator;
-    [SerializeField] private float _walkingAnimationSpeed = 1f;
-    [SerializeField] private float _sprintAnimationSpeed = 2.5f;
 
     private float horizontalInput;
     private float verticalInput;
@@ -92,6 +90,8 @@ public class PlayerController : MonoBehaviour
 
         // Initialize the State Macine
         _playerStateMachine = new PlayerStateMachine(this);
+
+        _animator = GetComponentInChildren<Animator>();
     }
     void Start()
     {
@@ -136,7 +136,6 @@ public class PlayerController : MonoBehaviour
         {
             _speed = _isCarryingHeavy ? _normalSpeed - _carryHeavySpeedDifference : _normalSpeed;
             _currentSprintTime = 0;
-            _animator.speed = _walkingAnimationSpeed;
             _isSprinting = false;
         }
         else
@@ -175,7 +174,6 @@ public class PlayerController : MonoBehaviour
         }
         // Elise: Could you write a comment that would explain how this works?
         // Thomas: Check the velocity of the player to change the Speed variable of the animator to change the animation
-        _animator.SetFloat("Speed", _rb.velocity.magnitude);
     }
 
     private void Jump()
@@ -192,13 +190,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Sprint") == 1)
         {   //increase the sprint time, but don't go over the max acceleration time
             _currentSprintTime = Mathf.Min(_currentSprintTime + Time.deltaTime, _maxSprintAccelerationTime);
-            _animator.speed = _sprintAnimationSpeed;
             _isSprinting = true;
         }
         else
         {   //decrease the sprint time, but don't go below 0
             _currentSprintTime = Mathf.Max(_currentSprintTime - Time.deltaTime, 0f);
-            _animator.speed = _walkingAnimationSpeed;
             _isSprinting = false;
         }
         //normalize the time value between 0 and 1
@@ -217,6 +213,14 @@ public class PlayerController : MonoBehaviour
         _isCarrying = carrying;
         _isCarryingHeavy = isHeavy;
 
+        if (_isCarrying)
+        {
+           _animator.SetLayerWeight(1, 1f);
+        }
+        else
+        {
+           _animator.SetLayerWeight(1, 0f);
+        }
     }
 
     private void ResetJump()

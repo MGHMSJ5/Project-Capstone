@@ -5,15 +5,18 @@ using UnityEngine;
 public class IdleState : IState
 {
     private PlayerController player;
+    private Animator animator;
 
     public IdleState(PlayerController player)
     {
         this.player = player;
+        animator = player.GetComponentInChildren<Animator>();
     }
 
     public void Enter()
     {
-        //Debug.Log("Idle");
+        Debug.Log("Idle");
+        animator.SetTrigger("IdleTrigger");
     }
 
     public void Execute()
@@ -21,15 +24,12 @@ public class IdleState : IState
         // If player is no longer grounded, transition
         if (!player.Grounded)
         {
-            // Transition to the jump state if the player ha jumped
+            // Transition to the jump state if the player has jumped
             if (!player.ReadyToJump)
             {
                 player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.jumpState);
             }
-            else //, the player is falling
-            {
-                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
-            }
+            
         }
 
         // If the player is moving, then transition to the walking state
@@ -47,6 +47,6 @@ public class IdleState : IState
 
     public void Exit()
     {
-
+        animator.ResetTrigger("IdleTrigger");
     }
 }

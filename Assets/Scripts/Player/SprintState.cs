@@ -5,15 +5,18 @@ using UnityEngine;
 public class SprintState : IState
 {
     private PlayerController player;
+    private Animator animator;
 
     public SprintState(PlayerController player)
     {
         this.player = player;
+        animator = player.GetComponentInChildren<Animator>(); 
     }
 
     public void Enter()
     {
-        //Debug.Log("Sprint");
+        Debug.Log("Sprint");
+        animator.SetTrigger("SprintingTrigger");
     }
 
     public void Execute()
@@ -32,6 +35,12 @@ public class SprintState : IState
             }
         }
 
+        // If the player is moving, then transition to the idle state
+        if (player.Direction.magnitude < 0.1f)
+        {
+            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.idleState);
+        }
+
         // If the player is not sprinting, then transition to the walk state
         if (!player.IsSprinting)
         {
@@ -47,6 +56,6 @@ public class SprintState : IState
 
     public void Exit()
     {
-
+        animator.ResetTrigger("SprintingTrigger");
     }
 }

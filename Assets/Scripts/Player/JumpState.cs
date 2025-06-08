@@ -5,49 +5,27 @@ using UnityEngine;
 public class JumpState : IState
 {
     private PlayerController player;
+    private Animator animator;
 
-    private float timer = 0f;
-    private float waitTime = 0.5f;
-    private bool hasTriggered = false;
     public JumpState(PlayerController player)
     {
         this.player = player;
+        animator = player.GetComponentInChildren<Animator>();
     }
 
     public void Enter()
     {
         //Debug.Log("Jump");
-
-        ResetTimer();
+        animator.SetTrigger("JumpTrigger");
     }
 
     public void Execute()
     {
-        // else if (hovering stuff)
-        if (player.PlayerHover.IsHovering)
-        {
-            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.hoverState);
-        }
-
-        if (hasTriggered) return;
-
-        timer += Time.deltaTime;
-
-        if (timer >= waitTime)
-        {
-            player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
-            hasTriggered = true; // Prevent it from running again
-        }
+        player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
     }
 
     public void Exit()
     {
-             
-    }
-
-    public void ResetTimer()
-    {
-        timer = 0f;
-        hasTriggered = false;
+        animator.ResetTrigger("JumpTrigger");
     }
 }

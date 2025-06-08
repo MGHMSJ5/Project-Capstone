@@ -5,15 +5,18 @@ using UnityEngine;
 public class HoverState : IState
 {
     private PlayerController player;
+    private Animator animator;
 
     public HoverState(PlayerController player)
     {
         this.player = player;
+        animator = player.GetComponentInChildren<Animator>();
     }
 
     public void Enter()
     {
         //Debug.Log("Hover");
+        animator.SetTrigger("HoverTrigger");
         player.particleSystem.gameObject.SetActive(true);
         player.particleSystem.Play();
 
@@ -32,14 +35,28 @@ public class HoverState : IState
                 player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
             }
             else
-            {   // If the player is on the ground, then transition to the walk state
-                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.walkState);
+            {
+                //if the player is moving when grounded, then transition to the sprinting state if not sprinting then walking
+                if (player.Direction.magnitude > 0.1f)
+                {
+                    if (player.IsSprinting)
+                    {
+                        player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.sprintState);
+                    }
+                    player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.walkState);
+                }
+                else
+                {
+                    // If the player is on the ground, then transition to the land state
+                    player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.landState);
+                }
             }
         }
     }
 
     public void Exit()
     {
+        animator.ResetTrigger("HoverTrigger");
         player.particleSystem.Stop();
         player.particleSystem.gameObject.SetActive(false);
     }
