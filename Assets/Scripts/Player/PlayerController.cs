@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
     public float JumpCooldown => _jumpCooldown;
     public float AirMultiplier => _airMultiplier;
     public bool ReadyToJump => _readyToJump;
+    public bool LetJumpGo => _letJumpGo;
     public float PlayerHeight => _playerHeight;
     public LayerMask GroundMask => _groundMask;
     public bool Grounded => _grounded;
@@ -105,14 +106,15 @@ public class PlayerController : MonoBehaviour
         _playerStateMachine.Execute();
 
         //ground check with coyote time
-        bool isCurrentlyGrounded = Physics.Raycast(transform.position, -transform.up, _playerHeight * 0.5f + 0.2f, _groundMask);
+        bool isCurrentlyGrounded = Physics.CheckBox(transform.position + -transform.up * (_playerHeight * 0.5f), new Vector3(0.4f, 0.25f, 0.3f), transform.rotation, _groundMask);
 
-    if (isCurrentlyGrounded)
-    {
-    _lastGroundedTime = Time.time;
-    }
 
-    _grounded = isCurrentlyGrounded;
+        if (isCurrentlyGrounded)
+        {
+            _lastGroundedTime = Time.time;
+        }
+
+        _grounded = isCurrentlyGrounded;
 
         PlayerInput();
         SpeedControl();
@@ -126,6 +128,36 @@ public class PlayerController : MonoBehaviour
         {
             _rb.drag = 0;
         }
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        // Box parameters
+        Vector3 boxSize = new Vector3(0.4f, 0.25f, 0.3f);
+        Vector3 boxCenter = transform.position + -transform.up * (_playerHeight * 0.5f);
+        Quaternion boxRotation = transform.rotation;
+
+        // Set Gizmo color
+        Gizmos.color = Color.green;
+
+        // Save current Gizmos matrix
+        Matrix4x4 oldMatrix = Gizmos.matrix;
+
+        // Apply position and rotation
+        Gizmos.matrix = Matrix4x4.TRS(boxCenter, boxRotation, Vector3.one);
+
+        // Draw the wireframe cube at the origin of the local matrix
+        Gizmos.DrawWireCube(Vector3.zero, boxSize);
+
+        // Restore the original matrix
+        Gizmos.matrix = oldMatrix;
+        Gizmos.color = Color.blue;
+        Vector3 origin = transform.position;
+        Vector3 direction = -transform.up;
+        float distance = _playerHeight * 0.5f + 0.2f;
+
+        Gizmos.DrawLine(origin, origin + direction * distance);
     }
 
     void FixedUpdate()
@@ -239,6 +271,7 @@ public class PlayerController : MonoBehaviour
         if (_grounded && _letJumpGo)
         {
             _readyToJump = true;
+            _letJumpGo = false;
         }
 
         

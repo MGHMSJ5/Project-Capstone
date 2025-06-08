@@ -25,7 +25,7 @@ public class IdleState : IState
         if (!player.Grounded)
         {
             // Transition to the jump state if the player has jumped
-            if (!player.ReadyToJump)
+            if (!player.LetJumpGo)
             {
                 player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.jumpState);
             }
