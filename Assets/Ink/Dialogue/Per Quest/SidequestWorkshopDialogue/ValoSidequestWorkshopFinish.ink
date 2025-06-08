@@ -4,7 +4,7 @@
 ===Main===
 Would you look at that!
 Great job fixing it, you are a real repairer! It looks like it runs in your uhh— oil?
-So, about that reward, of course!
+So, about that reward...
 Here it is!
 +Uhh...
 ->OFC

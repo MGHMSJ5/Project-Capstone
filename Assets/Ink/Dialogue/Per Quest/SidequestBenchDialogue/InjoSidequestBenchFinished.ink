@@ -2,5 +2,7 @@
 ->Main
 
 ===Main===
-Thanks for the fix! Now I can finally relax!
+Thank you again!
+I can't wait to relax on it again and watch the sunset from there once more.
++No problem!
 ->END

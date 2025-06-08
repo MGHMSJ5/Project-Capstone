@@ -3,5 +3,18 @@
 #Name:Chivo
 ->Main
 ===Main===
-Go to the factory uhh...
+Have you figured out why the Kettle isn't working?
++Yes!
+->Yes
++Not yet!
+->No
+
+===Yes===
+Great, did you uhh— fix it already?
++Not yet!
+->No
+
+===No===
+Well, then I would suggest getting back to trying to fix the problem.
+
 ->END
