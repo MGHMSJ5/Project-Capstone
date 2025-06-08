@@ -5,15 +5,18 @@ using UnityEngine;
 public class PulseState : IState
 {
     private PlayerController player;
+    private Animator animator;
 
     public PulseState(PlayerController player)
     {
         this.player = player;
+        animator = player.GetComponentInChildren<Animator>();
     }
 
     public void Enter()
     {
         //Debug.Log("Pulse");
+        animator.SetTrigger("PulseTrigger");
 
         //Activate pulse sound if pulse is activated
         SoundManager.PlaySound(SoundType.PULSE);
@@ -30,6 +33,6 @@ public class PulseState : IState
 
     public void Exit()
     {
-
+        animator.ResetTrigger("PulseTrigger");
     }
 }

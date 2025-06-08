@@ -5,15 +5,18 @@ using UnityEngine;
 public class WalkState : IState
 {
     private PlayerController player;
+    private Animator animator;
 
     public WalkState(PlayerController player)
     {
         this.player = player;
+        animator = player.GetComponentInChildren<Animator>();
     }
 
     public void Enter()
     {
-        //Debug.Log("Walk");
+        Debug.Log("Walk");
+        animator.SetTrigger("WalkingTrigger");
     }
 
     public void Execute()
@@ -21,7 +24,7 @@ public class WalkState : IState
         // If player is no longer grounded, transition
         if (!player.Grounded)
         {
-            // Transition to the jump state if the player ha jumped
+            // Transition to the jump state if the player has jumped
             if (!player.ReadyToJump)
             {
                 player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.jumpState);
@@ -53,6 +56,6 @@ public class WalkState : IState
 
     public void Exit()
     {
-
+        animator.ResetTrigger("WalkingTrigger");
     }
 }

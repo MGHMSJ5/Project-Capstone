@@ -16,6 +16,7 @@ public class PlayerStateMachine
     public FallingState fallingState;
     public HoverState hoverState;
     public PulseState pulseState;
+    public LandState landState;
 
     // Event to notify other objects of the state change
     public event Action<IState> stateChanged;
@@ -30,6 +31,7 @@ public class PlayerStateMachine
         this.fallingState = new FallingState(player);
         this.hoverState = new HoverState(player);
         this.pulseState = new PulseState(player);
+        this.landState = new LandState(player);
     }
 
     // Set the starting state
