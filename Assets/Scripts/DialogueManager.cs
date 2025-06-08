@@ -41,8 +41,16 @@ public class DialogueManager : MonoBehaviour
         }
         instance = this;
         //get the PlayerController script by looking for an object that has the "Player" tag, and then get the script component
-        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        _UIChangeSubject = GameObject.Find("UIChangeManager").GetComponent<UIChangeSubject>();
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        }
+
+        if (GameObject.Find("UIChangeManager") != null)
+        {
+            _UIChangeSubject = GameObject.Find("UIChangeManager").GetComponent<UIChangeSubject>();
+        }
+        
     }
 
     private void OnEnable()
