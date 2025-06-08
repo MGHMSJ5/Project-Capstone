@@ -15,6 +15,14 @@ public class LandState : IState
 
     public void Enter()
     {
+        if (player._isCarrying)
+        {
+            animator.SetLayerWeight(1, 1f);
+        }
+        else
+        {
+            animator.SetLayerWeight(1, 0f);
+        }
         //Debug.Log("Falling");
         animator.SetTrigger("LandTrigger");
     }

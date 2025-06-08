@@ -4979,8 +4979,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0.4, z: 0}
+  m_Radius: 0.48565018
+  m_Center: {x: -0.00000045302318, y: 0.41434976, z: 0.00000014609861}
 --- !u!114 &105197503307770643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4997,6 +4997,7 @@ MonoBehaviour:
   _normalSpeed: 5
   _sprintSpeed: 10
   _carryHeavySpeedDifference: 3
+  _isCarrying: 0
   _groundDrag: 0
   _maxSprintAccelerationTime: 1.5
   _jumpForce: 320
@@ -5009,8 +5010,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 136
   _animator: {fileID: 4211584894985620719}
-  _walkingAnimationSpeed: 1
-  _sprintAnimationSpeed: 2.5
 --- !u!114 &934457520593668438
 MonoBehaviour:
   m_ObjectHideFlags: 0

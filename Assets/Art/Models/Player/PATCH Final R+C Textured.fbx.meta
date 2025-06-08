@@ -34,7 +34,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -91,8 +91,379 @@ ModelImporter:
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
-    human: []
-    skeleton: []
+    human:
+    - boneName: Root
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Left Upper Leg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Right Upper Leg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Left Lower Leg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Right Lower Leg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Left Foot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Right Foot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Top Torso
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Left Upper Arm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Right Upper Arm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Left Lower Arm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Right Lower Arm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Left Hand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Right Hand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Antenna 1
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: PATCH Final R+C Textured(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Armature
+      parentName: PATCH Final R+C Textured(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Root
+      parentName: Armature
+      position: {x: 0.000010876218, y: -0.006721206, z: 0.5165639}
+      rotation: {x: 0.00000008940697, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Bottom Torso
+      parentName: Root
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.5000001, y: 0.4999999, z: 0.49999994, w: 0.5000001}
+      scale: {x: 0.99999976, y: 0.9999997, z: 0.99999994}
+    - name: Hammer
+      parentName: Bottom Torso
+      position: {x: -0.14459798, y: -0.00041472912, z: -0.17259338}
+      rotation: {x: 0.023628961, y: 0.7058417, z: 0.05492434, w: 0.7058417}
+      scale: {x: 1.0000001, y: 1.0000002, z: 0.9999999}
+    - name: Hammer_end
+      parentName: Hammer
+      position: {x: -0, y: 0.09507411, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tool Pouch
+      parentName: Bottom Torso
+      position: {x: -0.16055289, y: -0.04230255, z: 0.17418893}
+      rotation: {x: -0.0405578, y: 0.7059427, z: -0.04055783, w: 0.70594275}
+      scale: {x: 0.99999976, y: 0.9999998, z: 0.99999976}
+    - name: Tool Pouch_end
+      parentName: Tool Pouch
+      position: {x: -0, y: 0.14898536, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Top Torso
+      parentName: Bottom Torso
+      position: {x: 3.4142238e-12, y: 0.27553725, z: -1.3034018e-13}
+      rotation: {x: -0, y: 0.000000014901161, z: -0, w: 1}
+      scale: {x: 0.99999976, y: 0.99999994, z: 0.9999998}
+    - name: Battery Pack
+      parentName: Top Torso
+      position: {x: 0.20860612, y: -0.118190825, z: -0.0019736285}
+      rotation: {x: 0.000000029802322, y: 0.70710695, z: 4.440892e-16, w: 0.7071067}
+      scale: {x: 0.9999999, y: 1, z: 0.99999994}
+    - name: Battery Pack_end
+      parentName: Battery Pack
+      position: {x: -0, y: 0.3343547, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Left Upper Arm
+      parentName: Top Torso
+      position: {x: -0.002869387, y: 0.19466764, z: -0.16544032}
+      rotation: {x: 0.5144773, y: -0.4872194, z: 0.51146907, w: -0.4861376}
+      scale: {x: 1.0000001, y: 1.0000007, z: 1.0000011}
+    - name: Left Arm Joint
+      parentName: Left Upper Arm
+      position: {x: 0.00000003032223, y: 0.16271317, z: 0.0000000013483259}
+      rotation: {x: 0.005262762, y: 0.000059798353, z: 0.010896548, w: 0.9999268}
+      scale: {x: 1.0000001, y: 1.0000001, z: 0.9999998}
+    - name: Left Lower Arm
+      parentName: Left Arm Joint
+      position: {x: 0.00000007095264, y: 0.11239973, z: 4.656613e-10}
+      rotation: {x: -0.0052620815, y: 0.00010746145, z: 0.020844273, w: 0.99976885}
+      scale: {x: 0.9999999, y: 0.9999998, z: 0.9999998}
+    - name: Left Hand
+      parentName: Left Lower Arm
+      position: {x: -0.00000002519146, y: 0.07961735, z: 5.541807e-10}
+      rotation: {x: -0.000000022351742, y: 0.000000069630914, z: -0.023571378, w: 0.99972224}
+      scale: {x: 1.0000001, y: 1, z: 1.0000005}
+    - name: Left Hand_end
+      parentName: Left Hand
+      position: {x: -0, y: 0.18099403, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Module
+      parentName: Top Torso
+      position: {x: -0.1904229, y: -0.013045013, z: -0.001973638}
+      rotation: {x: -0.020972908, y: 0.7067956, z: 0.020972937, w: 0.7067958}
+      scale: {x: 0.99999976, y: 1.0000001, z: 0.99999994}
+    - name: Module Lid
+      parentName: Module
+      position: {x: -0.0000000026335272, y: -0.0151537815, z: -0.0064397096}
+      rotation: {x: -0.053700186, y: 0.00000008940696, z: 0.000000039115545, w: 0.9985571}
+      scale: {x: 1.0000005, y: 0.99999994, z: 1.0000001}
+    - name: Module Lid_end
+      parentName: Module Lid
+      position: {x: -0, y: 0.049077816, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Neck
+      parentName: Top Torso
+      position: {x: 3.4142238e-12, y: 0.2636689, z: -1.3034018e-13}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 0.9999999, y: 1, z: 0.99999994}
+    - name: Head
+      parentName: Neck
+      position: {x: 3.4142238e-12, y: 0.056644678, z: -1.3034018e-13}
+      rotation: {x: 0.000000014622101, y: 0.00000010431074, z: 0.018727437, w: 0.99982464}
+      scale: {x: 1.0000001, y: 1, z: 1.0000002}
+    - name: Antenna 1
+      parentName: Head
+      position: {x: 0.003508361, y: 0.59190935, z: -0.0000000053570908}
+      rotation: {x: -0.000000047209788, y: -0.0000002527381, z: -0.018727511, w: 0.99982464}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: Antenna 2
+      parentName: Antenna 1
+      position: {x: -8.762325e-10, y: 0.03278303, z: 7.939624e-14}
+      rotation: {x: -3.5527128e-15, y: -0, z: -1.193171e-14, w: 1}
+      scale: {x: 1.0000002, y: 1, z: 1.0000004}
+    - name: Antenna 3
+      parentName: Antenna 2
+      position: {x: 5.998195e-12, y: 0.037974834, z: 9.148238e-14}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: Antenna 4
+      parentName: Antenna 3
+      position: {x: 5.9977995e-12, y: 0.037744522, z: 9.148238e-14}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: Antenna 5
+      parentName: Antenna 4
+      position: {x: 5.9977995e-12, y: 0.039016247, z: 9.148238e-14}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: Antenna 6
+      parentName: Antenna 5
+      position: {x: 5.9977995e-12, y: 0.036817193, z: 9.148238e-14}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: Antenna 7
+      parentName: Antenna 6
+      position: {x: 5.9977995e-12, y: 0.0374223, z: 9.148238e-14}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: Antenna 8
+      parentName: Antenna 7
+      position: {x: 5.9977995e-12, y: 0.0376271, z: 9.148238e-14}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: Antenna Light Bulb
+      parentName: Antenna 8
+      position: {x: 5.9977995e-12, y: 0.037848234, z: 9.148238e-14}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 0.99999994, z: 1.0000002}
+    - name: Antenna Light Bulb_end
+      parentName: Antenna Light Bulb
+      position: {x: -0, y: 0.07071352, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Right Upper Arm
+      parentName: Top Torso
+      position: {x: -0.002869283, y: 0.19466764, z: 0.16541857}
+      rotation: {x: 0.5114693, y: 0.4861377, z: 0.5144773, w: 0.48721913}
+      scale: {x: 1, y: 0.99999964, z: 1.0000001}
+    - name: Right Arm Joint
+      parentName: Right Upper Arm
+      position: {x: -0.000000045966186, y: 0.16271317, z: -3.6956038e-10}
+      rotation: {x: 0.0052627022, y: -0.000059925012, z: -0.010896637, w: 0.9999268}
+      scale: {x: 1, y: 1.0000005, z: 1.0000002}
+    - name: Right Lower Arm
+      parentName: Right Arm Joint
+      position: {x: 0.000000016680808, y: 0.11239973, z: 2.3283064e-10}
+      rotation: {x: -0.00526201, y: -0.00010745984, z: -0.020844258, w: 0.99976885}
+      scale: {x: 1, y: 0.9999999, z: 0.99999976}
+    - name: Right Hand
+      parentName: Right Lower Arm
+      position: {x: -0.000000034411265, y: 0.079617344, z: 1.910081e-10}
+      rotation: {x: -0.00000003958121, y: 0.000000116480805, z: 0.023571556, w: 0.99972224}
+      scale: {x: 1, y: 1.0000004, z: 1.0000004}
+    - name: Right Hand_end
+      parentName: Right Hand
+      position: {x: -0, y: 0.18099403, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Left Upper Leg
+      parentName: Root
+      position: {x: -0.096313104, y: -0.003981158, z: 0.023603499}
+      rotation: {x: 0.5308032, y: -0.5308031, z: 0.46717027, w: -0.4671702}
+      scale: {x: 0.9999997, y: 0.9999997, z: 0.9999999}
+    - name: Left Leg Joint
+      parentName: Left Upper Leg
+      position: {x: 3.3637737e-10, y: 0.21276072, z: -0.0000000028948128}
+      rotation: {x: 0.060339607, y: -0.00000026822087, z: -0.00000008940696, w: 0.9981779}
+      scale: {x: 1, y: 1.0000004, z: 1.0000001}
+    - name: Left Lower Leg
+      parentName: Left Leg Joint
+      position: {x: -5.4924243e-10, y: 0.103884175, z: 0.0000000048768536}
+      rotation: {x: 0.022893356, y: 0.00003192257, z: -0.0049711405, w: 0.9997256}
+      scale: {x: 1.0000001, y: 0.9999999, z: 0.9999999}
+    - name: Left Foot
+      parentName: Left Lower Leg
+      position: {x: 8.403731e-10, y: 0.20155185, z: -0.000000001700073}
+      rotation: {x: -0.101836815, y: 0.07346917, z: -0.69973755, w: 0.70327735}
+      scale: {x: 1.0000006, y: 1.0000002, z: 1.0000004}
+    - name: Left Foot_end
+      parentName: Left Foot
+      position: {x: -0, y: 0.195464, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Right Upper Leg
+      parentName: Root
+      position: {x: 0.09629135, y: -0.003981158, z: 0.023603499}
+      rotation: {x: 0.5308032, y: 0.5308031, z: -0.46717027, w: -0.4671702}
+      scale: {x: 0.9999997, y: 0.9999997, z: 0.9999999}
+    - name: Right Leg Joint
+      parentName: Right Upper Leg
+      position: {x: -3.3637737e-10, y: 0.21276072, z: -0.0000000028948128}
+      rotation: {x: 0.060339607, y: 0.00000026822087, z: 0.00000008940696, w: 0.9981779}
+      scale: {x: 1, y: 1.0000004, z: 1.0000001}
+    - name: Right Lower Leg
+      parentName: Right Leg Joint
+      position: {x: 5.4924243e-10, y: 0.103884175, z: 0.0000000048768536}
+      rotation: {x: -0.022893356, y: 0.00003192257, z: -0.0049711405, w: -0.9997256}
+      scale: {x: 1.0000001, y: 0.9999999, z: 0.9999999}
+    - name: Right Foot
+      parentName: Right Lower Leg
+      position: {x: -8.403731e-10, y: 0.20155185, z: -0.000000001700073}
+      rotation: {x: 0.101836815, y: 0.07346917, z: -0.69973755, w: -0.70327735}
+      scale: {x: 1.0000006, y: 1.0000002, z: 1.0000004}
+    - name: Right Foot_end
+      parentName: Right Foot
+      position: {x: -0, y: 0.195464, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PATCH 0
+      parentName: PATCH Final R+C Textured(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -101,15 +472,15 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: Root
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

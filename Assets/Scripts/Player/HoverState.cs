@@ -15,6 +15,14 @@ public class HoverState : IState
 
     public void Enter()
     {
+        if (player._isCarrying)
+        {
+            animator.SetLayerWeight(1, 1f);
+        }
+        else
+        {
+            animator.SetLayerWeight(1, 0f);
+        }
         //Debug.Log("Hover");
         animator.SetTrigger("HoverTrigger");
         player.particleSystem.gameObject.SetActive(true);
@@ -35,8 +43,21 @@ public class HoverState : IState
                 player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
             }
             else
-            {   // If the player is on the ground, then transition to the land state
-                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.landState);
+            {
+                //if the player is moving when grounded, then transition to the sprinting state if not sprinting then walking
+                if (player.Direction.magnitude > 0.1f)
+                {
+                    if (player.IsSprinting)
+                    {
+                        player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.sprintState);
+                    }
+                    player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.walkState);
+                }
+                else
+                {
+                    // If the player is on the ground, then transition to the land state
+                    player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.landState);
+                }
             }
         }
     }

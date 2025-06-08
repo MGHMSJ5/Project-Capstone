@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("This is the amount that will be REMOVED from normal and sprint speed when carrying a heavy object")]
     private float _carryHeavySpeedDifference;
     [Tooltip("This is the variable that needs to be used in the animator to see if the player is carrying or not.")]
-    private bool _isCarrying = false;
+    public bool _isCarrying = false;
     private bool _isCarryingHeavy = false;
     private float _speed;
     [SerializeField] private float _groundDrag;
@@ -40,6 +40,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _playerHeight;
     [SerializeField] private LayerMask _groundMask;
     private bool _grounded;
+
+    [Header("Animation")]
+    [SerializeField] private Animator _animator;
 
     private float horizontalInput;
     private float verticalInput;
@@ -87,6 +90,8 @@ public class PlayerController : MonoBehaviour
 
         // Initialize the State Macine
         _playerStateMachine = new PlayerStateMachine(this);
+
+        _animator = GetComponentInChildren<Animator>();
     }
     void Start()
     {
@@ -208,6 +213,14 @@ public class PlayerController : MonoBehaviour
         _isCarrying = carrying;
         _isCarryingHeavy = isHeavy;
 
+        if (_isCarrying)
+        {
+           _animator.SetLayerWeight(1, 1f);
+        }
+        else
+        {
+           _animator.SetLayerWeight(1, 0f);
+        }
     }
 
     private void ResetJump()
