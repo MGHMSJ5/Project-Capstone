@@ -1,35 +1,58 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class IntroSceneAnim : MonoBehaviour
 {
     [SerializeField] private TextAsset inkJSON;
-    [SerializeField] private GameObject camera1;
-    [SerializeField] private GameObject camera2;
+    [SerializeField] private GameObject dialoguePanel;
     private Animator animator;
+
+    [SerializeField] private bool goneThroughAnim = false;
+
+    public UnityEvent endOfIntroEvent;
+
     // Start is called before the first frame update
     void Start()
     {
-        camera1.SetActive(true);
-        camera2.SetActive(false);
         animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (goneThroughAnim && dialoguePanel.activeInHierarchy == false)
+        {
+            animator.SetBool("AfterDialogue", true);
+        }
     }
 
     public void CameraSwitchAnimation()
     {
-        camera1.SetActive(false);
-        camera2.SetActive(true);
         if (!DialogueManager.GetInstance().dialogueIsPlaying)
         {
-            DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+            StartCoroutine(WaitForDialogue());
         }
+        StartCoroutine(WaitForAnimation());
+    }
+
+    IEnumerator WaitForDialogue()
+    {
+        yield return new WaitForSeconds(1f);
+        DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+    }
+
+    IEnumerator WaitForAnimation()
+    {
+        yield return new WaitForSeconds(3f);
+        goneThroughAnim = true;
+    }
+
+    public void EndOfIntro()
+    {
+        endOfIntroEvent?.Invoke();
     }
 }

@@ -141,6 +141,8 @@ public class DialogueManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
+
+
     }
 
     private void ContinueStory()
