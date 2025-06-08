@@ -4,27 +4,25 @@ using UnityEngine;
 
 public class FixToasterStep : QuestStep
 {
-    private BaseInteract baseInteract;
+    private NPCInteract npcInteract;
     private void Awake()
     {
-        baseInteract = GameObject.Find("ToasterInteractExample").GetComponent<BaseInteract>();
+        npcInteract = GameObject.Find("ToasterInteract").GetComponent<NPCInteract>();
     }
     private void OnEnable()
     {
-        baseInteract.onSubmitPressed += FixToaster;
+        npcInteract.DoneTalkingEvent += FixToaster;
     }
 
     private void OnDisable()
     {
-        baseInteract.onSubmitPressed -= FixToaster;
+        npcInteract.DoneTalkingEvent -= FixToaster;
     }
 
     //Add that the queststep is finished when interacting with the toaster
     private void FixToaster()
     {
         FinishQuestStep();
-        baseInteract.onSubmitPressed -= FixToaster;
-
-        baseInteract.InvokeSubmitPressed();
+        npcInteract.DoneTalkingEvent -= FixToaster;
     }
 }

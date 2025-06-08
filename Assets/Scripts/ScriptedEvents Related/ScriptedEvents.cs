@@ -24,7 +24,9 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
 
     [Header("Plug in the plug event")]
     [SerializeField]
-    private Vector3 pluggedPosition;
+    private GameObject _cablePluggedIn;
+    [SerializeField] 
+    private GameObject _cableUnplugged;
     private CanvasSceneTransition _canvasSceneTransition;
 
 
@@ -36,6 +38,8 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
         _collider = _chobo.GetComponent<Collider>();
         _agent = _chobo.GetComponent<NavMeshAgent>();
         _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
+        _cablePluggedIn.SetActive(false);
+        _cableUnplugged.SetActive(true);
     }
     // Tutorial functions
     public void MoveChobo()
@@ -76,12 +80,14 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
     {
         //play scripted event - in scene fade in and out
         _canvasSceneTransition.FadeAction += PlugChangePosition;
+        Debug.Log("Plug Changed!");
         _canvasSceneTransition.CanvasFadeInAndOut(2f);
     }
 
     private void PlugChangePosition()
     {
-        GameObject.Find("PlugParent").transform.position = pluggedPosition;
+        _cableUnplugged.SetActive(false);
+        _cablePluggedIn.SetActive(true);
     }
     // Workshop event
     public void GetHover()

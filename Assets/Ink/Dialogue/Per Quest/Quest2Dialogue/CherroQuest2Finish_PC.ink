@@ -1,4 +1,6 @@
 //Lea: After the player repairs the fencegate, the player can talk to Cherro for the first time. Cherro explains something about pulse (player gets an update). PC Controls for Pulse also needs explaining.
+
+#Name:Cherro
 ->Main
 === Main ===
 What the— How did you get in here? Did you just fix the fence gate over there?
