@@ -49,7 +49,7 @@ public class PositionTeleportTrigger : MonoBehaviour
         if (other.CompareTag("Player") && !_hasEntered)
         {
             _hasEntered = true; // Set to true so that this code won't be called again (to prevent issue)
-            Invoke("EnablePlayerMovement", 0.5f); // Invoke this 0.5 seconds later to stop the player movement
+            Invoke("DisablePlayerMovement", 0.5f); // Invoke this 0.5 seconds later to stop the player movement
             _canvasSceneTransition.FadeAction += ChangeCamera; // Subscribe to FadeAction event
             _canvasSceneTransition.FadeAction += ChangeLight;
             InterruptCarrying();
@@ -77,7 +77,7 @@ public class PositionTeleportTrigger : MonoBehaviour
             _caveDirectionalLight.SetActive(!_turnOriginalLightOff);
         }
     }
-    private void EnablePlayerMovement()
+    private void DisablePlayerMovement()
     {
         _playerController.enabled = false;
         _hasEntered = false;
