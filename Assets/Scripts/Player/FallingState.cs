@@ -24,6 +24,14 @@ public class FallingState : IState
         // If the player is on the ground, then ...
         if (player.Grounded)
         {
+            if (player.Direction.magnitude > 0.1f)
+            {
+                if (player.IsSprinting)
+                {
+                    player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.sprintState);
+                }
+                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.walkState);
+            }
             //Activate fall sound if falling is activated
             SoundManager.PlaySound(SoundType.FALL, 0.5f);
 
