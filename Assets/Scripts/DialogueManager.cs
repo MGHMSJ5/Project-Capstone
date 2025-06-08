@@ -6,6 +6,7 @@ using Ink.Runtime;
 using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -41,7 +42,11 @@ public class DialogueManager : MonoBehaviour
         }
         instance = this;
         //get the PlayerController script by looking for an object that has the "Player" tag, and then get the script component
-        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        }
+
         _UIChangeSubject = GameObject.Find("UIChangeManager").GetComponent<UIChangeSubject>();
     }
 
@@ -73,6 +78,7 @@ public class DialogueManager : MonoBehaviour
             choicesText[index] = choice.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             index++;
         }
+
     }
 
     private void Update()
@@ -109,7 +115,10 @@ public class DialogueManager : MonoBehaviour
         ContinueStory();
 
         //disable the player movement (script)
-        _playerController.enabled = false;
+        if (_playerController != null)
+        {
+            _playerController.enabled = false;
+        }
 
         //mouse cursor is visible and moveable
         Cursor.visible = true;
@@ -123,11 +132,16 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
 
         //enable the player movement (script)
-        _playerController.enabled = true;
+        if (_playerController != null)
+        {
+            _playerController.enabled = true;
+        }
         dialogueIsPlaying = false;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+
 
     }
 
@@ -199,8 +213,12 @@ public class DialogueManager : MonoBehaviour
             choices[i].gameObject.SetActive(false);
         }
 
-        //select the first choice for controller users
-        StartCoroutine(SelectFirstChoice());
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name != "IntroScene")
+        {
+            //select the first choice for controller users
+            StartCoroutine(SelectFirstChoice());
+        }
 
 
     }
