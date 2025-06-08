@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class FixWaterPump : QuestStep
 {
-    private BaseInteract baseInteract;
+    private MinorRepair minorRepair;
 
     private void Awake()
     {
-        baseInteract = GameObject.Find("WaterPump").GetComponent<BaseInteract>();
+        minorRepair = GameObject.Find("WaterPump").GetComponent<MinorRepair>();
     }
     private void OnEnable()
     {
-        baseInteract.onSubmitPressed += FixWaterpump;
+        minorRepair.RepairAction += FixWaterpump;
     }
 
     private void OnDisable()
     {
-        baseInteract.onSubmitPressed -= FixWaterpump;
+        minorRepair.RepairAction -= FixWaterpump;
     }
 
     //Add that the queststep is finished when interacting with the waterpump
@@ -25,8 +25,6 @@ public class FixWaterPump : QuestStep
     {
         ScriptedEvents.Instance.TeleportChoboToKettle();
         FinishQuestStep();
-        baseInteract.onSubmitPressed -= FixWaterpump;
-
-        baseInteract.InvokeSubmitPressed();
+        minorRepair.RepairAction -= FixWaterpump;
     }
 }

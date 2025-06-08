@@ -20,6 +20,9 @@ public class NPCInteract : BaseInteract
 
     private bool _isInTrigger = false;
 
+    [Tooltip("After dialogue event")]
+    public event Action DoneTalkingEvent;
+
     public bool DialogueHasInteracted => _dialogueHasInteracted;
 
     private void Awake()
@@ -50,6 +53,7 @@ public class NPCInteract : BaseInteract
         //If the dialogue has already been interacted with by the player, and the dialogue panel is gone, the player will be allowed to interact with the dialogue again
         if (!DialogueManager.GetInstance().dialogueIsPlaying && _dialogueHasInteracted)
         {
+            DoneTalkingEvent?.Invoke();
             _dialogueHasInteracted = false;
             // Enable the dialoue after a delay
             StartCoroutine(DialogueInteractEnableDelay());
