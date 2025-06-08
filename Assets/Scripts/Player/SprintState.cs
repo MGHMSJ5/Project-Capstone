@@ -15,14 +15,6 @@ public class SprintState : IState
 
     public void Enter()
     {
-        if (player._isCarrying)
-        {
-            animator.SetLayerWeight(1, 1f);
-        }
-        else
-        {
-            animator.SetLayerWeight(1, 0f);
-        }
         Debug.Log("Sprint");
         animator.SetTrigger("SprintingTrigger");
     }

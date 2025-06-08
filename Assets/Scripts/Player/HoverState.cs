@@ -15,14 +15,6 @@ public class HoverState : IState
 
     public void Enter()
     {
-        if (player._isCarrying)
-        {
-            animator.SetLayerWeight(1, 1f);
-        }
-        else
-        {
-            animator.SetLayerWeight(1, 0f);
-        }
         //Debug.Log("Hover");
         animator.SetTrigger("HoverTrigger");
         player.particleSystem.gameObject.SetActive(true);
