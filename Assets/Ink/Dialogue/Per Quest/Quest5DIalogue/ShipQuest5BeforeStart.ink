@@ -2,5 +2,5 @@
 ->Main
 
 ===Main===
-You can not leave this planet before finishing your tasks on this planet.
+\*You can not leave before finishing your tasks on this planet.*
 ->END
