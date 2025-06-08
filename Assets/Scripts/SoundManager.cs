@@ -19,19 +19,12 @@ public enum SoundType
 }
 
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
-public class SoundManager : MonoBehaviour
+public class SoundManager : Singleton<SoundManager>
 {
     [SerializeField] 
     private SoundList[] soundlist;
 
-    private static SoundManager instance;
     private AudioSource audioSource;
-
-    private void Awake()
-    {
-        instance = this;
-        
-    }
 
     private void Start()
     {
@@ -42,9 +35,9 @@ public class SoundManager : MonoBehaviour
     //This function can be used in other scripts, which randomly plays on of the sounds found in that specific soundtype.
     public static void PlaySound(SoundType sound, float volume = 1)
     {
-        AudioClip[] clips = instance.soundlist[(int)sound].Sounds;
+        AudioClip[] clips = Instance.soundlist[(int)sound].Sounds;
         AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
-        instance.audioSource.PlayOneShot(randomClip, volume);
+        Instance.audioSource.PlayOneShot(randomClip, volume);
     }
 }
 
