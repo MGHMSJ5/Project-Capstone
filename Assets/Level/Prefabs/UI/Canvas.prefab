@@ -2679,6 +2679,7 @@ MonoBehaviour:
   _popUpText: {fileID: 5846088446854417037}
   _screwAmount: {fileID: 7817204435055941251}
   _screwAddedText: {fileID: 8881427265919681478}
+  counterPassed: 0
 --- !u!95 &7144059462614163021
 Animator:
   serializedVersion: 5
@@ -2727,8 +2728,8 @@ RectTransform:
   m_GameObject: {fileID: 5654617227065745757}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7445061042810023710}
   - {fileID: 5595603432092454058}
