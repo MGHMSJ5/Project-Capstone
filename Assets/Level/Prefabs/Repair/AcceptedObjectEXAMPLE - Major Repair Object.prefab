@@ -359,6 +359,12 @@ MonoBehaviour:
   _interactOnce: 0
   _interactType: 1
   _interruptCarrying: 0
+  _isCarrying: 0
+  _objectHeight: 0
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _grounded: 0
 --- !u!1 &6942871548300997579
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +378,7 @@ GameObject:
   - component: {fileID: 2838210558484880064}
   - component: {fileID: 9192201809899151811}
   - component: {fileID: 4839319572402086461}
+  - component: {fileID: 7518216817753443763}
   m_Layer: 3
   m_Name: AcceptedObjectEXAMPLE - Major Repair Object
   m_TagString: Untagged
@@ -467,5 +474,26 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.3234596, y: 0.5653076, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.845912, y: 0.6119385, z: 2.284831}
+  m_Center: {x: 0.00000047683716, y: 0.10103226, z: -0.06253576}
+--- !u!65 &7518216817753443763
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942871548300997579}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.117370605, z: 2.1542091}
+  m_Center: {x: 0, y: -0.21216965, z: -0.08486843}
