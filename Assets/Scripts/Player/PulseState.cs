@@ -19,7 +19,7 @@ public class PulseState : IState
         animator.SetTrigger("PulseTrigger");
 
         //Activate pulse sound if pulse is activated
-        SoundManager.PlaySound(SoundType.PULSE);
+        SoundManager.PlaySound(SoundType.PULSE, 0.5f);
     }
 
     public void Execute()

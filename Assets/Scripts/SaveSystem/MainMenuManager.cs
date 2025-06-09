@@ -93,6 +93,7 @@ public class MainMenuManager : MonoBehaviour
     public void OnNewGamePressed()
     {
         ResetAllPanels();
+        SoundManager.PlaySound(SoundType.UI, 1f);
 
         if (SaveSystem.SaveFileExists(false))
         {
@@ -107,6 +108,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void ConfirmStartNewGame()
     {
+        SoundManager.PlaySound(SoundType.UI, 1f);
         SaveSystem.DeleteSave(false);
         StartNewGame();
     }
@@ -114,12 +116,14 @@ public class MainMenuManager : MonoBehaviour
     public void OnCancelNewGamePressed()
     {
         ResetAllPanels();
+        SoundManager.PlaySound(SoundType.UI, 1f);
         mainMenuPanel.SetActive(true);
         SetSelected(firstMainMenuButton);
     }
 
     private void StartNewGame()
     {
+        SoundManager.PlaySound(SoundType.UI, 1f);
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
@@ -139,6 +143,7 @@ public class MainMenuManager : MonoBehaviour
     public void OnLoadGamePressed()
     {
         ResetAllPanels();
+        SoundManager.PlaySound(SoundType.UI, 1f);
 
         bool manualExists = SaveSystem.SaveFileExists(false);
         bool autoExists = SaveSystem.SaveFileExists(true);
@@ -175,7 +180,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnManualSaveSelected()
 {
-    if (SaveSystem.SaveFileExists(false))
+        SoundManager.PlaySound(SoundType.UI, 1f);
+        if (SaveSystem.SaveFileExists(false))
     {
         isAutoSaveSelected = false;
         SaveLoadContext.LoadAutoSave = false;
@@ -188,6 +194,7 @@ public class MainMenuManager : MonoBehaviour
 
 public void OnAutoSaveSelected()
 {
+    SoundManager.PlaySound(SoundType.UI, 1f);
     if (SaveSystem.SaveFileExists(true))
     {
         isAutoSaveSelected = true;
@@ -201,6 +208,7 @@ public void OnAutoSaveSelected()
 
     public void OnConfirmLoadPressed()
     {
+        SoundManager.PlaySound(SoundType.UI, 1f);
         SaveData data = SaveSystem.LoadGame(questManager, isAutoSaveSelected);
         if (data != null)
         // Go to next scene using the fading canvas
@@ -211,6 +219,7 @@ public void OnAutoSaveSelected()
 
     public void OnCancelLoadPressed()
     {
+        SoundManager.PlaySound(SoundType.UI, 1f);
         confirmLoadPanel.SetActive(false);
         loadSavePanel.SetActive(true);
         SetSelected(firstLoadSaveMenuButton);
@@ -219,50 +228,57 @@ public void OnAutoSaveSelected()
     public void OnBackFromLoadSave()
     {
         ResetAllPanels();
+        SoundManager.PlaySound(SoundType.UI, 1f);
         mainMenuPanel.SetActive(true);
         SetSelected(firstMainMenuButton);
     }
 
     public void OnCreditsPressed()
     {
-    ResetAllPanels();
-    creditsPanel.SetActive(true);
-    SetSelected(firstCreditsButton);
+        ResetAllPanels();
+        SoundManager.PlaySound(SoundType.UI, 1f);
+        creditsPanel.SetActive(true);
+        SetSelected(firstCreditsButton);
     }
 
     public void OnCloseCreditsPressed()
     {
-    ResetAllPanels();
-    mainMenuPanel.SetActive(true);
-    SetSelected(firstMainMenuButton);
+        ResetAllPanels();
+        SoundManager.PlaySound(SoundType.UI, 1f);
+        mainMenuPanel.SetActive(true);
+        SetSelected(firstMainMenuButton);
     }
 
     public void OnQuitPressed()
     {
-    ResetAllPanels();
-    quitConfirmPanel.SetActive(true);
-    SetSelected(firstQuitConfirmButton);
+        ResetAllPanels();
+        SoundManager.PlaySound(SoundType.UI, 1f);
+        quitConfirmPanel.SetActive(true);
+        SetSelected(firstQuitConfirmButton);
     }
 
     public void OnConfirmQuitPressed()
     {
-    Application.Quit();
-    #if UNITY_EDITOR
-    UnityEditor.EditorApplication.isPlaying = false; // For helping us test before making a build within unity
-    #endif
+        SoundManager.PlaySound(SoundType.UI, 1f);
+        Application.Quit();
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; // For helping us test before making a build within unity
+        #endif
     }
 
     public void OnCancelQuitPressed()
     {
-    ResetAllPanels();
-    mainMenuPanel.SetActive(true);
-    SetSelected(firstMainMenuButton);
+        ResetAllPanels();
+        SoundManager.PlaySound(SoundType.UI, 1f);
+        mainMenuPanel.SetActive(true);
+        SetSelected(firstMainMenuButton);
     }
 
     public void OnBackFromNoSaveFound()
     {
-    ResetAllPanels();
-    mainMenuPanel.SetActive(true);
-    SetSelected(firstMainMenuButton);
+        ResetAllPanels();
+        SoundManager.PlaySound(SoundType.UI, 1f);
+        mainMenuPanel.SetActive(true);
+        SetSelected(firstMainMenuButton);
     }
 }

@@ -18,6 +18,7 @@ public class IntroSceneAnim : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SoundManager.PlaySoundOnLoop(SoundType.ENGINE, 0.2f);
         animator = GetComponent<Animator>();
     }
 
@@ -53,6 +54,7 @@ public class IntroSceneAnim : MonoBehaviour
 
     public void EndOfIntro()
     {
+        SoundManager.StopSound();
         endOfIntroEvent?.Invoke();
     }
 }
