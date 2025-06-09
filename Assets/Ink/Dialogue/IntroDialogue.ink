@@ -8,4 +8,5 @@ Chobo out!
 #Name:Timothy
 Thank you for reaching out to the Federal Institute of Exploration's Department of Repairs.
 A special <b>PATCH</b> repairer unit will be dispatched to your location to assess the situation at hand.
-Thank you for your patience, Timothy, Service Desk Intern, out!
+We here at FIX commend you for your patience.
+Timothy, Service Desk Intern, out!
