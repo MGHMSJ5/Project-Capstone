@@ -1,5 +1,5 @@
 #Name:Chobo
--> Main
+->Main
 
 === Main ===
 So, I see you need some more information on how to control your little metal joints and hinges. Worry not, I am here to help!

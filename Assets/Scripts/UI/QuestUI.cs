@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class QuestUI : MonoBehaviour
 {
-    private UICanvas _UICanvas;
     private Animator _animator;
 
     [Header("Main Quests")]
@@ -62,7 +58,6 @@ public class QuestUI : MonoBehaviour
 
     private void Awake()
     {
-        _UICanvas = GameObject.Find("Canvas").GetComponent<UICanvas>();
         _animator = GetComponent<Animator>();
         _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }

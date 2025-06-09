@@ -40,11 +40,14 @@ public class Singleton<T> : MonoBehaviour where T : Component
         if (instance == null)
         {
             instance = this as T;
-            DontDestroyOnLoad(gameObject);
+            if (Application.isPlaying)
+            {
+                DontDestroyOnLoad(gameObject);
+            }
         }
         else
         {
-            Destroy(gameObject);
+            DestroyImmediate(gameObject);
         }
     }
 

@@ -22,6 +22,18 @@ public class JumpState : IState
     public void Execute()
     {
         player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
+
+        if (player.Grounded)
+        {
+            if (player.Direction.magnitude > 0.1f)
+            {
+                if (player.IsSprinting)
+                {
+                    player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.sprintState);
+                }
+                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.walkState);
+            }
+        }
     }
 
     public void Exit()

@@ -2,5 +2,5 @@
 
 === main ===
 ...
-This toaster doesn't seam to work.
+This toaster doesn't seem to work.
 -> END

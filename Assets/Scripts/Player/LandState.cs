@@ -45,7 +45,7 @@ public class LandState : IState
         else
         {
             // Transition to the jump state if the player ha jumped
-            if (!player.ReadyToJump)
+            if (!player.LetJumpGo)
             {
                 player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.jumpState);
             }

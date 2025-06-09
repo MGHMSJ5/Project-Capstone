@@ -30,6 +30,7 @@ public class PositionTeleportTrigger : MonoBehaviour
 
     void Awake()
     {
+        // Find and get all the objects/scripts/transforms
         _mainCamera = GameObject.Find("Main_Camera");
         _factoryCamera = GameObject.Find("FactoryCamera");
         _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
@@ -49,16 +50,16 @@ public class PositionTeleportTrigger : MonoBehaviour
         if (other.CompareTag("Player") && !_hasEntered)
         {
             _hasEntered = true; // Set to true so that this code won't be called again (to prevent issue)
-            Invoke("EnablePlayerMovement", 0.5f); // Invoke this 0.5 seconds later to stop the player movement
+            Invoke("DisablePlayerMovement", 0.5f); // Invoke this 0.5 seconds later to stop the player movement
             _canvasSceneTransition.FadeAction += ChangeCamera; // Subscribe to FadeAction event
             _canvasSceneTransition.FadeAction += ChangeLight;
-            InterruptCarrying();
+            InterruptCarrying(); // Make it so that the player drops the item they are carrying if they are
             _canvasSceneTransition.CanvasFadeInAndOut(2f); // Call the fading
         }
     }
 
     private void ChangeCamera()
-    {   // Function that disables and enables the camera's if needed + changes the player's position
+    {   // Function that disables and enables the camera's if needed + changes the player's position & enables the player's movement
         if (_changeCameraWhenTeleport)
         {
             print(_mainCamera.activeSelf);
@@ -68,7 +69,7 @@ public class PositionTeleportTrigger : MonoBehaviour
         _playerTransform.localPosition = _teleportLocation.position;
         _playerController.enabled = true;
     }
-
+    // Function that disables/enables the directional lights (from the main planet and the cave)
     private void ChangeLight()
     {
         if (_originalDirectionalLight != null)
@@ -77,7 +78,7 @@ public class PositionTeleportTrigger : MonoBehaviour
             _caveDirectionalLight.SetActive(!_turnOriginalLightOff);
         }
     }
-    private void EnablePlayerMovement()
+    private void DisablePlayerMovement()
     {
         _playerController.enabled = false;
         _hasEntered = false;

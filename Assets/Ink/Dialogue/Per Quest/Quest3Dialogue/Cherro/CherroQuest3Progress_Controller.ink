@@ -5,7 +5,7 @@
 ->Main
 
 ===Main===
-So, have you forgotten how the pulse works? No worries.
+So, have you forgotten how the pulse works? No worries if you have.
 +I have!
 ->Forgot
 +I remember!
