@@ -16,7 +16,11 @@ public enum SoundType
     SPACESHIPTAKEOFF,
     ENGINE,
     TOOLBOX,
-    UI
+    UI,
+    MAINMENU,
+    INTROSCENE,
+    MAINSCENE,
+    CREDITS
 }
 
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
@@ -26,6 +30,7 @@ public class SoundManager : Singleton<SoundManager>
     private SoundList[] soundlist;
 
     private AudioSource audioSource;
+    public bool isMusicPlaying = false;
 
     private void Start()
     {
