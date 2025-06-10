@@ -17,7 +17,6 @@ public class LoadingSceneController : MonoBehaviour
     {
         if (_nextSceneName != "0" && !_isLoading)
         {
-            SoundManager.StopSound();
             _isLoading = true;
             StartCoroutine(LoadNextScene());
         }

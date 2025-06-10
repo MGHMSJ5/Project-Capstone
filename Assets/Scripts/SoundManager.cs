@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public enum SoundType
 {
@@ -30,12 +31,37 @@ public class SoundManager : Singleton<SoundManager>
     private SoundList[] soundlist;
 
     private AudioSource audioSource;
+    private AudioSource backgroundMusic; // Added new audiosource for the background music so that they dont overlap
     public bool isMusicPlaying = false;
 
     private void Start()
     {
         //sound manager always has an audio source on it
         audioSource = GetComponent<AudioSource>();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    // Get the background music when a new scene has loaded
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(backgroundMusic != null)
+        {
+            backgroundMusic.Stop();
+        }
+        backgroundMusic = null;
+
+        if (scene.name != "LoadingScene")
+        {
+            backgroundMusic = GameObject.Find("Music").GetComponent<AudioSource>();
+        }
     }
 
     //This function can be used in other scripts, which randomly plays on of the sounds found in that specific soundtype.
@@ -51,10 +77,10 @@ public class SoundManager : Singleton<SoundManager>
         //Plays a sound on loop
         AudioClip[] clips = Instance.soundlist[(int)sound].Sounds;
         AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
-        Instance.audioSource.clip = randomClip;
-        Instance.audioSource.loop = true;
-        Instance.audioSource.volume = volume;
-        Instance.audioSource.Play();
+        Instance.backgroundMusic.clip = randomClip;
+        Instance.backgroundMusic.loop = true;
+        Instance.backgroundMusic.volume = volume;
+        Instance.backgroundMusic.Play();
     }
 
     public static void StopSound()
