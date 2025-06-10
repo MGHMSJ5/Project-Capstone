@@ -10570,7 +10570,7 @@ MonoBehaviour:
     inkJSON_FinishQuest: {fileID: 0}
     inkJSON_AfterQuest: {fileID: 0}
   _questIndex: 0
-  _currentQuestState: 0
+  _currentStateOfQuest: 4
   _questPoints: []
 --- !u!114 &3270956733341936247
 MonoBehaviour:
@@ -11479,6 +11479,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Movable Platform 02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2236375785767803836, guid: 082344505f4cdcb45a121672cd04ce17,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26126,7 +26131,7 @@ MonoBehaviour:
     inkJSON_AfterQuest: {fileID: 4900000, guid: db18179833864ee4683e7a21b7a0a157,
       type: 3}
   _questIndex: 0
-  _currentQuestState: 0
+  _currentStateOfQuest: 4
   _questPoints: []
 --- !u!114 &7586609085301876926
 MonoBehaviour:
@@ -32064,7 +32069,7 @@ MonoBehaviour:
     inkJSON_AfterQuest: {fileID: 4900000, guid: ab18d6c9758dc8e4cb32314aaedb051e,
       type: 3}
   _questIndex: 0
-  _currentQuestState: 0
+  _currentStateOfQuest: 4
   _questPoints: []
 --- !u!114 &9075835095935259658
 MonoBehaviour:
