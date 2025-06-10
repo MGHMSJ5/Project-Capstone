@@ -12,6 +12,8 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
     private BaseInteract _baseInteract;
     private Collider _collider;
     private NavMeshAgent _agent;
+    [SerializeField]
+    private Animator _choboAnimator;
 
     [Header("Waterpump event")]
     [SerializeField]
@@ -41,25 +43,41 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
         _cablePluggedIn.SetActive(false);
         _cableUnplugged.SetActive(true);
     }
+
+    private void Update()
+    {
+        if (_choboAnimator.GetCurrentAnimatorStateInfo(0).IsName("NPC_Walking") && _choboMovement.stopWalking)
+        {
+            StopChoboAnimation();
+        }
+    }
     // Tutorial functions
     public void MoveChobo()
     {
+        _choboAnimator.SetBool("IsWalking", true);
         _choboMovement.stopWalking = false;
         _baseInteract.enabled = false;
         _collider.enabled = false;
     }
 
+    private void StopChoboAnimation()
+    {
+        _choboAnimator.SetBool("IsWalking", false);
+    }
+
     public void EnableScriptChobo()
     {
         _baseInteract.enabled = true;
+        _baseInteract.onSubmitPressed += StopChoboAnimation;
         _collider.enabled = true;
     }
 
     public void StopChobo()
-    {
+    {   
         _choboMovement.stopWalking = true;
         _agent.enabled = false;
         _choboMovement.enabled = false;
+        _baseInteract.onSubmitPressed -= StopChoboAnimation;
     }
     // Waterpump functions
     public void TeleportChoboToKettle()
