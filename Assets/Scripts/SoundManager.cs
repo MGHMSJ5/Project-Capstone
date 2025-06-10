@@ -12,8 +12,9 @@ public enum SoundType
     HOVER,
     REPAIR,
     UNREPAIRABLE,
-    REWARD,
-    AMBIENT,
+    SPACESHIPLAND,
+    SPACESHIPTAKEOFF,
+    ENGINE,
     TOOLBOX,
     UI
 }
@@ -33,11 +34,28 @@ public class SoundManager : Singleton<SoundManager>
     }
 
     //This function can be used in other scripts, which randomly plays on of the sounds found in that specific soundtype.
-    public static void PlaySound(SoundType sound, float volume = 1)
+    public static void PlaySound(SoundType sound, float volume)
     {
         AudioClip[] clips = Instance.soundlist[(int)sound].Sounds;
         AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
         Instance.audioSource.PlayOneShot(randomClip, volume);
+    }
+
+    public static void PlaySoundOnLoop(SoundType sound, float volume)
+    {
+        //Plays a sound on loop
+        AudioClip[] clips = Instance.soundlist[(int)sound].Sounds;
+        AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
+        Instance.audioSource.clip = randomClip;
+        Instance.audioSource.loop = true;
+        Instance.audioSource.volume = volume;
+        Instance.audioSource.Play();
+    }
+
+    public static void StopSound()
+    {
+        //Stops the sound that is currently playing
+        Instance.audioSource.Stop();
     }
 }
 
