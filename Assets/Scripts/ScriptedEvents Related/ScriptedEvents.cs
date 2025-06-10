@@ -32,6 +32,7 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
 
     void Start()
     {
+        SoundManager.PlaySound(SoundType.SPACESHIPLAND, 0.2f);
         _chobo = GameObject.Find("Chobo");
         _choboMovement = _chobo.GetComponent<WaypointMovement>();
         _baseInteract = _chobo.GetComponent<BaseInteract>();

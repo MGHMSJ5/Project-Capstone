@@ -21,7 +21,7 @@ public class HoverState : IState
         player.particleSystem.Play();
 
         //Activate hover sound if hover is activated
-        SoundManager.PlaySound(SoundType.HOVER, 1.5f);
+        SoundManager.PlaySound(SoundType.HOVER, 0.7f);
     }
 
     public void Execute()
@@ -56,6 +56,7 @@ public class HoverState : IState
 
     public void Exit()
     {
+        SoundManager.StopSound();
         animator.ResetTrigger("HoverTrigger");
         player.particleSystem.Stop();
         player.particleSystem.gameObject.SetActive(false);

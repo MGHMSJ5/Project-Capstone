@@ -69,7 +69,7 @@ public class MinorRepair : BaseInteract
         else
         { // Can not repair item
           //Activate unrepairable sound
-            SoundManager.PlaySound(SoundType.UNREPAIRABLE);
+            SoundManager.PlaySound(SoundType.UNREPAIRABLE, 0.5f);
             SetInteract(true);
         }
         
@@ -77,7 +77,7 @@ public class MinorRepair : BaseInteract
     protected virtual void Repair()
     {
         //Activate repair sound if repair is activated
-        SoundManager.PlaySound(SoundType.REPAIR);
+        SoundManager.PlaySound(SoundType.REPAIR, 0.5f);
 
         // Play the perticle system
         _repairParticle?.Play();
