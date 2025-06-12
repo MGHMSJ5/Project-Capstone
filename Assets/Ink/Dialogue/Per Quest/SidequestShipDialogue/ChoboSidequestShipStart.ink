@@ -9,7 +9,7 @@ I thank you from the bottom of my big monkey heart, and that thank you is not on
 ->IK
 
 ===IK===
-I know you do, little robotic buddy.
+I know you are, little robotic buddy.
 I think all of us out here will miss you and your services greatly.
 But I also know that someone like you has other planets to help out too.
 So, it is time for you to head out and for us to say farewell to you.
