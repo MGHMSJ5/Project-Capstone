@@ -17,8 +17,6 @@ public class MajorRepair : MinorRepair
     // Is used to keep track if the right repair source is in the trigger
     private bool _majorResourceIn = false;
 
-    private Transform _carryPoint;
-
     protected override void Start()
     {
         base.Start();

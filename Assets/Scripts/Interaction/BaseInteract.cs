@@ -25,7 +25,7 @@ public class BaseInteract : MonoBehaviour
         False,
         True
     }
-    private Transform _carryPoint;
+    protected Transform _carryPoint;
     private bool _dropObjectBool;
 
     protected bool _hasInteracted = false;
