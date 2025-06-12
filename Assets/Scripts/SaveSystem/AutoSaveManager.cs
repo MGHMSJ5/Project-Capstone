@@ -10,7 +10,7 @@ public class AutoSaveManager : MonoBehaviour
 
     private void Start()
     {
-        //DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this.gameObject);
         timer = AutosaveInterval * 60f;
         questManager = FindObjectOfType<QuestManager>();
     }
