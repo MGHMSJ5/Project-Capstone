@@ -12605,7 +12605,7 @@ MonoBehaviour:
   FinishQuestAfterDialogueEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 549965124}
+      - m_Target: {fileID: 2105114620}
         m_TargetAssemblyTypeName: ScriptedEvents, Assembly-CSharp
         m_MethodName: GetHover
         m_Mode: 1
@@ -40423,7 +40423,7 @@ PrefabInstance:
         type: 3}
       propertyPath: FinishQuestAfterDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 549965124}
+      objectReference: {fileID: 2105114620}
     - target: {fileID: 3662444430373794733, guid: c0f62d20604405145be515ab1c35229b,
         type: 3}
       propertyPath: player
@@ -49325,7 +49325,7 @@ MonoBehaviour:
   StartQuestAfterDialogueEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 549965124}
+      - m_Target: {fileID: 2105114620}
         m_TargetAssemblyTypeName: ScriptedEvents, Assembly-CSharp
         m_MethodName: MoveChobo
         m_Mode: 1
@@ -49340,7 +49340,7 @@ MonoBehaviour:
   FinishQuestEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 549965124}
+      - m_Target: {fileID: 2105114620}
         m_TargetAssemblyTypeName: ScriptedEvents, Assembly-CSharp
         m_MethodName: StopChobo
         m_Mode: 1
@@ -59946,6 +59946,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9db9a2edf66e82d4bbbad0a7259dde6e, type: 3}
+--- !u!1 &2105114620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2105114622}
+  - component: {fileID: 2105114621}
+  m_Layer: 0
+  m_Name: EventsSceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2105114621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105114620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2c718c9c65b014bad1a1f04f64762e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2105114622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105114620}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2111975762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62867,6 +62911,7 @@ SceneRoots:
   - {fileID: 5150563602329221462}
   - {fileID: 240853933}
   - {fileID: 549965123}
+  - {fileID: 2105114622}
   - {fileID: 1910261913}
   - {fileID: 838177410}
   - {fileID: 553402291}
