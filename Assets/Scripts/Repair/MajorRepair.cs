@@ -22,12 +22,14 @@ public class MajorRepair : MinorRepair
         base.Start();
         // Also set the UI of the other repair resource (on top of the collectible resources)
         SetMajorResourceUI();
+        _carryPoint = GameObject.Find("CarryPoint").GetComponent<Transform>();
     }
 
     protected override void Repair()
     {
         base.Repair();
-        // + destroy the carriable resource
+        // Interrupt the carrying + destroy the carriable resource
+        InterruptCarrying();
         Destroy(_majorRepairCarryObjectType.gameObject);
     }
 
@@ -91,5 +93,17 @@ public class MajorRepair : MinorRepair
         Transform resourceAmountObject = _canvas.transform.GetChild(1);
         Image carryObjectImage = resourceAmountObject.GetChild(1).GetComponent<Image>();
         carryObjectImage.sprite = _acceptedObjectImage;
+    }
+
+    private void InterruptCarrying()
+    {
+        if (_carryPoint != null && _carryPoint.childCount > 0)
+        {
+            CarryObjectEXAMPLE carryObjectEXAMPLE = _carryPoint.GetChild(0).GetChild(0).GetComponent<CarryObjectEXAMPLE>();
+            if (carryObjectEXAMPLE != null)
+            {
+                carryObjectEXAMPLE.Interrupt();
+            }
+        }
     }
 }

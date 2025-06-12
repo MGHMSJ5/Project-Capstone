@@ -9,6 +9,8 @@ public class WaypointMovement : MonoBehaviour
     Vector3 target; //will be used to get the location of the waypoint(s)
 
     public bool stopWalking;
+    [Tooltip("Set to true if the agent needs to stop at the last waypoint")]
+    public bool doNotLoopWaypoints = false;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>(); //get the NavMeshAgent from this object
@@ -46,7 +48,14 @@ public class WaypointMovement : MonoBehaviour
         waypointindex++; //+1, will be used to get to the next waypoint
         if (waypointindex == waypoints.Length) //if this int gets bigger that the number of waypoints
         {
-            waypointindex = 0; //set back to start, the first waypoint
+            if (doNotLoopWaypoints)
+            {
+                stopWalking = true;
+            }
+            else
+            {
+                waypointindex = 0; //set back to start, the first waypoint
+            }
         }
     }
 }

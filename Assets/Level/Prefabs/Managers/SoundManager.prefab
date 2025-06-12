@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7434744319994550063}
+  - component: {fileID: 7018986235379063762}
   - component: {fileID: 5647538957205855081}
   - component: {fileID: 2749936824414630913}
   - component: {fileID: 6844885547267114620}
@@ -34,6 +35,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7018986235379063762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5737757825114816853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef93a1f3ff0556e4f82584c738e04ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5647538957205855081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +107,18 @@ MonoBehaviour:
   - name: UI
     sounds:
     - {fileID: 8300000, guid: 36327222d3f6fda4b9d8af761dcddc1a, type: 3}
+  - name: MAINMENU
+    sounds:
+    - {fileID: 8300000, guid: ab72b5c5b2d6f6645b87682f5b89d399, type: 3}
+  - name: INTROSCENE
+    sounds:
+    - {fileID: 8300000, guid: 2a660aa712b42574d8c6284d2bc11c8b, type: 3}
+  - name: MAINSCENE
+    sounds:
+    - {fileID: 8300000, guid: 7e748f2becaea794285eaa840fd25f78, type: 3}
+  - name: CREDITS
+    sounds:
+    - {fileID: 8300000, guid: b72d0e328106fea4eace64db62394c15, type: 3}
 --- !u!82 &6844885547267114620
 AudioSource:
   m_ObjectHideFlags: 0
