@@ -12605,8 +12605,8 @@ MonoBehaviour:
   FinishQuestAfterDialogueEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2105114620}
-        m_TargetAssemblyTypeName: ScriptedEvents, Assembly-CSharp
+      - m_Target: {fileID: 2105114621}
+        m_TargetAssemblyTypeName: EventsSceneManager, Assembly-CSharp
         m_MethodName: GetHover
         m_Mode: 1
         m_Arguments:
@@ -40423,7 +40423,17 @@ PrefabInstance:
         type: 3}
       propertyPath: FinishQuestAfterDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2105114620}
+      objectReference: {fileID: 2105114621}
+    - target: {fileID: 3270956733341936247, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      propertyPath: FinishQuestAfterDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlugThePlug
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270956733341936247, guid: c0f62d20604405145be515ab1c35229b,
+        type: 3}
+      propertyPath: FinishQuestAfterDialogueEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EventsSceneManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3662444430373794733, guid: c0f62d20604405145be515ab1c35229b,
         type: 3}
       propertyPath: player
@@ -49325,8 +49335,8 @@ MonoBehaviour:
   StartQuestAfterDialogueEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2105114620}
-        m_TargetAssemblyTypeName: ScriptedEvents, Assembly-CSharp
+      - m_Target: {fileID: 2105114621}
+        m_TargetAssemblyTypeName: EventsSceneManager, Assembly-CSharp
         m_MethodName: MoveChobo
         m_Mode: 1
         m_Arguments:
@@ -49340,8 +49350,8 @@ MonoBehaviour:
   FinishQuestEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2105114620}
-        m_TargetAssemblyTypeName: ScriptedEvents, Assembly-CSharp
+      - m_Target: {fileID: 2105114621}
+        m_TargetAssemblyTypeName: EventsSceneManager, Assembly-CSharp
         m_MethodName: StopChobo
         m_Mode: 1
         m_Arguments:
