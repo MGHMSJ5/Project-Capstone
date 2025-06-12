@@ -12,11 +12,9 @@ public class SceneTransitionTrigger : MonoBehaviour
     private SpawnLocationsType _spawnLocation;
 
     private CanvasSceneTransition _canvasSceneTransition;
-    private SceneSpawnManager _spawnManager;
     private void Awake()
     {
         _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
-        _spawnManager = GameObject.Find("SceneSpawnManager").GetComponent<SceneSpawnManager>();
         GetComponent<Collider>().isTrigger = true;
     }
 
@@ -32,7 +30,7 @@ public class SceneTransitionTrigger : MonoBehaviour
         {
             if (_spawnLocation != SpawnLocationsType.Default)
             {
-                _spawnManager.Location = _spawnLocation;
+                SceneSpawnManager.Instance.Location = _spawnLocation;
             }
 
             _canvasSceneTransition.ChangeScene(_nextSceneName);
