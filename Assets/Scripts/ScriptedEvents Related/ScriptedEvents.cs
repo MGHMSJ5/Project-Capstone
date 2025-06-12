@@ -26,14 +26,19 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
 
     void Start()
     {
+        SetVariables();
+        _cablePluggedIn.SetActive(false);
+        _cableUnplugged.SetActive(true);
+    }
+
+    private void SetVariables()
+    {
         _chobo = GameObject.Find("Chobo");
         _choboMovement = _chobo.GetComponent<WaypointMovement>();
         _baseInteract = _chobo.GetComponent<BaseInteract>();
         _collider = _chobo.GetComponent<Collider>();
         _agent = _chobo.GetComponent<NavMeshAgent>();
         _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
-        _cablePluggedIn.SetActive(false);
-        _cableUnplugged.SetActive(true);
     }
 
     private void OnEnable()
@@ -49,24 +54,32 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Reset all variables, and make GameObjects that will be used to check if the needed object is in the scene
-        _choboAnimator = null;
-        _kettleTeleportTransform = null;
-        _landingAreaTeleportTransform = null;
-        _cablePluggedIn = null;
-        _cableUnplugged = null;
+        ResetVariables();
+        GameObject chobo = null;
         GameObject choboModel = null;
         GameObject kettleTeleport = null;
         GameObject landingAreaTeleport = null;
+        GameObject canvasSceneTransition = null;
         GameObject cablePluggedIn = null;
         GameObject cableUnplugged = null;
         // Check if the name of the scene is not LoadingScene and try to find Chobo's Model
         if (scene.name != "LoadubgScebe")
         {
+            chobo = GameObject.Find("Chobo");
             choboModel = GameObject.Find("Chobo Model");
             kettleTeleport = GameObject.Find("Chobo_Kettle_Teleport");
             landingAreaTeleport = GameObject.Find("Chobo_LandingArea_Teleport");
+            canvasSceneTransition = GameObject.Find("Canvas_SceneTransition");
             cablePluggedIn = GameObject.Find("Plug & Cable Plugged In");
             cableUnplugged = GameObject.Find("Plug & Cable Unplugged");
+        }
+
+        if (chobo != null)
+        {
+            _choboMovement = chobo.GetComponent<WaypointMovement>();
+            _baseInteract = chobo.GetComponent<BaseInteract>();
+            _collider = chobo.GetComponent<Collider>();
+            _agent = chobo.GetComponent<NavMeshAgent>();
         }
 
         if (choboModel != null)
@@ -81,6 +94,10 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
         {
             _landingAreaTeleportTransform = landingAreaTeleport.GetComponent<Transform>();
         }
+        if (canvasSceneTransition != null)
+        {
+            _canvasSceneTransition = canvasSceneTransition.GetComponent<CanvasSceneTransition>();
+        }
         if (cablePluggedIn != null)
         {
             _cablePluggedIn = cablePluggedIn;
@@ -89,6 +106,16 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
         {
             _cableUnplugged = cableUnplugged;
         }
+    }
+
+    private void ResetVariables()
+    {
+        _choboAnimator = null;
+        _kettleTeleportTransform = null;
+        _landingAreaTeleportTransform = null;
+        _canvasSceneTransition = null;
+        _cablePluggedIn = null;
+        _cableUnplugged = null;
     }
 
     private void Update()
@@ -159,4 +186,5 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHover>()._hoverAbilityGranted = true;
     }
+
 }
