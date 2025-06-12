@@ -35,7 +35,7 @@ public class WalkState : IState
             }
         }
 
-        // If the player is moving, then transition to the idle state
+        // If the player is not moving, then transition to the idle state
         if (player.Direction.magnitude < 0.1f)
         {
             player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.idleState);
