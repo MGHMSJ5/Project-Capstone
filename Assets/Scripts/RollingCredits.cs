@@ -9,12 +9,16 @@ public class RollingCredits : MonoBehaviour
 
     public float endYPosition = 1000f; // Where the scrolling ends
     public float extraGap = 200f;      // Extra gap after credits before showing button
+    public float topPadding = -500f;
 
     private bool finished = false;
 
     void Start()
     {
         exitButton.SetActive(false);
+        Vector2 startPos = creditsTransform.anchoredPosition;
+        startPos.y = topPadding;
+        creditsTransform.anchoredPosition = startPos;
     }
 
     void Update()
