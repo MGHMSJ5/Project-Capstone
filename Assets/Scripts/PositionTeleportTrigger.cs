@@ -53,7 +53,7 @@ public class PositionTeleportTrigger : MonoBehaviour
             Invoke("DisablePlayerMovement", 0.5f); // Invoke this 0.5 seconds later to stop the player movement
             _canvasSceneTransition.FadeAction += ChangeCamera; // Subscribe to FadeAction event
             _canvasSceneTransition.FadeAction += ChangeLight;
-            InterruptCarrying(); // Make it so that the player drops the item they are carrying if they are
+            InterruptCarrying(); // Make it so that the player drops the item they are carrying if they are and disable carrying
             _canvasSceneTransition.CanvasFadeInAndOut(2f); // Call the fading
         }
     }
@@ -68,6 +68,7 @@ public class PositionTeleportTrigger : MonoBehaviour
         }
         _playerTransform.localPosition = _teleportLocation.position;
         _playerController.enabled = true;
+        _carryPoint.gameObject.SetActive(true);
     }
     // Function that disables/enables the directional lights (from the main planet and the cave)
     private void ChangeLight()
@@ -94,5 +95,6 @@ public class PositionTeleportTrigger : MonoBehaviour
                 carryObjectEXAMPLE.Interrupt();
             }
         }
+        _carryPoint.gameObject.SetActive(false);
     }
 }

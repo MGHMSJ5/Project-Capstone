@@ -72,6 +72,11 @@ public class CarryObjectEXAMPLE : BaseInteract
     // Interacting will happen when the player is either carrying the object or not //Thomas "carring" to "carrying" 
     protected override void InteractFunction()
     {
+        if (!_playerCarryPoint.gameObject.activeInHierarchy)
+        {
+            print("can not carry");
+            return;
+        }
         base.InteractFunction();
         if (!_isCarrying)
         {
