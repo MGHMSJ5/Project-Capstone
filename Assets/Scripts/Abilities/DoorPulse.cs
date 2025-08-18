@@ -1,9 +1,12 @@
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class DoorPulse : MonoBehaviour
 {
     public GameObject door; // Door object goes here
-    public Vector3 openOffset = new Vector3(0, 3, 0); // How much door opens/direciton
+    public Vector3 openOffset = new Vector3(0, 3, 0); // How much door opens/direction
+    public GameObject panel; // Panel object goes here
+    public Material activatedPanelMaterial; // Color of the panel when activated.
     public float openSpeed = 2f; // Door speed
 
     private bool isOpened = false;
@@ -29,6 +32,21 @@ public class DoorPulse : MonoBehaviour
         {
             isOpened = true;
             StartCoroutine(OpenDoor());
+            ActivatePanel();
+        }
+    }
+    private void ActivatePanel()
+    {
+        if (panel != null && activatedPanelMaterial != null)
+        {
+            Renderer renderer = panel.GetComponent<Renderer>();
+            Material[] materials = renderer.materials.Clone() as Material[];
+
+            if (materials.Length > 1)
+            {
+                materials[1] = activatedPanelMaterial;
+                renderer.materials = materials;
+            }
         }
     }
 
