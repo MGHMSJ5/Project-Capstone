@@ -74,6 +74,7 @@ public static void AutoSaveGame(Vector3 playerPosition, QuestManager questManage
     public static void DeleteSave(bool isAutoSave = false)
     {
         string path = isAutoSave ? autoSaveFilePath : manualSaveFilePath;
+        CurrentCollectedToolboxIDs = new List<string>();
         if (File.Exists(path)) File.Delete(path);
     }
 }
