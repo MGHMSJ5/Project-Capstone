@@ -123,6 +123,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void StartNewGame()
     {
+        SaveSystem.ResetToolboxAndRepairResources();
         SoundManager.PlaySound(SoundType.UI, 1f);
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
