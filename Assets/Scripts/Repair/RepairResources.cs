@@ -31,4 +31,12 @@ public static class RepairResources
     {
         _resourceAmounts[type] -= amount;
     }
+
+    public static void ResetRepairResources()
+    {
+        foreach (RepairTypesOptions type in System.Enum.GetValues(typeof(RepairTypesOptions)))
+        {
+            _resourceAmounts[type] = 0;
+        }
+    }
 }
