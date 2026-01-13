@@ -76,4 +76,11 @@ public static void AutoSaveGame(Vector3 playerPosition, QuestManager questManage
         string path = isAutoSave ? autoSaveFilePath : manualSaveFilePath;
         if (File.Exists(path)) File.Delete(path);
     }
+
+    public static void ResetToolboxAndRepairResources()
+    {
+        //Reset the toolbox id and repair resources
+        CurrentCollectedToolboxIDs = new List<string>();
+        RepairResources.ResetRepairResources();
+    }
 }
