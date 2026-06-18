@@ -16,16 +16,16 @@ public class RepairBridge : MonoBehaviour
     }
     private void OnEnable()
     {
-        minorRepair.RepairAction += FixBridge;
+        minorRepair.RepairAction += BridgeChange;
     }
 
     private void OnDisable()
     {
-        minorRepair.RepairAction -= FixBridge;
+        minorRepair.RepairAction -= BridgeChange;
     }
 
     //Add that the queststep is finished when interacting with the bridge
-    private void FixBridge()
+    /*private void FixBridge()
     {
         _canvasSceneTransition.FadeAction += BridgeChange;
         _canvasSceneTransition.FadeAction += BridgeChange;
@@ -33,7 +33,7 @@ public class RepairBridge : MonoBehaviour
 
         minorRepair.RepairAction -= FixBridge;
     }
-
+    */
     private void BridgeChange()
     {
         // Move Chobo to landing area
