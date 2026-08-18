@@ -4,49 +4,101 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class GravityBody : MonoBehaviour
-{   //Strength of the gravity force
-    private static float GRAVITY_FORCE = 800;
-    
-    //Calculates the current gravity direction
+{
+    [Header("Gravity")]
+
+    [Tooltip("Strength of gravity acceleration.")]
+    [SerializeField] private float _gravityForce = 30f;
+
     public Vector3 GravityDirection
     {
         get
-        {   //= No gravity areas
-            if (_gravityAreas.Count == 0) return Vector3.zero; 
-            //Sort gravity areas by priority (lowest to highest)
-            _gravityAreas.Sort((area1, area2) => area1.Priority.CompareTo(area2.Priority));
-            //Use the highest priority gravity area and get its gravity direction
-            return _gravityAreas.Last().GetGravityDirection(this).normalized;
+        {
+            if (_gravityAreas.Count == 0)
+            {
+                return Vector3.zero;
+            }
+
+            _gravityAreas.Sort(
+                (area1, area2) =>
+                    area1.Priority.CompareTo(
+                        area2.Priority
+                    )
+            );
+
+            return _gravityAreas.Last()
+                .GetGravityDirection(this)
+                .normalized;
         }
     }
 
     private Rigidbody _rigidbody;
+
     private List<GravityArea> _gravityAreas;
 
-    void Start()
+    private void Start()
     {
-        _rigidbody = transform.GetComponent<Rigidbody>();
-        _gravityAreas = new List<GravityArea>();
-    }
-    
-    void FixedUpdate()
-    {
-        //Apply gravity force int eh current gravity direction
-        _rigidbody.AddForce(GravityDirection * (GRAVITY_FORCE * Time.fixedDeltaTime), ForceMode.Acceleration);
+        _rigidbody =
+            GetComponent<Rigidbody>();
 
-        //Rotate object to align with the gravity direction
-        Quaternion upRotation = Quaternion.FromToRotation(transform.up, -GravityDirection);
-        Quaternion newRotation = Quaternion.Slerp(_rigidbody.rotation, upRotation * _rigidbody.rotation, Time.fixedDeltaTime * 3f);;
-        _rigidbody.MoveRotation(newRotation);
+        _gravityAreas =
+            new List<GravityArea>();
     }
-    //Called when the object enters a gravity area
-    public void AddGravityArea(GravityArea gravityArea)
+
+    private void FixedUpdate()
     {
-        _gravityAreas.Add(gravityArea);
+        if (GravityDirection == Vector3.zero)
+        {
+            return;
+        }
+
+        // ForceMode.Acceleration already handles
+        // the timestep.
+        _rigidbody.AddForce(
+            GravityDirection *
+            _gravityForce,
+            ForceMode.Acceleration
+        );
+
+        // Align player with gravity.
+        Quaternion upRotation =
+            Quaternion.FromToRotation(
+                transform.up,
+                -GravityDirection
+            );
+
+        Quaternion newRotation =
+            Quaternion.Slerp(
+                _rigidbody.rotation,
+                upRotation *
+                _rigidbody.rotation,
+                Time.fixedDeltaTime * 3f
+            );
+
+        _rigidbody.MoveRotation(
+            newRotation
+        );
     }
-    //Called when the object leaves a gravity area
-    public void RemoveGravityArea(GravityArea gravityArea)
+
+    public void AddGravityArea(
+        GravityArea gravityArea
+    )
     {
-        _gravityAreas.Remove(gravityArea);
+        if (!_gravityAreas.Contains(
+            gravityArea))
+        {
+            _gravityAreas.Add(
+                gravityArea
+            );
+        }
+    }
+
+    public void RemoveGravityArea(
+        GravityArea gravityArea
+    )
+    {
+        _gravityAreas.Remove(
+            gravityArea
+        );
     }
 }

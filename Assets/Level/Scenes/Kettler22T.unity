@@ -39,6 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.5238657, g: 0.5617042, b: 0.47704506, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -67,9 +68,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -1652,7 +1650,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &53833939
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1666,6 +1664,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -13872,12 +13871,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8840595339059642190, guid: 279ea4a068ad534489e63143ca2403b0,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a9613e1caa912a84eb64eff239459751, type: 2}
     - target: {fileID: 8840595339059642190, guid: 279ea4a068ad534489e63143ca2403b0,
         type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: be27de05477c84c41aec82e433cf115a, type: 2}
     m_RemovedComponents: []
@@ -25888,7 +25887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4929788903857198384, guid: 5f8203f94435f8c4283254a47d508a5b,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 411ba48f5e5b4744987a5a69151ada9b, type: 2}
     - target: {fileID: 919132149155446097, guid: 5f8203f94435f8c4283254a47d508a5b,
@@ -38806,6 +38805,12 @@ CapsuleCollider:
   m_Height: 10
   m_Direction: 1
   m_Center: {x: 0, y: 4, z: 0}
+--- !u!198 &1533151226 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6358910141154276391, guid: d1ee0220058d80043982be2ccf0f9bd4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2923704975088754715}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1537004780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42094,7 +42099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4929788903857198384, guid: 5f8203f94435f8c4283254a47d508a5b,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 411ba48f5e5b4744987a5a69151ada9b, type: 2}
     - target: {fileID: 919132149155446097, guid: 5f8203f94435f8c4283254a47d508a5b,
@@ -47023,7 +47028,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2749936824414630913, guid: 905cbaba0f3cb7d45be025a7c38c0840,
         type: 3}
-      propertyPath: soundlist.Array.data[13].sounds.Array.data[0]
+      propertyPath: 'soundlist.Array.data[13].sounds.Array.data[0]'
       value: 
       objectReference: {fileID: 8300000, guid: 468e1e6838a365b4ebe839d4edfef739, type: 3}
     - target: {fileID: 5737757825114816853, guid: 905cbaba0f3cb7d45be025a7c38c0840,
@@ -48513,17 +48518,17 @@ PrefabInstance:
       objectReference: {fileID: 1252881777}
     - target: {fileID: 4012777021073252228, guid: 8dcfedd625bb64e42a83d781055dad86,
         type: 3}
-      propertyPath: choices.Array.data[0]
+      propertyPath: 'choices.Array.data[0]'
       value: 
       objectReference: {fileID: 1252881778}
     - target: {fileID: 4012777021073252228, guid: 8dcfedd625bb64e42a83d781055dad86,
         type: 3}
-      propertyPath: choices.Array.data[1]
+      propertyPath: 'choices.Array.data[1]'
       value: 
       objectReference: {fileID: 17754250}
     - target: {fileID: 4012777021073252228, guid: 8dcfedd625bb64e42a83d781055dad86,
         type: 3}
-      propertyPath: choices.Array.data[2]
+      propertyPath: 'choices.Array.data[2]'
       value: 
       objectReference: {fileID: 736519463}
     - target: {fileID: 4892099533202671039, guid: 8dcfedd625bb64e42a83d781055dad86,
@@ -54269,7 +54274,37 @@ PrefabInstance:
     - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
         type: 3}
       propertyPath: _normalSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      propertyPath: _sprintSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      propertyPath: _jumpCooldown
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      propertyPath: _airMultiplier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      propertyPath: _fullJumpForce
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      propertyPath: _particleSystem
+      value: 
+      objectReference: {fileID: 1533151226}
+    - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      propertyPath: _shortJumpForce
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1080924187781067023, guid: d1ee0220058d80043982be2ccf0f9bd4,
         type: 3}
@@ -54279,7 +54314,7 @@ PrefabInstance:
     - target: {fileID: 1080924187781067023, guid: d1ee0220058d80043982be2ccf0f9bd4,
         type: 3}
       propertyPath: _hoverAbilityGranted
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1851037987322260459, guid: d1ee0220058d80043982be2ccf0f9bd4,
         type: 3}

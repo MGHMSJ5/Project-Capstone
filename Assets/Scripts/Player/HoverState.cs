@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HoverState : IState
@@ -10,46 +8,74 @@ public class HoverState : IState
     public HoverState(PlayerController player)
     {
         this.player = player;
-        animator = player.GetComponentInChildren<Animator>();
+
+        animator =
+            player.GetComponentInChildren<Animator>();
     }
 
     public void Enter()
     {
-        //Debug.Log("Hover");
-        animator.SetTrigger("HoverTrigger");
-        player.particleSystem.gameObject.SetActive(true);
-        player.particleSystem.Play();
+        animator.SetTrigger(
+            "HoverTrigger"
+        );
 
-        //Activate hover sound if hover is activated
-        SoundManager.PlaySound(SoundType.HOVER, 0.7f);
+        // This is the SAME particle system
+        // that the original version used.
+        //
+        // Assign it in PlayerController's
+        // "Particle System" Inspector field.
+        if (player.ParticleSystem != null)
+        {
+            player.ParticleSystem.gameObject.SetActive(
+                true
+            );
+
+            player.ParticleSystem.Play();
+        }
+
+        SoundManager.PlaySound(
+            SoundType.HOVER,
+            0.7f
+        );
     }
 
     public void Execute()
     {
-        // If the player is not hovering ↓
+        // Hover has ended.
         if (!player.PlayerHover.IsHovering)
         {
-            // If the player is not on the ground, then transition to the falling state
+            // Still airborne.
             if (!player.Grounded)
             {
-                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
+                player.PlayerStateMachine.TransitionTo(
+                    player.PlayerStateMachine.fallingState
+                );
+
+                return;
             }
-            else
+
+            // Grounded and moving.
+            if (player.Direction.magnitude >
+                0.1f)
             {
-                //if the player is moving when grounded, then transition to the sprinting state if not sprinting then walking
-                if (player.Direction.magnitude > 0.1f)
+                if (player.IsSprinting)
                 {
-                    if (player.IsSprinting)
-                    {
-                        player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.sprintState);
-                    }
-                    player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.walkState);
+                    player.PlayerStateMachine.TransitionTo(
+                        player.PlayerStateMachine.sprintState
+                    );
                 }
                 else
                 {
-                    // If the player is on the ground, then transition to the land state
-                    player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.landState);
+                    player.PlayerStateMachine.TransitionTo(
+                        player.PlayerStateMachine.walkState
+                    );
                 }
+            }
+            else
+            {
+                player.PlayerStateMachine.TransitionTo(
+                    player.PlayerStateMachine.landState
+                );
             }
         }
     }
@@ -57,8 +83,19 @@ public class HoverState : IState
     public void Exit()
     {
         SoundManager.StopSound();
-        animator.ResetTrigger("HoverTrigger");
-        player.particleSystem.Stop();
-        player.particleSystem.gameObject.SetActive(false);
+
+        animator.ResetTrigger(
+            "HoverTrigger"
+        );
+
+        // Turn off hover VFX.
+        if (player.ParticleSystem != null)
+        {
+            player.ParticleSystem.Stop();
+
+            player.ParticleSystem.gameObject.SetActive(
+                false
+            );
+        }
     }
 }
