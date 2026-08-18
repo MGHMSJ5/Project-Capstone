@@ -11,24 +11,34 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Transform _orientation;
 
-    [Tooltip("Player walking speed.")]
+    [Tooltip("Normal walking speed.")]
     [SerializeField] private float _normalSpeed = 4f;
 
-    [Tooltip("Player running/sprinting speed.")]
+    [Tooltip("Running/sprinting speed.")]
     [SerializeField] private float _sprintSpeed = 7f;
 
-    [Tooltip("Amount removed from walking/running speed while carrying a heavy object.")]
+    [Tooltip("Amount removed from normal and sprint speed when carrying a heavy object.")]
     [SerializeField] private float _carryHeavySpeedDifference = 1f;
 
-    [Tooltip("Amount of movement control while airborne. 0 = none, 1 = full.")]
-    [Range(0f, 1f)]
-    [SerializeField] private float _airMultiplier = 0.5f;
+    [Tooltip("How quickly the player reaches their target speed.")]
+    [SerializeField] private float _movementAcceleration = 40f;
 
-    [Tooltip("Ignore very small movement inputs.")]
+    [Tooltip("How quickly the player stops when releasing movement.")]
+    [SerializeField] private float _groundDeceleration = 50f;
+
+    [Tooltip("How quickly the player changes direction.")]
+    [SerializeField] private float _turnResponsiveness = 25f;
+
+    [Tooltip("Extra responsiveness when sharply reversing direction.")]
+    [SerializeField] private float _sharpTurnMultiplier = 2f;
+
+    [Tooltip("Movement control while airborne.")]
+    [Range(0f, 1f)]
+    [SerializeField] private float _airMultiplier = 0.85f;
+
     [Range(0f, 1f)]
     [SerializeField] private float _movementDeadzone = 0.05f;
 
-    [Tooltip("Rigidbody drag while grounded.")]
     [SerializeField] private float _groundDrag = 0f;
 
     [Tooltip("Variable used by the animator to determine whether the player is carrying.")]
@@ -40,24 +50,42 @@ public class PlayerController : MonoBehaviour
 
     [Header("Sprinting")]
 
-    [Tooltip("Kept for compatibility with existing scripts.")]
+    // Kept for compatibility with existing scripts.
     [SerializeField] private float _maxSprintAccelerationTime = 1f;
+
+    [Tooltip("How long the player takes to brake from sprint speed toward walking speed.")]
+    [SerializeField] private float _sprintReleaseBrakingTime = 0.1f;
 
     private float _currentSprintTime = 0f;
     private bool _isSprinting = false;
 
+    private bool _wasSprinting = false;
+    private float _sprintBrakeTimer = 0f;
+
     [Header("Jumping")]
 
-    [Tooltip("Initial vertical velocity. This is the SHORT jump.")]
+    [Tooltip("Initial force of the short jump.")]
     [SerializeField] private float _shortJumpForce = 10f;
 
-    [Tooltip("Additional vertical velocity given when the player holds jump long enough.")]
+    [Tooltip("Additional force added when the jump button is held long enough.")]
     [SerializeField] private float _fullJumpForce = 5f;
 
-    [Tooltip("How long Jump must be held before the player gets the FULL jump.")]
+    [Tooltip("How long jump must be held to receive the full jump.")]
     [SerializeField] private float _fullJumpHoldTime = 0.15f;
 
-    [Tooltip("Minimum time between jumps.")]
+    [Tooltip("Gravity multiplier while rising.")]
+    [SerializeField] private float _jumpGravityMultiplier = 1f;
+
+    [Tooltip("Gravity multiplier near the apex of the jump.")]
+    [Range(0.1f, 1f)]
+    [SerializeField] private float _apexGravityMultiplier = 0.7f;
+
+    [Tooltip("Gravity multiplier while falling.")]
+    [SerializeField] private float _fallGravityMultiplier = 1.35f;
+
+    [Tooltip("Vertical velocity range considered to be the jump apex.")]
+    [SerializeField] private float _apexThreshold = 1.5f;
+
     [SerializeField] private float _jumpCooldown = 0.1f;
 
     private float _jumpHoldTimer = 0f;
@@ -67,7 +95,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Coyote Time")]
 
-    [Tooltip("How long after leaving a ledge the player can still jump.")]
     [SerializeField] private float _coyoteTime = 0.2f;
 
     private float _lastGroundedTime;
@@ -82,10 +109,15 @@ public class PlayerController : MonoBehaviour
 
     private bool _grounded;
 
-    [Header("Effects")]
+    [Header("Hover VFX")]
 
     [Tooltip("The particle system used for the player's hover VFX.")]
     [SerializeField] private ParticleSystem _particleSystem;
+
+    [Header("Movement VFX")]
+
+    [Tooltip("Smoke particle effect played at the player's feet while sprinting.")]
+    [SerializeField] private ParticleSystem _sprintSmoke;
 
     [Header("Animation")]
 
@@ -103,47 +135,66 @@ public class PlayerController : MonoBehaviour
 
     private bool _dialogueIsPlaying = false;
 
-    // Public properties
+
+    // =========================================================
+    // PUBLIC PROPERTIES
+    // =========================================================
+
     public PlayerStateMachine PlayerStateMachine => _playerStateMachine;
+
     public bool DialogueIsPlaying => _dialogueIsPlaying;
+
     public Transform Orientation => _orientation;
 
     public float Speed => _speed;
+
     public float GroundDrag => _groundDrag;
 
     public float NormalSpeed => _normalSpeed;
+
     public float SprintSpeed => _sprintSpeed;
 
     public bool IsSprinting => _isSprinting;
 
     public float MaxSprintAccelerationTime => _maxSprintAccelerationTime;
+
     public float CurrentSprintTime => _currentSprintTime;
 
-    // Kept for compatibility with other scripts.
+    // Kept for compatibility with existing scripts.
     public float JumpForce => _shortJumpForce;
 
     public float JumpCooldown => _jumpCooldown;
+
     public float AirMultiplier => _airMultiplier;
 
     public bool ReadyToJump => _readyToJump;
+
     public bool LetJumpGo => _letJumpGo;
 
     public float PlayerHeight => _playerHeight;
+
     public LayerMask GroundMask => _groundMask;
 
     public bool Grounded => _grounded;
 
     public float HorizontalInput => horizontalInput;
+
     public float VerticalInput => verticalInput;
 
     public Rigidbody RB => _rb;
+
     public Vector3 Direction => _direction;
 
     public PlayerPulse PlayerPulse => _playerPulse;
+
     public PlayerHover PlayerHover => _playerHover;
 
-    // Hover VFX reference.
     public ParticleSystem ParticleSystem => _particleSystem;
+
+
+    // =========================================================
+    // UNITY
+    // =========================================================
 
     private void Awake()
     {
@@ -165,14 +216,44 @@ public class PlayerController : MonoBehaviour
             _playerStateMachine.idleState
         );
 
-        _speed = _normalSpeed;
+        _speed = GetNormalSpeed();
+
+        // Make sure sprint smoke starts off.
+        if (_sprintSmoke != null)
+        {
+            _sprintSmoke.Stop();
+        }
     }
 
     private void Update()
     {
         _playerStateMachine.Execute();
 
-        // Ground check.
+        GroundCheck();
+
+        PlayerInput();
+
+        HandleJumpHold();
+
+        Sprint();
+
+        UpdateSprintSmoke();
+    }
+
+    private void FixedUpdate()
+    {
+        ApplyJumpGravity();
+
+        MovePlayer();
+    }
+
+
+    // =========================================================
+    // GROUND CHECK
+    // =========================================================
+
+    private void GroundCheck()
+    {
         bool isCurrentlyGrounded =
             Physics.CheckBox(
                 transform.position +
@@ -186,40 +267,27 @@ public class PlayerController : MonoBehaviour
                 ),
 
                 transform.rotation,
+
                 _groundMask
             );
 
         if (isCurrentlyGrounded)
         {
-            _lastGroundedTime =
-                Time.time;
+            _lastGroundedTime = Time.time;
         }
 
-        _grounded =
-            isCurrentlyGrounded;
+        _grounded = isCurrentlyGrounded;
 
-        PlayerInput();
-
-        HandleJumpHold();
-
-        Sprint();
-
-        // Handle drag.
-        if (_grounded)
-        {
-            _rb.drag =
-                _groundDrag;
-        }
-        else
-        {
-            _rb.drag = 0f;
-        }
+        _rb.drag =
+            _grounded
+                ? _groundDrag
+                : 0f;
     }
 
-    private void FixedUpdate()
-    {
-        MovePlayer();
-    }
+
+    // =========================================================
+    // INPUT
+    // =========================================================
 
     private void PlayerInput()
     {
@@ -229,7 +297,6 @@ public class PlayerController : MonoBehaviour
         verticalInput =
             Input.GetAxisRaw("Vertical");
 
-        // Only jump when Space is initially pressed.
         if (Input.GetButtonDown("Jump") &&
             _readyToJump &&
             (Time.time -
@@ -243,14 +310,16 @@ public class PlayerController : MonoBehaviour
         ResetJump();
     }
 
+
+    // =========================================================
+    // MOVEMENT
+    // =========================================================
+
     private void MovePlayer()
     {
         _direction =
-            _orientation.forward *
-            verticalInput
-            +
-            _orientation.right *
-            horizontalInput;
+            _orientation.forward * verticalInput +
+            _orientation.right * horizontalInput;
 
         // Prevent diagonal movement from being faster.
         if (_direction.magnitude > 1f)
@@ -258,64 +327,339 @@ public class PlayerController : MonoBehaviour
             _direction.Normalize();
         }
 
-        // Remove tiny inputs.
-        if (_direction.magnitude <
-            _movementDeadzone)
+        // Ignore tiny inputs.
+        if (_direction.magnitude < _movementDeadzone)
         {
-            _direction =
-                Vector3.zero;
+            _direction = Vector3.zero;
         }
 
-        // Keep movement on the gravity plane.
+        // Keep movement on the player's gravity plane.
         Vector3 movementDirection =
             Vector3.ProjectOnPlane(
                 _direction,
                 transform.up
             );
 
-        if (movementDirection.sqrMagnitude >
-            0.001f)
+        if (movementDirection.sqrMagnitude > 0.001f)
         {
             movementDirection.Normalize();
         }
         else
         {
-            movementDirection =
-                Vector3.zero;
+            movementDirection = Vector3.zero;
         }
 
-        // Either walking speed or running speed.
-        Vector3 targetVelocity =
-            movementDirection *
-            _speed;
+        // Current horizontal velocity.
+        Vector3 currentHorizontalVelocity =
+            Vector3.ProjectOnPlane(
+                _rb.velocity,
+                transform.up
+            );
 
-        // Reduced control while airborne.
-        if (!_grounded)
+
+        // =====================================================
+        // NO MOVEMENT INPUT
+        // =====================================================
+
+        if (movementDirection == Vector3.zero)
         {
-            targetVelocity *=
-                _airMultiplier;
+            if (_grounded)
+            {
+                // Stop quickly and predictably.
+                currentHorizontalVelocity =
+                    Vector3.MoveTowards(
+                        currentHorizontalVelocity,
+                        Vector3.zero,
+                        _groundDeceleration *
+                        Time.fixedDeltaTime
+                    );
+            }
+
+            // In the air we intentionally keep
+            // horizontal velocity.
         }
 
-        // Preserve vertical velocity.
+
+        // =====================================================
+        // MOVEMENT INPUT
+        // =====================================================
+
+        else
+        {
+            float targetSpeed = _speed;
+
+
+            // -------------------------------------------------
+            // Sprint release braking
+            // -------------------------------------------------
+
+            if (!_isSprinting &&
+                _sprintBrakeTimer <
+                _sprintReleaseBrakingTime &&
+                _wasSprinting &&
+                _grounded)
+            {
+                _sprintBrakeTimer +=
+                    Time.fixedDeltaTime;
+
+                float brakeT =
+                    Mathf.Clamp01(
+                        _sprintBrakeTimer /
+                        _sprintReleaseBrakingTime
+                    );
+
+                targetSpeed =
+                    Mathf.Lerp(
+                        GetSprintSpeed(),
+                        GetNormalSpeed(),
+                        brakeT
+                    );
+            }
+
+
+            // -------------------------------------------------
+            // Air movement
+            // -------------------------------------------------
+
+            if (!_grounded)
+            {
+                targetSpeed *= _airMultiplier;
+            }
+
+            Vector3 targetVelocity =
+                movementDirection *
+                targetSpeed;
+
+
+            // -------------------------------------------------
+            // Turn responsiveness
+            // -------------------------------------------------
+
+            float responsiveness =
+                _turnResponsiveness;
+
+            if (currentHorizontalVelocity.sqrMagnitude >
+                0.01f)
+            {
+                float directionDot =
+                    Vector3.Dot(
+                        currentHorizontalVelocity.normalized,
+                        movementDirection
+                    );
+
+                // We're trying to reverse direction.
+                if (directionDot < 0f)
+                {
+                    responsiveness *=
+                        _sharpTurnMultiplier;
+                }
+            }
+
+
+            // Smoothly turn toward desired direction.
+            Vector3 newVelocity;
+
+            if (currentHorizontalVelocity.sqrMagnitude >
+                0.01f)
+            {
+                Vector3 newDirection =
+                    Vector3.RotateTowards(
+                        currentHorizontalVelocity.normalized,
+                        movementDirection,
+                        responsiveness *
+                        Time.fixedDeltaTime,
+                        0f
+                    );
+
+                float currentSpeed =
+                    currentHorizontalVelocity.magnitude;
+
+                float acceleration =
+                    _movementAcceleration;
+
+                if (!_grounded)
+                {
+                    acceleration *=
+                        _airMultiplier;
+                }
+
+                float newSpeed =
+                    Mathf.MoveTowards(
+                        currentSpeed,
+                        targetSpeed,
+                        acceleration *
+                        Time.fixedDeltaTime
+                    );
+
+                newVelocity =
+                    newDirection *
+                    newSpeed;
+            }
+            else
+            {
+                newVelocity =
+                    targetVelocity;
+            }
+
+            currentHorizontalVelocity =
+                newVelocity;
+        }
+
+
+        // =====================================================
+        // APPLY VELOCITY
+        // =====================================================
+
         Vector3 verticalVelocity =
             Vector3.Project(
                 _rb.velocity,
                 transform.up
             );
 
-        // Directly control horizontal velocity.
         _rb.velocity =
-            targetVelocity +
+            currentHorizontalVelocity +
             verticalVelocity;
     }
+
+
+    // =========================================================
+    // SPRINTING
+    // =========================================================
+
+    private void Sprint()
+    {
+        bool previousSprintState =
+            _isSprinting;
+
+        bool wantsToSprint =
+            Input.GetAxisRaw("Sprint") > 0f;
+
+        _isSprinting =
+            wantsToSprint &&
+            !_isCarryingHeavy;
+
+        // Sprinting is instant.
+        //
+        // You are either walking or sprinting.
+
+        if (_isSprinting)
+        {
+            _currentSprintTime =
+                _maxSprintAccelerationTime;
+
+            _speed =
+                GetSprintSpeed();
+
+            _sprintBrakeTimer = 0f;
+        }
+        else
+        {
+            _currentSprintTime = 0f;
+
+            _speed =
+                GetNormalSpeed();
+        }
+
+        // Detect the exact moment sprint is released.
+        if (previousSprintState &&
+            !_isSprinting)
+        {
+            _sprintBrakeTimer = 0f;
+        }
+
+        _wasSprinting =
+            previousSprintState;
+    }
+
+
+    // =========================================================
+    // SPRINT SMOKE VFX
+    // =========================================================
+
+    private void UpdateSprintSmoke()
+    {
+        // If no particle system has been assigned,
+        // don't do anything.
+        if (_sprintSmoke == null)
+        {
+            return;
+        }
+
+        // Smoke should ONLY happen when:
+        //
+        // 1. Player is sprinting
+        // 2. Player is grounded
+        // 3. Player is actually moving
+
+        bool shouldPlaySmoke =
+            _isSprinting &&
+            _grounded &&
+            _direction.sqrMagnitude > 0.01f;
+
+        if (shouldPlaySmoke)
+        {
+            if (!_sprintSmoke.isPlaying)
+            {
+                _sprintSmoke.Play();
+            }
+        }
+        else
+        {
+            if (_sprintSmoke.isPlaying)
+            {
+                _sprintSmoke.Stop();
+            }
+        }
+    }
+
+
+    // =========================================================
+    // SPEED
+    // =========================================================
+
+    private float GetNormalSpeed()
+    {
+        if (_isCarryingHeavy)
+        {
+            return Mathf.Max(
+                0f,
+                _normalSpeed -
+                _carryHeavySpeedDifference
+            );
+        }
+
+        return _normalSpeed;
+    }
+
+    private float GetSprintSpeed()
+    {
+        if (_isCarryingHeavy)
+        {
+            return Mathf.Max(
+                0f,
+                _sprintSpeed -
+                _carryHeavySpeedDifference
+            );
+        }
+
+        return _sprintSpeed;
+    }
+
+
+    // =========================================================
+    // JUMP
+    // =========================================================
 
     private void Jump()
     {
         _readyToJump = false;
+
         _letJumpGo = false;
 
         _jumpHolding = true;
+
         _fullJumpApplied = false;
+
         _jumpHoldTimer = 0f;
 
         // Remove existing vertical velocity.
@@ -335,15 +679,15 @@ public class PlayerController : MonoBehaviour
             ForceMode.VelocityChange
         );
 
-        // IMPORTANT:
-        // Do NOT play the particle system here.
-        //
-        // The particle system is the hover VFX.
-
         _playerStateMachine.TransitionTo(
             _playerStateMachine.jumpState
         );
     }
+
+
+    // =========================================================
+    // VARIABLE JUMP
+    // =========================================================
 
     private void HandleJumpHold()
     {
@@ -352,10 +696,11 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // Released before the full jump threshold.
+        // Released before full jump.
         if (!Input.GetButton("Jump"))
         {
             _jumpHolding = false;
+
             _letJumpGo = true;
 
             return;
@@ -370,6 +715,7 @@ public class PlayerController : MonoBehaviour
             !_fullJumpApplied)
         {
             _fullJumpApplied = true;
+
             _jumpHolding = false;
 
             _rb.AddForce(
@@ -380,53 +726,103 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Sprint()
+
+    // =========================================================
+    // JUMP GRAVITY
+    // =========================================================
+
+    private void ApplyJumpGravity()
     {
-        bool wantsToSprint =
-            Input.GetAxisRaw("Sprint") >
-            0f;
+        if (_grounded)
+        {
+            return;
+        }
 
-        // Sprint is instant.
-        _isSprinting =
-            wantsToSprint &&
-            !_isCarryingHeavy;
+        GravityBody gravityBody =
+            GetComponent<GravityBody>();
 
-        _currentSprintTime =
-            _isSprinting
-                ? _maxSprintAccelerationTime
-                : 0f;
+        if (gravityBody == null)
+        {
+            return;
+        }
 
-        float normalSpeed =
-            _isCarryingHeavy
-                ? Mathf.Max(
-                    0f,
-                    _normalSpeed -
-                    _carryHeavySpeedDifference
-                )
-                : _normalSpeed;
+        Vector3 gravityDirection =
+            gravityBody.GravityDirection;
 
-        float sprintSpeed =
-            _isCarryingHeavy
-                ? Mathf.Max(
-                    0f,
-                    _sprintSpeed -
-                    _carryHeavySpeedDifference
-                )
-                : _sprintSpeed;
+        if (gravityDirection == Vector3.zero)
+        {
+            return;
+        }
 
-        _speed =
-            _isSprinting
-                ? sprintSpeed
-                : normalSpeed;
+        Vector3 verticalVelocity =
+            Vector3.Project(
+                _rb.velocity,
+                transform.up
+            );
+
+        float verticalSpeed =
+            Vector3.Dot(
+                verticalVelocity,
+                transform.up
+            );
+
+        float gravityMultiplier;
+
+        // Rising.
+        if (verticalSpeed > _apexThreshold)
+        {
+            gravityMultiplier =
+                _jumpGravityMultiplier;
+        }
+
+        // Apex.
+        else if (
+            Mathf.Abs(verticalSpeed) <=
+            _apexThreshold)
+        {
+            gravityMultiplier =
+                _apexGravityMultiplier;
+        }
+
+        // Falling.
+        else
+        {
+            gravityMultiplier =
+                _fallGravityMultiplier;
+        }
+
+        // GravityBody supplies the main gravity.
+        //
+        // This modifies it to create the desired
+        // jump arc.
+
+        float baseGravity = 30f;
+
+        float extraGravity =
+            gravityMultiplier - 1f;
+
+        _rb.AddForce(
+            gravityDirection *
+            baseGravity *
+            extraGravity,
+            ForceMode.Acceleration
+        );
     }
+
+
+    // =========================================================
+    // CARRYING
+    // =========================================================
 
     public void CarryObject(
         bool carrying,
-        bool isHeavy
-    )
+        bool isHeavy)
     {
-        _isCarrying = carrying;
-        _isCarryingHeavy = isHeavy;
+        _isCarrying =
+            carrying;
+
+        _isCarryingHeavy =
+            isHeavy;
 
         if (_isCarrying)
         {
@@ -443,6 +839,11 @@ public class PlayerController : MonoBehaviour
             );
         }
     }
+
+
+    // =========================================================
+    // JUMP RESET
+    // =========================================================
 
     private void ResetJump()
     {
@@ -472,34 +873,23 @@ public class PlayerController : MonoBehaviour
         _readyToJump = true;
     }
 
+
+    // =========================================================
+    // SPEED CONTROL
+    // =========================================================
+
     private void SpeedControl()
     {
-        // Kept for compatibility.
+        // Kept for compatibility with other scripts.
         //
-        // MovePlayer() already directly controls
-        // horizontal velocity.
-        Vector3 verticalVelocity =
-            Vector3.Project(
-                _rb.velocity,
-                transform.up
-            );
-
-        Vector3 flatVelocity =
-            _rb.velocity -
-            verticalVelocity;
-
-        if (flatVelocity.magnitude >
-            _speed)
-        {
-            flatVelocity =
-                flatVelocity.normalized *
-                _speed;
-
-            _rb.velocity =
-                flatVelocity +
-                verticalVelocity;
-        }
+        // Movement is directly controlled
+        // inside MovePlayer().
     }
+
+
+    // =========================================================
+    // GIZMOS
+    // =========================================================
 
     private void OnDrawGizmos()
     {
