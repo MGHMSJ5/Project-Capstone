@@ -96,19 +96,27 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Gravity multiplier while rising.")]
     [SerializeField] private float _jumpGravityMultiplier = 1f;
 
+    [Tooltip("Gravity multiplier when the player releases jump while ascending.")]
+    [SerializeField] private float _jumpReleaseGravityMultiplier = 2.5f;
+
     [Tooltip("Gravity multiplier near the apex of the jump.")]
     [Range(0.1f, 1f)]
-    [SerializeField] private float _apexGravityMultiplier = 0.7f;
+    [SerializeField] private float _apexGravityMultiplier = 0.6f;
 
     [Tooltip("Gravity multiplier while falling.")]
     [SerializeField] private float _fallGravityMultiplier = 1.35f;
 
     [Tooltip("Vertical velocity range considered to be the jump apex.")]
-    [SerializeField] private float _apexThreshold = 1.5f;
+    [SerializeField] private float _apexThreshold = 2f;
+
+    [Tooltip("How long jump input is remembered before landing.")]
+    [SerializeField] private float _jumpBufferTime = 0.1f;
 
     [SerializeField] private float _jumpCooldown = 0.1f;
 
     private float _jumpHoldTimer = 0f;
+
+    private float _lastJumpPressedTime = -Mathf.Infinity;
 
     private bool _jumpHolding = false;
 
@@ -121,7 +129,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Coyote Time")]
 
-    [SerializeField] private float _coyoteTime = 0.2f;
+    [SerializeField] private float _coyoteTime = 0.12f;
 
     private float _lastGroundedTime;
 
@@ -479,15 +487,43 @@ public class PlayerController : MonoBehaviour
         verticalInput =
             Input.GetAxisRaw("Vertical");
 
-        if (Input.GetButtonDown("Jump") &&
+
+        // =====================================================
+        // REMEMBER JUMP INPUT
+        // =====================================================
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            _lastJumpPressedTime =
+                Time.time;
+        }
+
+
+        // =====================================================
+        // CHECK FOR JUMP
+        // =====================================================
+
+        bool jumpBuffered =
+            Time.time -
+            _lastJumpPressedTime <=
+            _jumpBufferTime;
+
+        bool coyoteJumpAvailable =
+            Time.time -
+            _lastGroundedTime <=
+            _coyoteTime;
+
+        if (jumpBuffered &&
+            coyoteJumpAvailable &&
             _readyToJump &&
-            (Time.time -
-             _lastGroundedTime <=
-             _coyoteTime) &&
             !_isCarryingHeavy)
         {
             Jump();
+
+            _lastJumpPressedTime =
+                -Mathf.Infinity;
         }
+
 
         ResetJump();
     }
@@ -574,16 +610,6 @@ public class PlayerController : MonoBehaviour
 
             if (_isSprinting)
             {
-                /*
-                 * During gear-up:
-                 *
-                 *     Slow movement
-                 *
-                 * After gear-up:
-                 *
-                 *     Full sprint speed
-                 */
-
                 if (_isGearingUp)
                 {
                     targetSpeed =
@@ -630,15 +656,16 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            // -------------------------------------------------
-            // AIR MOVEMENT
-            // -------------------------------------------------
+            /*
+             * IMPORTANT:
+             *
+             * Air movement no longer reduces target speed.
+             *
+             * The player can still reach their normal
+             * movement speed while airborne, but acceleration
+             * is reduced below.
+             */
 
-            if (!_grounded)
-            {
-                targetSpeed *=
-                    _airMultiplier;
-            }
 
             Vector3 targetVelocity =
                 movementDirection *
@@ -693,6 +720,7 @@ public class PlayerController : MonoBehaviour
                 float acceleration =
                     _movementAcceleration;
 
+                // Air control affects acceleration only.
                 if (!_grounded)
                 {
                     acceleration *=
@@ -755,17 +783,6 @@ public class PlayerController : MonoBehaviour
             _direction.sqrMagnitude >
             0.01f;
 
-        /*
-         * Sprint only begins if:
-         *
-         * 1. Sprint is being held.
-         * 2. Player isn't carrying something heavy.
-         * 3. Player has movement input.
-         *
-         * This means simply holding the sprint button while
-         * standing still will NOT start the gear-up animation.
-         */
-
         bool wantsToStartSprint =
             wantsToSprint &&
             !_isCarryingHeavy &&
@@ -782,10 +799,6 @@ public class PlayerController : MonoBehaviour
             _isSprinting =
                 true;
 
-            /*
-             * Gear up until the timer is completely full.
-             */
-
             _currentSprintTime =
                 Mathf.MoveTowards(
                     _currentSprintTime,
@@ -793,30 +806,14 @@ public class PlayerController : MonoBehaviour
                     Time.deltaTime
                 );
 
-            /*
-             * The player is considered "gearing up" until
-             * the timer reaches the end.
-             */
-
             _isGearingUp =
                 _currentSprintTime <
                 _maxSprintAccelerationTime;
 
-            /*
-             * Speed is handled inside MovePlayer().
-             *
-             * During gear-up:
-             *
-             *     _sprintGearUpMovementSpeed
-             *
-             * After gear-up:
-             *
-             *     _sprintSpeed
-             */
-
             _sprintBrakeTimer =
                 0f;
         }
+
 
         // =====================================================
         // SPRINT RELEASED
@@ -923,13 +920,6 @@ public class PlayerController : MonoBehaviour
 
         else if (_isGearingUp)
         {
-            /*
-             * The player is intentionally moving slowly while
-             * the animation is going extremely fast.
-             *
-             * This creates the "revving the engine" effect.
-             */
-
             targetAnimationSpeed =
                 _sprintGearUpAnimationSpeed;
         }
@@ -996,21 +986,6 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-
-        /*
-         * IMPORTANT:
-         *
-         * The VFX does NOT play during the gear-up.
-         *
-         * It only starts once:
-         *
-         *     _isSprinting == true
-         *     _isGearingUp == false
-         *     movement input exists
-         *
-         * So the effect happens exactly when the player
-         * launches into the full sprint.
-         */
 
         bool isRunning =
             _isSprinting &&
@@ -1514,6 +1489,11 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+
+        // =====================================================
+        // PLAYER RELEASED JUMP
+        // =====================================================
+
         if (!Input.GetButton("Jump"))
         {
             _jumpHolding =
@@ -1525,8 +1505,18 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+
+        // =====================================================
+        // CONTINUE HOLDING
+        // =====================================================
+
         _jumpHoldTimer +=
             Time.deltaTime;
+
+
+        // =====================================================
+        // APPLY FULL JUMP
+        // =====================================================
 
         if (_jumpHoldTimer >=
             _fullJumpHoldTime &&
@@ -1575,6 +1565,11 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+
+        // =====================================================
+        // VERTICAL VELOCITY
+        // =====================================================
+
         Vector3 verticalVelocity =
             Vector3.Project(
                 _rb.velocity,
@@ -1587,33 +1582,70 @@ public class PlayerController : MonoBehaviour
                 transform.up
             );
 
+
+        // =====================================================
+        // DETERMINE GRAVITY
+        // =====================================================
+
         float gravityMultiplier;
 
-        if (verticalSpeed >
-            _apexThreshold)
+
+        // -----------------------------------------------------
+        // JUMP RELEASE
+        // -----------------------------------------------------
+
+        if (!_jumpHolding &&
+            verticalSpeed > 0f)
+        {
+            gravityMultiplier =
+                _jumpReleaseGravityMultiplier;
+        }
+
+
+        // -----------------------------------------------------
+        // RISING
+        // -----------------------------------------------------
+
+        else if (verticalSpeed >
+                 _apexThreshold)
         {
             gravityMultiplier =
                 _jumpGravityMultiplier;
         }
-        else if (
-            Mathf.Abs(verticalSpeed) <=
-            _apexThreshold)
+
+
+        // -----------------------------------------------------
+        // APEX
+        // -----------------------------------------------------
+
+        else if (Mathf.Abs(verticalSpeed) <=
+                 _apexThreshold)
         {
             gravityMultiplier =
                 _apexGravityMultiplier;
         }
+
+
+        // -----------------------------------------------------
+        // FALLING
+        // -----------------------------------------------------
+
         else
         {
             gravityMultiplier =
                 _fallGravityMultiplier;
         }
 
+
+        // =====================================================
+        // APPLY EXTRA GRAVITY
+        // =====================================================
+
         float baseGravity =
             30f;
 
         float extraGravity =
-            gravityMultiplier -
-            1f;
+            gravityMultiplier - 1f;
 
         _rb.AddForce(
             gravityDirection *
