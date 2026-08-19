@@ -50,7 +50,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Sprinting")]
 
-    // Kept for compatibility with existing scripts.
     [SerializeField] private float _maxSprintAccelerationTime = 1f;
 
     [Tooltip("How long the player takes to brake from sprint speed toward walking speed.")]
@@ -119,9 +118,68 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Smoke particle effect played at the player's feet while sprinting.")]
     [SerializeField] private ParticleSystem _sprintSmoke;
 
+    [Tooltip("Allow sprint smoke to continue into the ascending part of a jump.")]
+    [SerializeField] private bool _continueSmokeIntoJump = true;
+
+    [Tooltip("Stop the smoke once the player reaches the apex of the jump.")]
+    [SerializeField] private bool _stopSmokeAtApex = true;
+
+    [Tooltip("Vertical velocity threshold used to determine when the player is near the apex.")]
+    [SerializeField] private float _smokeApexThreshold = 1.5f;
+
+
+    // =========================================================
+    // GROUND SMOKE - LEG EMISSION
+    // =========================================================
+
+    [Header("Ground Smoke - Leg Emission")]
+
+    [Tooltip("Local position of the left foot/leg smoke emission point.")]
+    [SerializeField]
+    private Vector3 _leftSmokeOffset =
+        new Vector3(-0.25f, 0f, -0.35f);
+
+    [Tooltip("Local position of the right foot/leg smoke emission point.")]
+    [SerializeField]
+    private Vector3 _rightSmokeOffset =
+        new Vector3(0.25f, 0f, -0.35f);
+
+    [Tooltip("How many ground smoke particles are emitted per second.")]
+    [SerializeField] private float _groundSmokeEmissionRate = 12f;
+
+    private float _groundSmokeEmissionTimer = 0f;
+
+    private bool _emitFromLeftLeg = true;
+
+    private float _originalSmokeEmissionRate;
+
+
+    private bool _wasGroundedForSmoke = true;
+
     [Header("Animation")]
 
+    [Tooltip("Animator used for the player's movement animations.")]
     [SerializeField] private Animator _animator;
+
+    [Tooltip("Enable automatic animation speed scaling based on actual player movement speed.")]
+    [SerializeField] private bool _enableAnimationSpeedScaling = true;
+
+    [Tooltip("Animation playback speed while walking.")]
+    [SerializeField] private float _walkAnimationSpeed = 1f;
+
+    [Tooltip("Animation playback speed while sprinting.")]
+    [SerializeField] private float _sprintAnimationSpeed = 1.5f;
+
+    [Tooltip("Minimum allowed animation playback speed.")]
+    [SerializeField] private float _minimumAnimationSpeed = 0.8f;
+
+    [Tooltip("Maximum allowed animation playback speed.")]
+    [SerializeField] private float _maximumAnimationSpeed = 1.6f;
+
+    [Tooltip("How quickly animation speed changes. Higher values respond faster.")]
+    [SerializeField] private float _animationSpeedSmoothing = 10f;
+
+    private float _currentAnimationSpeed = 1f;
 
     private float horizontalInput;
     private float verticalInput;
@@ -160,7 +218,6 @@ public class PlayerController : MonoBehaviour
 
     public float CurrentSprintTime => _currentSprintTime;
 
-    // Kept for compatibility with existing scripts.
     public float JumpForce => _shortJumpForce;
 
     public float JumpCooldown => _jumpCooldown;
@@ -208,6 +265,20 @@ public class PlayerController : MonoBehaviour
 
         _animator =
             GetComponentInChildren<Animator>();
+
+        _currentAnimationSpeed =
+            _walkAnimationSpeed;
+
+        // Save the original particle emission rate.
+        // This is restored when the player is airborne.
+        if (_sprintSmoke != null)
+        {
+            var emission =
+                _sprintSmoke.emission;
+
+            _originalSmokeEmissionRate =
+                emission.rateOverTime.constant;
+        }
     }
 
     private void Start()
@@ -218,11 +289,13 @@ public class PlayerController : MonoBehaviour
 
         _speed = GetNormalSpeed();
 
-        // Make sure sprint smoke starts off.
         if (_sprintSmoke != null)
         {
             _sprintSmoke.Stop();
         }
+
+        _wasGroundedForSmoke =
+            _grounded;
     }
 
     private void Update()
@@ -238,6 +311,8 @@ public class PlayerController : MonoBehaviour
         Sprint();
 
         UpdateSprintSmoke();
+
+        UpdateMovementAnimation();
     }
 
     private void FixedUpdate()
@@ -273,10 +348,12 @@ public class PlayerController : MonoBehaviour
 
         if (isCurrentlyGrounded)
         {
-            _lastGroundedTime = Time.time;
+            _lastGroundedTime =
+                Time.time;
         }
 
-        _grounded = isCurrentlyGrounded;
+        _grounded =
+            isCurrentlyGrounded;
 
         _rb.drag =
             _grounded
@@ -321,19 +398,17 @@ public class PlayerController : MonoBehaviour
             _orientation.forward * verticalInput +
             _orientation.right * horizontalInput;
 
-        // Prevent diagonal movement from being faster.
         if (_direction.magnitude > 1f)
         {
             _direction.Normalize();
         }
 
-        // Ignore tiny inputs.
         if (_direction.magnitude < _movementDeadzone)
         {
-            _direction = Vector3.zero;
+            _direction =
+                Vector3.zero;
         }
 
-        // Keep movement on the player's gravity plane.
         Vector3 movementDirection =
             Vector3.ProjectOnPlane(
                 _direction,
@@ -346,10 +421,10 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            movementDirection = Vector3.zero;
+            movementDirection =
+                Vector3.zero;
         }
 
-        // Current horizontal velocity.
         Vector3 currentHorizontalVelocity =
             Vector3.ProjectOnPlane(
                 _rb.velocity,
@@ -365,7 +440,6 @@ public class PlayerController : MonoBehaviour
         {
             if (_grounded)
             {
-                // Stop quickly and predictably.
                 currentHorizontalVelocity =
                     Vector3.MoveTowards(
                         currentHorizontalVelocity,
@@ -374,9 +448,6 @@ public class PlayerController : MonoBehaviour
                         Time.fixedDeltaTime
                     );
             }
-
-            // In the air we intentionally keep
-            // horizontal velocity.
         }
 
 
@@ -386,7 +457,8 @@ public class PlayerController : MonoBehaviour
 
         else
         {
-            float targetSpeed = _speed;
+            float targetSpeed =
+                _speed;
 
 
             // -------------------------------------------------
@@ -423,7 +495,8 @@ public class PlayerController : MonoBehaviour
 
             if (!_grounded)
             {
-                targetSpeed *= _airMultiplier;
+                targetSpeed *=
+                    _airMultiplier;
             }
 
             Vector3 targetVelocity =
@@ -447,7 +520,6 @@ public class PlayerController : MonoBehaviour
                         movementDirection
                     );
 
-                // We're trying to reverse direction.
                 if (directionDot < 0f)
                 {
                     responsiveness *=
@@ -456,7 +528,10 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            // Smoothly turn toward desired direction.
+            // -------------------------------------------------
+            // Smoothly turn toward desired direction
+            // -------------------------------------------------
+
             Vector3 newVelocity;
 
             if (currentHorizontalVelocity.sqrMagnitude >
@@ -538,10 +613,6 @@ public class PlayerController : MonoBehaviour
             wantsToSprint &&
             !_isCarryingHeavy;
 
-        // Sprinting is instant.
-        //
-        // You are either walking or sprinting.
-
         if (_isSprinting)
         {
             _currentSprintTime =
@@ -550,25 +621,96 @@ public class PlayerController : MonoBehaviour
             _speed =
                 GetSprintSpeed();
 
-            _sprintBrakeTimer = 0f;
+            _sprintBrakeTimer =
+                0f;
         }
         else
         {
-            _currentSprintTime = 0f;
+            _currentSprintTime =
+                0f;
 
             _speed =
                 GetNormalSpeed();
         }
 
-        // Detect the exact moment sprint is released.
         if (previousSprintState &&
             !_isSprinting)
         {
-            _sprintBrakeTimer = 0f;
+            _sprintBrakeTimer =
+                0f;
         }
 
         _wasSprinting =
             previousSprintState;
+    }
+
+
+    // =========================================================
+    // ANIMATION
+    // =========================================================
+
+    private void UpdateMovementAnimation()
+    {
+        if (_animator == null)
+        {
+            return;
+        }
+
+        if (!_enableAnimationSpeedScaling)
+        {
+            _animator.speed =
+                1f;
+
+            return;
+        }
+
+        float horizontalSpeed =
+            Vector3.ProjectOnPlane(
+                _rb.velocity,
+                transform.up
+            ).magnitude;
+
+        float targetAnimationSpeed;
+
+        if (horizontalSpeed < 0.1f)
+        {
+            targetAnimationSpeed =
+                _walkAnimationSpeed;
+        }
+        else
+        {
+            float speed01 =
+                Mathf.InverseLerp(
+                    GetNormalSpeed(),
+                    GetSprintSpeed(),
+                    horizontalSpeed
+                );
+
+            targetAnimationSpeed =
+                Mathf.Lerp(
+                    _walkAnimationSpeed,
+                    _sprintAnimationSpeed,
+                    speed01
+                );
+        }
+
+        targetAnimationSpeed =
+            Mathf.Clamp(
+                targetAnimationSpeed,
+                _minimumAnimationSpeed,
+                _maximumAnimationSpeed
+            );
+
+        _currentAnimationSpeed =
+            Mathf.Lerp(
+                _currentAnimationSpeed,
+                targetAnimationSpeed,
+                _animationSpeedSmoothing *
+                Time.deltaTime
+            );
+
+        _animator.speed =
+            _currentAnimationSpeed;
     }
 
 
@@ -578,38 +720,274 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateSprintSmoke()
     {
-        // If no particle system has been assigned,
-        // don't do anything.
         if (_sprintSmoke == null)
         {
             return;
         }
 
-        // Smoke should ONLY happen when:
-        //
-        // 1. Player is sprinting
-        // 2. Player is grounded
-        // 3. Player is actually moving
-
-        bool shouldPlaySmoke =
+        bool isRunning =
             _isSprinting &&
-            _grounded &&
             _direction.sqrMagnitude > 0.01f;
 
-        if (shouldPlaySmoke)
+
+        // =====================================================
+        // GROUNDED
+        // =====================================================
+
+        if (_grounded)
         {
-            if (!_sprintSmoke.isPlaying)
+            if (isRunning)
             {
-                _sprintSmoke.Play();
+                // Disable continuous emission while grounded.
+                // Individual particles are emitted manually
+                // from alternating leg positions.
+                var emission =
+                    _sprintSmoke.emission;
+
+                emission.rateOverTime =
+                    0f;
+
+                _groundSmokeEmissionTimer +=
+                    Time.deltaTime;
+
+                float emissionInterval =
+                    1f /
+                    Mathf.Max(
+                        0.01f,
+                        _groundSmokeEmissionRate
+                    );
+
+                while (_groundSmokeEmissionTimer >=
+                       emissionInterval)
+                {
+                    _groundSmokeEmissionTimer -=
+                        emissionInterval;
+
+                    EmitGroundSmoke();
+                }
+
+                if (!_sprintSmoke.isPlaying)
+                {
+                    _sprintSmoke.Play();
+                }
+            }
+            else
+            {
+                _groundSmokeEmissionTimer =
+                    0f;
+
+                if (_sprintSmoke.isPlaying)
+                {
+                    _sprintSmoke.Stop();
+                }
             }
         }
+
+
+        // =====================================================
+        // AIRBORNE
+        // =====================================================
+
         else
         {
-            if (_sprintSmoke.isPlaying)
+            // Restore the original particle emission rate.
+            // This keeps jump smoke behaving as before.
+            var emission =
+                _sprintSmoke.emission;
+
+            emission.rateOverTime =
+                _originalSmokeEmissionRate;
+
+            if (_continueSmokeIntoJump &&
+                isRunning)
             {
-                _sprintSmoke.Stop();
+                Vector3 verticalVelocity =
+                    Vector3.Project(
+                        _rb.velocity,
+                        transform.up
+                    );
+
+                float verticalSpeed =
+                    Vector3.Dot(
+                        verticalVelocity,
+                        transform.up
+                    );
+
+                bool stillAscending =
+                    verticalSpeed > 0f;
+
+                bool shouldPlaySmoke;
+
+                if (_stopSmokeAtApex)
+                {
+                    shouldPlaySmoke =
+                        stillAscending &&
+                        verticalSpeed >
+                        _smokeApexThreshold;
+                }
+                else
+                {
+                    shouldPlaySmoke =
+                        stillAscending;
+                }
+
+                if (shouldPlaySmoke)
+                {
+                    if (!_sprintSmoke.isPlaying)
+                    {
+                        _sprintSmoke.Play();
+                    }
+                }
+                else
+                {
+                    if (_sprintSmoke.isPlaying)
+                    {
+                        _sprintSmoke.Stop();
+                    }
+                }
+            }
+            else
+            {
+                if (_sprintSmoke.isPlaying)
+                {
+                    _sprintSmoke.Stop();
+                }
             }
         }
+
+        _wasGroundedForSmoke =
+            _grounded;
+    }
+
+
+    // =========================================================
+    // EMIT GROUND SMOKE
+    // =========================================================
+
+    private void EmitGroundSmoke()
+    {
+        // Use the player's ACTUAL horizontal movement direction
+        // rather than the player's transform orientation.
+        //
+        // This prevents the smoke from being offset to one side
+        // immediately after turning.
+
+        Vector3 movementDirection =
+            Vector3.ProjectOnPlane(
+                _rb.velocity,
+                transform.up
+            );
+
+        if (movementDirection.sqrMagnitude < 0.01f)
+        {
+            return;
+        }
+
+        movementDirection.Normalize();
+
+        // Use the player's gravity/up direction.
+        // This keeps the calculation compatible with custom gravity.
+        Vector3 upDirection =
+            transform.up;
+
+        // Calculate the right vector relative to actual movement.
+        Vector3 rightDirection =
+            Vector3.Cross(
+                upDirection,
+                movementDirection
+            ).normalized;
+
+        // Opposite of movement = behind the player.
+        Vector3 backwardsDirection =
+            -movementDirection;
+
+
+        // -----------------------------------------------------
+        // SELECT LEFT OR RIGHT LEG
+        // -----------------------------------------------------
+
+        float side =
+            _emitFromLeftLeg
+                ? -1f
+                : 1f;
+
+
+        // -----------------------------------------------------
+        // SIDE OFFSET
+        // -----------------------------------------------------
+
+        float sideDistance =
+            _emitFromLeftLeg
+                ? Mathf.Abs(_leftSmokeOffset.x)
+                : Mathf.Abs(_rightSmokeOffset.x);
+
+        Vector3 sideOffset =
+            rightDirection *
+            side *
+            sideDistance;
+
+
+        // -----------------------------------------------------
+        // BACKWARD OFFSET
+        // -----------------------------------------------------
+
+        float backwardDistance =
+            _emitFromLeftLeg
+                ? Mathf.Abs(_leftSmokeOffset.z)
+                : Mathf.Abs(_rightSmokeOffset.z);
+
+        Vector3 backwardOffset =
+            backwardsDirection *
+            backwardDistance;
+
+
+        // -----------------------------------------------------
+        // VERTICAL OFFSET
+        // -----------------------------------------------------
+
+        float verticalOffsetValue =
+            _emitFromLeftLeg
+                ? _leftSmokeOffset.y
+                : _rightSmokeOffset.y;
+
+        Vector3 verticalOffset =
+            upDirection *
+            verticalOffsetValue;
+
+
+        // -----------------------------------------------------
+        // FINAL WORLD POSITION
+        // -----------------------------------------------------
+
+        Vector3 worldPosition =
+            transform.position +
+            sideOffset +
+            backwardOffset +
+            verticalOffset;
+
+
+        // -----------------------------------------------------
+        // EMIT PARTICLE
+        // -----------------------------------------------------
+
+        ParticleSystem.EmitParams emitParams =
+            new ParticleSystem.EmitParams();
+
+        emitParams.position =
+            worldPosition;
+
+        _sprintSmoke.Emit(
+            emitParams,
+            1
+        );
+
+
+        // -----------------------------------------------------
+        // ALTERNATE LEGS
+        // -----------------------------------------------------
+
+        _emitFromLeftLeg =
+            !_emitFromLeftLeg;
     }
 
 
@@ -652,17 +1030,21 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        _readyToJump = false;
+        _readyToJump =
+            false;
 
-        _letJumpGo = false;
+        _letJumpGo =
+            false;
 
-        _jumpHolding = true;
+        _jumpHolding =
+            true;
 
-        _fullJumpApplied = false;
+        _fullJumpApplied =
+            false;
 
-        _jumpHoldTimer = 0f;
+        _jumpHoldTimer =
+            0f;
 
-        // Remove existing vertical velocity.
         Vector3 verticalVelocity =
             Vector3.Project(
                 _rb.velocity,
@@ -672,7 +1054,6 @@ public class PlayerController : MonoBehaviour
         _rb.velocity -=
             verticalVelocity;
 
-        // Initial short jump.
         _rb.AddForce(
             transform.up *
             _shortJumpForce,
@@ -696,12 +1077,13 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // Released before full jump.
         if (!Input.GetButton("Jump"))
         {
-            _jumpHolding = false;
+            _jumpHolding =
+                false;
 
-            _letJumpGo = true;
+            _letJumpGo =
+                true;
 
             return;
         }
@@ -709,14 +1091,15 @@ public class PlayerController : MonoBehaviour
         _jumpHoldTimer +=
             Time.deltaTime;
 
-        // Held long enough for full jump.
         if (_jumpHoldTimer >=
             _fullJumpHoldTime &&
             !_fullJumpApplied)
         {
-            _fullJumpApplied = true;
+            _fullJumpApplied =
+                true;
 
-            _jumpHolding = false;
+            _jumpHolding =
+                false;
 
             _rb.AddForce(
                 transform.up *
@@ -768,14 +1151,12 @@ public class PlayerController : MonoBehaviour
 
         float gravityMultiplier;
 
-        // Rising.
-        if (verticalSpeed > _apexThreshold)
+        if (verticalSpeed >
+            _apexThreshold)
         {
             gravityMultiplier =
                 _jumpGravityMultiplier;
         }
-
-        // Apex.
         else if (
             Mathf.Abs(verticalSpeed) <=
             _apexThreshold)
@@ -783,20 +1164,14 @@ public class PlayerController : MonoBehaviour
             gravityMultiplier =
                 _apexGravityMultiplier;
         }
-
-        // Falling.
         else
         {
             gravityMultiplier =
                 _fallGravityMultiplier;
         }
 
-        // GravityBody supplies the main gravity.
-        //
-        // This modifies it to create the desired
-        // jump arc.
-
-        float baseGravity = 30f;
+        float baseGravity =
+            30f;
 
         float extraGravity =
             gravityMultiplier - 1f;
@@ -850,7 +1225,8 @@ public class PlayerController : MonoBehaviour
         if (!_readyToJump &&
             Input.GetButtonUp("Jump"))
         {
-            _letJumpGo = true;
+            _letJumpGo =
+                true;
         }
 
         if (_grounded &&
@@ -860,7 +1236,8 @@ public class PlayerController : MonoBehaviour
                 ResetJumpCooldown()
             );
 
-            _letJumpGo = false;
+            _letJumpGo =
+                false;
         }
     }
 
@@ -870,7 +1247,8 @@ public class PlayerController : MonoBehaviour
             _jumpCooldown
         );
 
-        _readyToJump = true;
+        _readyToJump =
+            true;
     }
 
 
@@ -945,7 +1323,8 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawLine(
             origin,
             origin +
-            direction * distance
+            direction *
+            distance
         );
     }
 }
