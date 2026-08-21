@@ -51889,14 +51889,49 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2749936824414630913, guid: 905cbaba0f3cb7d45be025a7c38c0840,
         type: 3}
+      propertyPath: soundlist.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749936824414630913, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: soundlist.Array.data[15].name
+      value: JUMP
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749936824414630913, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: soundlist.Array.data[16].name
+      value: JUMP
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749936824414630913, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
       propertyPath: soundlist.Array.data[13].sounds.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749936824414630913, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: soundlist.Array.data[15].sounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749936824414630913, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: soundlist.Array.data[16].sounds.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2749936824414630913, guid: 905cbaba0f3cb7d45be025a7c38c0840,
         type: 3}
       propertyPath: 'soundlist.Array.data[13].sounds.Array.data[0]'
       value: 
       objectReference: {fileID: 8300000, guid: 468e1e6838a365b4ebe839d4edfef739, type: 3}
+    - target: {fileID: 2749936824414630913, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: 'soundlist.Array.data[15].sounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 966b47595827f374c856635ec4f84602, type: 3}
+    - target: {fileID: 2749936824414630913, guid: 905cbaba0f3cb7d45be025a7c38c0840,
+        type: 3}
+      propertyPath: 'soundlist.Array.data[16].sounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 966b47595827f374c856635ec4f84602, type: 3}
     - target: {fileID: 5737757825114816853, guid: 905cbaba0f3cb7d45be025a7c38c0840,
         type: 3}
       propertyPath: m_Name
@@ -59165,7 +59200,12 @@ PrefabInstance:
     - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
         type: 3}
       propertyPath: _fullJumpForce
-      value: 5
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      propertyPath: _jumpSfxVolume
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
         type: 3}
@@ -59175,7 +59215,32 @@ PrefabInstance:
     - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
         type: 3}
       propertyPath: _shortJumpForce
-      value: 14
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      propertyPath: _walkAnimationSpeed
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      propertyPath: _apexGravityMultiplier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      propertyPath: _fallGravityMultiplier
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      propertyPath: _jumpGravityMultiplier
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      propertyPath: _animationSpeedSmoothing
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
         type: 3}
@@ -59184,8 +59249,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
         type: 3}
+      propertyPath: _sprintReleaseBrakingTime
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
       propertyPath: _maxSprintAccelerationTime
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 105197503307770643, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      propertyPath: _sprintReleaseAnimationSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1080924187781067023, guid: d1ee0220058d80043982be2ccf0f9bd4,
         type: 3}
@@ -59815,22 +59890,22 @@ PrefabInstance:
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8996528
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.43660626
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000001476173
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000049441017
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}

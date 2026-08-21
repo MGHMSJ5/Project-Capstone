@@ -69,16 +69,24 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _maxSprintAccelerationTime = 0.35f;
 
     [Tooltip("How long the player takes to brake from sprint speed toward walking speed.")]
-    [SerializeField] private float _sprintReleaseBrakingTime = 0.1f;
+    [SerializeField] private float _sprintReleaseBrakingTime = 0.25f;
+
+    [Tooltip("Animation speed immediately after sprint is released.")]
+    [SerializeField] private float _sprintReleaseAnimationSpeed = 2.2f;
 
     [Tooltip("Require movement input before the sprint can begin gearing up.")]
     [SerializeField] private bool _requireMovementForSprint = true;
+
+    [Tooltip("Minimum horizontal speed required for the sprint-release animation to play.")]
+    [SerializeField] private float _minimumSprintReleaseSpeed = 1.5f;
 
     private float _currentSprintTime = 0f;
 
     private bool _isSprinting = false;
 
     private bool _isGearingUp = false;
+
+    private bool _isBrakingFromSprint = false;
 
     private bool _wasSprinting = false;
 
@@ -120,6 +128,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpBufferTime = 0.1f;
 
     [SerializeField] private float _jumpCooldown = 0.1f;
+
+    [Tooltip("Volume of the jump sound effect.")]
+    [Range(0f, 1f)]
+    [SerializeField] private float _jumpSfxVolume = 1f;
 
     private float _jumpHoldTimer = 0f;
 
@@ -320,6 +332,9 @@ public class PlayerController : MonoBehaviour
     public bool IsGearingUp =>
         _isGearingUp;
 
+    public bool IsBrakingFromSprint =>
+        _isBrakingFromSprint;
+
     public float MaxSprintAccelerationTime =>
         _maxSprintAccelerationTime;
 
@@ -332,6 +347,15 @@ public class PlayerController : MonoBehaviour
             Mathf.Max(
                 0.01f,
                 _maxSprintAccelerationTime
+            )
+        );
+
+    public float SprintBrakeProgress =>
+        Mathf.Clamp01(
+            _sprintBrakeTimer /
+            Mathf.Max(
+                0.01f,
+                _sprintReleaseBrakingTime
             )
         );
 
@@ -645,8 +669,7 @@ public class PlayerController : MonoBehaviour
         // NO MOVEMENT INPUT
         // =====================================================
 
-        if (movementDirection ==
-            Vector3.zero)
+        if (movementDirection == Vector3.zero)
         {
             if (_grounded)
             {
@@ -698,19 +721,23 @@ public class PlayerController : MonoBehaviour
             // SPRINT RELEASE BRAKING
             // -------------------------------------------------
 
-            if (!_isSprinting &&
-                _sprintBrakeTimer <
-                _sprintReleaseBrakingTime &&
-                _wasSprinting &&
+            if (_isBrakingFromSprint &&
                 _grounded)
             {
-                _sprintBrakeTimer +=
-                    Time.fixedDeltaTime;
+                _sprintBrakeTimer =
+                    Mathf.MoveTowards(
+                        _sprintBrakeTimer,
+                        _sprintReleaseBrakingTime,
+                        Time.fixedDeltaTime
+                    );
 
                 float brakeT =
                     Mathf.Clamp01(
                         _sprintBrakeTimer /
-                        _sprintReleaseBrakingTime
+                        Mathf.Max(
+                            0.01f,
+                            _sprintReleaseBrakingTime
+                        )
                     );
 
                 targetSpeed =
@@ -719,6 +746,12 @@ public class PlayerController : MonoBehaviour
                         GetNormalSpeed(),
                         brakeT
                     );
+
+                if (brakeT >= 1f)
+                {
+                    _isBrakingFromSprint =
+                        false;
+                }
             }
 
 
@@ -853,6 +886,12 @@ public class PlayerController : MonoBehaviour
             _isSprinting =
                 true;
 
+            _isBrakingFromSprint =
+                false;
+
+            _sprintBrakeTimer =
+                0f;
+
             _currentSprintTime =
                 Mathf.MoveTowards(
                     _currentSprintTime,
@@ -863,9 +902,6 @@ public class PlayerController : MonoBehaviour
             _isGearingUp =
                 _currentSprintTime <
                 _maxSprintAccelerationTime;
-
-            _sprintBrakeTimer =
-                0f;
         }
 
 
@@ -883,6 +919,58 @@ public class PlayerController : MonoBehaviour
 
             _currentSprintTime =
                 0f;
+        }
+
+
+        // =====================================================
+        // DETECT SPRINT RELEASE
+        // =====================================================
+
+        bool sprintWasJustReleased =
+            previousSprintState &&
+            !_isSprinting;
+
+
+        if (sprintWasJustReleased)
+        {
+            Vector3 horizontalVelocity =
+                Vector3.ProjectOnPlane(
+                    _rb.velocity,
+                    transform.up
+                );
+
+            float horizontalSpeed =
+                horizontalVelocity.magnitude;
+
+            if (_grounded &&
+                horizontalSpeed >=
+                _minimumSprintReleaseSpeed)
+            {
+                _isBrakingFromSprint =
+                    true;
+
+                _sprintBrakeTimer =
+                    0f;
+            }
+            else
+            {
+                _isBrakingFromSprint =
+                    false;
+
+                _sprintBrakeTimer =
+                    0f;
+            }
+        }
+
+
+        // =====================================================
+        // CANCEL BRAKING IF SPRINT STARTS AGAIN
+        // =====================================================
+
+        if (_isSprinting)
+        {
+            _isBrakingFromSprint =
+                false;
 
             _sprintBrakeTimer =
                 0f;
@@ -890,7 +978,7 @@ public class PlayerController : MonoBehaviour
 
 
         // =====================================================
-        // SPRINT SPEED
+        // SPEED VALUE
         // =====================================================
 
         if (_isSprinting)
@@ -912,17 +1000,6 @@ public class PlayerController : MonoBehaviour
                 GetNormalSpeed();
         }
 
-
-        // =====================================================
-        // SPRINT JUST RELEASED
-        // =====================================================
-
-        if (previousSprintState &&
-            !_isSprinting)
-        {
-            _sprintBrakeTimer =
-                0f;
-        }
 
         _wasSprinting =
             previousSprintState;
@@ -948,11 +1025,17 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+
+        // =====================================================
+        // ACTUAL HORIZONTAL SPEED
+        // =====================================================
+
         float horizontalSpeed =
             Vector3.ProjectOnPlane(
                 _rb.velocity,
                 transform.up
             ).magnitude;
+
 
         float targetAnimationSpeed;
 
@@ -965,6 +1048,30 @@ public class PlayerController : MonoBehaviour
         {
             targetAnimationSpeed =
                 _walkAnimationSpeed;
+        }
+
+
+        // =====================================================
+        // SPRINT RELEASE / BRAKING
+        // =====================================================
+
+        else if (_isBrakingFromSprint)
+        {
+            float brakeT =
+                Mathf.Clamp01(
+                    _sprintBrakeTimer /
+                    Mathf.Max(
+                        0.01f,
+                        _sprintReleaseBrakingTime
+                    )
+                );
+
+            targetAnimationSpeed =
+                Mathf.Lerp(
+                    _sprintReleaseAnimationSpeed,
+                    _walkAnimationSpeed,
+                    brakeT
+                );
         }
 
 
@@ -1236,7 +1343,6 @@ public class PlayerController : MonoBehaviour
                 ? -1f
                 : 1f;
 
-
         float sideDistance =
             usingLeftLeg
                 ? Mathf.Abs(
@@ -1251,7 +1357,6 @@ public class PlayerController : MonoBehaviour
             side *
             sideDistance;
 
-
         float backwardDistance =
             usingLeftLeg
                 ? Mathf.Abs(
@@ -1265,7 +1370,6 @@ public class PlayerController : MonoBehaviour
             backwardsDirection *
             backwardDistance;
 
-
         float verticalOffsetValue =
             usingLeftLeg
                 ? _leftSmokeOffset.y
@@ -1274,7 +1378,6 @@ public class PlayerController : MonoBehaviour
         Vector3 verticalOffset =
             upDirection *
             verticalOffsetValue;
-
 
         Vector3 approximatePosition =
             transform.position +
@@ -1299,7 +1402,6 @@ public class PlayerController : MonoBehaviour
                 QueryTriggerInteraction.Ignore
             );
 
-
         Vector3 worldPosition;
 
         if (foundGround)
@@ -1317,7 +1419,6 @@ public class PlayerController : MonoBehaviour
                 _groundSmokeSurfaceOffset;
         }
 
-
         ParticleSystem.EmitParams emitParams =
             new ParticleSystem.EmitParams();
 
@@ -1328,7 +1429,6 @@ public class PlayerController : MonoBehaviour
             emitParams,
             1
         );
-
 
         _emitFromLeftLeg =
             !_emitFromLeftLeg;
@@ -1361,7 +1461,6 @@ public class PlayerController : MonoBehaviour
         Vector3 backwardsDirection =
             -movementDirection;
 
-
         Vector3 backwardOffset =
             backwardsDirection *
             Mathf.Abs(
@@ -1372,12 +1471,10 @@ public class PlayerController : MonoBehaviour
             upDirection *
             _jumpSmokeOffset.y;
 
-
         Vector3 worldPosition =
             transform.position +
             backwardOffset +
             verticalOffset;
-
 
         ParticleSystem.EmitParams emitParams =
             new ParticleSystem.EmitParams();
@@ -1447,6 +1544,11 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        SoundManager.PlaySound(
+            SoundType.JUMP,
+            _jumpSfxVolume
+        );
+
         _readyToJump =
             false;
 
@@ -1494,11 +1596,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-
-        // =====================================================
-        // PLAYER RELEASED JUMP
-        // =====================================================
-
         if (!Input.GetButton("Jump"))
         {
             _jumpHolding =
@@ -1510,18 +1607,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-
-        // =====================================================
-        // CONTINUE HOLDING
-        // =====================================================
-
         _jumpHoldTimer +=
             Time.deltaTime;
-
-
-        // =====================================================
-        // APPLY FULL JUMP
-        // =====================================================
 
         if (_jumpHoldTimer >=
             _fullJumpHoldTime &&
@@ -1570,7 +1657,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-
         Vector3 verticalVelocity =
             Vector3.Project(
                 _rb.velocity,
@@ -1583,13 +1669,7 @@ public class PlayerController : MonoBehaviour
                 transform.up
             );
 
-
         float gravityMultiplier;
-
-
-        // -----------------------------------------------------
-        // JUMP RELEASE
-        // -----------------------------------------------------
 
         if (!_jumpHolding &&
             verticalSpeed > 0f)
@@ -1597,42 +1677,23 @@ public class PlayerController : MonoBehaviour
             gravityMultiplier =
                 _jumpReleaseGravityMultiplier;
         }
-
-
-        // -----------------------------------------------------
-        // RISING
-        // -----------------------------------------------------
-
         else if (verticalSpeed >
                  _apexThreshold)
         {
             gravityMultiplier =
                 _jumpGravityMultiplier;
         }
-
-
-        // -----------------------------------------------------
-        // APEX
-        // -----------------------------------------------------
-
         else if (Mathf.Abs(verticalSpeed) <=
                  _apexThreshold)
         {
             gravityMultiplier =
                 _apexGravityMultiplier;
         }
-
-
-        // -----------------------------------------------------
-        // FALLING
-        // -----------------------------------------------------
-
         else
         {
             gravityMultiplier =
                 _fallGravityMultiplier;
         }
-
 
         float baseGravity =
             30f;
