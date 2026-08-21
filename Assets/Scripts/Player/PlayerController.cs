@@ -1,11 +1,18 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerPulse))]
 [RequireComponent(typeof(PlayerHover))]
+[RequireComponent(typeof(PlayerVibration))]
 public class PlayerController : MonoBehaviour
 {
     private PlayerStateMachine _playerStateMachine;
+
+
+    // =========================================================
+    // MOVEMENT
+    // =========================================================
 
     [Header("Movement")]
 
@@ -273,7 +280,13 @@ public class PlayerController : MonoBehaviour
 
     private PlayerHover _playerHover;
 
+    private PlayerVibration _playerVibration;
+
     private bool _dialogueIsPlaying = false;
+
+    private bool _wasGrounded;
+
+    private float _lastAirborneDownwardSpeed;
 
 
     // =========================================================
@@ -383,6 +396,9 @@ public class PlayerController : MonoBehaviour
         _playerHover =
             GetComponent<PlayerHover>();
 
+        _playerVibration =
+            GetComponent<PlayerVibration>();
+
         _playerStateMachine =
             new PlayerStateMachine(this);
 
@@ -459,6 +475,53 @@ public class PlayerController : MonoBehaviour
                 _groundMask
             );
 
+
+        // =====================================================
+        // TRACK FALL SPEED WHILE AIRBORNE
+        // =====================================================
+
+        if (!isCurrentlyGrounded)
+        {
+            float verticalSpeed =
+                Vector3.Dot(
+                    _rb.velocity,
+                    transform.up
+                );
+
+            if (verticalSpeed < 0f)
+            {
+                _lastAirborneDownwardSpeed =
+                    Mathf.Max(
+                        _lastAirborneDownwardSpeed,
+                        -verticalSpeed
+                    );
+            }
+        }
+
+
+        // =====================================================
+        // LANDING VIBRATION
+        // =====================================================
+
+        if (!_wasGrounded &&
+            isCurrentlyGrounded)
+        {
+            if (_playerVibration != null &&
+                _lastAirborneDownwardSpeed >=
+                _playerVibration.MinimumLandingImpactSpeed)
+            {
+                _playerVibration.PlayLandingVibration();
+            }
+
+            _lastAirborneDownwardSpeed =
+                0f;
+        }
+
+
+        // =====================================================
+        // UPDATE GROUNDED STATE
+        // =====================================================
+
         if (isCurrentlyGrounded)
         {
             _lastGroundedTime =
@@ -466,6 +529,9 @@ public class PlayerController : MonoBehaviour
         }
 
         _grounded =
+            isCurrentlyGrounded;
+
+        _wasGrounded =
             isCurrentlyGrounded;
 
         _rb.drag =
@@ -656,17 +722,6 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            /*
-             * IMPORTANT:
-             *
-             * Air movement no longer reduces target speed.
-             *
-             * The player can still reach their normal
-             * movement speed while airborne, but acceleration
-             * is reduced below.
-             */
-
-
             Vector3 targetVelocity =
                 movementDirection *
                 targetSpeed;
@@ -720,7 +775,6 @@ public class PlayerController : MonoBehaviour
                 float acceleration =
                     _movementAcceleration;
 
-                // Air control affects acceleration only.
                 if (!_grounded)
                 {
                     acceleration *=
@@ -1161,11 +1215,6 @@ public class PlayerController : MonoBehaviour
 
         movementDirection.Normalize();
 
-
-        // =====================================================
-        // CREATE SIDE AXIS FROM ACTUAL MOVEMENT
-        // =====================================================
-
         Vector3 upDirection =
             transform.up;
 
@@ -1179,10 +1228,6 @@ public class PlayerController : MonoBehaviour
             -movementDirection;
 
 
-        // =====================================================
-        // LEFT / RIGHT LEG
-        // =====================================================
-
         bool usingLeftLeg =
             _emitFromLeftLeg;
 
@@ -1191,10 +1236,6 @@ public class PlayerController : MonoBehaviour
                 ? -1f
                 : 1f;
 
-
-        // =====================================================
-        // SIDE OFFSET
-        // =====================================================
 
         float sideDistance =
             usingLeftLeg
@@ -1211,10 +1252,6 @@ public class PlayerController : MonoBehaviour
             sideDistance;
 
 
-        // =====================================================
-        // BACKWARD OFFSET
-        // =====================================================
-
         float backwardDistance =
             usingLeftLeg
                 ? Mathf.Abs(
@@ -1229,10 +1266,6 @@ public class PlayerController : MonoBehaviour
             backwardDistance;
 
 
-        // =====================================================
-        // HEIGHT OFFSET
-        // =====================================================
-
         float verticalOffsetValue =
             usingLeftLeg
                 ? _leftSmokeOffset.y
@@ -1242,10 +1275,6 @@ public class PlayerController : MonoBehaviour
             upDirection *
             verticalOffsetValue;
 
-
-        // =====================================================
-        // FIND ACTUAL SURFACE
-        // =====================================================
 
         Vector3 approximatePosition =
             transform.position +
@@ -1271,10 +1300,6 @@ public class PlayerController : MonoBehaviour
             );
 
 
-        // =====================================================
-        // FINAL POSITION
-        // =====================================================
-
         Vector3 worldPosition;
 
         if (foundGround)
@@ -1293,10 +1318,6 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        // =====================================================
-        // EMIT
-        // =====================================================
-
         ParticleSystem.EmitParams emitParams =
             new ParticleSystem.EmitParams();
 
@@ -1308,10 +1329,6 @@ public class PlayerController : MonoBehaviour
             1
         );
 
-
-        // =====================================================
-        // NEXT LEG
-        // =====================================================
 
         _emitFromLeftLeg =
             !_emitFromLeftLeg;
@@ -1345,10 +1362,6 @@ public class PlayerController : MonoBehaviour
             -movementDirection;
 
 
-        // =====================================================
-        // BODY OFFSET
-        // =====================================================
-
         Vector3 backwardOffset =
             backwardsDirection *
             Mathf.Abs(
@@ -1360,19 +1373,11 @@ public class PlayerController : MonoBehaviour
             _jumpSmokeOffset.y;
 
 
-        // =====================================================
-        // CENTERED POSITION
-        // =====================================================
-
         Vector3 worldPosition =
             transform.position +
             backwardOffset +
             verticalOffset;
 
-
-        // =====================================================
-        // EMIT
-        // =====================================================
 
         ParticleSystem.EmitParams emitParams =
             new ParticleSystem.EmitParams();
@@ -1566,10 +1571,6 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        // =====================================================
-        // VERTICAL VELOCITY
-        // =====================================================
-
         Vector3 verticalVelocity =
             Vector3.Project(
                 _rb.velocity,
@@ -1582,10 +1583,6 @@ public class PlayerController : MonoBehaviour
                 transform.up
             );
 
-
-        // =====================================================
-        // DETERMINE GRAVITY
-        // =====================================================
 
         float gravityMultiplier;
 
@@ -1636,10 +1633,6 @@ public class PlayerController : MonoBehaviour
                 _fallGravityMultiplier;
         }
 
-
-        // =====================================================
-        // APPLY EXTRA GRAVITY
-        // =====================================================
 
         float baseGravity =
             30f;
