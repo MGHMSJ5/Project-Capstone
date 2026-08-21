@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement VFX")]
 
-    [Tooltip("Smoke particle effect used for both ground and jump smoke.")]
+    [Tooltip("Smoke particle effect used for ground, jump, and landing smoke.")]
     [SerializeField] private ParticleSystem _sprintSmoke;
 
     [Tooltip("Allow sprint smoke to continue into the ascending part of a jump.")]
@@ -227,6 +227,28 @@ public class PlayerController : MonoBehaviour
     private float _groundSmokeEmissionTimer = 0f;
 
     private bool _emitFromLeftLeg = true;
+
+
+    // =========================================================
+    // LANDING SMOKE
+    // =========================================================
+
+    [Header("Landing Smoke")]
+
+    [Tooltip("Enable the two smoke clouds that appear when landing.")]
+    [SerializeField] private bool _enableLandingSmoke = true;
+
+    [Tooltip("How far to the left/right the landing smoke spawns.")]
+    [SerializeField] private float _landingSmokeSideDistance = 0.3f;
+
+    [Tooltip("How far backwards the landing smoke spawns.")]
+    [SerializeField] private float _landingSmokeBackwardDistance = 0.2f;
+
+    [Tooltip("How far above the ground the landing smoke is spawned.")]
+    [SerializeField] private float _landingSmokeSurfaceOffset = 0.15f;
+
+    [Tooltip("Minimum downward speed required before landing smoke is spawned.")]
+    [SerializeField] private float _minimumLandingSmokeImpactSpeed = 1f;
 
 
     // =========================================================
@@ -524,18 +546,35 @@ public class PlayerController : MonoBehaviour
 
 
         // =====================================================
-        // LANDING VIBRATION
+        // LANDING DETECTION
         // =====================================================
 
         if (!_wasGrounded &&
             isCurrentlyGrounded)
         {
+            // -------------------------------------------------
+            // LANDING VIBRATION
+            // -------------------------------------------------
+
             if (_playerVibration != null &&
                 _lastAirborneDownwardSpeed >=
                 _playerVibration.MinimumLandingImpactSpeed)
             {
                 _playerVibration.PlayLandingVibration();
             }
+
+
+            // -------------------------------------------------
+            // LANDING SMOKE
+            // -------------------------------------------------
+
+            if (_enableLandingSmoke &&
+                _lastAirborneDownwardSpeed >=
+                _minimumLandingSmokeImpactSpeed)
+            {
+                EmitLandingSmoke();
+            }
+
 
             _lastAirborneDownwardSpeed =
                 0f;
@@ -1432,6 +1471,176 @@ public class PlayerController : MonoBehaviour
 
         _emitFromLeftLeg =
             !_emitFromLeftLeg;
+    }
+
+
+    // =========================================================
+    // LANDING SMOKE
+    // =========================================================
+
+    private void EmitLandingSmoke()
+    {
+        if (_sprintSmoke == null)
+        {
+            return;
+        }
+
+        Vector3 upDirection =
+            transform.up;
+
+        Vector3 movementDirection =
+            Vector3.ProjectOnPlane(
+                _rb.velocity,
+                upDirection
+            );
+
+
+        // =====================================================
+        // USE PLAYER FORWARD IF NOT MOVING
+        // =====================================================
+
+        if (movementDirection.sqrMagnitude <
+            0.01f)
+        {
+            movementDirection =
+                Vector3.ProjectOnPlane(
+                    transform.forward,
+                    upDirection
+                );
+        }
+
+        if (movementDirection.sqrMagnitude <
+            0.01f)
+        {
+            return;
+        }
+
+        movementDirection.Normalize();
+
+
+        // =====================================================
+        // CALCULATE LEFT / RIGHT
+        // =====================================================
+
+        Vector3 rightDirection =
+            Vector3.Cross(
+                upDirection,
+                movementDirection
+            ).normalized;
+
+        Vector3 backwardsDirection =
+            -movementDirection;
+
+
+        // =====================================================
+        // LEFT POSITION
+        // =====================================================
+
+        Vector3 leftPosition =
+            transform.position
+            - rightDirection *
+              _landingSmokeSideDistance
+            + backwardsDirection *
+              _landingSmokeBackwardDistance;
+
+
+        // =====================================================
+        // RIGHT POSITION
+        // =====================================================
+
+        Vector3 rightPosition =
+            transform.position
+            + rightDirection *
+              _landingSmokeSideDistance
+            + backwardsDirection *
+              _landingSmokeBackwardDistance;
+
+
+        // =====================================================
+        // FIND ACTUAL GROUND POSITION
+        // =====================================================
+
+        leftPosition =
+            GetLandingSmokeGroundPosition(
+                leftPosition,
+                upDirection
+            );
+
+        rightPosition =
+            GetLandingSmokeGroundPosition(
+                rightPosition,
+                upDirection
+            );
+
+
+        // =====================================================
+        // EMIT LEFT CLOUD
+        // =====================================================
+
+        ParticleSystem.EmitParams leftEmitParams =
+            new ParticleSystem.EmitParams();
+
+        leftEmitParams.position =
+            leftPosition;
+
+        _sprintSmoke.Emit(
+            leftEmitParams,
+            1
+        );
+
+
+        // =====================================================
+        // EMIT RIGHT CLOUD
+        // =====================================================
+
+        ParticleSystem.EmitParams rightEmitParams =
+            new ParticleSystem.EmitParams();
+
+        rightEmitParams.position =
+            rightPosition;
+
+        _sprintSmoke.Emit(
+            rightEmitParams,
+            1
+        );
+    }
+
+
+    // =========================================================
+    // LANDING SMOKE GROUND POSITION
+    // =========================================================
+
+    private Vector3 GetLandingSmokeGroundPosition(
+        Vector3 approximatePosition,
+        Vector3 upDirection)
+    {
+        RaycastHit hit;
+
+        Vector3 rayOrigin =
+            approximatePosition +
+            upDirection *
+            0.5f;
+
+        bool foundGround =
+            Physics.Raycast(
+                rayOrigin,
+                -upDirection,
+                out hit,
+                _groundSmokeRaycastDistance,
+                _groundMask,
+                QueryTriggerInteraction.Ignore
+            );
+
+        if (foundGround)
+        {
+            return hit.point +
+                   hit.normal *
+                   _landingSmokeSurfaceOffset;
+        }
+
+        return approximatePosition +
+               upDirection *
+               _landingSmokeSurfaceOffset;
     }
 
 
