@@ -1,63 +1,162 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerVibration))]
 public class PlayerHover : MonoBehaviour
 {
     [Header("Hovering")]
+
+    [Tooltip("Whether the player has unlocked the hover ability.")]
     [SerializeField] public bool _hoverAbilityGranted = true;
-    [SerializeField] private float _hoverForce = 2f; // Upward force
-    [SerializeField] private float _maxHoverTime = 3f; // How long it lasts
-    [SerializeField] private float _maxHoverSpeed = 5f; // Max speed when using this.
+
+    [Tooltip("Upward acceleration while hovering.")]
+    [SerializeField] private float _hoverForce = 2f;
+
+    [Tooltip("Maximum amount of time the player can hover.")]
+    [SerializeField] private float _maxHoverTime = 3f;
+
+    [Tooltip("Maximum horizontal speed while hovering.")]
+    [SerializeField] private float _maxHoverSpeed = 5f;
+
+
+    // =========================================================
+    // STATE
+    // =========================================================
+
     private float _currentHoverTime = 0f;
+
     private bool _isHovering = false;
-    private bool _jumpReleased = false; // Tracks if the player let go of jump button
-    private bool _hoverInputHeld = false;
+
+    // Player must release Space before hover can activate.
+    private bool _jumpReleased = false;
+
+
+    // =========================================================
+    // MOVEMENT
+    // =========================================================
 
     [Header("Movement")]
+
     private PlayerController _playerController;
     private GravityBody _gravityBody;
+    private PlayerVibration _playerVibration;
+
+
+    // =========================================================
+    // GROUND CHECK
+    // =========================================================
 
     [Header("Ground Check")]
+
     private bool _grounded;
 
-    private Vector3 GravityDirection => _gravityBody != null ? _gravityBody.GravityDirection : Vector3.down;
 
-    public bool IsHovering => _isHovering;
+    // =========================================================
+    // GRAVITY
+    // =========================================================
 
-    void Start()
+    private Vector3 GravityDirection =>
+        _gravityBody != null
+            ? _gravityBody.GravityDirection
+            : Vector3.down;
+
+
+    // =========================================================
+    // PUBLIC PROPERTIES
+    // =========================================================
+
+    public bool IsHovering =>
+        _isHovering;
+
+
+    // =========================================================
+    // UNITY
+    // =========================================================
+
+    private void Start()
     {
-        _playerController = GetComponent<PlayerController>();
-        _gravityBody = GetComponent<GravityBody>();
+        _playerController =
+            GetComponent<PlayerController>();
+
+        _gravityBody =
+            GetComponent<GravityBody>();
+
+        _playerVibration =
+            GetComponent<PlayerVibration>();
     }
 
-    void Update()
+
+    private void Update()
     {
-        if (!_hoverAbilityGranted) return;
+        // =====================================================
+        // HOVER ABILITY DISABLED
+        // =====================================================
 
-        // Ground check
-        _grounded = Physics.Raycast(
-            transform.position,
-            GravityDirection,
-            _playerController.PlayerHeight * 0.5f + 0.2f,
-            _playerController.GroundMask
-        );
-
-        // Resets on ground collision
-        if (_grounded)
+        if (!_hoverAbilityGranted)
         {
-            _currentHoverTime = 0f;
-            _isHovering = false;
-            _jumpReleased = false;
+            StopHover();
+
             return;
         }
 
-        // Tracks if the jump button was released after jumping
+
+        // =====================================================
+        // GROUND CHECK
+        // =====================================================
+
+        _grounded =
+            Physics.Raycast(
+                transform.position,
+                GravityDirection,
+                _playerController.PlayerHeight *
+                0.5f +
+                0.2f,
+                _playerController.GroundMask
+            );
+
+
+        // =====================================================
+        // RESET WHEN GROUNDED
+        // =====================================================
+
+        if (_grounded)
+        {
+            _currentHoverTime = 0f;
+
+            StopHover();
+
+            _jumpReleased = false;
+
+            return;
+        }
+
+
+        // =====================================================
+        // PLAYER HAS RELEASED JUMP
+        // =====================================================
+
         if (!Input.GetButton("Jump"))
         {
             _jumpReleased = true;
         }
 
-        // Only allow hovers if: not grounded,jump was released at least once (so the user didn't just hold it from jump) and also jump is now being pressed again
-        if (!_grounded && _jumpReleased && Input.GetButton("Jump") && _currentHoverTime < _maxHoverTime)
+
+        // =====================================================
+        // HOVER CHECK
+        // =====================================================
+
+        // Hover requires:
+        //
+        // 1. Airborne
+        // 2. Jump has been released
+        // 3. Jump is pressed again
+        // 4. Hover time remains
+
+        if (!_grounded &&
+            _jumpReleased &&
+            Input.GetButton("Jump") &&
+            _currentHoverTime <
+            _maxHoverTime)
         {
             Hover();
         }
@@ -67,46 +166,196 @@ public class PlayerHover : MonoBehaviour
         }
     }
 
+
+    // =========================================================
+    // HOVER
+    // =========================================================
+
     private void Hover()
     {
         _isHovering = true;
-        _currentHoverTime += Time.deltaTime;
 
-        Rigidbody rb = _playerController.RB;
-        Vector3 localUp = -GravityDirection;
 
-        // Applies upward force
-        if (Vector3.Dot(rb.velocity, -localUp) > 0f)
+        // =====================================================
+        // START HOVER VIBRATION
+        // =====================================================
+
+        if (_playerVibration != null)
         {
-            rb.AddForce(localUp * _hoverForce, ForceMode.Acceleration);
+            _playerVibration.StartHoverVibration();
         }
 
-        Vector3 moveInput = _playerController.Orientation.forward * _playerController.VerticalInput +
-                            _playerController.Orientation.right * _playerController.HorizontalInput;
-        Vector3 localMove = Vector3.ProjectOnPlane(moveInput, localUp).normalized;
 
-        // Adjusts horizontal velocity
-        Vector3 currentHorizontalVel = Vector3.ProjectOnPlane(rb.velocity, localUp);
-        Vector3 targetHorizontalVel = localMove * _playerController.Speed * 0.5f;
-        Vector3 smoothedVel = Vector3.Lerp(currentHorizontalVel, targetHorizontalVel, Time.deltaTime * 5f);
+        _currentHoverTime +=
+            Time.deltaTime;
 
-        // Clamps the hover speed, avoids propulsion woo
-        if (smoothedVel.magnitude > _maxHoverSpeed)
+
+        Rigidbody rb =
+            _playerController.RB;
+
+
+        Vector3 localUp =
+            -GravityDirection;
+
+
+        // =====================================================
+        // PRESERVE VERTICAL VELOCITY
+        // =====================================================
+
+        Vector3 verticalVelocity =
+            Vector3.Project(
+                rb.velocity,
+                localUp
+            );
+
+
+        // =====================================================
+        // DETERMINE WHETHER PLAYER IS FALLING
+        // =====================================================
+
+        float verticalSpeed =
+            Vector3.Dot(
+                rb.velocity,
+                localUp
+            );
+
+
+        // =====================================================
+        // APPLY UPWARD FORCE WHILE FALLING
+        // =====================================================
+
+        if (verticalSpeed <= 0f)
         {
-            smoothedVel = smoothedVel.normalized * _maxHoverSpeed;
+            rb.AddForce(
+                localUp *
+                _hoverForce,
+                ForceMode.Acceleration
+            );
         }
 
-        // Applys new velocity:
-        rb.velocity = smoothedVel + Vector3.Project(rb.velocity, localUp);
+
+        // =====================================================
+        // MOVEMENT INPUT
+        // =====================================================
+
+        Vector3 moveInput =
+            _playerController.Orientation.forward *
+            _playerController.VerticalInput
+            +
+            _playerController.Orientation.right *
+            _playerController.HorizontalInput;
+
+
+        Vector3 localMove =
+            Vector3.ProjectOnPlane(
+                moveInput,
+                localUp
+            );
+
+
+        if (localMove.sqrMagnitude >
+            0.001f)
+        {
+            localMove.Normalize();
+        }
+        else
+        {
+            localMove =
+                Vector3.zero;
+        }
+
+
+        // =====================================================
+        // HOVER MOVEMENT
+        // =====================================================
+
+        Vector3 targetHorizontalVelocity =
+            localMove *
+            _playerController.Speed *
+            0.5f;
+
+
+        Vector3 currentHorizontalVelocity =
+            Vector3.ProjectOnPlane(
+                rb.velocity,
+                localUp
+            );
+
+
+        Vector3 smoothedVelocity =
+            Vector3.Lerp(
+                currentHorizontalVelocity,
+                targetHorizontalVelocity,
+                Time.deltaTime * 5f
+            );
+
+
+        // =====================================================
+        // CLAMP HOVER SPEED
+        // =====================================================
+
+        if (smoothedVelocity.magnitude >
+            _maxHoverSpeed)
+        {
+            smoothedVelocity =
+                smoothedVelocity.normalized *
+                _maxHoverSpeed;
+        }
+
+
+        // =====================================================
+        // APPLY VELOCITY
+        // =====================================================
+
+        rb.velocity =
+            smoothedVelocity +
+            verticalVelocity;
     }
+
+
+    // =========================================================
+    // STOP HOVER
+    // =========================================================
 
     private void StopHover()
     {
         _isHovering = false;
 
-        if (_currentHoverTime >= _maxHoverTime)
+
+        // =====================================================
+        // STOP HOVER VIBRATION
+        // =====================================================
+
+        if (_playerVibration != null)
         {
-            _currentHoverTime = _maxHoverTime;
+            _playerVibration.StopHoverVibration();
+        }
+
+
+        // =====================================================
+        // CLAMP HOVER TIME
+        // =====================================================
+
+        if (_currentHoverTime >
+            _maxHoverTime)
+        {
+            _currentHoverTime =
+                _maxHoverTime;
+        }
+    }
+
+
+    // =========================================================
+    // CLEANUP
+    // =========================================================
+
+    private void OnDisable()
+    {
+        _isHovering = false;
+
+        if (_playerVibration != null)
+        {
+            _playerVibration.StopHoverVibration();
         }
     }
 }

@@ -21,7 +21,8 @@ public enum SoundType
     MAINMENU,
     INTROSCENE,
     MAINSCENE,
-    CREDITS
+    CREDITS,
+    JUMP
 }
 
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]

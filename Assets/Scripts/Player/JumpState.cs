@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class JumpState : IState
@@ -10,34 +8,34 @@ public class JumpState : IState
     public JumpState(PlayerController player)
     {
         this.player = player;
-        animator = player.GetComponentInChildren<Animator>();
+
+        animator =
+            player.GetComponentInChildren<Animator>();
     }
 
     public void Enter()
     {
-        //Debug.Log("Jump");
-        animator.SetTrigger("JumpTrigger");
+        animator.SetTrigger(
+            "JumpTrigger"
+        );
     }
 
     public void Execute()
     {
-        player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.fallingState);
-
-        if (player.Grounded)
+        // Once the player leaves the ground,
+        // enter the falling/airborne state.
+        if (!player.Grounded)
         {
-            if (player.Direction.magnitude > 0.1f)
-            {
-                if (player.IsSprinting)
-                {
-                    player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.sprintState);
-                }
-                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.walkState);
-            }
+            player.PlayerStateMachine.TransitionTo(
+                player.PlayerStateMachine.fallingState
+            );
         }
     }
 
     public void Exit()
     {
-        animator.ResetTrigger("JumpTrigger");
+        animator.ResetTrigger(
+            "JumpTrigger"
+        );
     }
 }
