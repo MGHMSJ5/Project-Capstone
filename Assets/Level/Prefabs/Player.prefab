@@ -4830,7 +4830,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &3170204679837641600
+--- !u!1 &3467760732937773779
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4838,9 +4838,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6534654557435669362}
-  - component: {fileID: 8382982453648879553}
-  - component: {fileID: 5193795652790271851}
+  - component: {fileID: 7272116073559360553}
+  - component: {fileID: 7929222633751768465}
+  - component: {fileID: 4929223656729641252}
   m_Layer: 0
   m_Name: Running Particles
   m_TagString: Untagged
@@ -4848,13 +4848,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6534654557435669362
+--- !u!4 &7272116073559360553
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3170204679837641600}
+  m_GameObject: {fileID: 3467760732937773779}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.1, z: -0.13}
@@ -4863,13 +4863,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3532144134575443235}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!198 &8382982453648879553
+--- !u!198 &7929222633751768465
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3170204679837641600}
+  m_GameObject: {fileID: 3467760732937773779}
   serializedVersion: 8
   lengthInSec: 0.25
   simulationSpeed: 1
@@ -9595,14 +9595,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &5193795652790271851
+--- !u!199 &4929223656729641252
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3170204679837641600}
+  m_GameObject: {fileID: 3467760732937773779}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -9749,7 +9749,6 @@ GameObject:
   - component: {fileID: 1080924187781067023}
   - component: {fileID: 8093493373670151931}
   - component: {fileID: 5012107570893732045}
-  - component: {fileID: 8302046789806621295}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -9869,7 +9868,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _particleSystem: {fileID: 6358910141154276391}
-  _sprintSmoke: {fileID: 8382982453648879553}
+  _sprintSmoke: {fileID: 7929222633751768465}
   _continueSmokeIntoJump: 1
   _stopSmokeAtApex: 1
   _smokeApexThreshold: 1.5
@@ -9999,22 +9998,6 @@ MonoBehaviour:
   _landingVibrationStrength: 0.7
   _landingVibrationDuration: 0.12
   _hoverVibrationStrength: 0.3
---- !u!114 &8302046789806621295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7015057840018717787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3a3e5dece3dcd74e9455c7aebb4d908, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _minimumLandingImpactSpeed: 2
-  _landingVibrationStrength: 0.7
-  _landingVibrationDuration: 0.12
-  _hoverVibrationStrength: 0.3
 --- !u!1001 &3931091744634186440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10097,7 +10080,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b6118cef133d2f8439104da96c4d7555,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6534654557435669362}
+      addedObject: {fileID: 7272116073559360553}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b6118cef133d2f8439104da96c4d7555,
         type: 3}
