@@ -8,15 +8,11 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mat_Reupdated Planet
-  m_Shader: {fileID: 4800000, guid: be891319084e9d147b09d89e80ce60e0, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 98025b1fb87b2e946be79811cbaea60b,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _EMISSIVE_SIMPLE
-  - _IS_ANGELRING_OFF
-  - _IS_CLIPPING_OFF
-  - _IS_OUTLINE_CLIPPING_NO
-  - _OUTLINE_NML
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -24,7 +20,6 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap:
     IgnoreProjection: False
-    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -245,8 +240,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _1st2nd_Shades_Feather: 0.0001
-    - _1st_ShadeColor_Feather: 0.0001
-    - _1st_ShadeColor_Step: 0
+    - _1st_ShadeColor_Feather: 0.02
+    - _1st_ShadeColor_Step: 0.008
     - _2nd_ShadeColor_Feather: 0.0001
     - _2nd_ShadeColor_Step: 0
     - _AORemapMax: 1
@@ -269,7 +264,7 @@ Material:
     - _AlphaRemapMin: 0
     - _AlphaSrcBlend: 1
     - _AlphaToMask: 0
-    - _Alpha_Treshold: 1
+    - _Alpha_Treshold: 0.99
     - _AngelRing: 0
     - _AngelRingOverridden: 0
     - _AngelRingVisible: 1
@@ -279,8 +274,8 @@ Material:
     - _AutoRenderQueue: 1
     - _BaseColorOverridden: 0
     - _BaseColorVisible: 1
-    - _BaseColor_Step: 0
-    - _BaseShade_Feather: 0.0001
+    - _BaseColor_Step: 0.008
+    - _BaseShade_Feather: 0.02
     - _Base_Speed: 0
     - _Blend: 0
     - _BlendMode: 0
@@ -293,7 +288,7 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _ClippingMatteMode: 0
-    - _ClippingMode: 0
+    - _ClippingMode: 2
     - _Clipping_Level: 0
     - _CoatMask: 0
     - _ColorShift_Speed: 0
@@ -422,7 +417,7 @@ Material:
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RIm_Power: 5
+    - _RIm_Power: 500
     - _ReceiveShadows: 1
     - _ReceivesSSR: 1
     - _RefractionModel: 0
@@ -475,12 +470,22 @@ Material:
     - _SupportDecals: 1
     - _Surface: 0
     - _SurfaceType: 0
+    - _TessEdgeLength: 5
+    - _TessExtrusionAmount: 0
+    - _TessPhongStrength: 0.5
+    - _TessellationBackFaceCullEpsilon: -0.25
+    - _TessellationFactor: 4
+    - _TessellationFactorMaxDistance: 50
+    - _TessellationFactorMinDistance: 20
+    - _TessellationFactorTriangleSize: 100
+    - _TessellationMode: 0
+    - _TessellationShapeFactor: 0.75
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
     - _Thickness: 1
     - _ThicknessMultiplier: 1
     - _Toon_Ramp_Offset: 0.1
-    - _Toon_Ramp_Smoothness: 0.6
+    - _Toon_Ramp_Smoothness: 0.1
     - _TransmissionEnable: 1
     - _TransmissionMask: 1
     - _TransparentBackfaceEnable: 0
@@ -499,7 +504,7 @@ Material:
     - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_ShadingGradeMapLevel: 0
-    - _Tweak_SystemShadowsLevel: 0.5
+    - _Tweak_SystemShadowsLevel: 0
     - _Tweak_transparency: 0
     - _UVBase: 0
     - _UVDetail: 0
@@ -554,7 +559,7 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
-    - _Toon_Ramp_Tinting: {r: 1, g: 1, b: 1, a: 0}
+    - _Toon_Ramp_Tinting: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0}
     - _TransmittanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
