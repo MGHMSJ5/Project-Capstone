@@ -8,7 +8,7 @@ public class WorldPhaseHandler : MonoBehaviour
 
     public Action<string> ChangeWorldPhase;
 
-    private void OnEnable()
+    private void Start()
     {
         ChangeWorldPhase?.Invoke(worldPhases.currentWorldPhase);
     }

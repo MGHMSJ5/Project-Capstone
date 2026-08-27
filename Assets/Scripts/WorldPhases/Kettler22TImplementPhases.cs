@@ -6,6 +6,10 @@ public class Kettler22TImplementPhases : MonoBehaviour
 {
     private WorldPhaseHandler worldPhaseHandler;
 
+    [Header("Warm Phase")]
+    [SerializeField]
+    private List<ParticleSystem> particlesToturnOn = new List<ParticleSystem>();
+
     private void Awake()
     {
         worldPhaseHandler = GetComponent<WorldPhaseHandler>();
@@ -17,12 +21,44 @@ public class Kettler22TImplementPhases : MonoBehaviour
         switch (phase)
         {
             case "Cold":
-                print("it is cold");
+                ChangeToCold();
                 break;
 
             case "Warm":
-                print("it is warm");
+                ChangeToWarm();
                 break;
+        }
+    }
+
+    void ChangeToCold()
+    {
+        print("it is cold");
+    }
+
+    void ChangeToWarm()
+    {
+        print("it is warm");
+        StartCoroutine(WaitBetweenActivations());
+    }
+    IEnumerator WaitBetweenActivations()
+    {
+        StartKettleWater();
+
+        yield return new WaitForSeconds(2f);
+
+        WarmParticlesOn();
+    }
+
+    public void StartKettleWater()
+    {
+        print("water starts flowing");
+    }
+
+    public void WarmParticlesOn()
+    {
+        foreach (ParticleSystem particle in particlesToturnOn)
+        {
+            particle.Play();
         }
     }
 }
