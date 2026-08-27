@@ -23,6 +23,9 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
     private GameObject _cableUnplugged;
     private CanvasSceneTransition _canvasSceneTransition;
 
+    [Header("WorldPhases")]
+    public WorldPhaseHandler _worldPhaseHandler;
+
 
     void Start()
     {
@@ -62,6 +65,7 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
         GameObject canvasSceneTransition = null;
         GameObject cablePluggedIn = null;
         GameObject cableUnplugged = null;
+        GameObject worldHandler = null;
         // Check if the name of the scene is not LoadingScene and try to find Chobo's Model
         if (scene.name != "LoadubgScebe")
         {
@@ -72,6 +76,7 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
             canvasSceneTransition = GameObject.Find("Canvas_SceneTransition");
             cablePluggedIn = GameObject.Find("Plug & Cable Plugged In");
             cableUnplugged = GameObject.Find("Plug & Cable Unplugged");
+            worldHandler = GameObject.Find("WorldPhaseManager");
         }
 
         if (chobo != null)
@@ -106,6 +111,11 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
         {
             _cableUnplugged = cableUnplugged;
         }
+        if (worldHandler != null)
+        {
+            _worldPhaseHandler = worldHandler.GetComponent<WorldPhaseHandler>();
+        }
+
     }
 
     private void ResetVariables()
@@ -116,6 +126,7 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
         _canvasSceneTransition = null;
         _cablePluggedIn = null;
         _cableUnplugged = null;
+        _worldPhaseHandler = null;
     }
 
     private void Update()
@@ -187,4 +198,9 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHover>()._hoverAbilityGranted = true;
     }
 
+    //WorldPhase event
+    public void ChangeWorldPhase(string phase)
+    {
+        _worldPhaseHandler.SetPhase(phase);
+    }
 }
