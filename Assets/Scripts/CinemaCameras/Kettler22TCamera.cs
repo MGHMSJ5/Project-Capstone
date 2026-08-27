@@ -5,17 +5,20 @@ public class Kettler22TCamera : MonoBehaviour
     private EventsSceneManager eventsSceneManager;
     private Animator animator;
     private GameObject childCamera;
+    private GameObject mainCamera;
 
     private void Awake()
     {
         eventsSceneManager = GameObject.Find("EventsSceneManager").GetComponent<EventsSceneManager>();
         animator = GetComponent<Animator>();
         childCamera = gameObject.transform.GetChild(0).gameObject;
+        mainCamera = GameObject.Find("Main_Camera");
     }
 
     public void StartWarmPhaseChange()
     {
         childCamera.SetActive(true);
+        mainCamera.SetActive(false);
         animator.Play("KettleActivate");
     }
 
@@ -26,6 +29,7 @@ public class Kettler22TCamera : MonoBehaviour
 
     public void DisableCamera()
     {
+        mainCamera.SetActive(true);
         childCamera.SetActive(false);
     }
 }
