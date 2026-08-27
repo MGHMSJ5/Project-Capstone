@@ -1,30 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Kettler22TCamera : MonoBehaviour
 {
     private EventsSceneManager eventsSceneManager;
     private Animator animator;
+    private GameObject childCamera;
 
     private void Awake()
     {
         eventsSceneManager = GameObject.Find("EventsSceneManager").GetComponent<EventsSceneManager>();
         animator = GetComponent<Animator>();
+        childCamera = gameObject.transform.GetChild(0).gameObject;
     }
 
-    private void Update()
+    public void StartWarmPhaseChange()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            StartAnimation("KettleActivate");
-        }
-    }
-
-    public void StartAnimation(string animationName)
-    {
-        animator.Play(animationName);
+        childCamera.SetActive(true);
+        animator.Play("KettleActivate");
     }
 
     public void ChangePhaseToWarm()
@@ -34,6 +26,6 @@ public class Kettler22TCamera : MonoBehaviour
 
     public void DisableCamera()
     {
-        gameObject.SetActive(false);
+        childCamera.SetActive(false);
     }
 }
