@@ -34,8 +34,8 @@ public class HoverUI : MonoBehaviour
 
     [Header("Animation")]
 
-    [Tooltip("How quickly the radial meter follows the actual stamina value.")]
-    [SerializeField] private float _fillSmoothSpeed = 12f;
+    [Tooltip("How quickly the radial meter catches up when the actual stamina changes suddenly.")]
+    [SerializeField] private float _fillCatchupSpeed = 5f;
 
 
     // =========================================================
@@ -70,6 +70,22 @@ public class HoverUI : MonoBehaviour
     }
 
 
+    private void Start()
+    {
+        if (_playerHover != null)
+        {
+            _displayedFill =
+                _playerHover.HoverPercent;
+
+            if (_radialImage != null)
+            {
+                _radialImage.fillAmount =
+                    _displayedFill;
+            }
+        }
+    }
+
+
     private void Update()
     {
         if (_playerHover == null ||
@@ -96,18 +112,6 @@ public class HoverUI : MonoBehaviour
         // HOVERING
         // =====================================================
 
-        // IMPORTANT:
-        //
-        // We intentionally DO NOT check:
-        //
-        // _playerHover.HoverInputHeld
-        //
-        // because that would make the UI appear when the
-        // player is simply jumping.
-        //
-        // IsHovering only becomes true when the actual hover
-        // ability has activated.
-
         if (_playerHover.IsHovering)
         {
             _fullTimer = 0f;
@@ -128,16 +132,12 @@ public class HoverUI : MonoBehaviour
 
             if (!isFull)
             {
-                // Still refilling.
-
                 _fullTimer = 0f;
 
                 Show();
             }
             else
             {
-                // Reached full.
-
                 _fullTimer +=
                     Time.deltaTime;
 
@@ -185,13 +185,25 @@ public class HoverUI : MonoBehaviour
             _playerHover.HoverPercent;
 
 
-        _displayedFill =
-            Mathf.Lerp(
-                _displayedFill,
-                targetFill,
-                _fillSmoothSpeed *
-                Time.deltaTime
-            );
+        // While refilling, directly follow the actual
+        // stamina value so the animation is accurate.
+        if (_playerHover.IsRefillingHover)
+        {
+            _displayedFill =
+                targetFill;
+        }
+        else
+        {
+            // Smooth sudden changes such as stamina being
+            // consumed while hovering.
+            _displayedFill =
+                Mathf.MoveTowards(
+                    _displayedFill,
+                    targetFill,
+                    _fillCatchupSpeed *
+                    Time.deltaTime
+                );
+        }
 
 
         _radialImage.fillAmount =

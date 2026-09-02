@@ -28,8 +28,8 @@ public class PlayerHover : MonoBehaviour
     [Tooltip("Whether hover stamina should refill when landing.")]
     [SerializeField] private bool _refillOnLanding = true;
 
-    [Tooltip("How quickly hover stamina refills.")]
-    [SerializeField] private float _hoverRefillSpeed = 3f;
+    [Tooltip("How long it takes to completely refill hover stamina after landing.")]
+    [SerializeField] private float _hoverRefillDuration = 2.5f;
 
 
     // =========================================================
@@ -211,14 +211,6 @@ public class PlayerHover : MonoBehaviour
         // HOVER CHECK
         // =====================================================
 
-        // Hover requires:
-        //
-        // 1. Airborne
-        // 2. Jump has been released
-        // 3. Jump is pressed again
-        // 4. Hover has not been depleted
-        // 5. Hover time remains
-
         if (!_grounded &&
             _jumpReleased &&
             Input.GetButton("Jump") &&
@@ -290,7 +282,6 @@ public class PlayerHover : MonoBehaviour
 
         Rigidbody rb =
             _playerController.RB;
-
 
         Vector3 localUp =
             -GravityDirection;
@@ -417,11 +408,30 @@ public class PlayerHover : MonoBehaviour
 
     private void RefillHover()
     {
+        if (_hoverRefillDuration <= 0f)
+        {
+            _currentHoverTime =
+                _maxHoverTime;
+
+            _hoverDepleted =
+                false;
+
+            return;
+        }
+
+
+        // Calculate refill speed from the desired
+        // total refill duration.
+        float refillSpeed =
+            _maxHoverTime /
+            _hoverRefillDuration;
+
+
         _currentHoverTime =
             Mathf.MoveTowards(
                 _currentHoverTime,
                 _maxHoverTime,
-                _hoverRefillSpeed *
+                refillSpeed *
                 Time.deltaTime
             );
 
@@ -430,7 +440,8 @@ public class PlayerHover : MonoBehaviour
         // FULLY REFILLED
         // =====================================================
 
-        if (_currentHoverTime >= _maxHoverTime)
+        if (_currentHoverTime >=
+            _maxHoverTime)
         {
             _currentHoverTime =
                 _maxHoverTime;
