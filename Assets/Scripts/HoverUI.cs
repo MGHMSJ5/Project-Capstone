@@ -13,6 +13,22 @@ public class HoverUI : MonoBehaviour
 
 
     // =========================================================
+    // COLORS
+    // =========================================================
+
+    [Header("Colors")]
+
+    [Tooltip("Color when hover stamina is between 50% and 100%.")]
+    [SerializeField] private Color _fullColor = Color.green;
+
+    [Tooltip("Color when hover stamina is between 25% and 50%.")]
+    [SerializeField] private Color _warningColor = Color.yellow;
+
+    [Tooltip("Color when hover stamina is between 0% and 25%.")]
+    [SerializeField] private Color _dangerColor = Color.red;
+
+
+    // =========================================================
     // VISIBILITY
     // =========================================================
 
@@ -24,7 +40,7 @@ public class HoverUI : MonoBehaviour
     [Tooltip("How long the UI stays visible after the meter becomes full.")]
     [SerializeField] private float _fullDisplayTime = 1f;
 
-    [Tooltip("How quickly the UI fades out.")]
+    [Tooltip("How quickly the radial UI fades out.")]
     [SerializeField] private float _fadeOutSpeed = 5f;
 
 
@@ -81,6 +97,8 @@ public class HoverUI : MonoBehaviour
             {
                 _radialImage.fillAmount =
                     _displayedFill;
+
+                UpdateColor();
             }
         }
     }
@@ -172,6 +190,13 @@ public class HoverUI : MonoBehaviour
         // =====================================================
 
         UpdateFill();
+
+
+        // =====================================================
+        // UPDATE COLOR
+        // =====================================================
+
+        UpdateColor();
     }
 
 
@@ -208,6 +233,63 @@ public class HoverUI : MonoBehaviour
 
         _radialImage.fillAmount =
             _displayedFill;
+    }
+
+
+    // =========================================================
+    // UPDATE COLOR
+    // =========================================================
+
+    private void UpdateColor()
+    {
+        float percent =
+            _playerHover.HoverPercent;
+
+
+        Color targetColor;
+
+
+        // =====================================================
+        // 50% - 100% = GREEN
+        // =====================================================
+
+        if (percent > 0.50f)
+        {
+            targetColor =
+                _fullColor;
+        }
+
+
+        // =====================================================
+        // 25% - 50% = YELLOW
+        // =====================================================
+
+        else if (percent > 0.25f)
+        {
+            targetColor =
+                _warningColor;
+        }
+
+
+        // =====================================================
+        // 0% - 25% = RED
+        // =====================================================
+
+        else
+        {
+            targetColor =
+                _dangerColor;
+        }
+
+
+        // Preserve the alpha used by the fade system.
+        targetColor.a =
+            _radialImage.color.a;
+
+
+        // Apply the complete color directly.
+        _radialImage.color =
+            targetColor;
     }
 
 

@@ -4997,7 +4997,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fd3b90404cd00854f847f1c28c70afea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 36d0716f8a3b25347bb9fa8c06b04481, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9959,6 +9959,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _radialImage: {fileID: 2796553722962549811}
   _playerHover: {fileID: 1080924187781067023}
+  _fullColor: {r: 0, g: 1, b: 0, a: 1}
+  _warningColor: {r: 0.9622642, g: 0.8918174, b: 0, a: 1}
+  _dangerColor: {r: 1, g: 0, b: 0, a: 1}
   _hideWhenUnavailable: 1
   _fullDisplayTime: 1
   _fadeOutSpeed: 1
