@@ -292,12 +292,11 @@ public class HoverUI : MonoBehaviour
             targetColor;
     }
 
+// =========================================================
+// SHOW
+// =========================================================
 
-    // =========================================================
-    // SHOW
-    // =========================================================
-
-    private void Show()
+private void Show()
     {
         _isVisible = true;
 
@@ -308,19 +307,15 @@ public class HoverUI : MonoBehaviour
             _radialImage.color;
 
 
-        color.a =
-            Mathf.MoveTowards(
-                color.a,
-                1f,
-                _fadeOutSpeed *
-                Time.deltaTime
-            );
+        // Instantly show the hover UI.
+        // This prevents the player from missing the
+        // beginning of the stamina meter when hovering starts.
+        color.a = 1f;
 
 
         _radialImage.color =
             color;
     }
-
 
     // =========================================================
     // FADE OUT
