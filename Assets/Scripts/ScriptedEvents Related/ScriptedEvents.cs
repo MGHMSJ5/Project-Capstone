@@ -24,7 +24,7 @@ public class ScriptedEvents : Singleton<ScriptedEvents>
     private CanvasSceneTransition _canvasSceneTransition;
 
     [Header("WorldPhases")]
-    public WorldPhaseHandler _worldPhaseHandler;
+    private WorldPhaseHandler _worldPhaseHandler;
 
 
     void Start()
