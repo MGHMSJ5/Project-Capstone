@@ -15,7 +15,7 @@ public class Kettler22TCamera : MonoBehaviour
         mainCamera = GameObject.Find("Main_Camera");
     }
 
-    public void StartWarmPhaseChange()
+    public void StartWarmPhaseCinematic()
     {
         childCamera.SetActive(true);
         mainCamera.SetActive(false);

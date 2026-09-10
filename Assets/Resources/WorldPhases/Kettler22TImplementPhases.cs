@@ -6,14 +6,23 @@ public class Kettler22TImplementPhases : MonoBehaviour
 {
     private WorldPhaseHandler worldPhaseHandler;
 
+    [SerializeField]
+    private Kettler22TCamera kettler22TCamera;
+
     [Header("Warm Phase")]
     [SerializeField]
     private List<ParticleSystem> particlesToturnOn = new List<ParticleSystem>();
+
 
     private void Awake()
     {
         worldPhaseHandler = GetComponent<WorldPhaseHandler>();
         worldPhaseHandler.ChangeWorldPhase = PhaseChanged;
+    }
+
+    public void StartWarmPhaseChange()
+    {
+        kettler22TCamera.StartWarmPhaseCinematic();
     }
 
     void PhaseChanged(string phase)
