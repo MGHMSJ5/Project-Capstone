@@ -77,10 +77,17 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Require movement input before the sprint can begin gearing up.")]
     [SerializeField] private bool _requireMovementForSprint = true;
 
+    [Tooltip("How long Sprint must be held while completely stationary before the next movement starts at full sprint without the gear-up animation.")]
+    [SerializeField] private float _stationarySprintHoldTime = 1f;
+
     [Tooltip("Minimum horizontal speed required for the sprint-release animation to play.")]
     [SerializeField] private float _minimumSprintReleaseSpeed = 1.5f;
 
     private float _currentSprintTime = 0f;
+
+    private float _stationarySprintHoldTimer = 0f;
+
+    private bool _stationarySprintPreCharged = false;
 
     private bool _isSprinting = false;
 
@@ -522,10 +529,6 @@ public class PlayerController : MonoBehaviour
             );
 
 
-        // =====================================================
-        // TRACK FALL SPEED WHILE AIRBORNE
-        // =====================================================
-
         if (!isCurrentlyGrounded)
         {
             float verticalSpeed =
@@ -545,17 +548,9 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        // =====================================================
-        // LANDING DETECTION
-        // =====================================================
-
         if (!_wasGrounded &&
             isCurrentlyGrounded)
         {
-            // -------------------------------------------------
-            // LANDING VIBRATION
-            // -------------------------------------------------
-
             if (_playerVibration != null &&
                 _lastAirborneDownwardSpeed >=
                 _playerVibration.MinimumLandingImpactSpeed)
@@ -563,10 +558,6 @@ public class PlayerController : MonoBehaviour
                 _playerVibration.PlayLandingVibration();
             }
 
-
-            // -------------------------------------------------
-            // LANDING SMOKE
-            // -------------------------------------------------
 
             if (_enableLandingSmoke &&
                 _lastAirborneDownwardSpeed >=
@@ -580,10 +571,6 @@ public class PlayerController : MonoBehaviour
                 0f;
         }
 
-
-        // =====================================================
-        // UPDATE GROUNDED STATE
-        // =====================================================
 
         if (isCurrentlyGrounded)
         {
@@ -617,20 +604,12 @@ public class PlayerController : MonoBehaviour
             Input.GetAxisRaw("Vertical");
 
 
-        // =====================================================
-        // REMEMBER JUMP INPUT
-        // =====================================================
-
         if (Input.GetButtonDown("Jump"))
         {
             _lastJumpPressedTime =
                 Time.time;
         }
 
-
-        // =====================================================
-        // CHECK FOR JUMP
-        // =====================================================
 
         bool jumpBuffered =
             Time.time -
@@ -704,10 +683,6 @@ public class PlayerController : MonoBehaviour
             );
 
 
-        // =====================================================
-        // NO MOVEMENT INPUT
-        // =====================================================
-
         if (movementDirection == Vector3.zero)
         {
             if (_grounded)
@@ -721,20 +696,10 @@ public class PlayerController : MonoBehaviour
                     );
             }
         }
-
-
-        // =====================================================
-        // MOVEMENT INPUT
-        // =====================================================
-
         else
         {
             float targetSpeed;
 
-
-            // -------------------------------------------------
-            // SPRINTING
-            // -------------------------------------------------
 
             if (_isSprinting)
             {
@@ -755,10 +720,6 @@ public class PlayerController : MonoBehaviour
                     GetNormalSpeed();
             }
 
-
-            // -------------------------------------------------
-            // SPRINT RELEASE BRAKING
-            // -------------------------------------------------
 
             if (_isBrakingFromSprint &&
                 _grounded)
@@ -799,10 +760,6 @@ public class PlayerController : MonoBehaviour
                 targetSpeed;
 
 
-            // -------------------------------------------------
-            // TURN RESPONSIVENESS
-            // -------------------------------------------------
-
             float responsiveness =
                 _turnResponsiveness;
 
@@ -822,10 +779,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-
-            // -------------------------------------------------
-            // SMOOTHLY TURN TOWARD DESIRED DIRECTION
-            // -------------------------------------------------
 
             Vector3 newVelocity;
 
@@ -876,10 +829,6 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        // =====================================================
-        // APPLY VELOCITY
-        // =====================================================
-
         Vector3 verticalVelocity =
             Vector3.Project(
                 _rb.velocity,
@@ -905,9 +854,54 @@ public class PlayerController : MonoBehaviour
             Input.GetAxisRaw("Sprint") >
             0f;
 
+        // Check the raw input directly.
+        // This allows the stationary pre-charge to complete
+        // before movement is processed by FixedUpdate.
         bool hasMovementInput =
-            _direction.sqrMagnitude >
-            0.01f;
+            Mathf.Abs(horizontalInput) >
+            _movementDeadzone ||
+            Mathf.Abs(verticalInput) >
+            _movementDeadzone;
+
+
+        // =====================================================
+        // STATIONARY SPRINT PRE-CHARGE
+        // =====================================================
+
+        if (wantsToSprint &&
+            !hasMovementInput &&
+            !_isCarryingHeavy)
+        {
+            _stationarySprintHoldTimer =
+                Mathf.MoveTowards(
+                    _stationarySprintHoldTimer,
+                    Mathf.Max(
+                        0f,
+                        _stationarySprintHoldTime
+                    ),
+                    Time.deltaTime
+                );
+
+            if (_stationarySprintHoldTimer >=
+                _stationarySprintHoldTime)
+            {
+                _stationarySprintPreCharged =
+                    true;
+            }
+        }
+        else if (!wantsToSprint)
+        {
+            _stationarySprintHoldTimer =
+                0f;
+
+            _stationarySprintPreCharged =
+                false;
+        }
+
+
+        // =====================================================
+        // DETERMINE WHETHER SPRINT CAN START
+        // =====================================================
 
         bool wantsToStartSprint =
             wantsToSprint &&
@@ -931,16 +925,47 @@ public class PlayerController : MonoBehaviour
             _sprintBrakeTimer =
                 0f;
 
-            _currentSprintTime =
-                Mathf.MoveTowards(
-                    _currentSprintTime,
-                    _maxSprintAccelerationTime,
-                    Time.deltaTime
-                );
 
-            _isGearingUp =
-                _currentSprintTime <
-                _maxSprintAccelerationTime;
+            // =================================================
+            // PRE-CHARGED STATIONARY SPRINT
+            // =================================================
+
+            if (_stationarySprintPreCharged)
+            {
+                // Skip the gear-up phase completely.
+                _currentSprintTime =
+                    _maxSprintAccelerationTime;
+
+                _isGearingUp =
+                    false;
+            }
+
+
+            // =================================================
+            // NORMAL SPRINT
+            // =================================================
+
+            else
+            {
+                _currentSprintTime =
+                    Mathf.MoveTowards(
+                        _currentSprintTime,
+                        _maxSprintAccelerationTime,
+                        Time.deltaTime
+                    );
+
+                _isGearingUp =
+                    _currentSprintTime <
+                    _maxSprintAccelerationTime;
+            }
+
+
+            // Pre-charge is consumed once movement starts.
+            _stationarySprintPreCharged =
+                false;
+
+            _stationarySprintHoldTimer =
+                0f;
         }
 
 
@@ -1065,10 +1090,6 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        // =====================================================
-        // ACTUAL HORIZONTAL SPEED
-        // =====================================================
-
         float horizontalSpeed =
             Vector3.ProjectOnPlane(
                 _rb.velocity,
@@ -1079,21 +1100,11 @@ public class PlayerController : MonoBehaviour
         float targetAnimationSpeed;
 
 
-        // =====================================================
-        // IDLE
-        // =====================================================
-
         if (horizontalSpeed < 0.1f)
         {
             targetAnimationSpeed =
                 _walkAnimationSpeed;
         }
-
-
-        // =====================================================
-        // SPRINT RELEASE / BRAKING
-        // =====================================================
-
         else if (_isBrakingFromSprint)
         {
             float brakeT =
@@ -1112,44 +1123,22 @@ public class PlayerController : MonoBehaviour
                     brakeT
                 );
         }
-
-
-        // =====================================================
-        // SPRINT GEAR-UP
-        // =====================================================
-
         else if (_isGearingUp)
         {
             targetAnimationSpeed =
                 _sprintGearUpAnimationSpeed;
         }
-
-
-        // =====================================================
-        // FULL SPRINT
-        // =====================================================
-
         else if (_isSprinting)
         {
             targetAnimationSpeed =
                 _sprintAnimationSpeed;
         }
-
-
-        // =====================================================
-        // NORMAL WALK
-        // =====================================================
-
         else
         {
             targetAnimationSpeed =
                 _walkAnimationSpeed;
         }
 
-
-        // =====================================================
-        // CLAMP
-        // =====================================================
 
         targetAnimationSpeed =
             Mathf.Clamp(
@@ -1158,10 +1147,6 @@ public class PlayerController : MonoBehaviour
                 _maximumAnimationSpeed
             );
 
-
-        // =====================================================
-        // SMOOTH
-        // =====================================================
 
         _currentAnimationSpeed =
             Mathf.Lerp(
@@ -1193,10 +1178,6 @@ public class PlayerController : MonoBehaviour
             _direction.sqrMagnitude >
             0.01f;
 
-
-        // =====================================================
-        // GROUNDED
-        // =====================================================
 
         if (_grounded)
         {
@@ -1244,10 +1225,6 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        // =====================================================
-        // AIRBORNE
-        // =====================================================
-
         if (!_continueSmokeIntoJump ||
             !isRunning)
         {
@@ -1262,10 +1239,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-
-        // =====================================================
-        // CHECK VERTICAL VELOCITY
-        // =====================================================
 
         Vector3 verticalVelocity =
             Vector3.Project(
@@ -1297,10 +1270,6 @@ public class PlayerController : MonoBehaviour
                 stillAscending;
         }
 
-
-        // =====================================================
-        // EMIT CENTERED BODY SMOKE
-        // =====================================================
 
         if (shouldEmitSmoke)
         {
@@ -1495,10 +1464,6 @@ public class PlayerController : MonoBehaviour
             );
 
 
-        // =====================================================
-        // USE PLAYER FORWARD IF NOT MOVING
-        // =====================================================
-
         if (movementDirection.sqrMagnitude <
             0.01f)
         {
@@ -1518,10 +1483,6 @@ public class PlayerController : MonoBehaviour
         movementDirection.Normalize();
 
 
-        // =====================================================
-        // CALCULATE LEFT / RIGHT
-        // =====================================================
-
         Vector3 rightDirection =
             Vector3.Cross(
                 upDirection,
@@ -1532,10 +1493,6 @@ public class PlayerController : MonoBehaviour
             -movementDirection;
 
 
-        // =====================================================
-        // LEFT POSITION
-        // =====================================================
-
         Vector3 leftPosition =
             transform.position
             - rightDirection *
@@ -1544,10 +1501,6 @@ public class PlayerController : MonoBehaviour
               _landingSmokeBackwardDistance;
 
 
-        // =====================================================
-        // RIGHT POSITION
-        // =====================================================
-
         Vector3 rightPosition =
             transform.position
             + rightDirection *
@@ -1555,10 +1508,6 @@ public class PlayerController : MonoBehaviour
             + backwardsDirection *
               _landingSmokeBackwardDistance;
 
-
-        // =====================================================
-        // FIND ACTUAL GROUND POSITION
-        // =====================================================
 
         leftPosition =
             GetLandingSmokeGroundPosition(
@@ -1573,10 +1522,6 @@ public class PlayerController : MonoBehaviour
             );
 
 
-        // =====================================================
-        // EMIT LEFT CLOUD
-        // =====================================================
-
         ParticleSystem.EmitParams leftEmitParams =
             new ParticleSystem.EmitParams();
 
@@ -1588,10 +1533,6 @@ public class PlayerController : MonoBehaviour
             1
         );
 
-
-        // =====================================================
-        // EMIT RIGHT CLOUD
-        // =====================================================
 
         ParticleSystem.EmitParams rightEmitParams =
             new ParticleSystem.EmitParams();

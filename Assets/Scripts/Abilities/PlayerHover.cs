@@ -20,12 +20,28 @@ public class PlayerHover : MonoBehaviour
 
 
     // =========================================================
+    // HOVER STAMINA
+    // =========================================================
+
+    [Header("Hover Stamina")]
+
+    [Tooltip("Whether hover stamina should refill when landing.")]
+    [SerializeField] private bool _refillOnLanding = true;
+
+    [Tooltip("How long it takes to completely refill hover stamina after landing.")]
+    [SerializeField] private float _hoverRefillDuration = 2.5f;
+
+
+    // =========================================================
     // STATE
     // =========================================================
 
     private float _currentHoverTime = 0f;
 
     private bool _isHovering = false;
+
+    // Once empty, hover cannot be used again until landing.
+    private bool _hoverDepleted = false;
 
     // Player must release Space before hover can activate.
     private bool _jumpReleased = false;
@@ -68,6 +84,48 @@ public class PlayerHover : MonoBehaviour
     public bool IsHovering =>
         _isHovering;
 
+    public bool HoverDepleted =>
+        _hoverDepleted;
+
+    public bool IsGrounded =>
+        _grounded;
+
+    /// <summary>
+    /// Whether the player is currently holding the hover/jump button.
+    /// </summary>
+    public bool HoverInputHeld =>
+        Input.GetButton("Jump");
+
+    /// <summary>
+    /// Whether hover stamina is currently refilling.
+    /// </summary>
+    public bool IsRefillingHover =>
+        _grounded &&
+        _refillOnLanding &&
+        _currentHoverTime < _maxHoverTime;
+
+    /// <summary>
+    /// Current hover stamina in seconds.
+    /// </summary>
+    public float CurrentHoverTime =>
+        _currentHoverTime;
+
+    /// <summary>
+    /// Maximum hover stamina in seconds.
+    /// </summary>
+    public float MaxHoverTime =>
+        _maxHoverTime;
+
+    /// <summary>
+    /// Normalized hover stamina from 0 to 1.
+    /// Perfect for a UI radial fill.
+    /// </summary>
+    public float HoverPercent =>
+        Mathf.Clamp01(
+            _currentHoverTime /
+            Mathf.Max(0.01f, _maxHoverTime)
+        );
+
 
     // =========================================================
     // UNITY
@@ -83,6 +141,11 @@ public class PlayerHover : MonoBehaviour
 
         _playerVibration =
             GetComponent<PlayerVibration>();
+
+
+        // Start with a full hover meter.
+        _currentHoverTime =
+            _maxHoverTime;
     }
 
 
@@ -116,12 +179,15 @@ public class PlayerHover : MonoBehaviour
 
 
         // =====================================================
-        // RESET WHEN GROUNDED
+        // RESET / REFILL WHEN GROUNDED
         // =====================================================
 
         if (_grounded)
         {
-            _currentHoverTime = 0f;
+            if (_refillOnLanding)
+            {
+                RefillHover();
+            }
 
             StopHover();
 
@@ -145,18 +211,11 @@ public class PlayerHover : MonoBehaviour
         // HOVER CHECK
         // =====================================================
 
-        // Hover requires:
-        //
-        // 1. Airborne
-        // 2. Jump has been released
-        // 3. Jump is pressed again
-        // 4. Hover time remains
-
         if (!_grounded &&
             _jumpReleased &&
             Input.GetButton("Jump") &&
-            _currentHoverTime <
-            _maxHoverTime)
+            !_hoverDepleted &&
+            _currentHoverTime > 0f)
         {
             Hover();
         }
@@ -186,13 +245,43 @@ public class PlayerHover : MonoBehaviour
         }
 
 
-        _currentHoverTime +=
+        // =====================================================
+        // DRAIN HOVER STAMINA
+        // =====================================================
+
+        _currentHoverTime -=
             Time.deltaTime;
 
 
+        _currentHoverTime =
+            Mathf.Max(
+                0f,
+                _currentHoverTime
+            );
+
+
+        // =====================================================
+        // CHECK FOR DEPLETION
+        // =====================================================
+
+        if (_currentHoverTime <= 0f)
+        {
+            _currentHoverTime = 0f;
+
+            _hoverDepleted = true;
+
+            StopHover();
+
+            return;
+        }
+
+
+        // =====================================================
+        // GET RIGIDBODY
+        // =====================================================
+
         Rigidbody rb =
             _playerController.RB;
-
 
         Vector3 localUp =
             -GravityDirection;
@@ -314,6 +403,56 @@ public class PlayerHover : MonoBehaviour
 
 
     // =========================================================
+    // REFILL HOVER
+    // =========================================================
+
+    private void RefillHover()
+    {
+        if (_hoverRefillDuration <= 0f)
+        {
+            _currentHoverTime =
+                _maxHoverTime;
+
+            _hoverDepleted =
+                false;
+
+            return;
+        }
+
+
+        // Calculate refill speed from the desired
+        // total refill duration.
+        float refillSpeed =
+            _maxHoverTime /
+            _hoverRefillDuration;
+
+
+        _currentHoverTime =
+            Mathf.MoveTowards(
+                _currentHoverTime,
+                _maxHoverTime,
+                refillSpeed *
+                Time.deltaTime
+            );
+
+
+        // =====================================================
+        // FULLY REFILLED
+        // =====================================================
+
+        if (_currentHoverTime >=
+            _maxHoverTime)
+        {
+            _currentHoverTime =
+                _maxHoverTime;
+
+            _hoverDepleted =
+                false;
+        }
+    }
+
+
+    // =========================================================
     // STOP HOVER
     // =========================================================
 
@@ -336,12 +475,12 @@ public class PlayerHover : MonoBehaviour
         // CLAMP HOVER TIME
         // =====================================================
 
-        if (_currentHoverTime >
-            _maxHoverTime)
-        {
-            _currentHoverTime =
-                _maxHoverTime;
-        }
+        _currentHoverTime =
+            Mathf.Clamp(
+                _currentHoverTime,
+                0f,
+                _maxHoverTime
+            );
     }
 
 
