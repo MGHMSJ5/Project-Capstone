@@ -120,7 +120,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: d5e366f072213f843be39bdc872e6a96, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: e5e0b5082c849f548b5a07ca392baab4, type: 2}
 --- !u!1 &3812432 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4298106547989159569, guid: 66008294bc742d244b5aebefc20124cb,
@@ -19744,6 +19744,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Planet Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792247640272332026, guid: 13a8467bd0cfed049ab2de79d3d93e5a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4706870486771133179, guid: 13a8467bd0cfed049ab2de79d3d93e5a,
         type: 3}
