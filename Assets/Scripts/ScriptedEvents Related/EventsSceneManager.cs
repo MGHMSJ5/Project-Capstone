@@ -24,4 +24,14 @@ public class EventsSceneManager : MonoBehaviour
     {
         ScriptedEvents.Instance.GetHover();
     }
+
+    public void WorldPhaseCold()
+    {
+        ScriptedEvents.Instance.ChangeWorldPhase("Cold");
+    }
+
+    public void WorldPhaseWarm()
+    {
+        ScriptedEvents.Instance.ChangeWorldPhase("Warm");
+    }
 }
