@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.52386564, g: 0.56170434, b: 0.47704506, a: 1}
+  m_IndirectSpecularColor: {r: 0.5238657, g: 0.5617042, b: 0.47704506, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -14842,7 +14842,7 @@ GameObject:
   - component: {fileID: 410087040}
   - component: {fileID: 410087042}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: Sun Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14947,7 +14947,7 @@ MonoBehaviour:
   m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 1
+  m_SoftShadowQuality: 2
 --- !u!1001 &411066014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21222,6 +21222,71 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 477680988}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &608755796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 608755798}
+  - component: {fileID: 608755797}
+  m_Layer: 0
+  m_Name: DayNightSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &608755797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608755796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9c9969f826e634b8b7d7f5ee2930e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeOfDay: 12
+  fullDayLength: 300
+  sunLight: {fileID: 410087040}
+  sunRotation: {x: 45, y: -30, z: 0}
+  daySunIntensity: 2
+  sunsetSunIntensity: 5
+  nightSunIntensity: 10
+  daySunColor: {r: 1, g: 0.94, b: 0.82, a: 1}
+  sunsetSunColor: {r: 1, g: 0.4644721, b: 0.3160377, a: 1}
+  nightSunColor: {r: 0.08, g: 0.1, b: 0.25, a: 1}
+  ambientIntensity: 1
+  dayAmbientColor: {r: 0.55, g: 0.68, b: 0.9, a: 1}
+  sunsetAmbientColor: {r: 0.3, g: 0.22, b: 0.45, a: 1}
+  nightAmbientColor: {r: 0.08, g: 0.12, b: 0.32, a: 1}
+  skyMaterial: {fileID: 2100000, guid: 66c22e625b43fc7408ac5d0ebe82c92e, type: 2}
+  daySkyBrightness: 1
+  sunsetSkyBrightness: 1
+  nightSkyBrightness: 1
+  sunsetSkyTint: {r: 1, g: 0.56424063, b: 0.12156862, a: 1}
+  sunsetStart: 0.2
+  nightStart: -0.1
+--- !u!4 &608755798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608755796}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.0705287, y: 76.30063, z: -30.858597}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &610813440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32524,7 +32589,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ea62dcf49cee84a4b84297f2e8d69f5d, type: 2}
+  - {fileID: 2100000, guid: 66c22e625b43fc7408ac5d0ebe82c92e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33921,7 +33986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1755744862}
-  planet: {fileID: 1410339236}
+  planet: {fileID: 1094260428}
   skyDome: {fileID: 911181214}
   followPlanetCurvature: 1
 --- !u!1001 &954715396
@@ -41100,6 +41165,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cc681ef1d59b7bc4abdb761084991266,
     type: 3}
   m_PrefabInstance: {fileID: 1094172002}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1094260428 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7598883403012565071, guid: 13a8467bd0cfed049ab2de79d3d93e5a,
+    type: 3}
+  m_PrefabInstance: {fileID: 749625993}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1097901199
 GameObject:
@@ -54906,12 +54977,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1873002831}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1410339236 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 304958520329632408, guid: 13a8467bd0cfed049ab2de79d3d93e5a,
-    type: 3}
-  m_PrefabInstance: {fileID: 749625993}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1411224162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70216,7 +70281,7 @@ GameObject:
   - component: {fileID: 1846526951}
   - component: {fileID: 1846526950}
   m_Layer: 0
-  m_Name: Directional Light (Secondary)
+  m_Name: FIll Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70256,8 +70321,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.9622642, g: 0.7679957, b: 0.9372813, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 0.56078434, g: 0.65882355, b: 1, a: 1}
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -70315,13 +70380,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846526949}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.10938167, y: 0.8754261, z: -0.40821788, w: 0.23456976}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 150, z: 0}
 --- !u!1001 &1847665718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82531,22 +82596,22 @@ PrefabInstance:
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8996528
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.43660617
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000027723761
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000011184421
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
@@ -82606,17 +82671,17 @@ PrefabInstance:
     - target: {fileID: 5664879709281398430, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_BackGroundColor.b
-      value: 0.19287285
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5664879709281398430, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_BackGroundColor.g
-      value: 0.6074392
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5664879709281398430, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0.9924528
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6252706017734462530, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
@@ -83636,3 +83701,4 @@ SceneRoots:
   - {fileID: 1347090466}
   - {fileID: 1620119927}
   - {fileID: 954152260}
+  - {fileID: 608755798}
