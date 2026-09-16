@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5238657, g: 0.5617042, b: 0.47704506, a: 1}
+  m_IndirectSpecularColor: {r: 0.52386564, g: 0.56170434, b: 0.47704506, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -115,7 +115,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
-    buildHeightMesh: 0
+    buildHeightMesh: 1
     maxJobWorkers: 0
     preserveTilesOutsideBounds: 0
     debug:
@@ -64978,6 +64978,36 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5729923420432591053, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9810537
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729923420432591053, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.19363117
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729923420432591053, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.001235222
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729923420432591053, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.006258389
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729923420432591053, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 22.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729923420432591053, guid: 440a0bc5b41de5e488ab3de6143752d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.731
+      objectReference: {fileID: 0}
     - target: {fileID: 5911609978821772981, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -65131,27 +65161,27 @@ PrefabInstance:
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.22371368
+      value: 0.2292599
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.038300287
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9552067
+      value: -0.9733653
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.18990901
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 22.33
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
@@ -65161,7 +65191,7 @@ PrefabInstance:
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.731
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8493721922584347316, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
@@ -65390,6 +65420,12 @@ MonoBehaviour:
   FinishQuestAfterDialogueEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!4 &1711939694 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5729923420432591053, guid: 440a0bc5b41de5e488ab3de6143752d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1711939689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1711939697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65466,6 +65502,8 @@ MonoBehaviour:
   - {fileID: 815790395}
   stopWalking: 1
   doNotLoopWaypoints: 1
+  model: {fileID: 1711939694}
+  planet: {fileID: 1094260428}
 --- !u!114 &1711939704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82596,22 +82634,22 @@ PrefabInstance:
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.8996528
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.43660617
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.000000027723761
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.000000011184421
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
