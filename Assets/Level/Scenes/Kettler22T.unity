@@ -21378,7 +21378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d9c9969f826e634b8b7d7f5ee2930e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeOfDay: 12
+  timeOfDay: 9
   fullDayLength: 500
   sunLight: {fileID: 410087040}
   sunRotation: {x: 45, y: -30, z: 0}
@@ -27495,7 +27495,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7079509756508680949, guid: 13a8467bd0cfed049ab2de79d3d93e5a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1443772762}
   m_SourcePrefab: {fileID: 100100000, guid: 13a8467bd0cfed049ab2de79d3d93e5a, type: 3}
 --- !u!1 &750162197 stripped
 GameObject:
@@ -34226,6 +34230,7 @@ MonoBehaviour:
   player: {fileID: 1755744862}
   planet: {fileID: 1094260428}
   skyDome: {fileID: 911181214}
+  skyHeightOffset: -100
   followPlanetCurvature: 1
   movementThreshold: 0.0001
 --- !u!1001 &954715396
@@ -56676,6 +56681,52 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: -0.01870871, y: -0.107849926, z: -0.06402923}
+--- !u!1 &1443772761 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7079509756508680949, guid: 13a8467bd0cfed049ab2de79d3d93e5a,
+    type: 3}
+  m_PrefabInstance: {fileID: 749625993}
+  m_PrefabAsset: {fileID: 0}
+--- !u!218 &1443772762
+Terrain:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443772761}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_TerrainData: {fileID: 0}
+  m_TreeDistance: 5000
+  m_TreeBillboardDistance: 50
+  m_TreeCrossFadeLength: 5
+  m_TreeMaximumFullLODCount: 50
+  m_DetailObjectDistance: 80
+  m_DetailObjectDensity: 1
+  m_HeightmapPixelError: 5
+  m_SplatMapDistance: 1000
+  m_HeightmapMinimumLODSimplification: 0
+  m_HeightmapMaximumLOD: 0
+  m_ShadowCastingMode: 2
+  m_DrawHeightmap: 1
+  m_DrawInstanced: 0
+  m_DrawTreesAndFoliage: 1
+  m_StaticShadowCaster: 0
+  m_IgnoreQualitySettings: 0
+  m_ReflectionProbeUsage: 1
+  m_MaterialTemplate: {fileID: 0}
+  m_BakeLightProbesForTrees: 1
+  m_PreserveTreePrototypeLayers: 0
+  m_DeringLightProbesForTrees: 1
+  m_ReceiveGI: 1
+  m_ScaleInLightmap: 1
+  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
+  m_GroupingID: 0
+  m_RenderingLayerMask: 1
+  m_AllowAutoConnect: 0
+  m_EnableHeightmapRayTracing: 1
+  m_EnableTreesAndDetailsRayTracing: 0
+  m_TreeMotionVectorModeOverride: 3
 --- !u!1001 &1451131686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82887,22 +82938,22 @@ PrefabInstance:
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8996528
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.43660617
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000027723761
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000011184421
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
