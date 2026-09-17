@@ -9,32 +9,96 @@ public class SkySystem : MonoBehaviour
     [Header("Sky")]
     [SerializeField] private Transform skyDome;
 
+    [Tooltip("Moves the sky dome relative to the player's surface position. " +
+             "Negative values move it toward the planet.")]
+    [SerializeField] private float skyHeightOffset = -50f;
+
     [Header("Settings")]
     [SerializeField] private bool followPlanetCurvature = true;
+
+    [Tooltip("Prevents tiny numerical changes from affecting the sky.")]
+    [SerializeField] private float movementThreshold = 0.0001f;
+
+    // Surface normal from the previous frame.
+    private Vector3 previousPlanetUp;
+
+    private void Start()
+    {
+        if (player == null || planet == null || skyDome == null)
+            return;
+
+        previousPlanetUp =
+            (player.position - planet.position).normalized;
+    }
 
     private void LateUpdate()
     {
         if (player == null || planet == null || skyDome == null)
             return;
 
-        // The sky follows the player.
-        skyDome.position = player.position;
+        // Follow the player, with an adjustable height offset.
+        // player.up points away from the planet.
+        skyDome.position =
+            player.position + player.up * skyHeightOffset;
 
         if (followPlanetCurvature)
         {
-            RotateSkyToPlanet(player.position);
+            RotateSkyToPlanet();
         }
     }
 
-    private void RotateSkyToPlanet(Vector3 playerPosition)
+    private void RotateSkyToPlanet()
     {
-        // Direction from planet center to player.
-        Vector3 planetUp =
-            (playerPosition - planet.position).normalized;
+        // Current surface normal.
+        Vector3 currentPlanetUp =
+            (player.position - planet.position).normalized;
 
-        // Rotate the sky so its local Y axis points away
-        // from the center of the planet.
+        // Ignore extremely tiny changes.
+        if ((currentPlanetUp - previousPlanetUp).sqrMagnitude <
+            movementThreshold * movementThreshold)
+        {
+            return;
+        }
+
+        // Rotate the previous surface normal into the new one.
+        Quaternion deltaRotation =
+            Quaternion.FromToRotation(
+                previousPlanetUp,
+                currentPlanetUp
+            );
+
+        // Apply the curvature rotation.
         skyDome.rotation =
-            Quaternion.FromToRotation(Vector3.up, planetUp);
+            deltaRotation * skyDome.rotation;
+
+        // ---------------------------------------------------------
+        // FIX ROLL
+        // ---------------------------------------------------------
+
+        // Get the sky's current forward direction.
+        Vector3 forward = skyDome.forward;
+
+        // Flatten it onto the new planet surface.
+        forward =
+            Vector3.ProjectOnPlane(
+                forward,
+                currentPlanetUp
+            );
+
+        // If the forward direction is valid,
+        // rebuild the rotation using the correct up direction.
+        if (forward.sqrMagnitude > 0.000001f)
+        {
+            forward.Normalize();
+
+            skyDome.rotation =
+                Quaternion.LookRotation(
+                    forward,
+                    currentPlanetUp
+                );
+        }
+
+        // Remember this frame.
+        previousPlanetUp = currentPlanetUp;
     }
 }
