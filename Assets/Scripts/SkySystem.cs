@@ -9,6 +9,10 @@ public class SkySystem : MonoBehaviour
     [Header("Sky")]
     [SerializeField] private Transform skyDome;
 
+    [Tooltip("Moves the sky dome relative to the player's surface position. " +
+             "Negative values move it toward the planet.")]
+    [SerializeField] private float skyHeightOffset = -50f;
+
     [Header("Settings")]
     [SerializeField] private bool followPlanetCurvature = true;
 
@@ -32,8 +36,10 @@ public class SkySystem : MonoBehaviour
         if (player == null || planet == null || skyDome == null)
             return;
 
-        // The sky follows the player.
-        skyDome.position = player.position;
+        // Follow the player, with an adjustable height offset.
+        // player.up points away from the planet.
+        skyDome.position =
+            player.position + player.up * skyHeightOffset;
 
         if (followPlanetCurvature)
         {
