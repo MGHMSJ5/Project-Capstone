@@ -15068,6 +15068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1755744862}
   planet: {fileID: 1094260428}
+  dayNightSystem: {fileID: 608755797}
   caveLevelCollider: {fileID: 85454768}
   factoryLevelCollider: {fileID: 753491539}
   staticLightRotation: {x: 45, y: -30, z: 0}
@@ -21380,6 +21381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeOfDay: 9
   fullDayLength: 500
+  inStaticLevel: 0
   sunLight: {fileID: 410087040}
   sunRotation: {x: 45, y: -30, z: 0}
   daySunIntensity: 2
@@ -82938,22 +82940,22 @@ PrefabInstance:
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8996528
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.43660617
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000027723761
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000011184421
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
