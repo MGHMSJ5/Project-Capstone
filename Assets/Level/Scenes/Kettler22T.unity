@@ -3103,7 +3103,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -15068,6 +15068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1755744862}
   planet: {fileID: 1094260428}
+  dayNightSystem: {fileID: 608755797}
   caveLevelCollider: {fileID: 85454768}
   factoryLevelCollider: {fileID: 753491539}
   staticLightRotation: {x: 45, y: -30, z: 0}
@@ -21380,6 +21381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeOfDay: 9
   fullDayLength: 500
+  inStaticLevel: 0
   sunLight: {fileID: 410087040}
   sunRotation: {x: 45, y: -30, z: 0}
   daySunIntensity: 2
