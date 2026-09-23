@@ -156,8 +156,16 @@ public class PlayerSilhouette : MonoBehaviour
 
         SetMaterialColor(0f);
 
-        silhouetteRenderer.sharedMaterial =
-            silhouetteMaterial;
+        Material[] silhouetteMaterials =
+    new Material[playerRenderer.sharedMaterials.Length];
+
+        for (int i = 0; i < silhouetteMaterials.Length; i++)
+        {
+            silhouetteMaterials[i] = silhouetteMaterial;
+        }
+
+        silhouetteRenderer.sharedMaterials =
+            silhouetteMaterials;
 
         // We don't want the silhouette to cast shadows.
         silhouetteRenderer.shadowCastingMode =
