@@ -1,17 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
-using TMPro;
-using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
     [Header("Panels")]
     public GameObject mainMenuPanel;
-    public GameObject confirmNewGamePanel;
-    public GameObject noSaveFoundPanel;
-    public GameObject loadSavePanel;
-    public GameObject confirmLoadPanel;
     public GameObject creditsPanel;
     public GameObject quitConfirmPanel;
 
@@ -19,27 +13,22 @@ public class MainMenuManager : MonoBehaviour
     public GameObject firstCreditsButton;
     public GameObject firstQuitConfirmButton;
     public GameObject firstMainMenuButton;
-    public GameObject firstLoadSaveMenuButton;
-    public GameObject firstConfirmLoadButton;
-    public GameObject firstConfirmNewGameButton;
 
-    public TMP_Text manualSaveInfoText;
-    public TMP_Text autoSaveInfoText;
-
-    private QuestManager questManager;
-    private bool isAutoSaveSelected;
     private string lastInputMethod = "Controller";
 
     private CanvasSceneTransition _canvasSceneTransition;
+
     private void Awake()
     {
-        _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
+        _canvasSceneTransition =
+            GameObject.Find("Canvas_SceneTransition")
+            .GetComponent<CanvasSceneTransition>();
     }
 
     private void Start()
     {
-        questManager = FindObjectOfType<QuestManager>();
         ResetAllPanels();
+
         mainMenuPanel.SetActive(true);
         SetSelected(firstMainMenuButton);
     }
@@ -63,14 +52,18 @@ public class MainMenuManager : MonoBehaviour
 
     private void RestoreControllerFocus()
     {
-        if (confirmNewGamePanel.activeSelf)
-            SetSelected(firstConfirmNewGameButton);
-        else if (confirmLoadPanel.activeSelf)
-            SetSelected(firstConfirmLoadButton);
-        else if (loadSavePanel.activeSelf)
-            SetSelected(firstLoadSaveMenuButton);
+        if (creditsPanel.activeSelf)
+        {
+            SetSelected(firstCreditsButton);
+        }
+        else if (quitConfirmPanel.activeSelf)
+        {
+            SetSelected(firstQuitConfirmButton);
+        }
         else
+        {
             SetSelected(firstMainMenuButton);
+        }
     }
 
     private void SetSelected(GameObject obj)
@@ -82,58 +75,38 @@ public class MainMenuManager : MonoBehaviour
     private void ResetAllPanels()
     {
         mainMenuPanel.SetActive(false);
-        confirmNewGamePanel.SetActive(false);
-        noSaveFoundPanel.SetActive(false);
-        loadSavePanel.SetActive(false);
-        confirmLoadPanel.SetActive(false);
         creditsPanel.SetActive(false);
         quitConfirmPanel.SetActive(false);
     }
 
+    // =========================
+    // NEW GAME
+    // =========================
+
     public void OnNewGamePressed()
     {
-        ResetAllPanels();
-        SoundManager.PlaySound(SoundType.UI, 1f);
-
-        if (SaveSystem.SaveFileExists(false))
-        {
-            confirmNewGamePanel.SetActive(true);
-            SetSelected(firstConfirmNewGameButton);
-        }
-        else
-        {
-            StartNewGame();
-        }
-    }
-
-    public void ConfirmStartNewGame()
-    {
-        SoundManager.PlaySound(SoundType.UI, 1f);
-        SaveSystem.DeleteSave(false);
         StartNewGame();
-    }
-
-    public void OnCancelNewGamePressed()
-    {
-        ResetAllPanels();
-        SoundManager.PlaySound(SoundType.UI, 1f);
-        mainMenuPanel.SetActive(true);
-        SetSelected(firstMainMenuButton);
     }
 
     private void StartNewGame()
     {
-        SaveSystem.ResetToolboxAndRepairResources();
+        // Reset runtime gameplay resources for a fresh game.
+        RepairResources.ResetRepairResources();
+
         SoundManager.PlaySound(SoundType.UI, 1f);
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+
+        int nextSceneIndex =
+            SceneManager.GetActiveScene().buildIndex + 1;
+
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
-            // Get the name of the next scene
-            string scenePath = SceneUtility.GetScenePathByBuildIndex(nextSceneIndex);
-            string sceneName = System.IO.Path.GetFileNameWithoutExtension(scenePath);
-            // Go to next scene using the fading canvas
+            string scenePath =
+                SceneUtility.GetScenePathByBuildIndex(nextSceneIndex);
+
+            string sceneName =
+                System.IO.Path.GetFileNameWithoutExtension(scenePath);
+
             _canvasSceneTransition.ChangeScene(sceneName);
-            //SceneManager.LoadScene(nextSceneIndex);
         }
         else
         {
@@ -141,103 +114,16 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    public void OnLoadGamePressed()
-    {
-        ResetAllPanels();
-        SoundManager.PlaySound(SoundType.UI, 1f);
-
-        bool manualExists = SaveSystem.SaveFileExists(false);
-        bool autoExists = SaveSystem.SaveFileExists(true);
-
-        if (!manualExists && !autoExists)
-        {
-            noSaveFoundPanel.SetActive(true);
-            return;
-        }
-
-        loadSavePanel.SetActive(true);
-        SetSelected(firstLoadSaveMenuButton);
-
-        if (manualExists)
-        {
-            var data = SaveSystem.LoadGame(questManager, false);
-            manualSaveInfoText.text = $"{data.sceneName}\nTime: {data.saveTime}";
-        }
-        else
-        {
-            manualSaveInfoText.text = "No manual save found.";
-        }
-
-        if (autoExists)
-        {
-            var data = SaveSystem.LoadGame(questManager, true);
-            autoSaveInfoText.text = $"{data.sceneName}\nTime: {data.saveTime}";
-        }
-        else
-        {
-            autoSaveInfoText.text = "No autosave found.";
-        }
-    }
-
-    public void OnManualSaveSelected()
-{
-        SoundManager.PlaySound(SoundType.UI, 1f);
-        if (SaveSystem.SaveFileExists(false))
-    {
-        isAutoSaveSelected = false;
-        SaveLoadContext.LoadAutoSave = false;
-
-        loadSavePanel.SetActive(false);
-        confirmLoadPanel.SetActive(true);
-        SetSelected(firstConfirmLoadButton);
-    }
-}
-
-public void OnAutoSaveSelected()
-{
-    SoundManager.PlaySound(SoundType.UI, 1f);
-    if (SaveSystem.SaveFileExists(true))
-    {
-        isAutoSaveSelected = true;
-        SaveLoadContext.LoadAutoSave = true;
-
-        loadSavePanel.SetActive(false);
-        confirmLoadPanel.SetActive(true);
-        SetSelected(firstConfirmLoadButton);
-    }
-}
-
-    public void OnConfirmLoadPressed()
-    {
-        SoundManager.PlaySound(SoundType.UI, 1f);
-        SaveData data = SaveSystem.LoadGame(questManager, isAutoSaveSelected);
-        if (data != null)
-        // Go to next scene using the fading canvas
-        _canvasSceneTransition.ChangeScene(data.sceneName);
-
-        //SceneManager.LoadScene(data.sceneName);
-    }
-
-    public void OnCancelLoadPressed()
-    {
-        SoundManager.PlaySound(SoundType.UI, 1f);
-        confirmLoadPanel.SetActive(false);
-        loadSavePanel.SetActive(true);
-        SetSelected(firstLoadSaveMenuButton);
-    }
-
-    public void OnBackFromLoadSave()
-    {
-        ResetAllPanels();
-        SoundManager.PlaySound(SoundType.UI, 1f);
-        mainMenuPanel.SetActive(true);
-        SetSelected(firstMainMenuButton);
-    }
+    // =========================
+    // CREDITS
+    // =========================
 
     public void OnCreditsPressed()
     {
         ResetAllPanels();
+
         SoundManager.PlaySound(SoundType.UI, 1f);
+
         creditsPanel.SetActive(true);
         SetSelected(firstCreditsButton);
     }
@@ -245,15 +131,23 @@ public void OnAutoSaveSelected()
     public void OnCloseCreditsPressed()
     {
         ResetAllPanels();
+
         SoundManager.PlaySound(SoundType.UI, 1f);
+
         mainMenuPanel.SetActive(true);
         SetSelected(firstMainMenuButton);
     }
 
+    // =========================
+    // QUIT
+    // =========================
+
     public void OnQuitPressed()
     {
         ResetAllPanels();
+
         SoundManager.PlaySound(SoundType.UI, 1f);
+
         quitConfirmPanel.SetActive(true);
         SetSelected(firstQuitConfirmButton);
     }
@@ -261,24 +155,20 @@ public void OnAutoSaveSelected()
     public void OnConfirmQuitPressed()
     {
         SoundManager.PlaySound(SoundType.UI, 1f);
+
         Application.Quit();
-        #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false; // For helping us test before making a build within unity
-        #endif
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
     public void OnCancelQuitPressed()
     {
         ResetAllPanels();
-        SoundManager.PlaySound(SoundType.UI, 1f);
-        mainMenuPanel.SetActive(true);
-        SetSelected(firstMainMenuButton);
-    }
 
-    public void OnBackFromNoSaveFound()
-    {
-        ResetAllPanels();
         SoundManager.PlaySound(SoundType.UI, 1f);
+
         mainMenuPanel.SetActive(true);
         SetSelected(firstMainMenuButton);
     }
