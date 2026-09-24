@@ -74089,13 +74089,13 @@ MonoBehaviour:
   - prefab: {fileID: 1436469195}
     weight: 10
     useInPatches: 1
-  amount: 100000
+  amount: 300000
   enablePatches: 1
   patchCount: 40
   patchRadius: 8
   patchDensity: 0.75
   patchPlacementAttempts: 100
-  vegetationMask: {fileID: 0}
+  vegetationMask: {fileID: 2800000, guid: ddebc9b4259ebc842ac2d89bde8102f3, type: 3}
   maskThreshold: 0.5
   invertMask: 0
   maxSlope: 60
@@ -74106,6 +74106,8 @@ MonoBehaviour:
   rayStartDistance: 1000
   raycastDistance: 2000
   attemptsPerObject: 10
+  castShadows: 0
+  receiveShadows: 0
   seed: 12345
   showGizmos: 0
   instances: []
@@ -84991,22 +84993,22 @@ PrefabInstance:
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8996527
+      value: 0.8996528
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.43660614
+      value: 0.43660617
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000002772376
+      value: 0.000000027723761
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000111844205
+      value: -0.000000011184421
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
