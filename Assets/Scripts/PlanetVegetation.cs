@@ -25,6 +25,19 @@ public class PlanetVegetationGPU : MonoBehaviour
         public List<Matrix4x4> matrices = new List<Matrix4x4>();
     }
 
+    [Serializable]
+    public class VegetationPrefab
+    {
+        [Tooltip("Vegetation prefab to use.")]
+        public GameObject prefab;
+
+        [Min(0)]
+        [Tooltip("Higher weight = more common. Example: Grass 100, Flower 5.")]
+        public int weight = 100;
+
+        [Tooltip("If enabled, this prefab can be selected inside flower patches.")]
+        public bool useInPatches = false;
+    }
 
     // ============================================================
     // PLANET
@@ -35,18 +48,42 @@ public class PlanetVegetationGPU : MonoBehaviour
 
     public Transform planetCenter;
 
-
     // ============================================================
     // VEGETATION
     // ============================================================
 
     [Header("Vegetation")]
-    [Tooltip("Drag your asset-pack vegetation prefabs here.")]
-    public GameObject[] prefabs;
+    [Tooltip("Vegetation prefabs and their individual spawn weights.")]
+    public VegetationPrefab[] prefabs;
 
     [Min(1)]
-    public int amount = 500;
+    public int amount = 50000;
 
+    // ============================================================
+    // FLOWER PATCHES
+    // ============================================================
+
+    [Header("Flower Patches")]
+    [Tooltip("Creates concentrated areas containing vegetation marked 'Use In Patches'.")]
+    public bool enablePatches = true;
+
+    [Min(0)]
+    [Tooltip("Number of flower patch centers.")]
+    public int patchCount = 40;
+
+    [Min(0.1f)]
+    [Tooltip("Approximate radius of each flower patch in world units.")]
+    public float patchRadius = 8f;
+
+    [Range(0f, 1f)]
+    [Tooltip("Chance that a placement inside a patch becomes a patch-enabled prefab.")]
+    public float patchDensity = 0.75f;
+
+    [Min(1)]
+    [Tooltip("Maximum attempts used to find valid patch locations.")]
+    public int patchPlacementAttempts = 100;
+
+    private List<Vector3> patchCenters = new List<Vector3>();
 
     // ============================================================
     // MASK
@@ -63,7 +100,6 @@ public class PlanetVegetationGPU : MonoBehaviour
     [Tooltip("Invert the mask.")]
     public bool invertMask = false;
 
-
     // ============================================================
     // SLOPE
     // ============================================================
@@ -71,7 +107,6 @@ public class PlanetVegetationGPU : MonoBehaviour
     [Header("Slope")]
     [Range(0f, 90f)]
     public float maxSlope = 60f;
-
 
     // ============================================================
     // SCALE
@@ -82,14 +117,12 @@ public class PlanetVegetationGPU : MonoBehaviour
 
     public float maxScale = 1.2f;
 
-
     // ============================================================
     // ROTATION
     // ============================================================
 
     [Header("Rotation")]
     public bool randomRotation = true;
-
 
     // ============================================================
     // PLACEMENT
@@ -105,7 +138,6 @@ public class PlanetVegetationGPU : MonoBehaviour
     [Min(1)]
     public int attemptsPerObject = 10;
 
-
     // ============================================================
     // RANDOM
     // ============================================================
@@ -113,14 +145,12 @@ public class PlanetVegetationGPU : MonoBehaviour
     [Header("Random Seed")]
     public int seed = 12345;
 
-
     // ============================================================
     // DEBUG
     // ============================================================
 
     [Header("Debug")]
     public bool showGizmos = false;
-
 
     // ============================================================
     // GENERATED DATA
@@ -130,17 +160,12 @@ public class PlanetVegetationGPU : MonoBehaviour
     private List<VegetationInstance> instances =
         new List<VegetationInstance>();
 
-
     private List<DrawBatch> drawBatches =
         new List<DrawBatch>();
 
-
     private bool batchesDirty = true;
 
-
-    // Unity's DrawMeshInstanced limit
     private const int MAX_INSTANCES_PER_BATCH = 1023;
-
 
     // ============================================================
     // GENERATE
@@ -157,7 +182,6 @@ public class PlanetVegetationGPU : MonoBehaviour
             return;
         }
 
-
         if (prefabs == null || prefabs.Length == 0)
         {
             Debug.LogError(
@@ -167,37 +191,39 @@ public class PlanetVegetationGPU : MonoBehaviour
             return;
         }
 
-
         bool hasValidPrefab = false;
 
-        foreach (GameObject prefab in prefabs)
+        foreach (VegetationPrefab entry in prefabs)
         {
-            if (prefab != null)
+            if (
+                entry != null &&
+                entry.prefab != null &&
+                entry.weight > 0
+            )
             {
                 hasValidPrefab = true;
                 break;
             }
         }
 
-
         if (!hasValidPrefab)
         {
             Debug.LogError(
-                "Planet Vegetation: All prefab slots are empty."
+                "Planet Vegetation: No valid weighted prefabs assigned."
             );
 
             return;
         }
-
 
         if (planetCenter == null)
         {
             planetCenter = planetCollider.transform;
         }
 
-
-        if (vegetationMask != null &&
-            !vegetationMask.isReadable)
+        if (
+            vegetationMask != null &&
+            !vegetationMask.isReadable
+        )
         {
             Debug.LogError(
                 "Planet Vegetation: Vegetation Mask must have " +
@@ -207,21 +233,20 @@ public class PlanetVegetationGPU : MonoBehaviour
             return;
         }
 
-
         // Clear previous generated data
-
         Clear();
 
-
-        // Make sure materials can use instancing
-
+        // Check materials
         ValidateMaterials();
 
-
         // Random seed
-
         UnityEngine.Random.InitState(seed);
 
+        // Build flower patch locations
+        if (enablePatches && patchCount > 0)
+        {
+            GeneratePatchCenters();
+        }
 
         int placed = 0;
         int attempts = 0;
@@ -230,7 +255,6 @@ public class PlanetVegetationGPU : MonoBehaviour
             amount *
             Mathf.Max(1, attemptsPerObject);
 
-
         while (
             placed < amount &&
             attempts < maximumAttempts
@@ -238,14 +262,12 @@ public class PlanetVegetationGPU : MonoBehaviour
         {
             attempts++;
 
-
             // ----------------------------------------------------
             // RANDOM DIRECTION
             // ----------------------------------------------------
 
             Vector3 direction =
                 UnityEngine.Random.onUnitSphere;
-
 
             // ----------------------------------------------------
             // RAY START
@@ -256,13 +278,11 @@ public class PlanetVegetationGPU : MonoBehaviour
                 direction *
                 rayStartDistance;
 
-
             Ray ray =
                 new Ray(
                     rayStart,
                     -direction
                 );
-
 
             // ----------------------------------------------------
             // RAYCAST
@@ -279,7 +299,6 @@ public class PlanetVegetationGPU : MonoBehaviour
                 continue;
             }
 
-
             // ----------------------------------------------------
             // SURFACE NORMAL
             // ----------------------------------------------------
@@ -290,19 +309,16 @@ public class PlanetVegetationGPU : MonoBehaviour
                     planetCenter.position
                 ).normalized;
 
-
             float surfaceAngle =
                 Vector3.Angle(
                     hit.normal,
                     planetUp
                 );
 
-
             if (surfaceAngle > maxSlope)
             {
                 continue;
             }
-
 
             // ----------------------------------------------------
             // MASK
@@ -313,27 +329,22 @@ public class PlanetVegetationGPU : MonoBehaviour
                 Vector2 uv =
                     hit.textureCoord;
 
-
                 Color maskPixel =
                     vegetationMask.GetPixelBilinear(
                         uv.x,
                         uv.y
                     );
 
-
                 float maskValue =
                     maskPixel.grayscale;
 
-
                 bool allowed =
                     maskValue >= maskThreshold;
-
 
                 if (invertMask)
                 {
                     allowed = !allowed;
                 }
-
 
                 if (!allowed)
                 {
@@ -341,30 +352,51 @@ public class PlanetVegetationGPU : MonoBehaviour
                 }
             }
 
-
             // ----------------------------------------------------
-            // PICK PREFAB
+            // DETERMINE IF WE ARE INSIDE A PATCH
             // ----------------------------------------------------
 
-            int prefabIndex =
-                UnityEngine.Random.Range(
-                    0,
-                    prefabs.Length
-                );
+            bool insidePatch =
+                IsInsidePatch(hit.point);
 
+            int prefabIndex;
 
-            GameObject prefab =
-                prefabs[prefabIndex];
+            if (
+                insidePatch &&
+                enablePatches &&
+                UnityEngine.Random.value <= patchDensity
+            )
+            {
+                prefabIndex =
+                    PickPatchPrefab();
+            }
+            else
+            {
+                prefabIndex =
+                    PickWeightedPrefab(false);
+            }
 
-
-            if (prefab == null)
+            if (prefabIndex < 0)
             {
                 continue;
             }
 
+            VegetationPrefab selected =
+                prefabs[prefabIndex];
+
+            if (
+                selected == null ||
+                selected.prefab == null
+            )
+            {
+                continue;
+            }
+
+            GameObject prefab =
+                selected.prefab;
 
             // ----------------------------------------------------
-            // CHECK PREFAB HAS RENDERERS
+            // CHECK PREFAB HAS MESH
             // ----------------------------------------------------
 
             MeshFilter[] meshFilters =
@@ -372,10 +404,7 @@ public class PlanetVegetationGPU : MonoBehaviour
                     true
                 );
 
-
-            bool hasMesh =
-                false;
-
+            bool hasMesh = false;
 
             foreach (MeshFilter meshFilter in meshFilters)
             {
@@ -389,12 +418,10 @@ public class PlanetVegetationGPU : MonoBehaviour
                 }
             }
 
-
             if (!hasMesh)
             {
                 continue;
             }
-
 
             // ----------------------------------------------------
             // POSITION
@@ -404,7 +431,6 @@ public class PlanetVegetationGPU : MonoBehaviour
                 hit.point +
                 hit.normal *
                 surfaceOffset;
-
 
             // ----------------------------------------------------
             // ROTATION
@@ -416,7 +442,6 @@ public class PlanetVegetationGPU : MonoBehaviour
                     hit.normal
                 );
 
-
             if (randomRotation)
             {
                 float angle =
@@ -425,7 +450,6 @@ public class PlanetVegetationGPU : MonoBehaviour
                         360f
                     );
 
-
                 rotation =
                     Quaternion.AngleAxis(
                         angle,
@@ -433,7 +457,6 @@ public class PlanetVegetationGPU : MonoBehaviour
                     ) *
                     rotation;
             }
-
 
             // ----------------------------------------------------
             // SCALE
@@ -445,14 +468,12 @@ public class PlanetVegetationGPU : MonoBehaviour
                     maxScale
                 );
 
-
             // ----------------------------------------------------
             // STORE INSTANCE
             // ----------------------------------------------------
 
             VegetationInstance instance =
                 new VegetationInstance();
-
 
             instance.matrix =
                 Matrix4x4.TRS(
@@ -461,28 +482,21 @@ public class PlanetVegetationGPU : MonoBehaviour
                     Vector3.one * scale
                 );
 
-
             instance.sourceIndex =
                 prefabIndex;
 
-
             instances.Add(instance);
-
 
             placed++;
         }
 
-
         batchesDirty = true;
 
-
         BuildDrawBatches();
-
 
         Debug.Log(
             $"Planet Vegetation GPU: Generated {placed} instances after {attempts} attempts."
         );
-
 
         if (placed < amount)
         {
@@ -493,7 +507,6 @@ public class PlanetVegetationGPU : MonoBehaviour
             );
         }
 
-
 #if UNITY_EDITOR
 
         EditorUtility.SetDirty(this);
@@ -501,6 +514,293 @@ public class PlanetVegetationGPU : MonoBehaviour
 #endif
     }
 
+    // ============================================================
+    // GENERATE PATCH CENTERS
+    // ============================================================
+
+    private void GeneratePatchCenters()
+    {
+        patchCenters.Clear();
+
+        int attempts = 0;
+
+        while (
+            patchCenters.Count < patchCount &&
+            attempts < patchPlacementAttempts * patchCount
+        )
+        {
+            attempts++;
+
+            Vector3 direction =
+                UnityEngine.Random.onUnitSphere;
+
+            Vector3 rayStart =
+                planetCenter.position +
+                direction *
+                rayStartDistance;
+
+            Ray ray =
+                new Ray(
+                    rayStart,
+                    -direction
+                );
+
+            if (
+                !planetCollider.Raycast(
+                    ray,
+                    out RaycastHit hit,
+                    raycastDistance
+                )
+            )
+            {
+                continue;
+            }
+
+            // Check slope
+            Vector3 planetUp =
+                (
+                    hit.point -
+                    planetCenter.position
+                ).normalized;
+
+            float surfaceAngle =
+                Vector3.Angle(
+                    hit.normal,
+                    planetUp
+                );
+
+            if (surfaceAngle > maxSlope)
+            {
+                continue;
+            }
+
+            // Check mask
+            if (vegetationMask != null)
+            {
+                Vector2 uv =
+                    hit.textureCoord;
+
+                Color maskPixel =
+                    vegetationMask.GetPixelBilinear(
+                        uv.x,
+                        uv.y
+                    );
+
+                float maskValue =
+                    maskPixel.grayscale;
+
+                bool allowed =
+                    maskValue >= maskThreshold;
+
+                if (invertMask)
+                {
+                    allowed = !allowed;
+                }
+
+                if (!allowed)
+                {
+                    continue;
+                }
+            }
+
+            // Keep patches separated
+            bool tooClose = false;
+
+            foreach (Vector3 existing in patchCenters)
+            {
+                if (
+                    Vector3.Distance(
+                        hit.point,
+                        existing
+                    ) < patchRadius * 2f
+                )
+                {
+                    tooClose = true;
+                    break;
+                }
+            }
+
+            if (tooClose)
+            {
+                continue;
+            }
+
+            patchCenters.Add(hit.point);
+        }
+    }
+
+    // ============================================================
+    // PATCH CHECK
+    // ============================================================
+
+    private bool IsInsidePatch(Vector3 position)
+    {
+        if (
+            !enablePatches ||
+            patchCenters == null ||
+            patchCenters.Count == 0
+        )
+        {
+            return false;
+        }
+
+        foreach (Vector3 center in patchCenters)
+        {
+            if (
+                Vector3.Distance(
+                    position,
+                    center
+                ) <= patchRadius
+            )
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // ============================================================
+    // PICK PATCH PREFAB
+    // ============================================================
+
+    private int PickPatchPrefab()
+    {
+        int totalWeight = 0;
+
+        for (int i = 0; i < prefabs.Length; i++)
+        {
+            VegetationPrefab entry =
+                prefabs[i];
+
+            if (
+                entry != null &&
+                entry.prefab != null &&
+                entry.useInPatches &&
+                entry.weight > 0
+            )
+            {
+                totalWeight += entry.weight;
+            }
+        }
+
+        if (totalWeight <= 0)
+        {
+            return PickWeightedPrefab(false);
+        }
+
+        int random =
+            UnityEngine.Random.Range(
+                0,
+                totalWeight
+            );
+
+        int current = 0;
+
+        for (int i = 0; i < prefabs.Length; i++)
+        {
+            VegetationPrefab entry =
+                prefabs[i];
+
+            if (
+                entry == null ||
+                entry.prefab == null ||
+                !entry.useInPatches ||
+                entry.weight <= 0
+            )
+            {
+                continue;
+            }
+
+            current += entry.weight;
+
+            if (random < current)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    // ============================================================
+    // PICK WEIGHTED PREFAB
+    // ============================================================
+
+    private int PickWeightedPrefab(bool patchOnly)
+    {
+        int totalWeight = 0;
+
+        for (int i = 0; i < prefabs.Length; i++)
+        {
+            VegetationPrefab entry =
+                prefabs[i];
+
+            if (
+                entry == null ||
+                entry.prefab == null ||
+                entry.weight <= 0
+            )
+            {
+                continue;
+            }
+
+            if (
+                patchOnly &&
+                !entry.useInPatches
+            )
+            {
+                continue;
+            }
+
+            totalWeight += entry.weight;
+        }
+
+        if (totalWeight <= 0)
+        {
+            return -1;
+        }
+
+        int random =
+            UnityEngine.Random.Range(
+                0,
+                totalWeight
+            );
+
+        int current = 0;
+
+        for (int i = 0; i < prefabs.Length; i++)
+        {
+            VegetationPrefab entry =
+                prefabs[i];
+
+            if (
+                entry == null ||
+                entry.prefab == null ||
+                entry.weight <= 0
+            )
+            {
+                continue;
+            }
+
+            if (
+                patchOnly &&
+                !entry.useInPatches
+            )
+            {
+                continue;
+            }
+
+            current += entry.weight;
+
+            if (random < current)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
 
     // ============================================================
     // BUILD DRAW BATCHES
@@ -510,14 +810,14 @@ public class PlanetVegetationGPU : MonoBehaviour
     {
         drawBatches.Clear();
 
-
-        if (instances == null ||
-            instances.Count == 0)
+        if (
+            instances == null ||
+            instances.Count == 0
+        )
         {
             batchesDirty = false;
             return;
         }
-
 
         for (
             int instanceIndex = 0;
@@ -528,7 +828,6 @@ public class PlanetVegetationGPU : MonoBehaviour
             VegetationInstance instance =
                 instances[instanceIndex];
 
-
             if (
                 instance.sourceIndex < 0 ||
                 instance.sourceIndex >= prefabs.Length
@@ -537,22 +836,24 @@ public class PlanetVegetationGPU : MonoBehaviour
                 continue;
             }
 
-
-            GameObject prefab =
+            VegetationPrefab entry =
                 prefabs[instance.sourceIndex];
 
-
-            if (prefab == null)
+            if (
+                entry == null ||
+                entry.prefab == null
+            )
             {
                 continue;
             }
 
+            GameObject prefab =
+                entry.prefab;
 
             MeshFilter[] meshFilters =
                 prefab.GetComponentsInChildren<MeshFilter>(
                     true
                 );
-
 
             foreach (
                 MeshFilter meshFilter
@@ -567,28 +868,19 @@ public class PlanetVegetationGPU : MonoBehaviour
                     continue;
                 }
 
-
                 MeshRenderer meshRenderer =
                     meshFilter.GetComponent<MeshRenderer>();
-
 
                 if (meshRenderer == null)
                 {
                     continue;
                 }
 
-
                 Material[] materials =
                     meshRenderer.sharedMaterials;
 
-
                 Mesh mesh =
                     meshFilter.sharedMesh;
-
-
-                // ------------------------------------------------
-                // WORLD TRANSFORM OF PREFAB PART
-                // ------------------------------------------------
 
                 Matrix4x4 localMatrix =
                     GetRelativeMatrix(
@@ -596,22 +888,15 @@ public class PlanetVegetationGPU : MonoBehaviour
                         meshFilter.transform
                     );
 
-
                 Matrix4x4 finalMatrix =
                     instance.matrix *
                     localMatrix;
-
-
-                // ------------------------------------------------
-                // MATERIALS / SUBMESHES
-                // ------------------------------------------------
 
                 int subMeshCount =
                     Mathf.Min(
                         mesh.subMeshCount,
                         materials.Length
                     );
-
 
                 for (
                     int subMeshIndex = 0;
@@ -622,12 +907,10 @@ public class PlanetVegetationGPU : MonoBehaviour
                     Material material =
                         materials[subMeshIndex];
 
-
                     if (material == null)
                     {
                         continue;
                     }
-
 
                     DrawBatch batch =
                         FindOrCreateBatch(
@@ -636,7 +919,6 @@ public class PlanetVegetationGPU : MonoBehaviour
                             subMeshIndex
                         );
 
-
                     batch.matrices.Add(
                         finalMatrix
                     );
@@ -644,10 +926,8 @@ public class PlanetVegetationGPU : MonoBehaviour
             }
         }
 
-
         batchesDirty = false;
     }
-
 
     // ============================================================
     // RELATIVE MATRIX
@@ -663,11 +943,9 @@ public class PlanetVegetationGPU : MonoBehaviour
             return Matrix4x4.identity;
         }
 
-
         return root.worldToLocalMatrix *
                child.localToWorldMatrix;
     }
-
 
     // ============================================================
     // FIND / CREATE BATCH
@@ -691,31 +969,24 @@ public class PlanetVegetationGPU : MonoBehaviour
             }
         }
 
-
         DrawBatch newBatch =
             new DrawBatch();
-
 
         newBatch.mesh =
             mesh;
 
-
         newBatch.material =
             material;
 
-
         newBatch.subMeshIndex =
             subMeshIndex;
-
 
         drawBatches.Add(
             newBatch
         );
 
-
         return newBatch;
     }
-
 
     // ============================================================
     // RENDER
@@ -728,10 +999,8 @@ public class PlanetVegetationGPU : MonoBehaviour
             BuildDrawBatches();
         }
 
-
         RenderVegetation();
     }
-
 
     private void RenderVegetation()
     {
@@ -742,7 +1011,6 @@ public class PlanetVegetationGPU : MonoBehaviour
         {
             return;
         }
-
 
         foreach (DrawBatch batch in drawBatches)
         {
@@ -756,14 +1024,11 @@ public class PlanetVegetationGPU : MonoBehaviour
                 continue;
             }
 
-
             int total =
                 batch.matrices.Count;
 
-
             int start =
                 0;
-
 
             while (start < total)
             {
@@ -773,17 +1038,14 @@ public class PlanetVegetationGPU : MonoBehaviour
                         total - start
                     );
 
-
                 Matrix4x4[] matrices =
                     new Matrix4x4[count];
-
 
                 for (int i = 0; i < count; i++)
                 {
                     matrices[i] =
                         batch.matrices[start + i];
                 }
-
 
                 Graphics.DrawMeshInstanced(
                     batch.mesh,
@@ -792,12 +1054,10 @@ public class PlanetVegetationGPU : MonoBehaviour
                     matrices
                 );
 
-
                 start += count;
             }
         }
     }
-
 
     // ============================================================
     // MATERIAL VALIDATION
@@ -808,20 +1068,20 @@ public class PlanetVegetationGPU : MonoBehaviour
         HashSet<Material> checkedMaterials =
             new HashSet<Material>();
 
-
-        foreach (GameObject prefab in prefabs)
+        foreach (VegetationPrefab entry in prefabs)
         {
-            if (prefab == null)
+            if (
+                entry == null ||
+                entry.prefab == null
+            )
             {
                 continue;
             }
 
-
             MeshRenderer[] renderers =
-                prefab.GetComponentsInChildren<MeshRenderer>(
+                entry.prefab.GetComponentsInChildren<MeshRenderer>(
                     true
                 );
-
 
             foreach (MeshRenderer renderer in renderers)
             {
@@ -838,11 +1098,9 @@ public class PlanetVegetationGPU : MonoBehaviour
                         continue;
                     }
 
-
                     checkedMaterials.Add(
                         material
                     );
-
 
                     if (!material.enableInstancing)
                     {
@@ -856,7 +1114,6 @@ public class PlanetVegetationGPU : MonoBehaviour
         }
     }
 
-
     // ============================================================
     // CLEAR
     // ============================================================
@@ -867,8 +1124,9 @@ public class PlanetVegetationGPU : MonoBehaviour
 
         drawBatches.Clear();
 
-        batchesDirty = true;
+        patchCenters.Clear();
 
+        batchesDirty = true;
 
 #if UNITY_EDITOR
 
@@ -876,7 +1134,6 @@ public class PlanetVegetationGPU : MonoBehaviour
 
 #endif
     }
-
 
     // ============================================================
     // GIZMOS
@@ -889,16 +1146,13 @@ public class PlanetVegetationGPU : MonoBehaviour
             return;
         }
 
-
         if (instances == null)
         {
             return;
         }
 
-
         Gizmos.matrix =
             Matrix4x4.identity;
-
 
         foreach (
             VegetationInstance instance
@@ -908,11 +1162,22 @@ public class PlanetVegetationGPU : MonoBehaviour
             Vector3 position =
                 instance.matrix.GetColumn(3);
 
-
             Gizmos.DrawWireSphere(
                 position,
                 0.05f
             );
+        }
+
+        // Show patch centers
+        if (patchCenters != null)
+        {
+            foreach (Vector3 center in patchCenters)
+            {
+                Gizmos.DrawWireSphere(
+                    center,
+                    patchRadius
+                );
+            }
         }
     }
 }
@@ -931,13 +1196,10 @@ public class PlanetVegetationGPUEditor : Editor
     {
         DrawDefaultInspector();
 
-
         GUILayout.Space(15);
-
 
         PlanetVegetationGPU vegetation =
             (PlanetVegetationGPU)target;
-
 
         // --------------------------------------------------------
         // GENERATE
@@ -945,7 +1207,6 @@ public class PlanetVegetationGPUEditor : Editor
 
         GUI.backgroundColor =
             Color.green;
-
 
         if (
             GUILayout.Button(
@@ -959,10 +1220,8 @@ public class PlanetVegetationGPUEditor : Editor
                 "Generate GPU Vegetation"
             );
 
-
             vegetation.Generate();
         }
-
 
         // --------------------------------------------------------
         // CLEAR
@@ -970,7 +1229,6 @@ public class PlanetVegetationGPUEditor : Editor
 
         GUI.backgroundColor =
             Color.red;
-
 
         if (
             GUILayout.Button(
@@ -984,10 +1242,8 @@ public class PlanetVegetationGPUEditor : Editor
                 "Clear GPU Vegetation"
             );
 
-
             vegetation.Clear();
         }
-
 
         GUI.backgroundColor =
             Color.white;
