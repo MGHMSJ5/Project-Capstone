@@ -26581,6 +26581,12 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.95, y: 6.1159678, z: 0.4}
   m_Center: {x: -0.07499993, y: 1.0579839, z: 0}
+--- !u!1 &737965985 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 329369609626562540, guid: c91f6136c646d894b86e255f5327a7ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 334500431}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &738094724
 GameObject:
   m_ObjectHideFlags: 0
@@ -35581,6 +35587,12 @@ CapsuleCollider:
   m_Height: 6
   m_Direction: 1
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!1 &963972491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3131909291465887847, guid: de0f9463ada7f44488e1849fdf5e1ef8,
+    type: 3}
+  m_PrefabInstance: {fileID: 349875393}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &967435232 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7599758433985878160, guid: 31a13769989915d41b2e33c14fce7d96,
@@ -42462,6 +42474,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7598883403012565071, guid: 13a8467bd0cfed049ab2de79d3d93e5a,
     type: 3}
   m_PrefabInstance: {fileID: 749625993}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1095507635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7082894672342302502, guid: 705f55714e37c984b9faf8ad038e2911,
+    type: 3}
+  m_PrefabInstance: {fileID: 526866707}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1097901199
 GameObject:
@@ -57684,6 +57702,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c2198d4137447194b8941f3f6f156e1d,
     type: 3}
   m_PrefabInstance: {fileID: 1435284027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1436469195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6853804256271815428, guid: a22de254fda32184784881cbf3b484e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1793479218}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1436506345
 PrefabInstance:
@@ -74050,12 +74074,27 @@ MonoBehaviour:
   planetCollider: {fileID: 1464132154}
   planetCenter: {fileID: 1464132153}
   prefabs:
-  - {fileID: 170629172}
-  - {fileID: 170629172}
-  - {fileID: 170629172}
-  - {fileID: 170629172}
-  - {fileID: 170629172}
+  - prefab: {fileID: 170629172}
+    weight: 100
+    useInPatches: 0
+  - prefab: {fileID: 1095507635}
+    weight: 40
+    useInPatches: 1
+  - prefab: {fileID: 963972491}
+    weight: 20
+    useInPatches: 1
+  - prefab: {fileID: 737965985}
+    weight: 10
+    useInPatches: 1
+  - prefab: {fileID: 1436469195}
+    weight: 10
+    useInPatches: 1
   amount: 100000
+  enablePatches: 1
+  patchCount: 40
+  patchRadius: 8
+  patchDensity: 0.75
+  patchPlacementAttempts: 100
   vegetationMask: {fileID: 0}
   maskThreshold: 0.5
   invertMask: 0
@@ -84952,22 +84991,22 @@ PrefabInstance:
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8996528
+      value: 0.8996527
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.43660617
+      value: 0.43660614
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000027723761
+      value: 0.00000002772376
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000011184421
+      value: -0.0000000111844205
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
