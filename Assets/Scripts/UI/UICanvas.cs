@@ -78,7 +78,7 @@ public class UICanvas : MonoBehaviour
         if (counter > maxWaitTime && !counterPassed)
         {
             counterPassed = true;
-            _animator.Play("ResourceUpdatePopup");
+            _animator.Play("ResourceUpdate");
         }
     }
 
@@ -98,14 +98,14 @@ public class UICanvas : MonoBehaviour
     public void NPCGivesResource(int givenAmount)
     {
         _animator.SetTrigger("AddScrews"); // Will maybe be used for a later mechanic that will be added (screw amount will appear when player stands still)
-        _animator.Play("ResourceUpdatePopup");
+        _animator.Play("ResourceUpdate");
         AddToRepairResource(givenAmount);
     }
 
     public void ChangeResourcesUI()
     {
         _animator.SetTrigger("AddScrews"); // Will maybe be used for a later mechanic that will be added (screw amount will appear when player stands still)
-        _animator.Play("ResourceUpdatePopup");
+        _animator.Play("ResourceUpdate");
     }
 
     public void ChangeUI(string popUpText, string screwUpdateText)

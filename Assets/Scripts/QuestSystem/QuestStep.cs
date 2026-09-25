@@ -20,27 +20,27 @@ public abstract class QuestStep : MonoBehaviour
         _questManager = GameObject.Find("QuestManager").GetComponent<QuestManager>();
         //get the quest by searching for the quest via the questId
         Quest quest = _questManager.GetQuestById(questId);
-        //MAke the questUI appear with the correct name and description from the quest step
+        //Mke the questUI appear with the correct name and description from the quest step
         if (quest.CurrentQuestStepIndex == 0)
         {
             if (quest.info.isSideQuest)
             {
-                _questUI.StepSidequestUI(quest.info.displayName, description, true);
+                _questUI.StartSideQuest(quest.info.displayName, description, questId);
             }
             else
             {
-                _questUI.StepQuestUI(quest.info.displayName, description, true);
+                _questUI.StartQuest(quest.info.displayName, description);
             }
         }
         else
         {
             if (quest.info.isSideQuest)
             {
-                _questUI.StepSidequestUI(quest.info.displayName, description, false);
+                _questUI.UpdateSideQuest(quest.info.displayName, description, questId);
             }
             else
             {
-                _questUI.StepQuestUI(quest.info.displayName, description, false);
+                _questUI.UpdateQuest(quest.info.displayName, description);
             }
         }
     }

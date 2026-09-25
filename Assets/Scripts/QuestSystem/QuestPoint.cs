@@ -26,7 +26,6 @@ public class QuestPoint : MonoBehaviour
     private BaseInteract _baseInteract;
     private NPCInteract _npcInteract;
 
-    private QuestUI _questUI;
     [HideInInspector]
     public bool startedQuestDialogue = false;
     [HideInInspector]
@@ -55,7 +54,6 @@ public class QuestPoint : MonoBehaviour
     {
         GameEventsManager.instance.questEvents.onQuestStateChange += QuestStateChange;
         _baseInteract.onSubmitPressed += SubmitPressed;
-        _questUI = GameObject.Find("QuestUI").GetComponent<QuestUI>();
     }
 
     private void OnDisable()
@@ -76,7 +74,7 @@ public class QuestPoint : MonoBehaviour
         if (startedQuestDialogue && !_npcInteract.DialogueHasInteracted)
         {
             StartQuestAfterDialogueEvent?.Invoke();
-            _questUI.StartQuestAfterDialogue(questInfoForPoint);
+            //_questUI.StartQuestAfterDialogue(questInfoForPoint);
             startedQuestDialogue = false;
         }
         // If the player has finished the quest UI, and the dialogue is finished
@@ -115,17 +113,14 @@ public class QuestPoint : MonoBehaviour
             GameEventsManager.instance.questEvents.StartQuest(questId);
             StartQuestEvent?.Invoke();
 
-            _questUI.ChangeQuestDisplayName(questInfoForPoint);
-            _questUI.ShowQuestUI(true, this, _npcInteract);
-            
+            StartFinishActions(true, this, _npcInteract);
         }
         else if (currentQuestState.Equals(QuestState.CAN_FINISH) && finishPoint)
         {
             GameEventsManager.instance.questEvents.FinishQuest(questId);
             FinishQuestEvent?.Invoke();
 
-            _questUI.ChangeQuestDisplayName(questInfoForPoint);
-            _questUI.ShowQuestUI(false, this, _npcInteract);
+            StartFinishActions(false, this, _npcInteract);
 
             if (secondQuest != null)
             {
@@ -133,8 +128,32 @@ public class QuestPoint : MonoBehaviour
                 GameEventsManager.instance.questEvents.StartQuest(id);
                 secondQuest.StartQuestEvent?.Invoke();
 
-                _questUI.ChangeQuestDisplayName(secondQuest.questInfoForPoint);
-                _questUI.ShowQuestUI(true, secondQuest, secondQuest.GetComponent<NPCInteract>());
+                StartFinishActions(true, secondQuest, secondQuest.GetComponent<NPCInteract>());
+            }
+        }
+    }
+
+    private void StartFinishActions(bool startedQuest, QuestPoint questPoint, NPCInteract npcInteract)
+    {
+        //Moved this from QuestUI back to here
+        if (startedQuest)
+        {
+            if (npcInteract)
+            {
+                if (npcInteract.DialogueHasInteracted)
+                {
+                    questPoint.startedQuestDialogue = true;
+                }
+            }
+        }
+        else
+        {
+            if (npcInteract)
+            {
+                if (npcInteract.DialogueHasInteracted)
+                {
+                    questPoint.finishedQuestDialgue = true;
+                }
             }
         }
     }
