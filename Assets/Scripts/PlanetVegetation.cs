@@ -41,13 +41,58 @@ public class PlanetVegetationGPU : MonoBehaviour
     }
 
     // ============================================================
-    // PLANET
+    // VEGETATION SURFACES
+    // ============================================================
+
+    [Serializable]
+    public class VegetationSurface
+    {
+        [Tooltip("Collider used as a vegetation surface.")]
+        public Collider collider;
+
+        [Tooltip(
+            "Optional mask for this surface. " +
+            "Black = no vegetation. White = vegetation allowed. " +
+            "Leave empty to allow vegetation everywhere on this surface."
+        )]
+        public Texture2D vegetationMask;
+
+        [Range(0f, 1f)]
+        [Tooltip("Mask values below this are blocked.")]
+        public float maskThreshold = 0.5f;
+
+        [Tooltip("Invert this surface's vegetation mask.")]
+        public bool invertMask = false;
+    }
+
+    // ============================================================
+    // PLANET / SURFACES
     // ============================================================
 
     [Header("Planet")]
+    [Tooltip("Main globe collider.")]
     public Collider planetCollider;
 
+    [Tooltip("Vegetation surfaces such as cliffs. Each surface can have its own optional mask.")]
+    public VegetationSurface[] additionalSurfaces;
+
+    [Tooltip("Center of the planet. Usually the globe transform.")]
     public Transform planetCenter;
+
+    // ============================================================
+    // PLANET MASK
+    // ============================================================
+
+    [Header("Planet Vegetation Mask")]
+    [Tooltip("Mask used by the main planet/globe. Black = no vegetation. White = vegetation allowed.")]
+    public Texture2D vegetationMask;
+
+    [Range(0f, 1f)]
+    [Tooltip("Planet mask values below this are blocked.")]
+    public float maskThreshold = 0.5f;
+
+    [Tooltip("Invert the planet vegetation mask.")]
+    public bool invertMask = false;
 
     // ============================================================
     // VEGETATION
@@ -86,21 +131,6 @@ public class PlanetVegetationGPU : MonoBehaviour
 
     private List<Vector3> patchCenters =
         new List<Vector3>();
-
-    // ============================================================
-    // MASK
-    // ============================================================
-
-    [Header("Vegetation Mask")]
-    [Tooltip("Black = no vegetation. White = vegetation allowed.")]
-    public Texture2D vegetationMask;
-
-    [Range(0f, 1f)]
-    [Tooltip("Mask values below this are blocked.")]
-    public float maskThreshold = 0.5f;
-
-    [Tooltip("Invert the mask.")]
-    public bool invertMask = false;
 
     // ============================================================
     // SLOPE
@@ -187,16 +217,37 @@ public class PlanetVegetationGPU : MonoBehaviour
 
     public void Generate()
     {
-        if (planetCollider == null)
+        // --------------------------------------------------------
+        // SURFACE VALIDATION
+        // --------------------------------------------------------
+
+        bool hasPlanet =
+            planetCollider != null;
+
+        bool hasAdditionalSurfaces =
+            additionalSurfaces != null &&
+            additionalSurfaces.Length > 0;
+
+        if (
+            !hasPlanet &&
+            !hasAdditionalSurfaces
+        )
         {
             Debug.LogError(
-                "Planet Vegetation: Planet Collider is not assigned."
+                "Planet Vegetation: No vegetation surfaces are assigned."
             );
 
             return;
         }
 
-        if (prefabs == null || prefabs.Length == 0)
+        // --------------------------------------------------------
+        // PREFAB VALIDATION
+        // --------------------------------------------------------
+
+        if (
+            prefabs == null ||
+            prefabs.Length == 0
+        )
         {
             Debug.LogError(
                 "Planet Vegetation: No vegetation prefabs assigned."
@@ -207,7 +258,10 @@ public class PlanetVegetationGPU : MonoBehaviour
 
         bool hasValidPrefab = false;
 
-        foreach (VegetationPrefab entry in prefabs)
+        foreach (
+            VegetationPrefab entry
+            in prefabs
+        )
         {
             if (
                 entry != null &&
@@ -229,10 +283,32 @@ public class PlanetVegetationGPU : MonoBehaviour
             return;
         }
 
-        if (planetCenter == null)
+        // --------------------------------------------------------
+        // PLANET CENTER
+        // --------------------------------------------------------
+
+        if (
+            planetCenter == null
+        )
         {
-            planetCenter = planetCollider.transform;
+            if (planetCollider != null)
+            {
+                planetCenter =
+                    planetCollider.transform;
+            }
+            else
+            {
+                Debug.LogError(
+                    "Planet Vegetation: Planet Center is not assigned."
+                );
+
+                return;
+            }
         }
+
+        // --------------------------------------------------------
+        // PLANET MASK VALIDATION
+        // --------------------------------------------------------
 
         if (
             vegetationMask != null &&
@@ -240,11 +316,50 @@ public class PlanetVegetationGPU : MonoBehaviour
         )
         {
             Debug.LogError(
-                "Planet Vegetation: Vegetation Mask must have " +
+                "Planet Vegetation: Planet Vegetation Mask must have " +
                 "'Read/Write Enabled' turned on in its import settings."
             );
 
             return;
+        }
+
+        // --------------------------------------------------------
+        // ADDITIONAL SURFACE MASK VALIDATION
+        // --------------------------------------------------------
+
+        if (
+            additionalSurfaces != null
+        )
+        {
+            foreach (
+                VegetationSurface surface
+                in additionalSurfaces
+            )
+            {
+                if (
+                    surface == null
+                )
+                {
+                    continue;
+                }
+
+                // Collider is optional while setting things up.
+                // If no collider is assigned, the surface is ignored.
+
+                if (
+                    surface.vegetationMask != null &&
+                    !surface.vegetationMask.isReadable
+                )
+                {
+                    Debug.LogError(
+                        "Planet Vegetation: Vegetation mask '" +
+                        surface.vegetationMask.name +
+                        "' must have 'Read/Write Enabled' turned on."
+                    );
+
+                    return;
+                }
+            }
         }
 
         // --------------------------------------------------------
@@ -306,29 +421,14 @@ public class PlanetVegetationGPU : MonoBehaviour
                 UnityEngine.Random.onUnitSphere;
 
             // ----------------------------------------------------
-            // RAY START
-            // ----------------------------------------------------
-
-            Vector3 rayStart =
-                planetCenter.position +
-                direction *
-                rayStartDistance;
-
-            Ray ray =
-                new Ray(
-                    rayStart,
-                    -direction
-                );
-
-            // ----------------------------------------------------
-            // RAYCAST
+            // RAYCAST ALL SURFACES
             // ----------------------------------------------------
 
             if (
-                !planetCollider.Raycast(
-                    ray,
+                !TryGetSurfaceHit(
+                    direction,
                     out RaycastHit hit,
-                    raycastDistance
+                    out VegetationSurface surface
                 )
             )
             {
@@ -336,7 +436,7 @@ public class PlanetVegetationGPU : MonoBehaviour
             }
 
             // ----------------------------------------------------
-            // SURFACE NORMAL
+            // SURFACE NORMAL / PLANET UP
             // ----------------------------------------------------
 
             Vector3 planetUp =
@@ -363,33 +463,14 @@ public class PlanetVegetationGPU : MonoBehaviour
             // VEGETATION MASK
             // ----------------------------------------------------
 
-            if (vegetationMask != null)
+            if (
+                !IsVegetationAllowed(
+                    hit,
+                    surface
+                )
+            )
             {
-                Vector2 uv =
-                    hit.textureCoord;
-
-                Color maskPixel =
-                    vegetationMask.GetPixelBilinear(
-                        uv.x,
-                        uv.y
-                    );
-
-                float maskValue =
-                    maskPixel.grayscale;
-
-                bool allowed =
-                    maskValue >=
-                    maskThreshold;
-
-                if (invertMask)
-                {
-                    allowed = !allowed;
-                }
-
-                if (!allowed)
-                {
-                    continue;
-                }
+                continue;
             }
 
             // ----------------------------------------------------
@@ -418,7 +499,9 @@ public class PlanetVegetationGPU : MonoBehaviour
                     PickWeightedPrefab();
             }
 
-            if (prefabIndex < 0)
+            if (
+                prefabIndex < 0
+            )
             {
                 continue;
             }
@@ -546,7 +629,9 @@ public class PlanetVegetationGPU : MonoBehaviour
             $"Planet Vegetation GPU: Generated {placed} instances after {attempts} attempts."
         );
 
-        if (placed < amount)
+        if (
+            placed < amount
+        )
         {
             Debug.LogWarning(
                 "Planet Vegetation GPU: Could not place the requested amount. " +
@@ -562,6 +647,216 @@ public class PlanetVegetationGPU : MonoBehaviour
         );
 
 #endif
+    }
+
+    // ============================================================
+    // SURFACE RAYCAST
+    // ============================================================
+
+    private bool TryGetSurfaceHit(
+        Vector3 direction,
+        out RaycastHit closestHit,
+        out VegetationSurface hitSurface
+    )
+    {
+        closestHit = default;
+        hitSurface = null;
+
+        if (
+            planetCenter == null
+        )
+        {
+            return false;
+        }
+
+        // --------------------------------------------------------
+        // RAY START
+        // --------------------------------------------------------
+
+        Vector3 rayStart =
+            planetCenter.position +
+            direction *
+            rayStartDistance;
+
+        Ray ray =
+            new Ray(
+                rayStart,
+                -direction
+            );
+
+        bool foundHit = false;
+
+        float closestDistance =
+            float.MaxValue;
+
+        // --------------------------------------------------------
+        // MAIN PLANET
+        // --------------------------------------------------------
+
+        if (
+            planetCollider != null &&
+            planetCollider.Raycast(
+                ray,
+                out RaycastHit planetHit,
+                raycastDistance
+            )
+        )
+        {
+            closestHit =
+                planetHit;
+
+            closestDistance =
+                planetHit.distance;
+
+            foundHit = true;
+
+            // null means this is the main planet.
+            hitSurface = null;
+        }
+
+        // --------------------------------------------------------
+        // ADDITIONAL SURFACES / CLIFFS
+        // --------------------------------------------------------
+
+        if (
+            additionalSurfaces != null
+        )
+        {
+            foreach (
+                VegetationSurface surface
+                in additionalSurfaces
+            )
+            {
+                if (
+                    surface == null ||
+                    surface.collider == null
+                )
+                {
+                    continue;
+                }
+
+                if (
+                    surface.collider.Raycast(
+                        ray,
+                        out RaycastHit surfaceHit,
+                        raycastDistance
+                    )
+                )
+                {
+                    if (
+                        !foundHit ||
+                        surfaceHit.distance <
+                        closestDistance
+                    )
+                    {
+                        closestHit =
+                            surfaceHit;
+
+                        closestDistance =
+                            surfaceHit.distance;
+
+                        foundHit = true;
+
+                        hitSurface =
+                            surface;
+                    }
+                }
+            }
+        }
+
+        return foundHit;
+    }
+
+    // ============================================================
+    // CHECK VEGETATION MASK
+    // ============================================================
+
+    private bool IsVegetationAllowed(
+        RaycastHit hit,
+        VegetationSurface surface
+    )
+    {
+        // --------------------------------------------------------
+        // MAIN PLANET
+        // --------------------------------------------------------
+
+        if (
+            surface == null
+        )
+        {
+            // No planet mask means everything is allowed.
+
+            if (
+                vegetationMask == null
+            )
+            {
+                return true;
+            }
+
+            Vector2 uv =
+                hit.textureCoord;
+
+            Color maskPixel =
+                vegetationMask.GetPixelBilinear(
+                    uv.x,
+                    uv.y
+                );
+
+            float maskValue =
+                maskPixel.grayscale;
+
+            bool allowed =
+                maskValue >=
+                maskThreshold;
+
+            if (invertMask)
+            {
+                allowed = !allowed;
+            }
+
+            return allowed;
+        }
+
+        // --------------------------------------------------------
+        // ADDITIONAL SURFACE
+        // --------------------------------------------------------
+
+        // No mask assigned yet?
+        //
+        // Allow vegetation everywhere on this surface.
+
+        if (
+            surface.vegetationMask == null
+        )
+        {
+            return true;
+        }
+
+        Vector2 surfaceUV =
+            hit.textureCoord;
+
+        Color surfaceMaskPixel =
+            surface.vegetationMask.GetPixelBilinear(
+                surfaceUV.x,
+                surfaceUV.y
+            );
+
+        float surfaceMaskValue =
+            surfaceMaskPixel.grayscale;
+
+        bool surfaceAllowed =
+            surfaceMaskValue >=
+            surface.maskThreshold;
+
+        if (
+            surface.invertMask
+        )
+        {
+            surfaceAllowed =
+                !surfaceAllowed;
+        }
+
+        return surfaceAllowed;
     }
 
     // ============================================================
@@ -590,25 +885,22 @@ public class PlanetVegetationGPU : MonoBehaviour
         {
             attempts++;
 
+            // ----------------------------------------------------
+            // RANDOM DIRECTION
+            // ----------------------------------------------------
+
             Vector3 direction =
                 UnityEngine.Random.onUnitSphere;
 
-            Vector3 rayStart =
-                planetCenter.position +
-                direction *
-                rayStartDistance;
-
-            Ray ray =
-                new Ray(
-                    rayStart,
-                    -direction
-                );
+            // ----------------------------------------------------
+            // RAYCAST ALL SURFACES
+            // ----------------------------------------------------
 
             if (
-                !planetCollider.Raycast(
-                    ray,
+                !TryGetSurfaceHit(
+                    direction,
                     out RaycastHit hit,
-                    raycastDistance
+                    out VegetationSurface surface
                 )
             )
             {
@@ -643,33 +935,14 @@ public class PlanetVegetationGPU : MonoBehaviour
             // PATCH MASK
             // ----------------------------------------------------
 
-            if (vegetationMask != null)
+            if (
+                !IsVegetationAllowed(
+                    hit,
+                    surface
+                )
+            )
             {
-                Vector2 uv =
-                    hit.textureCoord;
-
-                Color maskPixel =
-                    vegetationMask.GetPixelBilinear(
-                        uv.x,
-                        uv.y
-                    );
-
-                float maskValue =
-                    maskPixel.grayscale;
-
-                bool allowed =
-                    maskValue >=
-                    maskThreshold;
-
-                if (invertMask)
-                {
-                    allowed = !allowed;
-                }
-
-                if (!allowed)
-                {
-                    continue;
-                }
+                continue;
             }
 
             // ----------------------------------------------------
