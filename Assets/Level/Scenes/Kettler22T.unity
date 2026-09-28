@@ -30394,7 +30394,7 @@ PrefabInstance:
     - target: {fileID: 5497867260451858334, guid: 9e9a8a048e891084a872730e7f5a5c96,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 119
+      value: 118
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46364,7 +46364,7 @@ PrefabInstance:
     - target: {fileID: 8447250306562829967, guid: 86f8909a0666ec64d842b7f053c1ce30,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 119
+      value: 118
       objectReference: {fileID: 0}
     - target: {fileID: 9111197426983433269, guid: 86f8909a0666ec64d842b7f053c1ce30,
         type: 3}
@@ -58106,7 +58106,7 @@ PrefabInstance:
     - target: {fileID: 8447250306562829967, guid: 86f8909a0666ec64d842b7f053c1ce30,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 119
+      value: 118
       objectReference: {fileID: 0}
     - target: {fileID: 9111197426983433269, guid: 86f8909a0666ec64d842b7f053c1ce30,
         type: 3}
@@ -62762,6 +62762,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1881090849}
   - {fileID: 407015600}
   - {fileID: 973554555}
   - {fileID: 2044731969}
@@ -70900,17 +70901,17 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1599096468}
     m_Modifications:
     - target: {fileID: 5828364690874330978, guid: b6bf91273eb2a4c46a80e7afe6970eaf,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.2
+      value: 1.2000002
       objectReference: {fileID: 0}
     - target: {fileID: 5828364690874330978, guid: b6bf91273eb2a4c46a80e7afe6970eaf,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2
+      value: 1.1999999
       objectReference: {fileID: 0}
     - target: {fileID: 5828364690874330978, guid: b6bf91273eb2a4c46a80e7afe6970eaf,
         type: 3}
@@ -974598,6 +974599,12 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0000001, y: 5, z: 1}
   m_Center: {x: 0.00000040592374, y: 1.1563007, z: -0.00000015424352}
+--- !u!4 &1881090849 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5828364690874330978, guid: b6bf91273eb2a4c46a80e7afe6970eaf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1803096708}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1881543374 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
@@ -983484,7 +983491,7 @@ PrefabInstance:
     - target: {fileID: 2188937061728923937, guid: 5a1cba4aa158b1d4bbb6ec5050d27807,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 119
+      value: 118
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -985312,22 +985319,22 @@ PrefabInstance:
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8996527
+      value: 0.8996528
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.43660614
+      value: 0.43660617
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000002772376
+      value: 0.000000027723761
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000111844205
+      value: -0.000000011184421
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
@@ -986703,4 +986710,3 @@ SceneRoots:
   - {fileID: 349875393}
   - {fileID: 334500431}
   - {fileID: 1874437544}
-  - {fileID: 1803096708}
