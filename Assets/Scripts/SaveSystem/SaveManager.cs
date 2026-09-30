@@ -8,21 +8,8 @@ public class SaveManager : MonoBehaviour
     private void Start()
     {
         questManager = FindObjectOfType<QuestManager>();
-        if (playerTransform != null)
-        {
-            bool loadAuto = SaveLoadContext.LoadAutoSave;
 
-            if (SaveSystem.SaveFileExists(loadAuto))
-            {
-                SaveData data = SaveSystem.LoadGame(questManager, loadAuto);
-                if (data != null)
-                {
-                    playerTransform.position = new Vector3(data.playerX, data.playerY, data.playerZ);
-                    Debug.Log($"Loaded {(loadAuto ? "autosave" : "manual save")} at position {playerTransform.position}");
-                }
-            }
-        }
-        else
+        if (playerTransform == null)
         {
             Debug.LogWarning("SaveManager: Player Transform not assigned!");
         }

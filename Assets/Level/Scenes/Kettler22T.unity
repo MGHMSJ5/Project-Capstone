@@ -16,7 +16,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogColor: {r: 0.72156864, g: 0.8627451, b: 0.9098039, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -38,8 +38,8 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.52386564, g: 0.56170434, b: 0.47704506, a: 1}
+  m_Sun: {fileID: 410087040}
+  m_IndirectSpecularColor: {r: 0.5238657, g: 0.5617042, b: 0.47704506, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -240,6 +240,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -406,6 +411,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -547,6 +557,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -679,6 +694,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (81)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -844,6 +864,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -976,6 +1001,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (40)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -1565,6 +1595,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (189)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -2487,6 +2522,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -2884,6 +2924,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -3124,6 +3169,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -3259,6 +3309,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -3391,6 +3446,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (132)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -3764,6 +3824,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -3914,6 +3979,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (193)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -5185,6 +5255,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -5202,12 +5277,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c2198d4137447194b8941f3f6f156e1d,
     type: 3}
   m_PrefabInstance: {fileID: 142784629}
-  m_PrefabAsset: {fileID: 0}
---- !u!20 &145015688 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 5664879709281398430, guid: 57565b2c93538fd4bbb1f94b6846987c,
-    type: 3}
-  m_PrefabInstance: {fileID: 5150563602329221462}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &150893095
 GameObject:
@@ -5446,6 +5515,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -5578,6 +5652,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (187)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -5855,6 +5934,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (57)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -6617,6 +6701,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -6747,6 +6836,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4298106547989159569, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4298106547989159569, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -6757,6 +6851,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -6764,6 +6863,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956233686315763503, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8956233686315763503, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
@@ -7042,6 +7146,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (171)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -8020,6 +8129,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -8695,6 +8809,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -8833,6 +8952,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (72)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -9687,6 +9811,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -9849,6 +9978,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (173)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -10895,6 +11029,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -11169,6 +11308,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -11408,6 +11552,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -11540,6 +11689,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (85)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -11912,15 +12066,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c89e7eb93e7554985af34e66019319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 145015688}
   playerRenderer: {fileID: 1100951791}
-  occluderMask:
-    serializedVersion: 2
-    m_Bits: 472
-  occlusionThreshold: 1
   silhouetteColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
-  smoothFade: 1
-  fadeSpeed: 10
 --- !u!1 &332608096
 GameObject:
   m_ObjectHideFlags: 0
@@ -12083,6 +12230,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (202)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -12322,6 +12474,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (180)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -12959,6 +13116,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -13159,6 +13321,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -13324,6 +13491,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (98)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -13573,6 +13745,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock3 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
@@ -14178,6 +14355,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -14337,6 +14519,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (65)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -14870,6 +15057,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -15002,6 +15194,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock3 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
@@ -15261,17 +15458,17 @@ PrefabInstance:
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 47
+      value: 47.44
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -44
+      value: -44.42
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 49
+      value: 49.46
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
@@ -16406,6 +16603,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -16482,17 +16684,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -85.01
+      value: -84.68
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.5
+      value: 13.44
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 39.4
+      value: 39.32
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -16538,6 +16740,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -16784,6 +16991,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -16916,6 +17128,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (135)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -17162,6 +17379,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -17377,6 +17599,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (167)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -17693,6 +17920,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -17825,6 +18057,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (184)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -18203,6 +18440,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -18433,6 +18675,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -18565,6 +18812,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (147)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -19898,6 +20150,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -20114,6 +20371,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock3 (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
@@ -20363,6 +20625,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (172)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -20691,6 +20958,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (159)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -21235,6 +21507,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -21511,6 +21788,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -21661,6 +21943,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (178)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -21888,12 +22175,12 @@ PrefabInstance:
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -59.83
+      value: -59.84
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 51.29
+      value: 51.3
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
@@ -22478,6 +22765,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -22668,6 +22960,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (220)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -22892,6 +23189,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (140)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -23163,6 +23465,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (141)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -23491,6 +23798,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock3 (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
@@ -23841,6 +24153,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock3 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
@@ -24250,6 +24567,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -24594,6 +24916,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (222)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -25304,6 +25631,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -25636,6 +25968,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -25768,6 +26105,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (148)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -26022,6 +26364,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (107)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -26284,6 +26631,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -28517,6 +28869,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 99ccdc2e77da562459be6d4121c9b669,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 99ccdc2e77da562459be6d4121c9b669,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -28729,6 +29086,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -28861,6 +29223,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (114)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -29288,6 +29655,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -29420,6 +29792,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -30124,6 +30501,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -30256,6 +30638,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (199)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -30394,6 +30781,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5497867260451858334, guid: 9e9a8a048e891084a872730e7f5a5c96,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5497867260451858334, guid: 9e9a8a048e891084a872730e7f5a5c96,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -30412,6 +30804,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5118210720412728612, guid: 9e9a8a048e891084a872730e7f5a5c96,
     type: 3}
   m_PrefabInstance: {fileID: 801907129}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &802239190 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8730932829227205651, guid: c0f62d20604405145be515ab1c35229b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1391077634}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &803490488 stripped
 GameObject:
@@ -30664,6 +31062,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (210)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -31102,6 +31505,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -31237,6 +31645,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -31369,6 +31782,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (108)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -31974,6 +32392,40 @@ Transform:
   - {fileID: 912188882}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &842771687 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 269214604179437673, guid: 57565b2c93538fd4bbb1f94b6846987c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5150563602329221462}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &842771693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842771687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 514a58c91cd9c0849ac57b14643a3df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walls:
+  - renderer: {fileID: 1922648384}
+    insideNormal: {x: 0, y: 0, z: 1}
+    lastVisible: 0
+  - renderer: {fileID: 1321228018}
+    insideNormal: {x: 0, y: 0, z: 1}
+    lastVisible: 0
+  - renderer: {fileID: 802239190}
+    insideNormal: {x: 0, y: 0, z: 1}
+    lastVisible: 0
+  - renderer: {fileID: 1263612120}
+    insideNormal: {x: 0, y: 0, z: 1}
+    lastVisible: 0
+  - renderer: {fileID: 1832532988}
+    insideNormal: {x: 0, y: 0, z: 1}
+    lastVisible: 0
 --- !u!1 &844838447 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
@@ -32062,6 +32514,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -32264,6 +32721,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -32396,6 +32858,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (214)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -32534,6 +33001,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -32669,6 +33141,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -32801,6 +33278,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock3 (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
@@ -33389,6 +33871,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -33585,6 +34072,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (208)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -34508,6 +35000,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5452522115621331787, guid: 9a156d4e178216245a9d71bed19684b8,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452522115621331787, guid: 9a156d4e178216245a9d71bed19684b8,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -34697,6 +35194,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -34857,6 +35359,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (204)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -35211,6 +35718,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (102)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -35922,6 +36434,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -36054,6 +36571,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (104)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -36424,6 +36946,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -36559,6 +37086,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -36691,6 +37223,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock3 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
@@ -36855,6 +37392,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4298106547989159569, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4298106547989159569, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -36865,6 +37407,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -36872,6 +37419,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956233686315763503, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8956233686315763503, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
@@ -38102,6 +38654,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -39024,6 +39581,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4298106547989159569, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4298106547989159569, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -39034,6 +39596,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -39041,6 +39608,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956233686315763503, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8956233686315763503, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
@@ -39182,6 +39754,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -39314,6 +39891,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (93)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -39725,6 +40307,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -40001,6 +40588,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -40062,17 +40654,17 @@ PrefabInstance:
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 80
+      value: 80.75
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2
+      value: -2.03
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
@@ -40234,6 +40826,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -40366,6 +40963,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -40657,6 +41259,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (218)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -41190,6 +41797,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -41628,6 +42240,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -41868,6 +42485,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (165)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -42136,6 +42758,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -42268,6 +42895,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (48)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -42409,6 +43041,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -42719,6 +43356,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -42957,13 +43599,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7230797242098968919, guid: f4af8f3f014d529469d75fbafa9ca417,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7230797242098968919, guid: f4af8f3f014d529469d75fbafa9ca417,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
     - target: {fileID: -6216163604332099665, guid: f4af8f3f014d529469d75fbafa9ca417,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6216163604332099665, guid: f4af8f3f014d529469d75fbafa9ca417,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
+      objectReference: {fileID: 0}
+    - target: {fileID: -4829925614609500573, guid: f4af8f3f014d529469d75fbafa9ca417,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4829925614609500573, guid: f4af8f3f014d529469d75fbafa9ca417,
         type: 3}
@@ -42977,8 +43634,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f4af8f3f014d529469d75fbafa9ca417,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f4af8f3f014d529469d75fbafa9ca417,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2766212503428324877, guid: f4af8f3f014d529469d75fbafa9ca417,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2766212503428324877, guid: f4af8f3f014d529469d75fbafa9ca417,
         type: 3}
@@ -42987,8 +43654,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4027228791024609348, guid: f4af8f3f014d529469d75fbafa9ca417,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027228791024609348, guid: f4af8f3f014d529469d75fbafa9ca417,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
+      objectReference: {fileID: 0}
+    - target: {fileID: 6800398303002138120, guid: f4af8f3f014d529469d75fbafa9ca417,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6800398303002138120, guid: f4af8f3f014d529469d75fbafa9ca417,
         type: 3}
@@ -43095,6 +43772,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -43156,17 +43838,17 @@ PrefabInstance:
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -53
+      value: -53.04
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -37
+      value: -37.02
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 83
+      value: 83.05
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
@@ -43468,6 +44150,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -43603,6 +44290,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -43664,17 +44356,17 @@ PrefabInstance:
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 55
+      value: 55.65
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -42
+      value: -42.49
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 41
+      value: 41.47
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
@@ -44288,6 +44980,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 99ccdc2e77da562459be6d4121c9b669,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 99ccdc2e77da562459be6d4121c9b669,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -44378,6 +45075,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (211)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -44597,6 +45299,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (209)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -44868,6 +45575,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -45000,6 +45712,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -45921,17 +46638,17 @@ PrefabInstance:
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: -6.01
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -81
+      value: -81.32
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6
+      value: -6.02
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
@@ -46294,6 +47011,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -46629,6 +47351,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (163)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -47070,6 +47797,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -47361,6 +48093,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -47411,6 +48148,12 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 4.5, z: 1}
   m_Center: {x: -0.0003722208, y: 2.3447468, z: 0.0017682663}
+--- !u!23 &1263612120 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5367516463004603790, guid: c0f62d20604405145be515ab1c35229b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1391077634}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1268024416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47845,17 +48588,17 @@ PrefabInstance:
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 1.97
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -16
+      value: -15.93
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -80
+      value: -79.61
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
@@ -48228,6 +48971,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -48397,6 +49145,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -48512,6 +49265,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5852650701402310297, guid: d1313caf484c0b84caa2023e5ea0fa15,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852650701402310297, guid: d1313caf484c0b84caa2023e5ea0fa15,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -48606,6 +49364,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4298106547989159569, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4298106547989159569, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -48616,6 +49379,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -48623,6 +49391,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956233686315763503, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8956233686315763503, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
@@ -48764,6 +49537,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -48896,6 +49674,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (97)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -49175,6 +49958,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4298106547989159569, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4298106547989159569, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -49185,6 +49973,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -49192,6 +49985,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956233686315763503, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8956233686315763503, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
@@ -49508,6 +50306,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -49649,6 +50452,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -49784,6 +50592,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -49834,6 +50647,12 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 4.5, z: 1}
   m_Center: {x: -0.00037309492, y: 2.3447464, z: 0.0017681613}
+--- !u!23 &1321228018 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1056252090059871640, guid: c0f62d20604405145be515ab1c35229b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1391077634}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1321503180
 GameObject:
   m_ObjectHideFlags: 0
@@ -50173,6 +50992,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (68)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -50601,6 +51425,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -50733,6 +51562,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (113)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -50871,6 +51705,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -51003,6 +51842,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (91)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -51348,17 +52192,17 @@ PrefabInstance:
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 26
+      value: 26.082
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 75
+      value: 75.223
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15
+      value: 15.064
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
@@ -51591,6 +52435,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (161)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -55532,6 +56381,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -55664,6 +56518,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (112)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -56318,6 +57177,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -56450,6 +57314,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (86)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -56716,6 +57585,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -56848,6 +57722,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (52)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -57115,6 +57994,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -57247,6 +58131,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (119)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -57440,6 +58329,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (77)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -57756,6 +58650,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -57888,6 +58787,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (176)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -58495,6 +59399,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -58822,6 +59731,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -58958,6 +59872,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -59090,6 +60009,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (103)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -59990,6 +60914,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -60151,6 +61080,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (42)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -60347,6 +61281,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -60479,6 +61418,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (134)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -60645,6 +61589,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (192)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -60914,6 +61863,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -61046,6 +62000,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (136)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -61668,6 +62627,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -61933,6 +62897,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -62092,6 +63061,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (175)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -62535,6 +63509,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -62667,6 +63646,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (195)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -62904,6 +63888,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (121)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -63741,6 +64730,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -64145,6 +65139,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock3 (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
@@ -65460,6 +66459,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -65648,6 +66652,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (54)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -66043,6 +67052,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -66416,6 +67430,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (87)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -67707,17 +68726,17 @@ PrefabInstance:
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 63
+      value: 62.55
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 52
+      value: 51.64
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: 4.98
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
@@ -68014,6 +69033,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -68146,6 +69170,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (58)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -68331,6 +69360,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (216)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -68663,6 +69697,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -68804,6 +69843,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -68872,6 +69916,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PP_Crate_Wooden_03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164102941771015398, guid: 15ee94f4c33901248afc29a1f76c6465,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2164102941771015398, guid: 15ee94f4c33901248afc29a1f76c6465,
         type: 3}
@@ -69036,6 +70085,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (130)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -69376,6 +70430,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -69506,6 +70565,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2546cf85e233d794b9a8049f2811f059,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2546cf85e233d794b9a8049f2811f059,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -69583,17 +70647,17 @@ PrefabInstance:
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 5.03
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -80
+      value: -80.443
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12
+      value: 12.069
       objectReference: {fileID: 0}
     - target: {fileID: 1240874676092021744, guid: 265f6a2497de6144391fd741ba694ddf,
         type: 3}
@@ -69779,6 +70843,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (106)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -70167,6 +71236,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4298106547989159569, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4298106547989159569, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -70177,6 +71251,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -70184,6 +71263,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956233686315763503, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8956233686315763503, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
@@ -70890,6 +71974,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1599096468}
     m_Modifications:
+    - target: {fileID: 3588741801064910798, guid: b6bf91273eb2a4c46a80e7afe6970eaf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5828364690874330978, guid: b6bf91273eb2a4c46a80e7afe6970eaf,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -70950,6 +72039,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 26.06
       objectReference: {fileID: 0}
+    - target: {fileID: 6224959538884610718, guid: b6bf91273eb2a4c46a80e7afe6970eaf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6604900913508136408, guid: b6bf91273eb2a4c46a80e7afe6970eaf,
         type: 3}
       propertyPath: m_Name
@@ -70957,8 +72051,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6604900913508136408, guid: b6bf91273eb2a4c46a80e7afe6970eaf,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604900913508136408, guid: b6bf91273eb2a4c46a80e7afe6970eaf,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906143972712744171, guid: b6bf91273eb2a4c46a80e7afe6970eaf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -71074,6 +72178,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (127)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -71209,6 +72318,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (80)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -71371,6 +72485,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (145)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -71545,6 +72664,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (174)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -71890,6 +73014,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -72025,6 +73154,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -72075,6 +73209,43 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1829867137}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1832532988 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8759245297451080537, guid: c0f62d20604405145be515ab1c35229b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1391077634}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1839792456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1839792457}
+  m_Layer: 0
+  m_Name: CameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1839792457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839792456}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.15, z: -0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 62461201}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1840246129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72160,6 +73331,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -72222,6 +73398,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PP_Crate_Wooden_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164102941771015398, guid: 15ee94f4c33901248afc29a1f76c6465,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2164102941771015398, guid: 15ee94f4c33901248afc29a1f76c6465,
         type: 3}
@@ -72384,6 +73565,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4298106547989159569, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4298106547989159569, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -72399,6 +73585,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -72406,6 +73597,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956233686315763503, guid: 66008294bc742d244b5aebefc20124cb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8956233686315763503, guid: 66008294bc742d244b5aebefc20124cb,
         type: 3}
@@ -72670,6 +73866,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -72907,6 +74108,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -73066,6 +74272,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (122)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -73473,6 +74684,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -73605,6 +74821,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (45)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -73768,6 +74989,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (197)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -74046,6 +75272,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -74178,6 +75409,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (133)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -975061,37 +976297,37 @@ PrefabInstance:
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -70
+      value: -70.07901
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -38
+      value: -38.08335
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17
+      value: 17.010946
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.41648668
+      value: 0.4617465
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.014685951
+      value: -0.016281884
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.03203365
+      value: 0.03125272
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.9084586
+      value: 0.8863117
       objectReference: {fileID: 0}
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
@@ -975106,7 +976342,7 @@ PrefabInstance:
     - target: {fileID: 8381315819754042701, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 130.741
+      value: 124.963
       objectReference: {fileID: 0}
     - target: {fileID: 8493721922584347316, guid: 440a0bc5b41de5e488ab3de6143752d0,
         type: 3}
@@ -975301,6 +976537,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -975461,6 +976702,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -975817,6 +977063,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -976036,6 +977287,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -976086,6 +977342,12 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 4.5, z: 1}
   m_Center: {x: -0.00037309492, y: 2.3447464, z: 0.0017681613}
+--- !u!23 &1922648384 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5873699486231983879, guid: c0f62d20604405145be515ab1c35229b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1391077634}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1926497145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -976822,6 +978084,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -977012,6 +978279,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (120)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -977703,6 +978975,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -977835,6 +979112,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (201)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -977998,6 +979280,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (137)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -978780,6 +980067,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -979480,6 +980772,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -979640,6 +980937,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (198)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -979809,6 +981111,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -979941,6 +981248,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock3 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ad0a4e0f20d2140ac3f1e8ba539e1a,
         type: 3}
@@ -980821,6 +982133,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -980953,6 +982270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -981147,6 +982469,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PP_Campfire_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5753403770552774952, guid: 66517d1d36b581d4cbd00731a1418910,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5753403770552774952, guid: 66517d1d36b581d4cbd00731a1418910,
         type: 3}
@@ -981621,6 +982948,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -981900,6 +983232,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (146)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -982184,6 +983521,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -982316,6 +983658,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (65)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -982454,6 +983801,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -982586,6 +983938,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -982882,6 +984239,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -983041,6 +984403,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (60)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -983495,6 +984862,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2188937061728923937, guid: 5a1cba4aa158b1d4bbb6ec5050d27807,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188937061728923937, guid: 5a1cba4aa158b1d4bbb6ec5050d27807,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -983596,6 +984968,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree (124)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c2198d4137447194b8941f3f6f156e1d,
         type: 3}
@@ -984642,6 +986019,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -8.177
       objectReference: {fileID: 0}
+    - target: {fileID: 6340766230750579385, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7015057840018717787, guid: d1ee0220058d80043982be2ccf0f9bd4,
         type: 3}
       propertyPath: m_Name
@@ -984649,7 +986031,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1851037987322260459, guid: d1ee0220058d80043982be2ccf0f9bd4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1839792457}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7015057840018717787, guid: d1ee0220058d80043982be2ccf0f9bd4,
         type: 3}
@@ -985264,37 +986650,37 @@ PrefabInstance:
     - target: {fileID: 489423837827168485, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.2851683
+      value: 3.5074887
       objectReference: {fileID: 0}
     - target: {fileID: 489423837827168485, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 79.39246
+      value: 75.19537
       objectReference: {fileID: 0}
     - target: {fileID: 489423837827168485, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -34.77133
+      value: -34.75704
       objectReference: {fileID: 0}
     - target: {fileID: 489423837827168485, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.84107256
+      value: 0.8616976
       objectReference: {fileID: 0}
     - target: {fileID: 489423837827168485, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.26431006
+      value: -0.1863866
       objectReference: {fileID: 0}
     - target: {fileID: 489423837827168485, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.27295804
+      value: -0.4276839
       objectReference: {fileID: 0}
     - target: {fileID: 489423837827168485, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.3850079
+      value: 0.19955903
       objectReference: {fileID: 0}
     - target: {fileID: 489423837827168485, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
@@ -985314,72 +986700,72 @@ PrefabInstance:
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0000014212492
+      value: 0.00000013220915
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0000004824641
+      value: 0.0000001432659
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.000002077558
+      value: -0.0000001372554
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8996528
+      value: 0.8829078
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.43660617
+      value: 0.4695466
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000027723761
+      value: 0.0000001854718
       objectReference: {fileID: 0}
     - target: {fileID: 1641734113571132703, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000011184421
+      value: 0.00000010258692
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000000033052306
+      value: 0.00000013220915
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.000000011220099
+      value: 0.0000001432659
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.000000048315304
+      value: -0.0000001372554
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.88543
+      value: 0.87019986
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.46477276
+      value: 0.49269894
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000001931739
+      value: 0.00000020106275
       objectReference: {fileID: 0}
     - target: {fileID: 3739297527142699109, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000013871187
+      value: 0.00000008829111
       objectReference: {fileID: 0}
     - target: {fileID: 5211479588992203780, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
@@ -985403,6 +986789,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5664879709281398430, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
+      propertyPath: field of view
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664879709281398430, guid: 57565b2c93538fd4bbb1f94b6846987c,
+        type: 3}
+      propertyPath: far clip plane
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664879709281398430, guid: 57565b2c93538fd4bbb1f94b6846987c,
+        type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664879709281398430, guid: 57565b2c93538fd4bbb1f94b6846987c,
+        type: 3}
       propertyPath: m_BackGroundColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -985419,37 +986820,37 @@ PrefabInstance:
     - target: {fileID: 6252706017734462530, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000000033052306
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6252706017734462530, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.000000011220099
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6252706017734462530, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.000000048315304
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6252706017734462530, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.87019986
+      value: 0.8568081
       objectReference: {fileID: 0}
     - target: {fileID: 6252706017734462530, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.49269894
+      value: 0.5156353
       objectReference: {fileID: 0}
     - target: {fileID: 6252706017734462530, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017582654
+      value: 0.0000002073282
       objectReference: {fileID: 0}
     - target: {fileID: 6252706017734462530, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000017653726
+      value: 0.00000009308525
       objectReference: {fileID: 0}
     - target: {fileID: 7269568805203053179, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
@@ -985471,6 +986872,11 @@ PrefabInstance:
       propertyPath: _orientation
       value: 
       objectReference: {fileID: 846707895}
+    - target: {fileID: 7891194681082022192, guid: 57565b2c93538fd4bbb1f94b6846987c,
+        type: 3}
+      propertyPath: m_Antialiasing
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8080840543049889346, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_Follow
@@ -985480,16 +986886,35 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LookAt
       value: 
-      objectReference: {fileID: 62461201}
+      objectReference: {fileID: 1839792457}
     - target: {fileID: 8080840543049889346, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       propertyPath: m_BindingMode
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8080840543049889346, guid: 57565b2c93538fd4bbb1f94b6846987c,
+        type: 3}
+      propertyPath: m_YAxis.Value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080840543049889346, guid: 57565b2c93538fd4bbb1f94b6846987c,
+        type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080840543049889346, guid: 57565b2c93538fd4bbb1f94b6846987c,
+        type: 3}
+      propertyPath: m_Lens.FarClipPlane
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 269214604179437673, guid: 57565b2c93538fd4bbb1f94b6846987c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842771693}
     - targetCorrespondingSourceObject: {fileID: 2605770128225702556, guid: 57565b2c93538fd4bbb1f94b6846987c,
         type: 3}
       insertIndex: -1
@@ -985846,6 +987271,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pile of Logs
       objectReference: {fileID: 0}
+    - target: {fileID: 612173371979653203, guid: 2755f62907d3e2c4591297c98fd67dc8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 998617744886069452, guid: 2755f62907d3e2c4591297c98fd67dc8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -985898,13 +987328,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4379785061258726909, guid: 2755f62907d3e2c4591297c98fd67dc8,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379785061258726909, guid: 2755f62907d3e2c4591297c98fd67dc8,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
     - target: {fileID: 7080455032569954179, guid: 2755f62907d3e2c4591297c98fd67dc8,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080455032569954179, guid: 2755f62907d3e2c4591297c98fd67dc8,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
+      objectReference: {fileID: 0}
+    - target: {fileID: 9165363879236614006, guid: 2755f62907d3e2c4591297c98fd67dc8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9165363879236614006, guid: 2755f62907d3e2c4591297c98fd67dc8,
         type: 3}
