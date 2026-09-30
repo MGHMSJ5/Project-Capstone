@@ -1,40 +1,32 @@
-Shader "Custom/PlayerSilhouette"
+Shader "Hidden/GroundSilhouetteMask"
 {
-    Properties
-    {
-        _BaseColor ("Silhouette Color", Color) =
-            (0.02, 0.01, 0.04, 1)
-    }
-
     SubShader
     {
         Tags
         {
             "RenderPipeline" = "UniversalPipeline"
-            "Queue" = "Transparent+100"
-            "RenderType" = "Transparent"
+            "Queue" = "Geometry"
         }
 
         Pass
         {
-            Name "Silhouette"
+            Name "Ground Silhouette Mask"
 
-            ZWrite Off
+            // We don't want to change the camera colour.
+            ColorMask 0
 
-            // Player must be behind the Ground depth.
-            ZTest Greater
+            // Keep normal depth behaviour.
+            ZWrite On
+            ZTest LEqual
 
-            // Only draw where Ground wrote the stencil.
             Stencil
             {
                 Ref 1
-                Comp Equal
-                Pass Keep
+                Comp Always
+                Pass Replace
             }
 
             Cull Back
-
-            Blend SrcAlpha OneMinusSrcAlpha
 
             HLSLPROGRAM
 
@@ -53,12 +45,6 @@ Shader "Custom/PlayerSilhouette"
                 float4 positionHCS : SV_POSITION;
             };
 
-            CBUFFER_START(UnityPerMaterial)
-
-                float4 _BaseColor;
-
-            CBUFFER_END
-
             Varyings vert(Attributes input)
             {
                 Varyings output;
@@ -76,7 +62,7 @@ Shader "Custom/PlayerSilhouette"
 
             half4 frag(Varyings input) : SV_Target
             {
-                return _BaseColor;
+                return 0;
             }
 
             ENDHLSL
