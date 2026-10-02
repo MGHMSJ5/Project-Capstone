@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class QuestUI : MonoBehaviour
@@ -9,11 +10,15 @@ public class QuestUI : MonoBehaviour
 
     [Header("Sidequests")]
     [SerializeField]
-    private List<QuestUIHandling> sideQuests = new List<QuestUIHandling>();  
+    private List<QuestUIHandling> sideQuests = new List<QuestUIHandling>();
+
+    [SerializeField]
+    private List<float> sideQuestLocations = new List<float>();
+    private int startPosIndex = 0;
 
     public void StartQuest(string title, string description)
     {
-        mainQuest.StartQuest(title, description);
+        mainQuest.StartQuest(title, description, 0);
     }
 
     public void UpdateQuest(string title, string description)
@@ -32,7 +37,8 @@ public class QuestUI : MonoBehaviour
         {
             if (sideQuests[i].sideQuestInfo.id == questID)
             {
-                sideQuests[i].StartQuest(title, description);
+                sideQuests[i].StartQuest(title, description, sideQuestLocations[startPosIndex]);
+                startPosIndex++;
                 return;
             }
         }
@@ -45,6 +51,19 @@ public class QuestUI : MonoBehaviour
             if (sideQuests[i].sideQuestInfo.id == questID)
             {
                 sideQuests[i].UpdateQuest(title, description);
+                return;
+            }
+        }
+    }
+
+    public void FinishedSideQuest(string questID)
+    {
+        for (int i = 0; i < sideQuests.Count; i++)
+        {
+            if (sideQuests[i].sideQuestInfo.id == questID)
+            {
+                sideQuests[i].FinishedQuest();
+                startPosIndex--;
                 return;
             }
         }
