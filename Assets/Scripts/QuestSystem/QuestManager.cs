@@ -6,11 +6,13 @@ public class QuestManager : MonoBehaviour
 {
     private Dictionary<string, Quest> questMap;
     private UICanvas _UICanvas;
+    private QuestUI questUI;
 
     private void Awake()
     {
         questMap = CreateQuestMap();
         _UICanvas = GameObject.Find("Canvas").GetComponent<UICanvas>();
+        questUI = GameObject.Find("QuestUI").GetComponent<QuestUI>();
     }
 
     private void OnEnable()
@@ -83,8 +85,8 @@ public class QuestManager : MonoBehaviour
         //Change quest state to in progress
         ChangeQuestState(quest.info.id, QuestState.IN_PROGRESS);
 
-        //Debug message
-        Debug.Log("Quest started: " +  id);
+            //Debug message
+            Debug.Log("Quest started: " + id);
     }
 
     private void AdvanceQuest(string id)
@@ -121,6 +123,15 @@ public class QuestManager : MonoBehaviour
 
         //Change quest state to finished
         ChangeQuestState(quest.info.id, QuestState.FINISHED);
+
+        if (!quest.info.isSideQuest)
+        {
+            questUI.FinishedQuest();
+        }
+        else
+        {
+            questUI.FinishedSideQuest(quest.info.id);
+        }
 
         //Debug message
         Debug.Log("Quest finished: " + id);
