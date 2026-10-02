@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
-using TMPro;
 
 public class PauseMenuManager : MonoBehaviour
 {
@@ -10,71 +8,57 @@ public class PauseMenuManager : MonoBehaviour
     public GameObject firstPauseMenuButton;
     public GameObject dialoguePanel;
 
-    [Header("Load Save UI")]
-    public GameObject loadSavePanel;
-    public GameObject confirmLoadPanel;
-    public GameObject firstLoadSaveButton;
-    public GameObject firstConfirmLoadButton;
-    public TMP_Text manualSaveInfoText;
-    public TMP_Text autoSaveInfoText;
-
-    public Transform playerTransform;
     public static bool IsPaused { get; private set; } = false;
 
-    private QuestManager questManager;
     private bool isPaused = false;
-    private bool isAutoSaveSelected;
     private string lastInputMethod = "Controller";
 
     private CanvasSceneTransition _canvasSceneTransition;
+
     private void Awake()
     {
-        _canvasSceneTransition = GameObject.Find("Canvas_SceneTransition").GetComponent<CanvasSceneTransition>();
+        _canvasSceneTransition =
+            GameObject.Find("Canvas_SceneTransition")
+            .GetComponent<CanvasSceneTransition>();
     }
-    void Start()
-    {   
-        questManager = FindObjectOfType<QuestManager>();
-        //Cursor invisible
+
+    private void Start()
+    {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     private void Update()
     {
-    if (Input.GetButtonDown("Pause"))
-    {
-        if (dialoguePanel != null && dialoguePanel.activeSelf)
-            return; // Can't pause if dialogue is active!
-
-        if (isPaused)
-            Resume();
-        else
-            Pause();
-    }
-
-    if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
-    {
-        lastInputMethod = "Mouse";
-    }
-
-    if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-    {
-        if (lastInputMethod != "Controller")
+        if (Input.GetButtonDown("Pause"))
         {
-            RestoreControllerFocus();
-            lastInputMethod = "Controller";
+            if (dialoguePanel != null && dialoguePanel.activeSelf)
+                return;
+
+            if (isPaused)
+                Resume();
+            else
+                Pause();
         }
+
+        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+        {
+            lastInputMethod = "Mouse";
+        }
+
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            if (lastInputMethod != "Controller")
+            {
+                RestoreControllerFocus();
+                lastInputMethod = "Controller";
+            }
         }
     }
 
     private void RestoreControllerFocus()
     {
-        if (confirmLoadPanel.activeSelf)
-            SetSelected(firstConfirmLoadButton);
-        else if (loadSavePanel.activeSelf)
-            SetSelected(firstLoadSaveButton);
-        else
-            SetSelected(firstPauseMenuButton);
+        SetSelected(firstPauseMenuButton);
     }
 
     private void SetSelected(GameObject obj)
@@ -86,8 +70,6 @@ public class PauseMenuManager : MonoBehaviour
     private void ResetAllPanels()
     {
         pauseMenuUI.SetActive(false);
-        loadSavePanel.SetActive(false);
-        confirmLoadPanel.SetActive(false);
     }
 
     public void Pause()
@@ -117,6 +99,7 @@ public class PauseMenuManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         EventSystem.current.SetSelectedGameObject(null);
+
         SoundManager.PlaySound(SoundType.UI, 1f);
     }
 
@@ -124,7 +107,7 @@ public class PauseMenuManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         IsPaused = false;
-        Debug.Log("Game closed");
+
         SoundManager.PlaySound(SoundType.UI, 1f);
         Application.Quit();
     }
@@ -133,107 +116,8 @@ public class PauseMenuManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         IsPaused = false;
+
         SoundManager.PlaySound(SoundType.UI, 1f);
         _canvasSceneTransition.ChangeScene("TitleScreen");
-        //SceneManager.LoadScene("TitleScreen");
-    }
-
-    public void SaveGame()
-    {
-        if (playerTransform != null)
-        {
-            SoundManager.PlaySound(SoundType.UI, 1f);
-            SaveSystem.SaveGame(playerTransform.position, questManager);
-            Debug.Log("Game Saved!");
-        }
-        else
-        {
-            Debug.LogWarning("Player Transform not set in PauseMenuManager!");
-        }
-    }
-
-    public void OnLoadSavePressed()
-{
-    ResetAllPanels();
-    loadSavePanel.SetActive(true);
-    SetSelected(firstLoadSaveButton);
-    SoundManager.PlaySound(SoundType.UI, 1f);
-    SaveSystem.SaveGame(playerTransform.position, questManager);
-
-    if (SaveSystem.SaveFileExists(false))
-    {
-        var data = SaveSystem.LoadGame(questManager, false);
-        manualSaveInfoText.text = $"{data.sceneName}\nTime: {data.saveTime}";
-    }
-    else
-    {
-        manualSaveInfoText.text = "No manual save found.";
-    }
-
-    if (SaveSystem.SaveFileExists(true))
-    {
-        var data = SaveSystem.LoadGame(questManager, true);
-        autoSaveInfoText.text = $"{data.sceneName}\nTime: {data.saveTime}";
-    }
-    else
-    {
-        autoSaveInfoText.text = "No autosave found.";
-    }
-}
-
-    public void OnBackFromLoadSave()
-    {
-        ResetAllPanels();
-        pauseMenuUI.SetActive(true);
-        SetSelected(firstPauseMenuButton);
-    }
-
-    public void OnManualSaveSelected()
-    {
-        if (SaveSystem.SaveFileExists(false))
-        {
-            isAutoSaveSelected = false;
-            SaveLoadContext.LoadAutoSave = false;
-            ResetAllPanels();
-            SoundManager.PlaySound(SoundType.UI, 1f);
-            SaveSystem.SaveGame(playerTransform.position, questManager);
-            confirmLoadPanel.SetActive(true);
-            SetSelected(firstConfirmLoadButton);
-        }
-    }
-
-    public void OnAutoSaveSelected()
-    {
-        SoundManager.PlaySound(SoundType.UI, 1f);
-        if (SaveSystem.SaveFileExists(true))
-        {
-            isAutoSaveSelected = true;
-            SaveLoadContext.LoadAutoSave = true;
-            ResetAllPanels();
-            SaveSystem.SaveGame(playerTransform.position, questManager);
-            confirmLoadPanel.SetActive(true);
-            SetSelected(firstConfirmLoadButton);
-        }
-    }
-
-    public void OnConfirmLoadPressed()
-    {
-        Time.timeScale = 1f;
-        IsPaused = false;
-        ResetAllPanels();
-
-        SaveData data = SaveSystem.LoadGame(questManager, false);
-        SoundManager.PlaySound(SoundType.UI, 1f);
-        if (data != null)
-            _canvasSceneTransition.ChangeScene(data.sceneName);
-            //SceneManager.LoadScene(data.sceneName);
-    }
-
-    public void OnCancelLoadPressed()
-    {
-        ResetAllPanels();
-        loadSavePanel.SetActive(true);
-        SoundManager.PlaySound(SoundType.UI, 1f);
-        SetSelected(firstLoadSaveButton);
     }
 }

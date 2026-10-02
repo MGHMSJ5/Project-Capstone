@@ -10,6 +10,14 @@ public class DayNightSystem : MonoBehaviour
     [SerializeField] private float fullDayLength = 300f;
 
     // ============================================================
+    // STATIC LEVELS
+    // ============================================================
+
+    [Header("Static Levels")]
+    [Tooltip("True while the player is inside CaveLevel or FactoryLevel.")]
+    [SerializeField] private bool inStaticLevel = false;
+
+    // ============================================================
     // SUN
     // ============================================================
 
@@ -17,6 +25,7 @@ public class DayNightSystem : MonoBehaviour
     [SerializeField] private Light sunLight;
 
     // The Sun does NOT rotate with time.
+    // PlayerFollowingSun controls the actual rotation.
     [SerializeField]
     private Vector3 sunRotation =
         new Vector3(45f, -30f, 0f);
@@ -89,6 +98,10 @@ public class DayNightSystem : MonoBehaviour
 
     [SerializeField] private float nightStart = -0.10f;
 
+    // ============================================================
+    // START
+    // ============================================================
+
     private void Start()
     {
         RenderSettings.ambientMode =
@@ -96,17 +109,45 @@ public class DayNightSystem : MonoBehaviour
 
         if (sunLight != null)
         {
-            // Sun never moves.
+            // Default rotation.
+            // PlayerFollowingSun will control this afterwards.
             sunLight.transform.rotation =
                 Quaternion.Euler(sunRotation);
         }
     }
 
+    // ============================================================
+    // UPDATE
+    // ============================================================
+
     private void Update()
     {
+        // The actual world time ALWAYS continues running.
         UpdateTime();
-        UpdateLighting();
-        UpdateSky();
+
+        // Inside CaveLevel or FactoryLevel:
+        // use fixed daytime lighting.
+        if (inStaticLevel)
+        {
+            UpdateStaticLevelLighting();
+            UpdateStaticLevelSky();
+        }
+        else
+        {
+            // On the planet:
+            // use the normal day/night cycle.
+            UpdateLighting();
+            UpdateSky();
+        }
+    }
+
+    // ============================================================
+    // STATIC LEVEL STATE
+    // ============================================================
+
+    public void SetInStaticLevel(bool value)
+    {
+        inStaticLevel = value;
     }
 
     // ============================================================
@@ -140,7 +181,7 @@ public class DayNightSystem : MonoBehaviour
     }
 
     // ============================================================
-    // LIGHTING
+    // NORMAL PLANET LIGHTING
     // ============================================================
 
     private void UpdateLighting()
@@ -208,11 +249,7 @@ public class DayNightSystem : MonoBehaviour
                 t
             );
 
-        // IMPORTANT:
         // Sunset/Sunrise always use the strong light.
-        //
-        // No intensity interpolation.
-        // No dark dip.
         sunLight.intensity =
             sunsetSunIntensity;
 
@@ -225,7 +262,31 @@ public class DayNightSystem : MonoBehaviour
     }
 
     // ============================================================
-    // SKY
+    // STATIC LEVEL LIGHTING
+    // ============================================================
+
+    private void UpdateStaticLevelLighting()
+    {
+        if (sunLight == null)
+            return;
+
+        // --------------------------------------------------------
+        // ALWAYS DAYTIME
+        // --------------------------------------------------------
+
+        sunLight.color =
+            daySunColor;
+
+        sunLight.intensity =
+            daySunIntensity;
+
+        RenderSettings.ambientLight =
+            dayAmbientColor *
+            ambientIntensity;
+    }
+
+    // ============================================================
+    // NORMAL PLANET SKY
     // ============================================================
 
     private void UpdateSky()
@@ -324,5 +385,48 @@ public class DayNightSystem : MonoBehaviour
             "_SkyColor",
             skyTint
         );
+    }
+
+    // ============================================================
+    // STATIC LEVEL SKY
+    // ============================================================
+
+    private void UpdateStaticLevelSky()
+    {
+        if (skyMaterial == null)
+            return;
+
+        // --------------------------------------------------------
+        // ALWAYS DAYTIME SKY
+        // --------------------------------------------------------
+
+        skyMaterial.SetFloat(
+            "_NightBlend",
+            0f
+        );
+
+        skyMaterial.SetFloat(
+            "_Brightness",
+            daySkyBrightness
+        );
+
+        skyMaterial.SetColor(
+            "_SkyColor",
+            Color.white
+        );
+    }
+
+    // ============================================================
+    // OPTIONAL ACCESSORS
+    // ============================================================
+
+    public float GetCurrentTime()
+    {
+        return timeOfDay;
+    }
+
+    public bool IsInStaticLevel()
+    {
+        return inStaticLevel;
     }
 }
