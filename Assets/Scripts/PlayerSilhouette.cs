@@ -114,18 +114,15 @@ public class PlayerSilhouette : MonoBehaviour
 
         for (int i = 0; i < materials.Length; i++)
         {
-            materials[i] =
-                silhouetteMaterial;
+            materials[i] = silhouetteMaterial;
         }
 
-        silhouetteRenderer.sharedMaterials =
-            materials;
+        silhouetteRenderer.sharedMaterials = materials;
 
         silhouetteRenderer.shadowCastingMode =
             ShadowCastingMode.Off;
 
-        silhouetteRenderer.receiveShadows =
-            false;
+        silhouetteRenderer.receiveShadows = false;
 
         silhouetteRenderer.enabled = true;
 
