@@ -41,7 +41,7 @@ public class QuestUIHandling : MonoBehaviour
     }
     public void UpdateQuest(string title, string description)
     {
-        animator.Play("QuestUpdated");
+        animator.Play("QuestUpdate");
         this.title.text = title;
         this.description.text = description;
     }
