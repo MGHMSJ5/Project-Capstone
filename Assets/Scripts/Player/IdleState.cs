@@ -15,7 +15,7 @@ public class IdleState : IState
 
     public void Enter()
     {
-        Debug.Log("Idle");
+        //Debug.Log("Idle");
         animator.SetTrigger("IdleTrigger");
     }
 

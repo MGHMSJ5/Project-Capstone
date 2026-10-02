@@ -15,7 +15,7 @@ public class WalkState : IState
 
     public void Enter()
     {
-        Debug.Log("Walk");
+        //Debug.Log("Walk");
         animator.SetTrigger("WalkingTrigger");
     }
 
