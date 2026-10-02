@@ -13,8 +13,6 @@ public class GroundSilhouetteMaskFeature : ScriptableRendererFeature
     {
         maskPass = new GroundSilhouetteMaskPass(groundLayer);
 
-        // Ground mask must be rendered after opaque geometry
-        // but before the player silhouette.
         maskPass.renderPassEvent =
             RenderPassEvent.AfterRenderingOpaques;
     }
@@ -29,55 +27,68 @@ public class GroundSilhouetteMaskFeature : ScriptableRendererFeature
     private class GroundSilhouetteMaskPass : ScriptableRenderPass
     {
         private readonly LayerMask layerMask;
+        private RenderStateBlock stateBlock;
 
-        private Material maskMaterial;
-
-        public GroundSilhouetteMaskPass(
-            LayerMask layerMask)
+        public GroundSilhouetteMaskPass(LayerMask layerMask)
         {
             this.layerMask = layerMask;
 
-            Shader shader =
-                Shader.Find("Hidden/GroundSilhouetteMask");
+            StencilState stencilState = new StencilState(
+                enabled: true,
+                readMask: 0xFF,
+                writeMask: 0xFF,
+                compareFunction: CompareFunction.Always,
+                passOperation: StencilOp.Replace,
+                failOperation: StencilOp.Keep,
+                zFailOperation: StencilOp.Keep
+            );
 
-            if (shader != null)
+            RenderTargetBlendState renderTargetBlend =
+                new RenderTargetBlendState(
+                    (ColorWriteMask)0,
+                    BlendMode.One,
+                    BlendMode.Zero,
+                    BlendMode.One,
+                    BlendMode.Zero,
+                    BlendOp.Add,
+                    BlendOp.Add
+                );
+
+            BlendState blendState = new BlendState
             {
-                maskMaterial =
-                    new Material(shader);
-            }
+                blendState0 = renderTargetBlend
+            };
+
+            stateBlock = new RenderStateBlock(
+                RenderStateMask.Blend |
+                RenderStateMask.Stencil
+            );
+
+            stateBlock.blendState = blendState;
+            stateBlock.stencilState = stencilState;
+            stateBlock.stencilReference = 1;
         }
 
         public override void Execute(
             ScriptableRenderContext context,
             ref RenderingData renderingData)
         {
-            if (maskMaterial == null)
-                return;
-
-            Camera camera =
-                renderingData.cameraData.camera;
-
-            if (camera == null)
-                return;
-
-            SortingCriteria sorting =
-                SortingCriteria.CommonOpaque;
-
             DrawingSettings drawing =
                 CreateDrawingSettings(
                     new ShaderTagId("UniversalForward"),
                     ref renderingData,
-                    sorting
+                    SortingCriteria.CommonOpaque
                 );
 
-            // Also catch objects using other common URP passes.
             drawing.SetShaderPassName(
                 1,
                 new ShaderTagId("UniversalForwardOnly")
             );
 
-            drawing.overrideMaterial =
-                maskMaterial;
+            drawing.SetShaderPassName(
+                2,
+                new ShaderTagId("SRPDefaultUnlit")
+            );
 
             FilteringSettings filtering =
                 new FilteringSettings(
@@ -88,22 +99,17 @@ public class GroundSilhouetteMaskFeature : ScriptableRendererFeature
             context.DrawRenderers(
                 renderingData.cullResults,
                 ref drawing,
-                ref filtering
+                ref filtering,
+                ref stateBlock
             );
         }
 
-        public override void OnCameraCleanup(
-            CommandBuffer cmd)
+        public override void OnCameraCleanup(CommandBuffer cmd)
         {
         }
     }
 
     protected override void Dispose(bool disposing)
     {
-        if (maskPass != null)
-        {
-            // Material is intentionally cleaned up by Unity
-            // when the renderer feature is destroyed.
-        }
     }
 }

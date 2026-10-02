@@ -20,11 +20,8 @@ Shader "Custom/PlayerSilhouette"
             Name "Silhouette"
 
             ZWrite Off
-
-            // Player must be behind the Ground depth.
             ZTest Greater
 
-            // Only draw where Ground wrote the stencil.
             Stencil
             {
                 Ref 1
@@ -54,9 +51,7 @@ Shader "Custom/PlayerSilhouette"
             };
 
             CBUFFER_START(UnityPerMaterial)
-
                 float4 _BaseColor;
-
             CBUFFER_END
 
             Varyings vert(Attributes input)

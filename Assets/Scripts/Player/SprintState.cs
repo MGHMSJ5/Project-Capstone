@@ -15,7 +15,7 @@ public class SprintState : IState
 
     public void Enter()
     {
-        Debug.Log("Sprint");
+        //Debug.Log("Sprint");
         animator.SetTrigger("SprintingTrigger");
     }
 

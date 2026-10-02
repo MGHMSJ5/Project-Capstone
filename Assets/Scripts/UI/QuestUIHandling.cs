@@ -21,8 +21,9 @@ public class QuestUIHandling : MonoBehaviour
         description = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
     }
 
-    public void StartQuest(string title, string description)
+    public void StartQuest(string title, string description, float startYposition)
     {
+        transform.localPosition = new Vector3(transform.localPosition.x, startYposition, transform.localPosition.z);
         StartCoroutine(StartNewQuestWait(title, description));
     }
 
@@ -32,7 +33,7 @@ public class QuestUIHandling : MonoBehaviour
         {
             yield return null;
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         questActive = true;
         animator.SetTrigger("QuestStart");
         this.title.text = title;
@@ -40,7 +41,7 @@ public class QuestUIHandling : MonoBehaviour
     }
     public void UpdateQuest(string title, string description)
     {
-        animator.Play("QuestUpdated");
+        animator.Play("QuestUpdate");
         this.title.text = title;
         this.description.text = description;
     }
