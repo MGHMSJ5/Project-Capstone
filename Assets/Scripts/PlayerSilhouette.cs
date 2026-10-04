@@ -8,6 +8,9 @@ public class PlayerSilhouette : MonoBehaviour
     [SerializeField]
     private SkinnedMeshRenderer playerRenderer;
 
+    [SerializeField]
+    private Shader silhouetteShader;
+
     [Header("Silhouette")]
     [SerializeField]
     private Color silhouetteColor =
@@ -60,13 +63,10 @@ public class PlayerSilhouette : MonoBehaviour
             return;
         }
 
-        Shader shader =
-            Shader.Find("Custom/PlayerSilhouette");
-
-        if (shader == null)
+        if (silhouetteShader == null)
         {
             Debug.LogError(
-                "PlayerSilhouette shader not found.",
+                "PlayerSilhouette: Silhouette Shader is not assigned!",
                 this
             );
 
@@ -100,7 +100,7 @@ public class PlayerSilhouette : MonoBehaviour
         silhouetteRenderer.updateWhenOffscreen = true;
 
         silhouetteMaterial =
-            new Material(shader);
+            new Material(silhouetteShader);
 
         silhouetteMaterial.name =
             "Player Silhouette Runtime";

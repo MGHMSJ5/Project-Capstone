@@ -19,6 +19,11 @@ Shader "Custom/PlayerSilhouette"
         {
             Name "Silhouette"
 
+            Tags
+            {
+                "LightMode" = "SRPDefaultUnlit"
+            }
+
             ZWrite Off
             ZTest Greater
 
