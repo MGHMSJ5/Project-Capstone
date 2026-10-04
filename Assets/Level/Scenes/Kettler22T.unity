@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0.52386564, g: 0.56170434, b: 0.47704506, a: 1}
+  m_IndirectSpecularColor: {r: 0.5238657, g: 0.5617042, b: 0.47704506, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12098,6 +12098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRenderer: {fileID: 1100951791}
+  silhouetteShader: {fileID: 4800000, guid: db09969c272472d409fdfb950dbea166, type: 3}
   silhouetteColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
 --- !u!1 &332608096
 GameObject:
@@ -978197,7 +978198,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'soundlist.Array.data[13].sounds.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: 468e1e6838a365b4ebe839d4edfef739, type: 3}
+      objectReference: {fileID: 8300000, guid: bff9e056131243646990b96613790e82, type: 3}
     - target: {fileID: 2749936824414630913, guid: 905cbaba0f3cb7d45be025a7c38c0840,
         type: 3}
       propertyPath: 'soundlist.Array.data[15].sounds.Array.data[0]'
