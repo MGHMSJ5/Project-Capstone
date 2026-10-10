@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -95,8 +96,12 @@ public class DayNightSystem : MonoBehaviour
 
     [Header("Day / Sunset / Night Transition")]
     [SerializeField] private float sunsetStart = 0.20f;
+    public Action SetDay;
 
     [SerializeField] private float nightStart = -0.10f;
+    public Action SetNight;
+    [HideInInspector]
+    public bool isCurrentlyDay;
 
     // ============================================================
     // START
@@ -114,6 +119,10 @@ public class DayNightSystem : MonoBehaviour
             sunLight.transform.rotation =
                 Quaternion.Euler(sunRotation);
         }
+
+        float sunHeight = GetSunHeight();
+
+        isCurrentlyDay = sunHeight >= sunsetStart ? false : true;
     }
 
     // ============================================================
@@ -208,6 +217,12 @@ public class DayNightSystem : MonoBehaviour
                 dayAmbientColor *
                 ambientIntensity;
 
+            if (!isCurrentlyDay)
+            {
+                SetDay?.Invoke();
+            }
+            isCurrentlyDay = true;
+
             return;
         }
 
@@ -226,6 +241,12 @@ public class DayNightSystem : MonoBehaviour
             RenderSettings.ambientLight =
                 nightAmbientColor *
                 ambientIntensity;
+
+            if (isCurrentlyDay)
+            {
+                SetNight?.Invoke();
+            }
+            isCurrentlyDay = false;
 
             return;
         }
